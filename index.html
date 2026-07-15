@@ -336,6 +336,7 @@ code.inline { font-family: var(--mono); font-size: 12px; padding: 2px 6px; backg
     <ul>
       <li><a href="#projects">전체 목록</a></li>
       <li><a href="#" class="sub" data-project="tag2now">Tag2Now</a></li>
+      <li><a href="#" class="sub" data-project="ktx">KTX 티켓팅</a></li>
       <li><a href="#" class="sub" data-project="project2">FireWatcher</a></li>
       <li><a href="#" class="sub" data-project="lidar">LiDAR 여객 흐름</a></li>
       <li><a href="#" class="sub" data-project="hemp">Hemp 이력관리</a></li>
@@ -368,7 +369,7 @@ code.inline { font-family: var(--mono); font-size: 12px; padding: 2px 6px; backg
       <hr class="profile-divider">
       <div class="profile-stat">
         <div><div class="stat-num">3년+</div><div class="stat-label">경력</div></div>
-        <div><div class="stat-num">4개</div><div class="stat-label">프로젝트</div></div>
+        <div><div class="stat-num">5개</div><div class="stat-label">프로젝트</div></div>
         <div><div class="stat-num">10+</div><div class="stat-label">기술</div></div>
       </div>
     </div>
@@ -499,7 +500,35 @@ code.inline { font-family: var(--mono); font-size: 12px; padding: 2px 6px; backg
       </div>
     </a>
 
-    <!-- 프로젝트 카드 2: FireWatcher -->
+    <!-- 프로젝트 카드 2: KTX Ticketing -->
+    <a class="project-card" href="#" data-project="ktx">
+      <div class="project-card-top">
+        <div class="project-card-icon">🚄</div>
+        <div class="project-period">2025 — 현재</div>
+      </div>
+      <div class="project-card-name">KTX 티켓팅 — 동시성·정합성 엔지니어링</div>
+      <div class="project-card-desc">
+        명절 대규모 동시접속 선착순 예매의 초과 판매(oversell)·중복 예매를 정합성을 보장하며 해결.
+        1,000명이 같은 좌석을 동시 경쟁해도 <strong>초과 판매 0건</strong>, k6 부하 테스트로 Before/After 수치 증명.
+      </div>
+      <div class="project-card-tags">
+        <span class="project-card-tag">Spring Boot 4</span>
+        <span class="project-card-tag">Java 25</span>
+        <span class="project-card-tag">Redis</span>
+        <span class="project-card-tag">Redisson</span>
+        <span class="project-card-tag">MySQL</span>
+        <span class="project-card-tag">k6</span>
+      </div>
+      <div class="project-card-footer">
+        <div style="display:flex;gap:6px;">
+          <span class="badge">🔗 개인 프로젝트</span>
+          <span class="badge">부하 테스트</span>
+        </div>
+        <span class="view-link">자세히 보기 →</span>
+      </div>
+    </a>
+
+    <!-- 프로젝트 카드 3: FireWatcher -->
     <a class="project-card" href="#" data-project="project2">
       <div class="project-card-top">
         <div class="project-card-icon">🔥</div>
@@ -925,6 +954,203 @@ async def record_snapshot(rooms: list, *, session: AsyncSession) -> None:
   </div>
 
 </div><!-- /#detail-tag2now -->
+
+
+<!-- ══════════════════════════════════════
+     PROJECT DETAIL: KTX TICKETING
+══════════════════════════════════════ -->
+<div id="detail-ktx" class="project-detail">
+
+  <div class="project-detail-header">
+    <div>
+      <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">개인 프로젝트 · 2025 — 현재</div>
+      <h2>🚄 KTX 티켓팅 — 대규모 동시성·정합성 엔지니어링</h2>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <a href="https://github.com/ass3027/ktx-ticketing" class="btn btn-outline" target="_blank">🐙 GitHub</a>
+      <button class="back-btn" onclick="showMain()">↑ 목록으로</button>
+    </div>
+  </div>
+
+  <!-- 개요 -->
+  <div class="detail-section">
+    <div class="section-label">개요</div>
+    <h2>프로젝트 배경</h2>
+    <div class="card">
+      <p>명절·연휴에 수만 명이 동시에 같은 좌석을 예매하려 할 때 발생하는 <strong>초과 판매(oversell)·중복 예매·좌석 재고 깨짐</strong>을 막고, 그 정합성과 성능을 <strong>부하 테스트와 Before/After 수치로 증명</strong>하는 것을 목표로 한 프로젝트다.</p>
+      <p>CRUD 기능 수가 아니라, <strong>N명이 한 좌석을 경합할 때 정확히 1명만 성공하게 만드는 동시성·정합성 엔지니어링</strong>이 이 프로젝트의 핵심이다. 7주 단계별 계획(P0~P6)으로 설계·구현하고, 부하 시나리오 L1~L6(9종) + 필수 실험 E1~E3의 Before/After를 모두 완료했다.</p>
+    </div>
+  </div>
+
+  <!-- 기술 스택 -->
+  <div class="detail-section">
+    <div class="section-label">Tech Stack</div>
+    <h2>기술 스택</h2>
+    <div class="stack-group">
+      <div class="pill-list">
+        <span class="pill pill-green">Spring Boot 4.0</span>
+        <span class="pill pill-green">Java 25</span>
+        <span class="pill pill-blue">MySQL 8</span>
+        <span class="pill pill-blue">Redis 7</span>
+        <span class="pill pill-purple">Redisson</span>
+        <span class="pill pill-yellow">k6</span>
+        <span class="pill pill-yellow">Testcontainers</span>
+        <span class="pill pill-blue">Gradle (Kotlin DSL)</span>
+        <span class="pill pill-purple">GitHub Actions</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 아키텍처 결정 -->
+  <div class="detail-section">
+    <div class="section-label">Architecture</div>
+    <h2>아키텍처 결정 — Redis 동기 + 비가시 입장 제어</h2>
+    <p style="color:var(--text-muted);font-size:14px;">주 경로는 <strong>Redis 동기 예매 + 분산 락</strong>. 메시지 큐는 핵심 예매 경로가 아니라 비동기 사이드(결제 결과·만료·통계 이벤트)에만 도입했다. KTX 예매의 본질 난제는 "같은 좌석 동시 점유 제어"이므로, 분산 락으로 경합을 직접 제어하는 방식이 도메인·학습 가치가 가장 크다고 판단했다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>기준</th><th>Plan A · Redis 동기 (채택)</th><th>Plan B · MQ 비동기</th></tr></thead>
+        <tbody>
+          <tr><td>정합성 보장</td><td>분산 락 + 낙관 락</td><td>파티션 직렬화</td></tr>
+          <tr><td>응답 UX</td><td>단순 (요청-응답 1회)</td><td>복잡 (추적/폴링)</td></tr>
+          <tr><td>운영 복잡도</td><td>낮음</td><td>높음</td></tr>
+          <tr><td>학습/어필</td><td><strong>락 설계·경합 제어</strong></td><td>스트림·백프레셔·멱등성</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>2단(2-tier) 일관성 모델</h3>
+    <div class="ascii-box">┌─────────────── 조회/표시 (운행 리스트·잔여석·매진) ───────────────┐
+│  결과적 일관성 (staleness ≤ 2s) · Redis 단기 캐시 (single-flight) │
+└───────────────────────────────────────────────────────────────────┘
+                              │
+┌─────────────── 예매 확정 (락 임계영역) ───────────────┐
+│  강한 일관성 · Redis 원자 선점(SREM/SPOP) → DB 상태 전이 │
+└─────────────────────────────────────────────────────────┘
+   DB = SoT (진실의 원천)  ·  Redis = 빠른 게이트
+   부하 후 ReconciliationService(60s)가 DB로 드리프트 수렴</div>
+    <div class="tradeoff-note">"남은 좌석 수가 화면마다 달라 보이는" 불일치는 버그가 아니라 조회 속도를 위해 의도적으로 감수한 트레이드오프 — 정확성이 필요한 예매 확정만 강한 일관성으로 격리했다. 그 경계를 어림짐작이 아니라 SLO 수치(S2b staleness ≤ 2s · S4 oversell 0)로 못박았다.</div>
+  </div>
+
+  <!-- 핵심 기술적 도전 -->
+  <div class="detail-section">
+    <div class="section-label">Key Challenges</div>
+    <h2>핵심 기술적 도전</h2>
+
+    <div class="challenge-card open" id="k-ch1">
+      <div class="challenge-header" onclick="toggleChallenge('k-ch1')">
+        <span class="challenge-num">1</span>
+        <span class="challenge-title">단일 원자 선점 — 1,000명 같은 좌석 경쟁 → 초과 판매 0건</span>
+        <span class="challenge-chevron">▾</span>
+      </div>
+      <div class="challenge-body">
+        <div class="problem-box"><div class="label">문제</div>N명이 같은 좌석을 동시에 예매 시도할 때, 단 1명만 성공하고 좌석 재고가 정확히 −1 차감되어야 한다. 락을 여러 군데 흩뿌리면 경합 지점이 늘어 정합성이 깨진다.</div>
+        <div class="result-box"><div class="label">해결</div>선점을 <strong>단일 원자 지점 = Redis Set <code>avail:{schedule_id}</code></strong>에 모았다. 직접 선택은 <code>SREM</code>(반환 1 = 승리), 자동 배정은 <code>SPOP</code>. 승자만 DB 상태 전이(<code>AVAILABLE→HELD→SOLD</code>)를 수행하고, 패배 요청은 DB에 닿기 전 즉시 반려된다. 최종 방어선으로 DB <code>@Version</code> 낙관 락 + <code>uk_active_seat</code> 유니크 제약을 둔 <strong>이중 방어</strong> 구조다.</div>
+        <div class="code-wrap">
+          <div class="code-label"><span>SeatPreemptionService — 원자 선점</span></div>
+          <pre><code class="language-java">// ① Redis 원자 선점: 반환 1 = 승리, 0 = 패배(즉시 409, DB 미접촉)
+Long won = redis.opsForSet().remove("avail:" + scheduleId, seatId);
+if (won == 0) throw new SeatAlreadyTakenException();   // 패배 999건을 DB 앞단에서 흡수
+
+// ② 승자만 DB 상태 전이 — @Version 낙관 락이 최종 정합성 방어
+seat.hold(entryToken, Duration.ofMinutes(5));          // AVAILABLE → HELD (TTL 5분)
+seatRepository.save(seat);                             // uk_active_seat 로 중복 원천 차단</code></pre>
+        </div>
+        <div class="result-box" style="border-left-color:var(--accent);background:rgba(59,130,246,.07)"><div class="label" style="color:var(--accent)">성과 (L1 실측)</div>1,000석 → 1,000명 동시 경쟁 → 성공 정확히 <strong>1건</strong> → 999석 잔존. <strong>초과 판매 0건 · 중복 0건</strong>을 k6 요약과 DB·Redis audit이 교차 검증(3회 일관). 진짜 1,000 동시(<code>http_reqs=2000</code>), 5xx 누수 0%.</div>
+      </div>
+    </div>
+
+    <div class="challenge-card" id="k-ch2">
+      <div class="challenge-header" onclick="toggleChallenge('k-ch2')">
+        <span class="challenge-num">2</span>
+        <span class="challenge-title">조회 캐시 스탬피드 방어 — single-flight (E3)</span>
+        <span class="challenge-chevron">▾</span>
+      </div>
+      <div class="challenge-body">
+        <div class="problem-box"><div class="label">문제</div>운행 리스트·잔여석 조회는 모든 사용자의 진입점이라 읽기가 압도적으로 많다. 매 요청이 DB에서 재고를 <code>SCARD</code>로 집계하면 혼합 부하에서 조회 p95가 8~9초로 무너진다(캐시 off). 핫키 TTL 만료 순간 요청이 일제히 DB로 쏟아지는 <strong>스탬피드</strong>도 위험하다.</div>
+        <div class="result-box"><div class="label">해결</div>Redis 공유 단기 캐시(TTL 1s)로 서빙하고, TTL 만료 순간의 스탬피드는 <strong>single-flight</strong>(winner 1개만 재계산·나머지는 결과 공유)로 막았다. 능동 무효화 대신 staleness를 TTL(≤1s)로 제한하고, 낡은 표시는 예매 시도가 <code>SREM=0</code>으로 자가교정(2-tier 계약)한다.</div>
+        <div class="result-box" style="border-left-color:var(--accent);background:rgba(59,130,246,.07)"><div class="label" style="color:var(--accent)">성과</div>핫키 조회 <strong>p95 8~9s → 26ms</strong>, 처리량 ~850 TPS → <strong>2,497 TPS</strong>, dropped 0 (L3 3회 일관). 다만 캐시는 히트율 의존 — 저히트율 다중 키에선 DB 풀이 병목으로 복귀함을 함께 규명(정직한 한계).</div>
+      </div>
+    </div>
+
+    <div class="challenge-card" id="k-ch3">
+      <div class="challenge-header" onclick="toggleChallenge('k-ch3')">
+        <span class="challenge-num">3</span>
+        <span class="challenge-title">비가시 입장 제어 — 대기열 없이 피크 흡수 (E2)</span>
+        <span class="challenge-chevron">▾</span>
+      </div>
+      <div class="challenge-body">
+        <div class="problem-box"><div class="label">문제</div>실제 KTX 앱처럼 대기 순번을 노출하지 않으면서 피크 트래픽을 견뎌야 한다. 입장 제어가 없으면 5xx 폭증이 아니라 <strong>무경계 열화</strong>(응답 p95 22s·VU 2,000 팽창·38k drop)로 시스템이 조용히 붕괴한다.</div>
+        <div class="result-box"><div class="label">해결</div>Redis 활성자 카운터로 동시 활성 세션을 상한 <code>K</code>로 제한하고, 초과분은 보이는 대기열 없이 <code>429/503 + Retry-After</code>로 흡수한다(큐 번호 엔티티가 의도적으로 없음). 임계점 실험(L5b)으로 안전 처리량과 천장을 측정해 <code>K=100</code>을 확정했다.</div>
+        <div class="result-box" style="border-left-color:var(--accent);background:rgba(59,130,246,.07)"><div class="label" style="color:var(--accent)">성과</div>제어 off p95 22s·dropped 38k → 제어 on(K=100) <strong>초과분 85.4%를 429로 흡수</strong>·dropped 0·reserve p95 ~28ms로 뒷단을 정격 보호 (L4 open-loop 3회).</div>
+      </div>
+    </div>
+
+    <div class="challenge-card" id="k-ch4">
+      <div class="challenge-header" onclick="toggleChallenge('k-ch4')">
+        <span class="challenge-num">4</span>
+        <span class="challenge-title">Redis↔DB 드리프트 수렴 — DB를 SoT로 (오버셀 원천 차단)</span>
+        <span class="challenge-chevron">▾</span>
+      </div>
+      <div class="challenge-body">
+        <div class="problem-box"><div class="label">문제</div>빠른 게이트(Redis)는 언제든 틀릴 수 있다. 부하 중 Redis <code>avail</code> Set과 DB 상태 사이에 드리프트가 생기면, 방치 시 오버셀·재고 깨짐으로 번진다.</div>
+        <div class="result-box"><div class="label">해결</div><code>ReconciliationService</code>가 주기적으로(60s) 드리프트를 <strong>DB(진실의 원천)로 수렴</strong>시킨다. 방향은 비대칭 — DB엔 없는데 Redis에만 남은 stale 좌석 제거는 상시 안전하고, 그 반대(missing) 복원은 선점~커밋 사이 in-flight 오탐을 피해 grace(5분) 경과분만 되돌린다.</div>
+        <div class="result-box" style="border-left-color:var(--accent);background:rgba(59,130,246,.07)"><div class="label" style="color:var(--accent)">성과</div>"Redis=빠른 게이트, DB=SoT" 계약을 실제로 닫아 <strong>오버셀을 원천 차단</strong>. 정합성 자동 게이트(<code>/internal/consistency</code>)는 L6에서 timezone skew라는 환경 의존 실결함까지 자동 검출했다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLO -->
+  <div class="detail-section">
+    <div class="section-label">SLO</div>
+    <h2>검증 목표 — 측정 가능한 수치로 못박기</h2>
+    <p style="color:var(--text-muted);font-size:14px;">"빠르게·안정적으로" 같은 애매한 말 대신 측정 가능한 SLO로 달성 여부를 판정했다. 우선순위는 <strong>정합성(S4)이 최우선</strong> — 하나라도 깨지면 실패다. 핵심은 숫자 크기가 아니라 "왜 이 값인가"를 설명할 수 있는 것.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>지표</th><th>목표</th><th>측정값 (P4)</th></tr></thead>
+        <tbody>
+          <tr><td>S1</td><td>예매 API 응답</td><td>p95 ≤ 500ms</td><td>p95 348~408ms ✅</td></tr>
+          <tr><td>S2</td><td>운행 리스트/매진 조회</td><td>p95 ≤ 200ms</td><td>캐시 on p95 ~26ms ✅ (off 8~9s)</td></tr>
+          <tr><td>S3</td><td>처리량</td><td>1,000 VU에서 ≥ 200 TPS</td><td>833~863 TPS ✅ (목표 4배+)</td></tr>
+          <tr><td><strong>S4</strong></td><td><strong>정합성 (최우선)</strong></td><td><strong>초과 판매 0 / 중복 0</strong></td><td><strong>oversell 0 / 중복 0 ✅</strong> (3회 일관)</td></tr>
+          <tr><td>S5</td><td>가용성</td><td>5xx &lt; 1% (의도된 429 제외)</td><td>0.03~0.04% ✅</td></tr>
+          <tr><td>S6</td><td>임계점</td><td>붕괴 지점 수치화</td><td>safe ~150 TPS·천장 ~189 TPS → K=100 ✅</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Before / After -->
+  <div class="detail-section">
+    <div class="section-label">Before / After</div>
+    <h2>실험 — 설계 결정을 수치로 증명</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>실험</th><th>Before</th><th>After</th><th>보여준 것</th></tr></thead>
+        <tbody>
+          <tr><td><strong>E1</strong> 동시성 제어</td><td>선점 OFF · reserve 중앙값 ~1.2s</td><td>선점 ON · ~0.29s (~4×↓)</td><td>선점의 값 = <strong>DB 부하 회피</strong> (정확성은 양쪽 0)</td></tr>
+          <tr><td><strong>E2</strong> 입장 제어</td><td>무제한 · p95 22s·drop 38k</td><td>K=100 · 429 85.4% 흡수·drop 0</td><td>무경계 열화 → 빠른 반려</td></tr>
+          <tr><td><strong>E3</strong> 조회 캐시</td><td>off · ~850 TPS·p95 8~9s</td><td>on · 2,497 TPS·p95 26ms</td><td>조회 p95·DB 부하 대폭 감소</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tradeoff-note"><strong>E1의 정직한 결론</strong>: 선점을 꺼도 <code>@Version</code> 낙관 락·DB 유니크가 오버셀을 막아 정확성은 양쪽 0 — 선점의 값은 <em>정확성의 필요조건</em>이 아니라 DB 부하 회피다. "정확성은 이미 DB가 보장, 성능·가용성은 앞단 게이트가 지킨다"는 2-tier 서사를 세 실험이 실측으로 뒷받침한다.</div>
+  </div>
+
+  <!-- 배운 점 -->
+  <div class="detail-section">
+    <div class="section-label">What I Learned</div>
+    <h2>배운 점 &amp; 성장</h2>
+    <div class="learn-grid">
+      <div class="learn-card"><div class="learn-icon">🔒</div><h4>동시성·정합성</h4><p>Redis 원자 선점(SREM/SPOP) + DB 낙관 락 이중 방어로 1,000 경합에서 oversell 0을 설계·증명</p></div>
+      <div class="learn-card"><div class="learn-icon">⚖️</div><h4>2-tier 일관성</h4><p>조회는 약한 일관성(빠름)·예매는 강한 일관성(정확)으로 명시 분리, 경계를 SLO로 측정 가능하게 함</p></div>
+      <div class="learn-card"><div class="learn-icon">📈</div><h4>부하 테스트</h4><p>k6로 L1~L6 시나리오 + E1~E3 Before/After를 설계, SLO 충족 여부를 수치로 판정</p></div>
+      <div class="learn-card"><div class="learn-icon">🧭</div><h4>측정 후 최적화</h4><p>추측성 최적화를 배제하고 "병목으로 측정될 때만" 착수하도록 트리거 조건을 명문화</p></div>
+      <div class="learn-card"><div class="learn-icon">🔬</div><h4>근본 원인 규명</h4><p>1,000 동시 연결 거부의 진짜 원인이 앱이 아닌 Docker NAT 포화임을 격리 실험으로 규명</p></div>
+      <div class="learn-card"><div class="learn-icon">🤖</div><h4>AI 통제 워크플로우</h4><p>계획 승인·테스트 유효성·커밋 승인 3개 사람 게이트로 AI에 끌려가지 않는 협업 규율 확립</p></div>
+    </div>
+  </div>
+
+</div><!-- /#detail-ktx -->
 
 
 <!-- ══════════════════════════════════════
