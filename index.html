@@ -637,11 +637,6 @@ code.inline { font-family: var(--mono); font-size: 12px; padding: 2px 6px; backg
     </a>
     -->
 
-    <!-- + 프로젝트 추가 카드 -->
-    <div class="project-card" style="border-style:dashed; cursor:default; opacity:.5; align-items:center; justify-content:center; text-align:center; min-height:200px;">
-      <div style="font-size:32px; margin-bottom:10px;">＋</div>
-      <div style="font-size:14px; color:var(--text-muted);">프로젝트를 추가하세요</div>
-    </div>
 
   </div>
 </section>
@@ -660,8 +655,8 @@ code.inline { font-family: var(--mono); font-size: 12px; padding: 2px 6px; backg
       <h2>🎮 Tag2Now — 철권 태그 토너먼트 2 실시간 대시보드</h2>
     </div>
     <div style="display:flex;gap:10px;align-items:center;">
-      <a href="https://github.com/[YOUR_ID]/tag2now" class="btn btn-outline" target="_blank">🐙 GitHub</a>
-      <a href="https://[YOUR_DOMAIN]" class="btn btn-outline" target="_blank">🌐 서비스</a>
+      <a href="https://github.com/orgs/tag2now/repositories" class="btn btn-outline" target="_blank">🐙 GitHub</a>
+      <a href="https://match.tag2now.click/" class="btn btn-outline" target="_blank">🌐 서비스</a>
       <button class="back-btn" onclick="showMain()">↑ 목록으로</button>
     </div>
   </div>
@@ -681,53 +676,17 @@ code.inline { font-family: var(--mono); font-size: 12px; padding: 2px 6px; backg
     <div class="section-label">Tech Stack</div>
     <h2>기술 스택</h2>
     <div class="stack-group">
-      <div class="stack-group-title">Backend (주력)</div>
       <div class="pill-list">
-        <span class="pill pill-blue">Python 3.10+</span>
-        <span class="pill pill-blue">FastAPI 0.110</span>
+        <span class="pill pill-blue">Python / FastAPI</span>
         <span class="pill pill-blue">SQLAlchemy 2.0 (async)</span>
-        <span class="pill pill-blue">asyncpg</span>
-        <span class="pill pill-blue">Pydantic 2.0</span>
-      </div>
-    </div>
-    <div class="stack-group">
-      <div class="stack-group-title">DB & 캐시</div>
-      <div class="pill-list">
         <span class="pill pill-green">PostgreSQL</span>
-        <span class="pill pill-green">Redis 5.0</span>
+        <span class="pill pill-green">Redis</span>
         <span class="pill pill-green">DynamoDB</span>
-      </div>
-    </div>
-    <div class="stack-group">
-      <div class="stack-group-title">프로토콜</div>
-      <div class="pill-list">
-        <span class="pill pill-yellow">TCP/TLS 바이너리</span>
-        <span class="pill pill-yellow">Protocol Buffers (gRPC tools)</span>
-      </div>
-    </div>
-    <div class="stack-group">
-      <div class="stack-group-title">인프라 & CI/CD</div>
-      <div class="pill-list">
         <span class="pill pill-purple">Docker</span>
-        <span class="pill pill-purple">Docker Compose</span>
         <span class="pill pill-purple">Nginx</span>
         <span class="pill pill-purple">GitHub Actions</span>
-        <span class="pill pill-purple">Amazon ECR</span>
-        <span class="pill pill-purple">Amazon ECS</span>
-        <span class="pill pill-purple">AWS Lightsail</span>
-        <span class="pill pill-purple">AWS OIDC</span>
-      </div>
-    </div>
-    <div class="stack-group">
-      <div class="stack-group-title">Frontend</div>
-      <div class="pill-list">
-        <span class="pill pill-gray">React 18</span>
-        <span class="pill pill-gray">TypeScript 5</span>
-        <span class="pill pill-gray">Vite</span>
-        <span class="pill pill-gray">Tailwind CSS</span>
-        <span class="pill pill-gray">Recharts</span>
-        <span class="pill pill-gray">Vitest</span>
-        <span class="pill pill-gray">Playwright</span>
+        <span class="pill pill-purple">AWS ECS</span>
+        <span class="pill pill-gray">React / TypeScript</span>
       </div>
     </div>
   </div>
