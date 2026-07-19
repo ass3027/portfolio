@@ -48,6 +48,8 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); font
 }
 .page:last-child { break-after: auto; }
 .page-body { height: 100%; display: flex; flex-direction: column; }
+/* 헤더(키커+타이틀) 아래 본문을 남는 세로 공간의 중앙에 배치 — 여백이 하단에만 몰리지 않게 함 */
+.page-fill { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
 
 /* 개발용 넘침 디버그: <body class="debug"> 로 켜면 넘친 내용이 빨간 테두리 밖으로 드러남 */
 body.debug .page { overflow: visible; outline: 1px solid red; }
@@ -320,6 +322,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <div class="page-kicker">경력</div>
     <h2 class="page-title">Work Experience &amp; 자격증</h2>
+    <div class="page-fill">
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
@@ -353,6 +356,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="cert-card"><div class="cert-name">정보처리기사</div><div class="cert-sub">Engineer Information Processing</div><div class="cert-issuer">한국산업인력공단 · 2024.05</div></div>
       <div class="cert-card"><div class="cert-name">네트워크 관리사 2급</div><div class="cert-sub">Network Administrator Level 2</div><div class="cert-issuer">한국정보통신자격협회 · 2021.08</div></div>
     </div>
+  </div>
   </div>
   <div class="page-num">02</div>
 </div>
@@ -418,6 +422,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
 
+    <div class="page-fill">
     <div class="section-label">개요</div>
     <h3>프로젝트 배경</h3>
     <div class="card">
@@ -457,6 +462,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
+  </div>
   <div class="page-num">04</div>
 </div>
 
@@ -465,6 +471,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <div class="section-label">Architecture &amp; Infrastructure</div>
     <h2 class="page-title">시스템 아키텍처 &amp; 인프라</h2>
+    <div class="page-fill">
     <div class="ascii-box">┌───────────────────────────────────────────────────────┐
 │                    RPCN Server (PSN)                  │
 │  rpcn.rpcs3.net:31313  (TCP/TLS, Binary + Protobuf)   │
@@ -512,6 +519,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
+  </div>
   <div class="page-num">05</div>
 </div>
 
@@ -520,7 +528,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <div class="section-label">Key Challenges</div>
     <h2 class="page-title">핵심 기술적 도전</h2>
-    <div class="mini-grid c2 grow">
+    <div class="page-fill">
+    <div class="mini-grid c2">
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">4-1</span><span class="mc-title">클로즈드 소스 바이너리 프로토콜 역공학 구현</span></div>
         <div class="mc-box mc-problem"><div class="mc-label">문제</div>RPCN 서버는 공식 SDK가 없다. RPCS3 C++ 소스에서 15-byte 바이너리 헤더 + Protobuf 페이로드 구조를 분석하고 TLS/TCP 클라이언트를 직접 구현해야 했다.</div>
@@ -543,6 +552,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
+  </div>
   <div class="page-num">06</div>
 </div>
 
@@ -551,7 +561,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <div class="section-label">Learnings</div>
     <h2 class="page-title">배운 점 &amp; 성장 — Tag2Now</h2>
-    <div class="learn-grid grow" style="align-content:start;">
+    <div class="page-fill">
+    <div class="learn-grid">
       <div class="learn-card"><div class="learn-icon">🔬</div><h4>프로토콜 역공학</h4><p>C++ 소스 분석 후 Python으로 바이너리 프로토콜 클라이언트 구현. struct·ssl·socket 저수준 API 직접 활용.</p></div>
       <div class="learn-card"><div class="learn-icon">⚡</div><h4>비동기 아키텍처</h4><p>FastAPI + asyncio + asyncpg로 이벤트 기반 설계 — 응답 지연 없이 히스토리 수집.</p></div>
       <div class="learn-card"><div class="learn-icon">🗄️</div><h4>DB 설계 판단</h4><p>데이터 특성에 따라 Redis / PostgreSQL / DynamoDB를 선별 적용, Ports &amp; Adapters 패턴.</p></div>
@@ -559,6 +570,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="learn-card"><div class="learn-icon">🔐</div><h4>보안 설계</h4><p>AWS OIDC keyless 배포 — IAM 액세스 키를 Secrets에 저장하지 않는 방식.</p></div>
       <div class="learn-card"><div class="learn-icon">📊</div><h4>비용 최적화</h4><p>CloudWatch + Billing 분석으로 오버스펙 인식 → 서비스 규모에 맞는 인프라 판단.</p></div>
     </div>
+  </div>
   </div>
   <div class="page-num">07</div>
 </div>
@@ -576,6 +588,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
 
+    <div class="page-fill">
     <div class="section-label">개요</div>
     <h3>프로젝트 배경</h3>
     <div class="card">
@@ -597,6 +610,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <span class="pill pill-purple">GitHub Actions</span>
     </div>
   </div>
+  </div>
   <div class="page-num">08</div>
 </div>
 
@@ -605,6 +619,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <div class="section-label">Architecture &amp; SLO</div>
     <h2 class="page-title">아키텍처 결정 — 2단 일관성 &amp; 검증 목표</h2>
+    <div class="page-fill">
     <div class="row c2-wide">
       <div>
         <h3>Redis 동기 + 비가시 입장 제어</h3>
@@ -644,6 +659,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
+  </div>
   <div class="page-num">09</div>
 </div>
 
@@ -652,7 +668,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <div class="section-label">Key Challenges</div>
     <h2 class="page-title">핵심 기술적 도전 — KTX</h2>
-    <div class="mini-grid c2 grow">
+    <div class="page-fill">
+    <div class="mini-grid c2">
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">단일 원자 선점 — 1,000명 같은 좌석 경쟁 → 초과 판매 0건</span></div>
         <div class="mc-box mc-problem"><div class="mc-label">문제</div>N명이 같은 좌석을 동시 시도할 때 단 1명만 성공하고 재고가 정확히 −1 되어야 한다. 락을 흩뿌리면 경합 지점이 늘어 정합성이 깨진다.</div>
@@ -675,6 +692,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
+  </div>
   <div class="page-num">10</div>
 </div>
 
@@ -683,6 +701,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <div class="section-label">Before / After · Learnings</div>
     <h2 class="page-title">실험으로 증명 &amp; 배운 점 — KTX</h2>
+    <div class="page-fill">
     <h3>실험 — 설계 결정을 수치로 증명</h3>
     <table>
       <thead><tr><th>실험</th><th>Before</th><th>After</th><th>보여준 것</th></tr></thead>
@@ -702,6 +721,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="learn-card"><div class="learn-icon">🤖</div><h4>AI 통제 워크플로우</h4><p>계획·테스트 유효성·커밋 승인 3개 사람 게이트로 AI에 끌려가지 않는 협업 규율 확립.</p></div>
     </div>
   </div>
+  </div>
   <div class="page-num">11</div>
 </div>
 
@@ -715,6 +735,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
 
+    <div class="page-fill">
     <div class="row c2" style="align-items:start;">
       <div>
         <div class="section-label">개요</div>
@@ -751,6 +772,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
+  </div>
   <div class="page-num">12</div>
 </div>
 
@@ -764,6 +786,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
 
+    <div class="page-fill">
     <div class="row c2" style="align-items:start; margin-bottom:14px;">
       <div>
         <div class="section-label">개요</div>
@@ -806,6 +829,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>분산 로직을 BE 공통 모듈로 통합. 중복 제거로 메모리 <strong>70% 감소</strong>, 코드량 <strong>50% 감소</strong> 및 가독성 개선.</div>
       </div>
     </div>
+  </div>
   </div>
   <div class="page-num">13</div>
 </div>
