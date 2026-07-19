@@ -28,9 +28,10 @@ README, `.cursor` 규칙, Copilot 지침은 없다.
 
 - **섹션**은 `<section id="...">` 블록이다: `about`, `career`, `projects`. 사이드바 `<nav>`의 링크(`href="#id"`)는 이 ID들과 항상 일치해야 한다.
 - **스크롤 동작**은 `IntersectionObserver`(1219줄 부근)가 담당한다. 섹션이 뷰에 들어오면 해당 nav 링크에 `.active` 클래스를 토글한다. 섹션을 추가/이름변경하면 `id`와 대응하는 nav `<a href="#...">`를 함께 수정한다.
-- **테마**는 `:root`에 CSS 커스텀 프로퍼티(`--bg`, `--accent` 등)로 정의된 GitHub 스타일 다크 팔레트다. 색상은 하드코딩하지 말고 이 변수를 재사용한다.
+- **테마**는 `:root`에 CSS 커스텀 프로퍼티(`--bg`, `--accent` 등)로 정의된 GitHub 스타일 **라이트 팔레트**다(과거 다크에서 전환 — PDF와 색을 일치시키기 위함). 색상은 하드코딩하지 말고 이 변수를 재사용한다. 콘텐츠 폭은 `--content-max`로 고정한다([PDF 내보내기](#pdf-내보내기) 참고).
 - **모바일**은 `.mobile-header` + 햄버거 토글(`#hamburger`, 1249줄 부근 핸들러)로 사이드바를 열고 닫는다. 레이아웃을 바꾸면 모바일 폭에서도 동작하는지 확인한다.
-- **외부 의존성**은 `<head>`에서 CDN으로 로드된다: Google Fonts(Noto Sans KR, JetBrains Mono)와 highlight.js(`yaml`·`nginx` 언어 팩 포함). 코드 블록은 로드 시 `hljs.highlightAll()`로 하이라이팅된다 — 코드 샘플이 있으면 highlight.js 스크립트와 언어 include를 유지한다.
+- **코드 블록(`.code-wrap`)은 화면·PDF 모두 숨김**(`display:none`)이다 — 포트폴리오는 코드를 정독시키지 않는다(코드는 GitHub 몫). 마크업·highlight.js는 소스에 남아 있으나 화면엔 나오지 않는다. **ASCII 아키텍처 박스(`.ascii-box`)는 표시**한다.
+- **외부 의존성**은 `<head>`에서 CDN으로 로드된다: Google Fonts(Noto Sans KR, JetBrains Mono)와 highlight.js. (코드 블록을 숨기므로 하이라이팅은 실질적으로 미노출이지만 마크업 유지 차원에서 include는 남겨둔다.)
 
 ## 편집 규칙
 
@@ -50,17 +51,20 @@ README, `.cursor` 규칙, Copilot 지침은 없다.
 
 ## PDF 내보내기
 
-제출용 PDF는 **[최상위 원칙](#최상위-원칙-모든-판단의-기준) — "포트폴리오다"** 를 그대로 따른다. `index.html`은 `@media print` 블록(`</style>` 바로 앞)으로 화면(다크)은 그대로 두고 인쇄/PDF 시에만 포트폴리오형 라이트 출력으로 전환한다.
+제출용 PDF는 **[최상위 원칙](#최상위-원칙-모든-판단의-기준) — "포트폴리오다"** 를 그대로 따른다. `index.html`은 `@media print` 블록(`</style>` 바로 앞)으로 PDF를 만든다.
 
-**고정 결정 (바꾸지 말 것):**
-- **방향은 가로(A4 landscape) 고정.** `@page { size: A4 landscape; ... }`. 슬라이드형 포트폴리오 표준이며, 세로로 되돌리지 않는다.
-- **코드 전문은 PDF에서 뺀다** (사이트·GitHub엔 유지). 포트폴리오는 성과·아키텍처·요약을 보여주는 자료이지 코드를 정독시키는 문서가 아니다. 코드 블록(`.code-wrap`)은 `@media print { .code-wrap { display:none } }`으로 숨긴다. → 실제 코드 리스팅은 Tag2Now 3개·KTX 1개(`index.html`의 `<pre><code>`)뿐. 단 코드 4개만 빼면 쪽수는 36→34로 소폭 감소에 그친다(분량의 진짜 무게는 각 프로젝트의 딥다이브 전개다).
-- **ASCII 아키텍처 박스(`.ascii-box`)는 PDF에 남긴다** — 아키텍처는 포트폴리오의 핵심이라 유지한다. **(예정)** 이 ASCII 박스들은 추후 **SVG/PNG 다이어그램으로 교체 예정**이다. 교체 시 `.ascii-box`를 이미지로 바꾸고 print 규칙(`break-inside: avoid` 등)이 이미지에도 적용되는지 확인한다.
+**대원칙 — PDF와 화면(HTML)의 차이는 딱 둘뿐이다: (1) 사이드바 숨김 (2) 페이지 나눔/방향(종이 출력에 불가피).**
+색·코드·여백·그리드는 화면과 PDF가 **완전히 동일**하다. 사이트 자체가 이미 **라이트 테마 + 코드 숨김**이기 때문이다(그래서 print 블록에 색·코드 관련 규칙이 없다). **print 블록에 레이아웃·여백·색을 손대는 규칙(2단, 여백 압축, 폰트 축소, 팔레트 재정의 등)을 추가하지 말 것** — 그런 게 필요하면 화면(base CSS)을 고치는 게 맞다.
 
-**print 블록 구조:**
-- **색 전환 방식**: `@media print { :root { ... } }`에서 CSS 변수(`--bg`, `--text`, `--border`, 강조색 등)를 GitHub 라이트 팔레트로 재정의한다. 개별 규칙 하드코딩 대신 변수만 뒤집어 전체를 전환하므로, 색 조정은 이 변수에서 한다.
-- 함께 처리: 사이드바·모바일 헤더 숨김, `#about` 다크 그라디언트/글로우 제거, `.about-title` 그라디언트 텍스트를 solid로(흰 배경에서 안 보이던 문제 해결), 접힌 아코디언(`.challenge-body`) 강제 펼침(내용 손실 방지), 각 `.project-detail` 새 페이지 시작, 카드·이미지 `break-inside: avoid`, `print-color-adjust: exact`.
-- 새 섹션·카드류를 추가하면 print 블록의 `break-inside: avoid` 대상도 갱신한다.
+**핵심 구조 (이렇게 유지):**
+- **콘텐츠 폭 고정**: `:root { --content-max }` + `.main { max-width: var(--content-max) }`. 콘텐츠 폭이 사이드바·화면폭에 종속되지 않게 못박아, **사이드바를 빼도 그리드가 재배열되지 않는다**(사이드바 제거가 레이아웃에 무영향). 이 고정이 "차이는 사이드바뿐"을 성립시키는 핵심이다.
+- **라이트 테마는 base(`:root`)에 있다.** print에서 색을 바꾸지 않는다. 색 조정은 `:root` 변수에서 한다.
+- **코드 숨김도 base에 있다**(`.code-wrap { display:none }`) — 화면·PDF 공통. print에서 따로 숨기지 않는다.
+- **아코디언은 화면에서 기본 펼침**(`.challenge-body { display:block }`, 접기 인터랙션 없음). 화면=PDF.
+- **방향은 가로(A4 landscape) 고정.** `@page { size: A4 landscape }`. 세로로 되돌리지 않는다.
+- **ASCII 아키텍처 박스(`.ascii-box`)는 표시**한다(다크 터미널 스타일 그대로). **(예정)** 추후 **SVG/PNG 다이어그램으로 교체 예정** — 교체 시 print의 `break-inside: avoid` 대상에 이미지도 포함되는지 확인한다.
+- **print 블록이 하는 일(이게 전부)**: 사이드바·모바일헤더 숨김, `.main` 중앙정렬, `.profile-card` sticky 해제, `@page` 가로, 각 `.project-detail` 새 페이지, 카드·박스·표·이미지 `break-inside: avoid`, `print-color-adjust: exact`. 새 카드류 추가 시 `break-inside` 대상 갱신.
+- **트레이드오프**: 여백 압축을 안 하므로 프로젝트 경계마다 마지막 페이지에 여백이 남고 쪽수가 다소 많다(현재 ~37쪽). "화면 여백을 그대로 유지"한 결과로 의도된 것 — 쪽수를 줄이려면 화면 콘텐츠(딥다이브 분량) 자체를 줄인다.
 
 **검증 방법 (중요)**: PDF 결과는 추측하지 말고 **브라우저로 직접 확인**한다. 이 환경엔 PDF 래스터라이저(poppler)가 없으므로, ① 로컬 정적 서버(`python -m http.server`) + Playwright로 `page.emulateMedia({media:'print'})` 후 스크린샷하거나, ② 생성한 PDF를 서버 폴더에 두고 크로미움 내장 PDF 뷰어로 열어 스크린샷한다. (`file://`는 Playwright에서 차단됨 → 반드시 http로 서빙.)
 

@@ -12,20 +12,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/nginx.min.js"></script>
 <style>
 :root {
-  --bg: #0d1117;
-  --bg-card: #161b22;
-  --bg-card2: #1c2128;
-  --border: #30363d;
-  --text: #e6edf3;
-  --text-muted: #8b949e;
-  --accent: #3b82f6;
-  --accent-dim: #1d4ed8;
-  --accent-glow: rgba(59,130,246,0.12);
-  --green: #3fb950;
-  --yellow: #d29922;
-  --red: #f85149;
-  --purple: #a371f7;
+  /* 라이트 테마(기본). PDF와 색을 일치시키기 위해 사이트 자체를 라이트로 둔다. */
+  --bg: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card2: #f6f8fa;
+  --border: #d0d7de;
+  --text: #1f2328;
+  --text-muted: #57606a;
+  --accent: #0969da;
+  --accent-dim: #0550ae;
+  --accent-glow: #ddf4ff;
+  --green: #1a7f37;
+  --yellow: #9a6700;
+  --red: #cf222e;
+  --purple: #8250df;
   --sidebar-w: 240px;
+  --content-max: 1000px;
   --font: 'Noto Sans KR', system-ui, sans-serif;
   --mono: 'JetBrains Mono', monospace;
 }
@@ -77,7 +79,9 @@ nav ul li a.sub { padding-left: 32px; font-size: 12px; }
 }
 
 /* ── Main ── */
-.main { flex: 1; min-width: 0; padding-bottom: 80px; }
+/* 콘텐츠 폭을 --content-max 로 고정한다. 사이드바 유무와 무관하게 내부 레이아웃이
+   동일하도록(사이드바 제거 시 그리드가 재배열되지 않도록) 최대폭을 못박는다. */
+.main { flex: 1; min-width: 0; padding-bottom: 80px; max-width: var(--content-max); }
 
 /* ── Section ── */
 section { padding: 56px; border-bottom: 1px solid var(--border); }
@@ -90,8 +94,8 @@ h4 { font-size: 14px; font-weight: 700; margin: 20px 0 8px; color: var(--text-mu
 p { margin-bottom: 12px; }
 
 /* ── Profile ── */
-#about { background: linear-gradient(135deg,#0d1117 0%,#161b22 60%,#0d1117 100%); position: relative; overflow: hidden; }
-#about::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 25% 60%, rgba(59,130,246,.07) 0%, transparent 60%); }
+#about { background: linear-gradient(135deg,#ffffff 0%,#f6f8fa 60%,#ffffff 100%); position: relative; overflow: hidden; }
+#about::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 25% 60%, rgba(9,105,218,.06) 0%, transparent 60%); }
 .about-inner { position: relative; display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
 .profile-card {
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
@@ -121,7 +125,7 @@ p { margin-bottom: 12px; }
 
 .about-content {}
 .about-tag { display: inline-block; padding: 4px 12px; background: var(--accent-glow); border: 1px solid var(--accent); border-radius: 20px; font-size: 12px; color: var(--accent); margin-bottom: 18px; font-weight: 700; }
-.about-title { font-size: 34px; font-weight: 700; line-height: 1.2; margin-bottom: 14px; background: linear-gradient(135deg,#e6edf3 40%,#3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.about-title { font-size: 34px; font-weight: 700; line-height: 1.2; margin-bottom: 14px; background: linear-gradient(135deg,#1f2328 40%,#0969da 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .about-bio { font-size: 15px; color: var(--text-muted); line-height: 1.8; -webkit-text-fill-color: var(--text-muted); margin-bottom: 28px; }
 .skill-bar-list { display: flex; flex-direction: column; gap: 10px; }
 .skill-bar-item {}
@@ -204,7 +208,8 @@ th { text-align: left; padding: 9px 14px; background: var(--bg-card2); border: 1
 td { padding: 9px 14px; border: 1px solid var(--border); vertical-align: top; }
 tr:hover td { background: var(--bg-card2); }
 code.inline { font-family: var(--mono); font-size: 12px; padding: 2px 6px; background: var(--bg-card2); border: 1px solid var(--border); border-radius: 4px; color: #f0883e; }
-.code-wrap { position: relative; margin: 14px 0; }
+/* 코드 전문은 화면·PDF 모두 노출하지 않는다(코드는 GitHub 몫). 마크업은 소스에 유지. */
+.code-wrap { display: none; position: relative; margin: 14px 0; }
 .code-label { display: flex; align-items: center; justify-content: space-between; padding: 7px 14px; background: #1c2128; border: 1px solid var(--border); border-bottom: none; border-radius: 8px 8px 0 0; font-size: 12px; color: var(--text-muted); font-family: var(--mono); }
 .copy-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 11px; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-family: var(--font); transition: all .15s; }
 .copy-btn:hover { color: var(--text); border-color: #555; }
@@ -213,14 +218,12 @@ code.inline { font-family: var(--mono); font-size: 12px; padding: 2px 6px; backg
 .code-wrap pre code { font-family: var(--mono) !important; }
 .ascii-box { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; font-family: var(--mono); font-size: 13px; line-height: 1.65; color: #8b949e; overflow-x: auto; white-space: pre; margin: 14px 0; }
 .challenge-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
-.challenge-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; cursor: pointer; user-select: none; transition: background .15s; }
-.challenge-header:hover { background: var(--bg-card2); }
+.challenge-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; user-select: none; }
 .challenge-num { font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent-glow); border: 1px solid rgba(59,130,246,.3); padding: 2px 8px; border-radius: 12px; margin-right: 10px; flex-shrink: 0; }
 .challenge-title { font-size: 14px; font-weight: 700; flex: 1; }
-.challenge-chevron { font-size: 16px; color: var(--text-muted); transition: transform .25s; flex-shrink: 0; }
-.challenge-card.open .challenge-chevron { transform: rotate(180deg); }
-.challenge-body { display: none; padding: 0 20px 20px; border-top: 1px solid var(--border); }
-.challenge-card.open .challenge-body { display: block; padding-top: 18px; }
+/* 챌린지 카드는 항상 펼쳐 둔다(기본 노출). 화면과 PDF가 동일해지도록 접기 인터랙션은 없앴다. */
+.challenge-chevron { display: none; }
+.challenge-body { display: block; padding: 18px 20px 20px; border-top: 1px solid var(--border); }
 .problem-box, .result-box { padding: 10px 14px; border-radius: 6px; margin-bottom: 12px; font-size: 14px; line-height: 1.6; }
 .problem-box { background: rgba(248,81,73,.07); border-left: 3px solid var(--red); }
 .result-box { background: rgba(63,185,80,.07); border-left: 3px solid var(--green); }
@@ -307,82 +310,31 @@ code.inline { font-family: var(--mono); font-size: 12px; padding: 2px 6px; backg
   .about-title { font-size: 26px; }
 }
 
-/* ── Print (PDF) ── 화면 레이아웃을 그대로 유지하고 색만 라이트로, 사이드바만 숨김 */
+/* ── Print (PDF) ──
+   사이트가 이미 라이트 테마 + 코드 숨김이므로, PDF와 화면(HTML)의 차이는
+   (1) 사이드바 숨김 (2) 페이지 나눔/방향(종이 출력에 불가피) 둘뿐이다.
+   색·코드·여백·그리드는 화면과 동일하다. 여기에 레이아웃/색을 손대는 규칙을 추가하지 말 것. */
 @media print {
-  :root {
-    --bg: #ffffff;
-    --bg-card: #ffffff;
-    --bg-card2: #f6f8fa;
-    --border: #d0d7de;
-    --text: #1f2328;
-    --text-muted: #57606a;
-    --accent: #0969da;
-    --accent-dim: #0550ae;
-    --accent-glow: #ddf4ff;
-    --green: #1a7f37;
-    --yellow: #9a6700;
-    --red: #cf222e;
-    --purple: #8250df;
-  }
   html { scroll-behavior: auto; }
-  body {
-    background: #fff; color: var(--text);
-    -webkit-print-color-adjust: exact; print-color-adjust: exact;
-  }
+  /* 배경·강조색이 종이에도 인쇄되도록 */
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   @page { size: A4 landscape; margin: 12mm; }
 
-  /* 네비게이션 크롬만 제거 (내용 구성은 화면과 동일) */
+  /* (1) 사이드바(네비게이션)만 숨김. 콘텐츠 폭은 --content-max 로 고정이라 레이아웃 변화 없음 */
   .mobile-header, .sidebar { display: none !important; }
   .layout { display: block; min-height: 0; }
-  .main { padding: 0 !important; }
-
-  /* 다크 전용 배경/글로우 제거, 그라디언트 텍스트를 solid 로 */
-  #about { background: #fff !important; }
-  #about::before { display: none !important; }
-  .profile-card { position: static !important; }
-  .about-title {
-    background: none !important; -webkit-text-fill-color: var(--text) !important;
-    color: var(--text) !important;
-  }
-
-  /* 인터랙션 아티팩트 제거 */
+  .main { padding: 0 !important; margin: 0 auto; }
+  .profile-card { position: static !important; }  /* sticky는 종이에서 무의미 */
   * { transition: none !important; }
-  .project-card:hover { transform: none !important; }
 
-  /* 접힌 아코디언(핵심 기술 도전)을 모두 펼쳐 내용 손실 방지 */
-  .challenge-body { display: block !important; padding-top: 12px !important; padding-bottom: 12px !important; }
-  .challenge-chevron { display: none !important; }
-
-  /* ── 여백 압축 ── 가로 페이지에 카드가 2개 이상 들어가도록 적당히 조임(폰트는 유지) */
-  .detail-section { padding: 14px 0 !important; }
-  .detail-section h2 { margin-bottom: 12px !important; }
-  .challenge-card { margin-bottom: 10px !important; }
-  .challenge-header { padding: 10px 14px !important; }
-  .challenge-body { padding-left: 14px !important; padding-right: 14px !important; }
-  .problem-box, .result-box { padding: 8px 12px !important; margin-bottom: 8px !important; }
-  .problem-box:last-child, .result-box:last-child { margin-bottom: 0 !important; }
-  .project-detail-header { padding: 12px 0 !important; margin-bottom: 6px !important; }
-
-  /* 포트폴리오형 출력: 코드 전문은 PDF에서 제외 (사이트엔 유지, 코드는 GitHub 몫).
-     ASCII 아키텍처 박스(.ascii-box)는 남긴다. */
-  .code-wrap { display: none !important; }
-
-  /* ── 페이지 분리 ── 각 프로젝트 상세는 새 페이지에서 시작 */
-  .project-detail { break-before: page; page-break-before: always; border-top: none; }
+  /* (2) 종이 출력에 불가피한 페이지 처리 (화면 레이아웃/여백은 그대로 둠) */
+  .project-detail { break-before: page; border-top: none; }
   #about { break-before: avoid; }
-  .project-detail-header { break-after: avoid; }
-  /* 제목이 페이지/컬럼 끝에 홀로 남지 않게 */
-  h2, h3, h4 { break-after: avoid; }
-  /* 카드·박스·이미지는 페이지 중간에서 쪼개지 않음.
-     - 챌린지 카드 전체를 우선 한 페이지에 유지
-     - 카드가 한 페이지보다 크면 카드는 나뉘더라도 내부 박스(문제/해결/성과/ASCII)는 통째 유지 */
+  h2, h3, h4, .project-detail-header, .challenge-header { break-after: avoid; }
   .card, .project-card, .challenge-card, .badge,
   .problem-box, .result-box, .ascii-box, .arch-img-wrap,
   .learn-grid > *, .cert-grid > *, .pipeline-flow > *,
   .compare-grid > *, img, table, blockquote { break-inside: avoid; }
-  /* 챌린지 헤더는 본문과 붙어 있게 */
-  .challenge-header { break-after: avoid; }
-  a { color: var(--accent); }
 }
 </style>
 </head>
