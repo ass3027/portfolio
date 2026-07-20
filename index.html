@@ -220,6 +220,15 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .mc-result.accent { background: rgba(9,105,218,.06); border-left-color: var(--accent); }
 .mc-result.accent .mc-label { color: var(--accent); }
 
+/* ── 핵심 목표 (목표 → 달성여부 체크리스트) ── */
+.goal-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.goal-item { display: flex; align-items: flex-start; gap: 9px; background: rgba(26,127,55,.06); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 9px 12px; }
+.goal-check { color: var(--green); font-weight: 700; flex-shrink: 0; line-height: 1.5; font-size: 13px; }
+.goal-text { font-size: 12.5px; line-height: 1.5; }
+.goal-text strong { color: var(--text); }
+.goal-metric { display: block; font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+.goal-metric .goal-hit { color: var(--green); font-weight: 700; font-family: var(--mono); }
+
 /* ── 배운 점 ── */
 .learn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .learn-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 15px 16px; }
@@ -430,6 +439,14 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <p>RPCN 서버는 클로즈드 소스로 공식 SDK가 없어, RPCS3 C++ 소스코드의 프로토콜을 직접 분석하고 Python 클라이언트를 구현하여 실시간 대시보드를 구축했다.</p>
     </div>
 
+    <div class="section-label" style="margin-top:18px;">핵심 목표</div>
+    <h3>이루려던 것 &amp; 달성</h3>
+    <ul class="goal-list">
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>SDK 없는 RPCN 프로토콜 역공학</strong><span class="goal-metric">C++ 소스 분석으로 <span class="goal-hit">7개 커맨드 완전 구현</span></span></span></li>
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 대시보드 실서비스화</strong><span class="goal-metric"><span class="goal-hit">match.tag2now.click</span> 운영 중</span></span></li>
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>1인 풀스택 완주</strong><span class="goal-metric">기획·BE·FE·인프라·배포 <span class="goal-hit">전 영역</span> 설계·운영</span></span></li>
+    </ul>
+
     <div class="section-label" style="margin-top:18px;">Tech Stack</div>
     <h3>기술 스택</h3>
     <div class="pill-list">
@@ -596,6 +613,14 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <p>CRUD 기능 수가 아니라 <strong>N명이 한 좌석을 경합할 때 정확히 1명만 성공하게 만드는 동시성·정합성 엔지니어링</strong>이 핵심이다. 7주 단계별 계획(P0~P6)으로 설계·구현하고, 부하 시나리오 L1~L6(9종) + 필수 실험 E1~E3의 Before/After를 모두 완료했다.</p>
     </div>
 
+    <div class="section-label" style="margin-top:18px;">핵심 목표</div>
+    <h3>SLO로 못박은 목표 &amp; 실측 달성</h3>
+    <ul class="goal-list">
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>초과판매·중복 0건</strong><span class="goal-metric">목표 oversell 0 · 실측 <span class="goal-hit">0 / 0</span> (3회 일관)</span></span></li>
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>예매 응답 p95 ≤ 500ms</strong><span class="goal-metric">실측 <span class="goal-hit">348~408ms</span></span></span></li>
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>1,000 VU에서 ≥ 200 TPS</strong><span class="goal-metric">실측 <span class="goal-hit">833~863 TPS</span></span></span></li>
+    </ul>
+
     <div class="section-label" style="margin-top:18px;">Tech Stack</div>
     <h3>기술 스택</h3>
     <div class="pill-list">
@@ -744,6 +769,12 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <p>CCTV 영상분석으로 산불을 감지하는 시스템. 13개 지역에서 지역별 100대 이상의 CCTV를 운영하는 환경이었다.</p>
           <p>영상 끊김이 발생해도 장애 지점·원인을 신속히 파악할 관측 체계가 부족해 조치에 많은 시간이 소요됐고, DeepStream 분석 모듈이 단일 파일 구조·전역 변수에 의존해 유지보수와 온보딩이 어려웠다.</p>
         </div>
+        <div class="section-label">핵심 목표</div>
+        <ul class="goal-list" style="margin-bottom:12px;">
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>영상 장애 관측 체계 구축</strong><span class="goal-metric">장애 조치 시간 <span class="goal-hit">80% 단축</span></span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>영상 출력 안정성 향상</strong><span class="goal-metric"><span class="goal-hit">85% → 93%</span></span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>분석 모듈 재사용 가능 구조화</strong><span class="goal-metric">전역변수 제거 · <span class="goal-hit">사내 재사용 가능</span></span></span></li>
+        </ul>
         <div class="section-label">Tech Stack</div>
         <div class="pill-list">
           <span class="pill pill-blue">Python</span>
@@ -809,6 +840,13 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         </div>
       </div>
     </div>
+
+    <div class="section-label">핵심 목표</div>
+    <ul class="goal-list" style="margin-bottom:14px;">
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 메트릭 분석 환경 구축</strong><span class="goal-metric">통계 기반 한계 극복 · 분석·개선 시간 <span class="goal-hit">80% 단축</span></span></span></li>
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>C++ gRPC 운영 안정성 확보</strong><span class="goal-metric">간헐적 종료 <span class="goal-hit">해소</span></span></span></li>
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>분산 로직 공통 모듈 통합</strong><span class="goal-metric">메모리 <span class="goal-hit">70%↓</span> · 코드량 <span class="goal-hit">50%↓</span></span></span></li>
+    </ul>
 
     <div class="section-label">Key Challenges</div>
     <h3>핵심 기술적 도전</h3>
