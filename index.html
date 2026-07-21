@@ -440,6 +440,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="card">
       <p>RPCS3 에뮬레이터로 TTT2를 즐기는 커뮤니티는 활성 유저 수, 매칭 상대, 랭킹 정보를 한눈에 볼 도구가 없었다.</p>
       <p>RPCN은 오픈소스지만 게임의 호출 방식이 문서화돼 있지 않고 공식 SDK도 없다. Rust로 된 RPCN 서버를 직접 실행·분석해 호출 프로토콜을 역공학하고, 단위·통합 테스트로 검증한 Python 클라이언트를 구현하여 실시간 대시보드를 구축했다.</p>
+      <p style="margin-bottom:0;"><strong>구현에 그치지 않고 AWS에 직접 배포하여 실제 도메인(<code class="inline">match.tag2now.click</code>)으로 서비스를 운영하는 것</strong>이 이 프로젝트의 목표였다. keyless CI/CD로 배포를 자동화하고, 오픈 카카오톡방의 실사용자 피드백을 받아 오류를 수정·개선하며 서비스를 유지했다.</p>
     </div>
 
     <div class="row c2" style="margin-top:18px; align-items:start;">
@@ -465,6 +466,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <span class="pill pill-purple">Nginx</span>
           <span class="pill pill-purple">GitHub Actions</span>
           <span class="pill pill-purple">AWS ECS</span>
+          <span class="pill pill-purple">Lightsail</span>
+          <span class="pill pill-purple">Route53</span>
+          <span class="pill pill-purple">CloudFront</span>
           <span class="pill pill-gray">React / TypeScript</span>
         </div>
       </div>
@@ -482,7 +486,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="section-label">Live</div>
         <h3>운영 현황</h3>
         <div class="card" style="margin:0;">
-          <p style="margin:0;">AWS Lightsail 단일 서버 + Docker Compose로 실서비스 운영 중(<code class="inline">match.tag2now.click</code>). ECS 대비 비용을 낮추기 위해 규모에 맞춰 인프라를 다운스케일한 결정이 반영돼 있다.</p>
+          <p style="margin:0;">AWS Lightsail 단일 서버 + Docker Compose로 실서비스 운영 중(<code class="inline">match.tag2now.click</code>). ECS 대비 비용을 낮추기 위해 규모에 맞춰 인프라를 다운스케일했다. <strong>오픈 카카오톡방의 실사용자 피드백을 직접 받아 오류 수정·기능 개선을 반복</strong>하며 서비스를 유지하고 있다.</p>
         </div>
       </div>
     </div>
@@ -549,6 +553,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
       <div>
         <h3>인프라 전환 — ECS → Lightsail</h3>
+        <div class="tradeoff-note" style="margin:0 0 10px;">공통(전환 전후 유지) — <strong>Route53</strong>(도메인) + <strong>CloudFront</strong>(정적 콘텐츠 캐싱으로 오리진 트래픽·비용 절감)</div>
         <div class="compare-grid">
           <div class="compare-box before">
             <div class="compare-label">Before — ECS Fargate</div>
