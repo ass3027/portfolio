@@ -139,7 +139,8 @@ p { margin-bottom: 10px; }
 .timeline-role { font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
 .timeline-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
 .timeline-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-.timeline-tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--bg-card2); border: 1px solid var(--border); color: var(--text-muted); }
+/* 공용 태그 pill — project-card / timeline 등에서 공유 */
+.tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--bg-card2); border: 1px solid var(--border); color: var(--text-muted); }
 .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .cert-card { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 12px 14px; }
 .cert-name { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
@@ -159,7 +160,6 @@ p { margin-bottom: 10px; }
 .project-card-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
 .project-card-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; flex: 1; margin-bottom: 12px; }
 .project-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-.project-card-tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: var(--bg-card2); border: 1px solid var(--border); color: var(--text-muted); }
 .project-card-footer { display: flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border); }
 
 /* ══════════════ 프로젝트 상세 공통 ══════════════ */
@@ -346,15 +346,15 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           FFmpeg를 통한 영상 처리 및 안정화, 1천만 건 이상 데이터 프로시저·쿼리 보정.
         </div>
         <div class="timeline-tags">
-          <span class="timeline-tag">Java</span>
-          <span class="timeline-tag">Spring Boot</span>
-          <span class="timeline-tag">Python</span>
-          <span class="timeline-tag">Kafka</span>
-          <span class="timeline-tag">gRPC</span>
-          <span class="timeline-tag">FFmpeg</span>
-          <span class="timeline-tag">DeepStream</span>
-          <span class="timeline-tag">Docker</span>
-          <span class="timeline-tag">GitLab CI/CD</span>
+          <span class="tag">Java</span>
+          <span class="tag">Spring Boot</span>
+          <span class="tag">Python</span>
+          <span class="tag">Kafka</span>
+          <span class="tag">gRPC</span>
+          <span class="tag">FFmpeg</span>
+          <span class="tag">DeepStream</span>
+          <span class="tag">Docker</span>
+          <span class="tag">GitLab CI/CD</span>
         </div>
       </div>
     </div>
@@ -380,11 +380,11 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="page-fill">
     <div class="projects-grid">
       <div class="project-card">
-        <div class="project-card-top"><div class="project-card-icon">🎮</div><div class="project-period">2024 — 현재</div></div>
+        <div class="project-card-top"><div class="project-card-icon">🎮</div><div class="project-period">2025.03 — 2025.05</div></div>
         <div class="project-card-name">Tag2Now</div>
         <div class="project-card-desc">철권 태그 토너먼트 2 실시간 정보 대시보드. 클로즈드 소스 PSN 서버 프로토콜을 역공학하여 Python 클라이언트를 직접 구현, 실시간 매칭 탐지 알고리즘 설계.</div>
         <div class="project-card-tags">
-          <span class="project-card-tag">Python</span><span class="project-card-tag">FastAPI</span><span class="project-card-tag">PostgreSQL</span><span class="project-card-tag">Redis</span><span class="project-card-tag">AWS ECS</span>
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">AWS ECS</span>
         </div>
         <div class="project-card-footer"><span class="badge">🔗 개인 프로젝트</span><span class="badge">1인 풀스택</span></div>
       </div>
@@ -393,7 +393,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="project-card-name">KTX 티켓팅 — 동시성·정합성 엔지니어링</div>
         <div class="project-card-desc">명절 대규모 동시접속 선착순 예매의 초과 판매·중복 예매를 정합성을 보장하며 해결. 1,000명이 같은 좌석을 경쟁해도 <strong>초과 판매 0건</strong>, k6 부하 테스트로 Before/After 증명.</div>
         <div class="project-card-tags">
-          <span class="project-card-tag">Spring Boot 4</span><span class="project-card-tag">Java 25</span><span class="project-card-tag">Redis</span><span class="project-card-tag">Redisson</span><span class="project-card-tag">k6</span>
+          <span class="tag">Spring Boot 4</span><span class="tag">Java 25</span><span class="tag">Redis</span><span class="tag">Redisson</span><span class="tag">k6</span>
         </div>
         <div class="project-card-footer"><span class="badge">🔗 개인 프로젝트</span><span class="badge">부하 테스트</span></div>
       </div>
@@ -402,7 +402,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="project-card-name">FireWatcher 산불감지 시스템</div>
         <div class="project-card-desc">CCTV 영상분석 기반 산불 감지 시스템. 영상 장애 대응 시간 80% 단축, 영상 출력 안정성 85→93% 향상. DeepStream 모듈 리팩터링 및 Kafka 기반 실시간 전송 구조 확립.</div>
         <div class="project-card-tags">
-          <span class="project-card-tag">Python</span><span class="project-card-tag">FastAPI</span><span class="project-card-tag">Kafka</span><span class="project-card-tag">FFmpeg</span><span class="project-card-tag">DeepStream</span>
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Kafka</span><span class="tag">FFmpeg</span><span class="tag">DeepStream</span>
         </div>
         <div class="project-card-footer"><span class="badge">🏢 스피어에이엑스</span></div>
       </div>
@@ -411,7 +411,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="project-card-name">김포공항 LiDAR 여객 흐름 예측</div>
         <div class="project-card-desc">LiDAR 데이터 기반 실시간 여객 위치·인원 수 체크 및 대기시간 예측. C++ gRPC 메모리 누수 수정, 알고리즘 분석 소요 시간 80% 단축. Prometheus·Grafana 모니터링 환경 구축.</div>
         <div class="project-card-tags">
-          <span class="project-card-tag">Spring Boot</span><span class="project-card-tag">gRPC (C++)</span><span class="project-card-tag">MariaDB</span><span class="project-card-tag">Prometheus</span><span class="project-card-tag">Grafana</span>
+          <span class="tag">Spring Boot</span><span class="tag">gRPC (C++)</span><span class="tag">MariaDB</span><span class="tag">Prometheus</span><span class="tag">Grafana</span>
         </div>
         <div class="project-card-footer"><span class="badge">🏢 스피어에이엑스</span></div>
       </div>
