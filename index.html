@@ -690,15 +690,32 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <tr><td>학습/어필</td><td><strong>락 설계·경합 제어</strong></td><td>스트림·백프레셔</td></tr>
           </tbody>
         </table>
-        <div class="ascii-box" style="margin-top:12px;">┌── 조회/표시 (운행·잔여석·매진) ──────────────┐
-│ 결과적 일관성(staleness ≤ 2s) · Redis 단기캐시│
-└──────────────────────────────────────────────┘
-                     │
-┌── 예매 확정 (락 임계영역) ────────────────────┐
-│ 강한 일관성 · Redis 원자선점(SREM/SPOP)→DB전이│
-└──────────────────────────────────────────────┘
- DB = SoT(진실의 원천) · Redis = 빠른 게이트
- 부하 후 Reconciliation(60s)이 DB로 드리프트 수렴</div>
+        <div class="arch-svg" style="margin-top:12px;">
+          <svg viewBox="0 0 760 250" role="img" aria-label="KTX 2단 일관성: 조회는 결과적 일관성(Redis 단기캐시), 예매 확정은 강한 일관성(Redis 원자선점→DB), DB가 SoT">
+            <defs>
+              <marker id="ktx-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
+              </marker>
+            </defs>
+
+            <!-- 연결선 -->
+            <line x1="380" y1="86" x2="380" y2="112" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx-arrow)"/>
+
+            <!-- 1층: 조회/표시 (결과적 일관성) -->
+            <rect x="10" y="16" width="740" height="68" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+            <text x="26" y="40" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#1f2328">조회 / 표시 <tspan fill="#57606a" font-size="11" font-weight="400">(운행 · 잔여석 · 매진)</tspan></text>
+            <text x="26" y="64" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#57606a">결과적 일관성 (staleness ≤ 2s) · Redis 단기캐시</text>
+
+            <!-- 2층: 예매 확정 (강한 일관성) -->
+            <rect x="10" y="114" width="740" height="68" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+            <text x="26" y="138" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#0550ae">예매 확정 <tspan fill="#0969da" font-size="11" font-weight="400">(락 임계영역)</tspan></text>
+            <text x="26" y="162" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#1f2328">강한 일관성 · Redis 원자선점 (SREM/SPOP) → DB 전이</text>
+
+            <!-- 하단 캡션 -->
+            <text x="10" y="212" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#1f2328"><tspan font-weight="700" fill="#1a7f37">DB = SoT</tspan> (진실의 원천) · <tspan font-weight="700" fill="#0969da">Redis = 빠른 게이트</tspan></text>
+            <text x="10" y="232" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#57606a">부하 후 Reconciliation (60s) 이 DB로 드리프트 수렴</text>
+          </svg>
+        </div>
       </div>
       <div>
         <h3>검증 목표 — SLO</h3>
