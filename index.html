@@ -382,7 +382,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="project-card">
         <div class="project-card-top"><div class="project-card-icon">🎮</div><div class="project-period">2025.03 — 2025.05</div></div>
         <div class="project-card-name">Tag2Now</div>
-        <div class="project-card-desc">철권 태그 토너먼트 2 실시간 정보 대시보드. 클로즈드 소스 PSN 서버 프로토콜을 역공학하여 Python 클라이언트를 직접 구현, 실시간 매칭 탐지 알고리즘 설계.</div>
+        <div class="project-card-desc">철권 태그 토너먼트 2 실시간 정보 대시보드. 오픈소스 RPCN 서버를 직접 실행·분석해 미문서화된 호출 프로토콜을 역공학, 단위·통합 테스트로 검증한 Python 클라이언트 구현. 실시간 매칭 탐지 알고리즘 설계.</div>
         <div class="project-card-tags">
           <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">AWS ECS</span>
         </div>
@@ -439,7 +439,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="section-label">개요</div>
     <div class="card">
       <p>RPCS3 에뮬레이터로 TTT2를 즐기는 커뮤니티는 활성 유저 수, 매칭 상대, 랭킹 정보를 한눈에 볼 도구가 없었다.</p>
-      <p>RPCN 서버는 클로즈드 소스로 공식 SDK가 없어, RPCS3 C++ 소스코드의 프로토콜을 직접 분석하고 Python 클라이언트를 구현하여 실시간 대시보드를 구축했다.</p>
+      <p>RPCN은 오픈소스지만 게임의 호출 방식이 문서화돼 있지 않고 공식 SDK도 없다. Rust로 된 RPCN 서버를 직접 실행·분석해 호출 프로토콜을 역공학하고, 단위·통합 테스트로 검증한 Python 클라이언트를 구현하여 실시간 대시보드를 구축했다.</p>
     </div>
 
     <div class="row c2" style="margin-top:18px; align-items:start;">
@@ -447,7 +447,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="section-label">핵심 목표</div>
         <h3>이루려던 것 &amp; 달성</h3>
         <ul class="goal-list">
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>SDK 없는 RPCN 프로토콜 역공학</strong><span class="goal-metric">C++ 소스 분석으로 <span class="goal-hit">7개 커맨드 완전 구현</span></span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>SDK 없는 RPCN 프로토콜 역공학</strong><span class="goal-metric">Rust 서버 직접 분석 · <span class="goal-hit">7개 커맨드 테스트 검증</span></span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 대시보드 실서비스화</strong><span class="goal-metric"><span class="goal-hit">match.tag2now.click</span> 운영 중</span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>AWS 운영·자동 배포</strong><span class="goal-metric">AWS OIDC keyless 인증으로 <span class="goal-hit">ECR→ECS 배포 자동화</span></span></span></li>
         </ul>
@@ -475,7 +475,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="section-label">Highlight</div>
         <h3>프로젝트 성격</h3>
         <div class="card" style="margin:0;">
-          <p style="margin:0;">기획·백엔드·프론트·인프라·배포까지 <strong>1인 풀스택</strong>으로 설계·운영. 클로즈드 소스 바이너리 프로토콜 역공학, 비동기 이벤트 아키텍처, 다중 DB 전략, keyless CI/CD가 핵심 도전이었다.</p>
+          <p style="margin:0;">기획·백엔드·프론트·인프라·배포까지 <strong>1인 풀스택</strong>으로 설계·운영. 미문서화된 RPCN 호출 프로토콜 역공학(+테스트 검증), 비동기 이벤트 아키텍처, 다중 DB 전략, keyless CI/CD가 핵심 도전이었다.</p>
         </div>
       </div>
       <div>
@@ -516,7 +516,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <text x="380" y="57" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#57606a">rpcn.rpcs3.net:31313 · TCP/TLS · Binary + Protobuf</text>
 
         <!-- 화살표 라벨 -->
-        <text x="392" y="92" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#0969da">RpcnClient (직접 구현)</text>
+        <text x="392" y="92" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#0969da">RpcnClient (역공학·검증)</text>
 
         <!-- 2층: FastAPI Application -->
         <rect x="140" y="106" width="480" height="72" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
@@ -579,9 +579,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="page-fill">
     <div class="mini-grid c2">
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">4-1</span><span class="mc-title">클로즈드 소스 바이너리 프로토콜 역공학 구현</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>RPCN 서버는 공식 SDK가 없다. RPCS3 C++ 소스에서 15-byte 바이너리 헤더 + Protobuf 페이로드 구조를 분석하고 TLS/TCP 클라이언트를 직접 구현해야 했다.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>서버 목록·방 검색·리더보드·스코어 조회 등 <strong>7개 커맨드 완전 구현</strong> (struct·ssl·socket 저수준 API 직접 활용).</div>
+        <div class="mc-head"><span class="mc-num">4-1</span><span class="mc-title">RPCN 호출 프로토콜 역공학 &amp; 검증된 클라이언트</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>RPCN·RPCS3는 오픈소스지만 게임의 호출 방식(요청 순서·15-byte 바이너리 헤더 + Protobuf 페이로드)은 미문서화이고 공식 SDK도 없다. Rust 서버를 직접 실행·분석해 프로토콜을 역공학해야 했다.</div>
+        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>서버 목록·방 검색·리더보드·스코어 조회 등 <strong>7개 커맨드를 재현·검증</strong>. 저수준 TLS/TCP 통신은 AI 협업으로 구현하고 <strong>단위·통합 테스트로 동작을 실측 검증</strong>. 명세된 struct는 이해·재사용하고 신규 기능에 맞게 수정.</div>
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">4-2</span><span class="mc-title">스냅샷 Diff 기반 매칭 탐지 (Phantom Room)</span></div>
@@ -611,7 +611,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <h2 class="page-title">배운 점 &amp; 성장 — Tag2Now</h2>
     <div class="page-fill">
     <div class="learn-grid">
-      <div class="learn-card"><div class="learn-icon">🔬</div><h4>프로토콜 역공학</h4><p>C++ 소스 분석 후 Python으로 바이너리 프로토콜 클라이언트 구현. struct·ssl·socket 저수준 API 직접 활용.</p></div>
+      <div class="learn-card"><div class="learn-icon">🔬</div><h4>프로토콜 역공학 &amp; 검증</h4><p>오픈소스 RPCN(Rust) 서버를 직접 실행·분석해 미문서화된 호출 방식을 역공학. 저수준 통신은 AI 협업으로 구현하고 단위·통합 테스트로 검증, 명세 struct는 재사용·수정.</p></div>
       <div class="learn-card"><div class="learn-icon">⚡</div><h4>비동기 아키텍처</h4><p>FastAPI + asyncio + asyncpg로 이벤트 기반 설계 — 응답 지연 없이 히스토리 수집.</p></div>
       <div class="learn-card"><div class="learn-icon">🗄️</div><h4>DB 설계 판단</h4><p>데이터 특성에 따라 Redis / PostgreSQL / DynamoDB를 선별 적용, Ports &amp; Adapters 패턴.</p></div>
       <div class="learn-card"><div class="learn-icon">🔄</div><h4>CI/CD 자동화</h4><p>GitHub Actions로 PR → 통합 테스트, 태그 → ECR + ECS 배포 완전 자동화.</p></div>
