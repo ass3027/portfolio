@@ -186,6 +186,8 @@ th { text-align: left; padding: 7px 12px; background: var(--bg-card2); border: 1
 td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
 .ascii-box { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; font-family: var(--mono); font-size: 12px; line-height: 1.55; color: #8b949e; overflow: hidden; white-space: pre; }
+.arch-svg { background: var(--bg-card2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; }
+.arch-svg svg { display: block; width: 100%; height: auto; }
 
 .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .compare-grid.stack { grid-template-columns: 1fr; }
@@ -493,21 +495,44 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="section-label">Architecture &amp; Infrastructure</div>
     <h2 class="page-title">시스템 아키텍처 &amp; 인프라</h2>
     <div class="page-fill">
-    <div class="ascii-box">┌───────────────────────────────────────────────────────┐
-│                    RPCN Server (PSN)                  │
-│  rpcn.rpcs3.net:31313  (TCP/TLS, Binary + Protobuf)   │
-└───────────────────────────┬───────────────────────────┘
-                            │ RpcnClient (직접 구현)
-                            ▼
-┌───────────────────────────────────────────────────────┐
-│                   FastAPI Application                 │
-│   Matching(/api/rooms,/api/lb) · History(/api/history)│
-│   · Community(/api/community)  ──  Event Bus 연결      │
-└───────────────┬───────────────────────┬───────────────┘
-        ┌───────▼───────┐       ┌────────▼────────┐
-        │     Redis     │       │  PostgreSQL /   │
-        │  (캐시 계층)  │       │    DynamoDB     │
-        └───────────────┘       └─────────────────┘</div>
+    <div class="arch-svg">
+      <svg viewBox="0 16 760 276" role="img" aria-label="Tag2Now 시스템 아키텍처: RPCN 서버에서 RpcnClient로 수집, FastAPI 애플리케이션이 Redis와 PostgreSQL/DynamoDB에 연결">
+        <defs>
+          <marker id="t2n-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
+          </marker>
+        </defs>
+
+        <!-- 연결선 (박스 뒤로) -->
+        <line x1="380" y1="70" x2="380" y2="104" stroke="#57606a" stroke-width="1.5" marker-end="url(#t2n-arrow)"/>
+        <path d="M300 178 V210 H210 V236" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#t2n-arrow)"/>
+        <path d="M460 178 V210 H550 V236" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#t2n-arrow)"/>
+
+        <!-- 1층: RPCN Server -->
+        <rect x="200" y="20" width="360" height="50" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+        <text x="380" y="40" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#1f2328">RPCN Server (PSN)</text>
+        <text x="380" y="57" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#57606a">rpcn.rpcs3.net:31313 · TCP/TLS · Binary + Protobuf</text>
+
+        <!-- 화살표 라벨 -->
+        <text x="392" y="92" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#0969da">RpcnClient (직접 구현)</text>
+
+        <!-- 2층: FastAPI Application -->
+        <rect x="140" y="106" width="480" height="72" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+        <text x="380" y="128" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#0550ae">FastAPI Application</text>
+        <text x="380" y="147" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#1f2328">Matching · History · Community</text>
+        <text x="380" y="164" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">/api/rooms · /api/history · /api/community — Event Bus</text>
+
+        <!-- 3층: Redis -->
+        <rect x="120" y="238" width="180" height="52" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+        <text x="210" y="260" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">Redis</text>
+        <text x="210" y="277" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">캐시 계층</text>
+
+        <!-- 3층: PostgreSQL / DynamoDB -->
+        <rect x="460" y="238" width="180" height="52" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+        <text x="550" y="260" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">PostgreSQL / DynamoDB</text>
+        <text x="550" y="277" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">영속 저장</text>
+      </svg>
+    </div>
     <div class="row c2" style="margin-top:16px;">
       <div>
         <h3>모듈 구성</h3>
