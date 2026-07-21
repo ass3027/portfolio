@@ -382,7 +382,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="project-card">
         <div class="project-card-top"><div class="project-card-icon">🎮</div><div class="project-period">2026.03 — 2026.05</div></div>
         <div class="project-card-name">Tag2Now</div>
-        <div class="project-card-desc">철권 태그 토너먼트 2 실시간 정보 대시보드. 오픈소스 RPCN 서버를 직접 실행·분석해 미문서화된 호출 프로토콜을 역공학, 단위·통합 테스트로 검증한 Python 클라이언트 구현. 실시간 매칭 탐지 알고리즘 설계.</div>
+        <div class="project-card-desc">철권 태그2 실시간 매칭 확인. 오픈소스 RPCN 서버를 직접 실행·분석해 문서화 안된 호출 프로토콜을 역공학, 단위·통합 테스트로 검증한 Python 클라이언트 구현. 실시간 매칭 탐지 알고리즘 설계.</div>
         <div class="project-card-tags">
           <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">AWS ECS</span>
         </div>
@@ -427,7 +427,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="detail-head">
       <div>
         <div class="meta">개인 프로젝트 · 2026.03 — 2026.05 · 1인 풀스택</div>
-        <h2>🎮 Tag2Now — 철권 태그 토너먼트 2 실시간 대시보드</h2>
+        <h2>🎮 Tag2Now — 철권 태그2 실시간 대시보드</h2>
       </div>
       <div class="detail-links">
         <a class="badge" href="https://github.com/orgs/tag2now/repositories" target="_blank">🐙 GitHub</a>
@@ -563,7 +563,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <div class="compare-item"><div class="dot"></div>고정 월정액·단순</div>
           </div>
         </div>
-        <div class="tradeoff-note" style="margin-top:10px;">단일 장애점(SPOF)은 인식하고 감수한 트레이드오프 — 소규모 커뮤니티에서 가용성보다 비용 효율을 우선. CloudWatch·Billing 분석으로 오버스펙을 확인한 판단이다.</div>
+        <div class="tradeoff-note" style="margin-top:10px;">단일 장애점은 인식하고 감수한 트레이드오프 — 소규모 커뮤니티에서 가용성보다 비용 효율을 우선. CloudWatch·Billing 분석으로 오버스펙을 확인한 판단이다.</div>
       </div>
     </div>
   </div>
@@ -579,22 +579,22 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="page-fill">
     <div class="mini-grid c2">
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">4-1</span><span class="mc-title">RPCN 호출 프로토콜 역공학 &amp; 검증된 클라이언트</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>RPCN·RPCS3는 오픈소스지만 게임의 호출 방식(요청 순서·15-byte 바이너리 헤더 + Protobuf 페이로드)은 미문서화이고 공식 SDK도 없다. Rust 서버를 직접 실행·분석해 프로토콜을 역공학해야 했다.</div>
+        <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">RPCN 호출 프로토콜 역공학 &amp; 검증된 클라이언트</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>RPCN·RPCS3는 오픈소스지만 게임의 호출 방식(요청 순서·15-byte 바이너리 헤더 + Protobuf 페이로드)은 문서화되어 있지 않고 공식 SDK도 없다. Rust 서버를 직접 실행·분석해 프로토콜을 역공학해야 했다.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>서버 목록·방 검색·리더보드·스코어 조회 등 <strong>7개 커맨드를 재현·검증</strong>. 저수준 TLS/TCP 통신은 AI 협업으로 구현하고 <strong>단위·통합 테스트로 동작을 실측 검증</strong>. 명세된 struct는 이해·재사용하고 신규 기능에 맞게 수정.</div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">4-2</span><span class="mc-title">스냅샷 Diff 기반 매칭 탐지 (Phantom Room)</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>매칭 대기 중인 플레이어의 방은 서버 목록에서 사라져, 사용자 입장에선 활성 플레이어가 없는 것처럼 보였다.</div>
+        <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">스냅샷 Diff 기반 매칭 탐지 (Phantom Room)</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>매칭을 위해 방을 검색하고 있는 플레이어는 목록에서 사라져, 사용자 입장에선 활성 플레이어가 없는 것처럼 보였다.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>사라진 RANK_MATCH 방을 diff로 탐지해 "매칭 탐색 중" 플레이어를 가상 방(Phantom Room)으로 <strong>실시간 시각화</strong> → 커뮤니티 체감 활성도 향상.</div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">4-3</span><span class="mc-title">비동기 선언적 트랜잭션 데코레이터</span></div>
+        <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">비동기 선언적 트랜잭션 데코레이터</span></div>
         <div class="mc-box mc-problem"><div class="mc-label">문제</div>SQLAlchemy 2.0 async 세션 관리 코드가 서비스 레이어 전반에 반복되었다.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Spring의 <code class="inline">@Transactional</code> 패턴을 Python async에 적용한 <code class="inline">@transactional</code> 데코레이터로 세션 관리 코드를 제거, 예외 시 자동 롤백 보장.</div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">4-4</span><span class="mc-title">다중 데이터베이스 전략 &amp; 계층적 캐싱</span></div>
+        <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">다중 데이터베이스 전략 &amp; 계층적 캐싱</span></div>
         <div class="mc-box mc-problem"><div class="mc-label">문제</div>방 목록(10s)·리더보드(60s)·통계(90일)·게시판(유연한 스키마) — 데이터마다 접근 패턴이 극명히 달랐다.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Redis(TTL 캐시)·PostgreSQL(시계열 집계)·DynamoDB(교체 가능 게시판)를 <strong>데이터 특성별로 선별 적용</strong>, Ports &amp; Adapters로 저장소 교체 가능.</div>
       </div>
