@@ -656,7 +656,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <ul class="goal-list">
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>초과판매·중복 0건</strong><span class="goal-metric">목표 oversell 0 · 실측 <span class="goal-hit">0 / 0</span> (3회 일관)</span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>예매 응답 p95 ≤ 500ms</strong><span class="goal-metric">실측 <span class="goal-hit">348~408ms</span></span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>1,000 VU에서 ≥ 200 TPS</strong><span class="goal-metric">실측 <span class="goal-hit">833~863 TPS</span></span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>예매 확정 처리량 ≥ 200 TPS</strong><span class="goal-metric">1,000 VU 실측 <span class="goal-hit">833~863 TPS</span></span></span></li>
         </ul>
       </div>
       <div>
@@ -732,7 +732,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <tbody>
             <tr><td>S1</td><td>예매 응답 p95 ≤ 500ms</td><td>348~408ms ✅</td></tr>
             <tr><td>S2</td><td>조회 p95 ≤ 200ms</td><td>캐시 on ~26ms ✅</td></tr>
-            <tr><td>S3</td><td>1,000 VU ≥ 200 TPS</td><td>833~863 TPS ✅</td></tr>
+            <tr><td>S3</td><td>예매 확정 1,000 VU ≥ 200 TPS</td><td>833~863 TPS ✅</td></tr>
             <tr><td><strong>S4</strong></td><td><strong>초과판매 0 / 중복 0</strong></td><td><strong>0 / 0 ✅</strong> (3회)</td></tr>
             <tr><td>S5</td><td>5xx &lt; 1%</td><td>0.03~0.04% ✅</td></tr>
             <tr><td>S6</td><td>임계점 수치화</td><td>천장 ~189 TPS → K=100 ✅</td></tr>
