@@ -147,13 +147,13 @@ p { margin-bottom: 10px; }
 .cert-issuer { font-size: 11px; color: var(--accent); font-family: var(--mono); }
 
 /* ══════════════ 프로젝트 개요 (page 3) ══════════════ */
-.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; min-height: 0; }
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: min-content; gap: 16px; }
 .project-card {
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
   padding: 20px 22px; text-decoration: none; color: inherit;
   display: flex; flex-direction: column;
 }
-.project-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.project-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .project-card-icon { font-size: 26px; }
 .project-period { font-size: 12px; color: var(--text-muted); font-family: var(--mono); }
 .project-card-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
@@ -377,6 +377,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <div class="page-kicker">프로젝트</div>
     <h2 class="page-title">Projects</h2>
+    <div class="page-fill">
     <div class="projects-grid">
       <div class="project-card">
         <div class="project-card-top"><div class="project-card-icon">🎮</div><div class="project-period">2024 — 현재</div></div>
@@ -414,6 +415,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         </div>
         <div class="project-card-footer"><span class="badge">🏢 스피어에이엑스</span></div>
       </div>
+    </div>
     </div>
   </div>
   <div class="page-num">03</div>
