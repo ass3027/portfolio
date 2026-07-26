@@ -488,20 +488,11 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
 
-    <div class="row c2" style="margin-top:22px;">
-      <div>
-        <div class="section-label">Highlight</div>
-        <h3>프로젝트 성격</h3>
-        <div class="card" style="margin:0;">
-          <p style="margin:0;">기획·백엔드·프론트·인프라·배포까지 <strong>1인 풀스택</strong>으로 설계·운영. 미문서화된 RPCN 호출 프로토콜 역공학(+테스트 검증), 비동기 이벤트 아키텍처, 다중 DB 전략, keyless CI/CD가 핵심 도전이었다.</p>
-        </div>
-      </div>
-      <div>
-        <div class="section-label">Live</div>
-        <h3>운영 현황</h3>
-        <div class="card" style="margin:0;">
-          <p style="margin:0;">AWS Lightsail 단일 서버 + Docker Compose로 실서비스 운영 중(<code class="inline">match.tag2now.click</code>). ECS 대비 비용을 낮추기 위해 규모에 맞춰 인프라를 다운스케일했다. <strong>오픈 카카오톡방의 실사용자 피드백을 직접 받아 오류 수정·기능 개선을 반복</strong>하며 서비스를 유지하고 있다.</p>
-        </div>
+    <div style="margin-top:22px;">
+      <div class="section-label">Highlight</div>
+      <h3>프로젝트 성격</h3>
+      <div class="card" style="margin:0;">
+        <p style="margin:0;">기획·백엔드·프론트·인프라·배포까지 <strong>1인 풀스택</strong>으로 설계·운영. 미문서화된 RPCN 호출 프로토콜 역공학(+테스트 검증), 비동기 이벤트 아키텍처, 다중 DB 전략, keyless CI/CD가 핵심 도전이었다.</p>
       </div>
     </div>
   </div>
@@ -515,7 +506,6 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="section-label">Architecture</div>
     <h2 class="page-title">시스템 아키텍처</h2>
     <div class="page-fill">
-    <div class="row" style="grid-template-columns:1.35fr 1fr; align-items:center;">
     <div class="arch-svg">
       <svg viewBox="0 16 760 276" role="img" aria-label="Tag2Now 시스템 아키텍처: RPCN 서버에서 RpcnClient로 수집, FastAPI 애플리케이션이 Redis와 PostgreSQL/DynamoDB에 연결">
         <defs>
@@ -554,8 +544,11 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <text x="550" y="277" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">영속 저장</text>
       </svg>
     </div>
+
+    <div class="row c2" style="margin-top:20px; align-items:start;">
       <div>
-        <h3 style="margin-top:0;">모듈 구성</h3>
+        <div class="section-label">Modules</div>
+        <h3>모듈 구성</h3>
         <table>
           <thead><tr><th>모듈</th><th>역할</th></tr></thead>
           <tbody>
@@ -564,6 +557,13 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <tr><td><strong>Community</strong></td><td>게시판 CRUD (PostgreSQL / DynamoDB 어댑터 교체 가능)</td></tr>
           </tbody>
         </table>
+      </div>
+      <div>
+        <div class="section-label">Live</div>
+        <h3>운영 현황</h3>
+        <div class="card" style="margin:0;">
+          <p style="margin:0;">AWS Lightsail 단일 서버 + Docker Compose로 실서비스 운영 중(<code class="inline">match.tag2now.click</code>). ECS 대비 비용을 낮추기 위해 규모에 맞춰 인프라를 다운스케일했다. <strong>오픈 카카오톡방의 실사용자 피드백을 직접 받아 오류 수정·기능 개선을 반복</strong>하며 서비스를 유지하고 있다.</p>
+        </div>
       </div>
     </div>
   </div>
