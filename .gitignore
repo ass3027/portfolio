@@ -3,3 +3,6 @@
 
 # 병렬 작업용 git worktree 디렉터리 (버전 관리 제외)
 .claude/worktrees/
+
+# Playwright MCP 작업 산출물(PDF 검증 스크린샷 등)
+.playwright-mcp/
