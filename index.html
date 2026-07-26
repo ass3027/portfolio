@@ -222,10 +222,11 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .mc-result.accent { background: rgba(9,105,218,.06); border-left-color: var(--accent); }
 .mc-result.accent .mc-label { color: var(--accent); }
 
-/* 도전 카드 확대 변형(.fill): 남는 세로 공간을 카드가 나눠 갖고 본문 폰트를 키운다.
-   문제/성과 박스를 flex로 늘려 카드 하단에 빈 공간이 남지 않게 한다.
-   폰트는 기본(.mini-card)과 최대 확대안의 중간값 — 스캔은 쉽되 과하게 커 보이지 않는 선. */
-.mini-grid.fill { flex: 1 1 auto; min-height: 0; gap: 13px; grid-auto-rows: 1fr; }
+/* 도전 카드 확대 변형(.fill): 카드를 키우고 본문 폰트도 키운다.
+   폰트·카드 높이 모두 기본(.mini-card)과 최대 확대안의 중간값 — 스캔은 쉽되 과해 보이지 않는 선.
+   grid-auto-rows:1fr 로 4장의 높이를 맞추고, 그리드는 늘리지 않아(flex:0) 남는 여백은
+   .page-fill 의 중앙정렬로 위·아래에 균등 분배된다. 박스는 flex로 늘려 카드 하단 빈틈을 없앤다. */
+.mini-grid.fill { flex: 0 1 auto; min-height: 0; gap: 13px; grid-auto-rows: 1fr; }
 .mini-grid.fill .mini-card { padding: 14.5px 16.5px; }
 .mini-grid.fill .mc-head { margin-bottom: 9.5px; }
 .mini-grid.fill .mc-num { font-size: 11.8px; padding: 1.5px 8.5px; }
