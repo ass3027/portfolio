@@ -223,15 +223,16 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .mc-result.accent .mc-label { color: var(--accent); }
 
 /* 도전 카드 확대 변형(.fill): 남는 세로 공간을 카드가 나눠 갖고 본문 폰트를 키운다.
-   문제/성과 박스를 flex로 늘려 카드 하단에 빈 공간이 남지 않게 한다. */
-.mini-grid.fill { flex: 1 1 auto; min-height: 0; gap: 14px; grid-auto-rows: 1fr; }
-.mini-grid.fill .mini-card { padding: 16px 18px; }
-.mini-grid.fill .mc-head { margin-bottom: 11px; }
-.mini-grid.fill .mc-num { font-size: 12.5px; padding: 2px 9px; }
-.mini-grid.fill .mc-title { font-size: 15px; }
-.mini-grid.fill .mc-box { flex: 1 1 auto; font-size: 14px; line-height: 1.65; padding: 11px 14px; margin-bottom: 9px; }
+   문제/성과 박스를 flex로 늘려 카드 하단에 빈 공간이 남지 않게 한다.
+   폰트는 기본(.mini-card)과 최대 확대안의 중간값 — 스캔은 쉽되 과하게 커 보이지 않는 선. */
+.mini-grid.fill { flex: 1 1 auto; min-height: 0; gap: 13px; grid-auto-rows: 1fr; }
+.mini-grid.fill .mini-card { padding: 14.5px 16.5px; }
+.mini-grid.fill .mc-head { margin-bottom: 9.5px; }
+.mini-grid.fill .mc-num { font-size: 11.8px; padding: 1.5px 8.5px; }
+.mini-grid.fill .mc-title { font-size: 13.8px; }
+.mini-grid.fill .mc-box { flex: 1 1 auto; font-size: 12.8px; line-height: 1.58; padding: 9px 12px; margin-bottom: 7.5px; }
 .mini-grid.fill .mc-box:last-child { margin-bottom: 0; }
-.mini-grid.fill .mc-box .mc-label { font-size: 10.5px; margin-bottom: 3px; }
+.mini-grid.fill .mc-box .mc-label { font-size: 10px; margin-bottom: 3px; }
 
 /* ── 핵심 목표 (목표 → 달성여부 체크리스트) ── */
 .goal-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
