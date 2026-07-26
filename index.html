@@ -78,7 +78,6 @@ body.debug .page { overflow: visible; outline: 1px solid red; }
   font-size: 12px; font-weight: 700; color: var(--accent);
   text-transform: uppercase; letter-spacing: .1em; margin-bottom: 8px;
 }
-.section-label { font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; }
 h1.page-title { font-size: 30px; font-weight: 700; line-height: 1.15; margin-bottom: 12px; }
 h2.page-title { font-size: 23px; font-weight: 700; margin-bottom: 16px; }
 h3 { font-size: 15.5px; font-weight: 700; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
@@ -447,7 +446,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
 
     <div class="page-fill">
-    <div class="section-label">개요</div>
+    <h3>개요</h3>
     <div class="card">
       <p>RPCS3 에뮬레이터로 TTT2를 즐기는 커뮤니티는 활성 유저 수, 매칭 상대, 랭킹 정보를 한눈에 볼 도구가 없었다.</p>
       <p>RPCN은 오픈소스지만 게임의 호출 방식이 문서화돼 있지 않고 공식 SDK도 없다. Rust로 된 RPCN 서버를 직접 실행·분석해 호출 프로토콜을 역공학하고, 단위·통합 테스트로 검증한 Python 클라이언트를 구현하여 실시간 대시보드를 구축했다.</p>
@@ -456,7 +455,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
     <div class="row c2" style="margin-top:18px; align-items:start;">
       <div>
-        <div class="section-label">핵심 목표</div>
+        <h3>핵심 목표</h3>
         <ul class="goal-list">
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>SDK 없는 RPCN 프로토콜 역공학</strong><span class="goal-metric">Rust 서버 직접 분석 · <span class="goal-hit">프로토콜 명령 7종 테스트 검증</span></span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 대시보드 실서비스화</strong><span class="goal-metric"><span class="goal-hit">match.tag2now.click</span> 운영 중</span></span></li>
@@ -464,7 +463,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         </ul>
       </div>
       <div>
-        <div class="section-label">기술 스택</div>
+        <h3>기술 스택</h3>
         <div class="pill-list">
           <span class="pill pill-blue">Python / FastAPI</span>
           <span class="pill pill-blue">SQLAlchemy 2.0 (async)</span>
@@ -485,13 +484,13 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
     <div class="row c2" style="margin-top:22px;">
       <div>
-        <div class="section-label">프로젝트 성격</div>
+        <h3>프로젝트 성격</h3>
         <div class="card" style="margin:0;">
           <p style="margin:0;">기획·백엔드·프론트·인프라·배포까지 <strong>1인 풀스택</strong>으로 설계·운영. 미문서화된 RPCN 호출 프로토콜 역공학(+테스트 검증), 비동기 이벤트 아키텍처, 다중 DB 전략, keyless CI/CD가 핵심 도전이었다.</p>
         </div>
       </div>
       <div>
-        <div class="section-label">운영 현황</div>
+        <h3>운영 현황</h3>
         <div class="card" style="margin:0;">
           <p style="margin:0;">AWS Lightsail 단일 서버 + Docker Compose로 실서비스 운영 중(<code class="inline">match.tag2now.click</code>). ECS 대비 비용을 낮추기 위해 규모에 맞춰 인프라를 다운스케일했다. <strong>오픈 카카오톡방의 실사용자 피드백을 직접 받아 오류 수정·기능 개선을 반복</strong>하며 서비스를 유지하고 있다.</p>
         </div>
@@ -769,7 +768,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
 
     <div class="page-fill">
-    <div class="section-label">개요</div>
+    <h3>개요</h3>
     <div class="card">
       <p>명절·연휴에 수만 명이 동시에 같은 좌석을 예매하려 할 때 발생하는 <strong>초과 판매(oversell)·중복 예매·좌석 재고 깨짐</strong>을 막고, 그 정합성과 성능을 <strong>부하 테스트와 Before/After 수치로 증명</strong>하는 것을 목표로 한 프로젝트다.</p>
       <p>CRUD 기능 수가 아니라 <strong>N명이 한 좌석을 경합할 때 정확히 1명만 성공시키되(정합성), 그 정확성을 지키면서도 높은 처리량·낮은 지연을 함께 보장하는(성능) 엔지니어링</strong>이 핵심이다. 안전과 속도는 상충하기 쉬운데, 이 트레이드오프를 실측으로 풀어냈다. 7주 단계별 계획(P0~P6)으로 설계·구현하고, 부하 시나리오 L1~L6(9종) + 필수 실험 E1~E3의 Before/After를 모두 완료했다.</p>
@@ -777,7 +776,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
     <div class="row c2" style="margin-top:18px; align-items:start;">
       <div>
-        <div class="section-label">핵심 목표</div>
+        <h3>핵심 목표</h3>
         <ul class="goal-list">
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>초과판매·중복 0건</strong><span class="goal-metric">목표 oversell 0 · 실측 <span class="goal-hit">0 / 0</span> (3회 일관)</span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>예매 응답 p95 ≤ 500ms</strong><span class="goal-metric">실측 <span class="goal-hit">348~408ms</span></span></span></li>
@@ -785,7 +784,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         </ul>
       </div>
       <div>
-        <div class="section-label">기술 스택</div>
+        <h3>기술 스택</h3>
         <div class="pill-list">
           <span class="pill pill-green">Spring Boot 4.0</span>
           <span class="pill pill-green">Java 25</span>
@@ -940,7 +939,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
 
     <div class="page-fill">
-    <div class="section-label">개요</div>
+    <h3>개요</h3>
     <div class="card">
       <p>CCTV 영상분석으로 산불을 감지하는 시스템. 13개 지역에서 지역별 100대 이상의 CCTV를 운영하는 환경이었다.</p>
       <p>영상 끊김이 발생해도 장애 지점·원인을 신속히 파악할 관측 체계가 부족해 조치에 많은 시간이 소요됐고, DeepStream 분석 모듈이 단일 파일 구조·전역 변수에 의존해 유지보수와 온보딩이 어려웠다.</p>
@@ -948,7 +947,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
     <div class="row c2" style="margin-top:18px; align-items:start;">
       <div>
-        <div class="section-label">핵심 목표</div>
+        <h3>핵심 목표</h3>
         <ul class="goal-list">
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>영상 장애 관측 체계 구축</strong><span class="goal-metric">장애 조치 시간 <span class="goal-hit">80% 단축</span></span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>영상 출력 안정성 향상</strong><span class="goal-metric"><span class="goal-hit">85% → 93%</span></span></span></li>
@@ -956,7 +955,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         </ul>
       </div>
       <div>
-        <div class="section-label">기술 스택</div>
+        <h3>기술 스택</h3>
         <div class="pill-list">
           <span class="pill pill-blue">Python</span>
           <span class="pill pill-blue">FastAPI</span>
@@ -968,7 +967,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
 
-    <div class="section-label" style="margin-top:18px;">핵심 기술적 도전</div>
+    <h3 style="margin-top:18px;">핵심 기술적 도전</h3>
     <div class="mini-grid c2">
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">영상 장애 관측 체계 구축</span></div>
@@ -997,7 +996,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
 
     <div class="page-fill">
-    <div class="section-label">개요</div>
+    <h3>개요</h3>
     <div class="card">
       <p>LiDAR 데이터로 실시간 여객 위치·인원 수를 체크하고 대기시간을 예측하는 프로젝트. 중간 참여 시점에서 기존 통계 기반 산출 방식으로는 알고리즘 개선·고객사 평가 충족에 한계가 있었다.</p>
       <p>C++ gRPC 수신 서비스의 간헐적 종료와 대기시간·혼잡도 로직 분산으로 운영 안정성·유지보수성이 저하된 상태였다.</p>
@@ -1005,7 +1004,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
     <div class="row c2" style="margin-top:14px; margin-bottom:10px; align-items:start;">
       <div>
-        <div class="section-label">핵심 목표</div>
+        <h3>핵심 목표</h3>
         <ul class="goal-list">
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 메트릭 분석 환경 구축</strong><span class="goal-metric">통계 기반 한계 극복 · 분석·개선 시간 <span class="goal-hit">80% 단축</span></span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>C++ gRPC 운영 안정성 확보</strong><span class="goal-metric">간헐적 종료 <span class="goal-hit">해소</span></span></span></li>
@@ -1013,7 +1012,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         </ul>
       </div>
       <div>
-        <div class="section-label">기술 스택</div>
+        <h3>기술 스택</h3>
         <div class="pill-list">
           <span class="pill pill-blue">Spring Boot</span>
           <span class="pill pill-yellow">gRPC (C++)</span>
@@ -1025,7 +1024,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
 
-    <div class="section-label">핵심 기술적 도전</div>
+    <h3>핵심 기술적 도전</h3>
     <div class="mini-grid c3">
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">실시간 메트릭 분석 환경 구축</span></div>
