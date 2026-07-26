@@ -615,13 +615,13 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <rect x="13" y="30" width="60" height="22" rx="11" fill="#cf222e"/>
           <text x="43" y="45" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">BEFORE</text>
           <use href="#ic-user" x="18" y="58" width="50" height="50" color="#0969da" style="color:#0969da"/>
-          <g opacity="0.5"><use href="#ic-aws-route53" x="132" y="54" width="56" height="56"/></g>
-          <g opacity="0.5"><use href="#ic-aws-cloudfront" x="268" y="54" width="56" height="56"/></g>
+          <use href="#ic-aws-route53" x="132" y="54" width="56" height="56"/>
+          <use href="#ic-aws-cloudfront" x="268" y="54" width="56" height="56"/>
           <use href="#ic-aws-elb" x="404" y="54" width="56" height="56"/>
           <use href="#ic-aws-fargate" x="536" y="54" width="56" height="56"/>
           <text x="43"  y="128" text-anchor="middle" font-size="11" fill="#1f2328">사용자</text>
-          <text x="160" y="128" text-anchor="middle" font-size="11" fill="#57606a">Route 53</text>
-          <text x="296" y="128" text-anchor="middle" font-size="11" fill="#57606a">CloudFront</text>
+          <text x="160" y="128" text-anchor="middle" font-size="11" fill="#1f2328">Route 53</text>
+          <text x="296" y="128" text-anchor="middle" font-size="11" fill="#1f2328">CloudFront</text>
           <text x="432" y="128" text-anchor="middle" font-size="11" fill="#1f2328">ALB</text>
           <text x="564" y="46"  text-anchor="middle" font-size="11" font-weight="700" fill="#1f2328">ECS Fargate</text>
 
@@ -636,9 +636,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <text x="954" y="134" text-anchor="middle" font-size="9.5" fill="#1f2328">ElastiCache</text>
 
           <!-- ── BEFORE 배포 흐름 CI/CD (점선) ── -->
-          <line x1="72"  y1="210" x2="248" y2="210" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ip)"/>
-          <line x1="334" y1="210" x2="534" y2="210" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ip)"/>
-          <line x1="564" y1="180" x2="564" y2="114" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ip)"/>
+          <line x1="72"  y1="210" x2="248" y2="210" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#ip)"/>
+          <line x1="334" y1="210" x2="534" y2="210" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#ip)"/>
+          <line x1="564" y1="180" x2="564" y2="114" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#ip)"/>
           <text x="434" y="202" text-anchor="middle" font-size="10" fill="#8250df">git tag → OIDC keyless 배포</text>
 
           <use href="#ic-dev" x="18" y="186" width="50" height="50" color="#8250df" style="color:#8250df"/>
@@ -662,11 +662,11 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <rect x="13" y="342" width="60" height="22" rx="11" fill="#1a7f37"/>
           <text x="43" y="357" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">AFTER</text>
           <use href="#ic-user" x="18" y="366" width="50" height="50" color="#0969da" style="color:#0969da"/>
-          <g opacity="0.5"><use href="#ic-aws-route53" x="132" y="362" width="56" height="56"/></g>
-          <g opacity="0.5"><use href="#ic-aws-cloudfront" x="268" y="362" width="56" height="56"/></g>
+          <use href="#ic-aws-route53" x="132" y="362" width="56" height="56"/>
+          <use href="#ic-aws-cloudfront" x="268" y="362" width="56" height="56"/>
           <text x="43"  y="436" text-anchor="middle" font-size="11" fill="#1f2328">사용자</text>
-          <text x="160" y="436" text-anchor="middle" font-size="11" fill="#57606a">Route 53</text>
-          <text x="296" y="436" text-anchor="middle" font-size="11" fill="#57606a">CloudFront</text>
+          <text x="160" y="436" text-anchor="middle" font-size="11" fill="#1f2328">Route 53</text>
+          <text x="296" y="436" text-anchor="middle" font-size="11" fill="#1f2328">CloudFront</text>
 
           <!-- Lightsail 단일 인스턴스 -->
           <rect x="404" y="350" width="608" height="152" rx="10" fill="#fff8f0" stroke="#ED7100" stroke-width="1.4"/>
@@ -742,14 +742,14 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <line x1="126" y1="100" x2="192" y2="100" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
           <line x1="236" y1="100" x2="302" y2="100" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
           <use href="#p7-ic-user" x="84" y="80" width="40" height="40" color="#0969da" style="color:#0969da"/>
-          <g opacity="0.55"><use href="#p7-ic-aws-route53" x="194" y="80" width="40" height="40"/></g>
-          <g opacity="0.55"><use href="#p7-ic-aws-cloudfront" x="304" y="80" width="40" height="40"/></g>
+          <use href="#p7-ic-aws-route53" x="194" y="80" width="40" height="40"/>
+          <use href="#p7-ic-aws-cloudfront" x="304" y="80" width="40" height="40"/>
           <text x="104" y="138" text-anchor="middle" font-size="10.5" fill="#1f2328">사용자</text>
-          <text x="214" y="138" text-anchor="middle" font-size="10.5" fill="#57606a">Route 53</text>
-          <text x="324" y="138" text-anchor="middle" font-size="10.5" fill="#57606a">CloudFront</text>
+          <text x="214" y="138" text-anchor="middle" font-size="10.5" fill="#1f2328">Route 53</text>
+          <text x="324" y="138" text-anchor="middle" font-size="10.5" fill="#1f2328">CloudFront</text>
 
-          <line x1="602" y1="100" x2="668" y2="100" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#cp)"/>
-          <line x1="712" y1="100" x2="788" y2="100" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#cp)"/>
+          <line x1="602" y1="100" x2="668" y2="100" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#cp)"/>
+          <line x1="712" y1="100" x2="788" y2="100" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#cp)"/>
           <use href="#p7-ic-dev" x="560" y="80" width="40" height="40" color="#8250df" style="color:#8250df"/>
           <use href="#p7-ic-github-actions" x="670" y="80" width="40" height="40"/>
           <use href="#p7-ic-aws-ecr" x="790" y="80" width="40" height="40"/>
@@ -759,14 +759,18 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <text x="846" y="96" font-size="9" fill="#8250df">배포 단계(③)는</text>
           <text x="846" y="110" font-size="9" fill="#8250df">런타임별로 상이</text>
 
-          <!-- ── 공통 → 각 런타임 분기 (━ 요청 / ┈ 배포 번들) ── -->
-          <line x1="502" y1="154" x2="502" y2="178" stroke="#57606a" stroke-width="1.6"/>
-          <line x1="502" y1="178" x2="276" y2="200" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
-          <line x1="502" y1="178" x2="728" y2="200" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
-          <line x1="518" y1="154" x2="518" y2="186" stroke="#8250df" stroke-width="1.4" stroke-dasharray="5 4"/>
-          <line x1="518" y1="186" x2="320" y2="200" stroke="#8250df" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#cp)"/>
-          <line x1="518" y1="186" x2="716" y2="200" stroke="#8250df" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#cp)"/>
-          <text x="76" y="176" font-size="9" fill="#57606a">━ 요청 ┈ 배포 → 각 런타임</text>
+          <!-- ── 공통 → 각 런타임 분기 : 회색 실선(요청)은 안쪽, 보라 점선(배포)은 바깥쪽으로 중첩 없이 ── -->
+          <line x1="486" y1="154" x2="486" y2="178" stroke="#8b949e" stroke-width="1.6"/>
+          <line x1="486" y1="178" x2="204" y2="200" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
+          <line x1="486" y1="178" x2="640" y2="200" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
+          <line x1="534" y1="154" x2="534" y2="178" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4"/>
+          <line x1="534" y1="178" x2="366" y2="200" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#cp)"/>
+          <line x1="534" y1="178" x2="820" y2="200" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#cp)"/>
+          <!-- 범례 -->
+          <line x1="70" y1="168" x2="98" y2="168" stroke="#8b949e" stroke-width="1.6"/>
+          <text x="104" y="172" font-size="9.5" fill="#57606a">요청</text>
+          <line x1="144" y1="168" x2="172" y2="168" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4"/>
+          <text x="178" y="172" font-size="9.5" font-weight="700" fill="#8250df">배포</text>
 
           <!-- ── 좌: BEFORE 카드 ── -->
           <rect x="56" y="200" width="424" height="312" rx="10" fill="#ffffff" stroke="#d0d7de"/>
