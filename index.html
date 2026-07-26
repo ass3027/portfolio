@@ -222,6 +222,17 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .mc-result.accent { background: rgba(9,105,218,.06); border-left-color: var(--accent); }
 .mc-result.accent .mc-label { color: var(--accent); }
 
+/* 도전 카드 확대 변형(.fill): 남는 세로 공간을 카드가 나눠 갖고 본문 폰트를 키운다.
+   문제/성과 박스를 flex로 늘려 카드 하단에 빈 공간이 남지 않게 한다. */
+.mini-grid.fill { flex: 1 1 auto; min-height: 0; gap: 14px; grid-auto-rows: 1fr; }
+.mini-grid.fill .mini-card { padding: 16px 18px; }
+.mini-grid.fill .mc-head { margin-bottom: 11px; }
+.mini-grid.fill .mc-num { font-size: 12.5px; padding: 2px 9px; }
+.mini-grid.fill .mc-title { font-size: 15px; }
+.mini-grid.fill .mc-box { flex: 1 1 auto; font-size: 14px; line-height: 1.65; padding: 11px 14px; margin-bottom: 9px; }
+.mini-grid.fill .mc-box:last-child { margin-bottom: 0; }
+.mini-grid.fill .mc-box .mc-label { font-size: 10.5px; margin-bottom: 3px; }
+
 /* ── 핵심 목표 (목표 → 달성여부 체크리스트) ── */
 .goal-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .goal-item { display: flex; align-items: flex-start; gap: 9px; background: rgba(26,127,55,.06); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 9px 12px; }
@@ -812,25 +823,25 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="section-label">Key Challenges</div>
     <h2 class="page-title">핵심 기술적 도전</h2>
     <div class="page-fill">
-    <div class="mini-grid c2">
+    <div class="mini-grid c2 fill">
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">RPCN 호출 프로토콜 역공학 &amp; 검증된 클라이언트</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>RPCN·RPCS3는 오픈소스지만 게임의 호출 방식(요청 순서·15-byte 바이너리 헤더 + Protobuf 페이로드)은 문서화되어 있지 않고 공식 SDK도 없다. Rust 서버를 직접 실행·분석해 프로토콜을 역공학해야 했다.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div><strong>게임 데이터를 가져올 공식 SDK도, 문서도 없었다.</strong> 서버는 오픈소스지만 게임이 실제로 어떻게 말을 거는지(요청 순서·바이너리 헤더 규칙)는 아무도 적어두지 않았다.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>서버 목록·방 검색·리더보드·스코어 조회 등 <strong>7개 커맨드를 재현·검증</strong>. 저수준 TLS/TCP 통신은 AI 협업으로 구현하고 <strong>단위·통합 테스트로 동작을 실측 검증</strong>. 명세된 struct는 이해·재사용하고 신규 기능에 맞게 수정.</div>
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">스냅샷 Diff 기반 매칭 탐지 (Phantom Room)</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>매칭을 위해 방을 검색하고 있는 플레이어는 목록에서 사라져, 사용자 입장에선 활성 플레이어가 없는 것처럼 보였다.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>매칭을 잡는 순간 그 방은 목록에서 사라진다. 그래서 사람이 있어도 <strong>"아무도 없는 서버"처럼 보였다.</strong></div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>사라진 RANK_MATCH 방을 diff로 탐지해 "매칭 탐색 중" 플레이어를 가상 방(Phantom Room)으로 <strong>실시간 시각화</strong> → 커뮤니티 체감 활성도 향상.</div>
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">비동기 선언적 트랜잭션 데코레이터</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>SQLAlchemy 2.0 async 세션 관리 코드가 서비스 레이어 전반에 반복되었다.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>서비스 메서드마다 <strong>세션 열기·커밋·롤백 코드가 똑같이 반복</strong>됐다. 정작 중요한 비즈니스 로직이 그 사이에 묻혔다.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Spring의 <code class="inline">@Transactional</code> 패턴을 Python async에 적용한 <code class="inline">@transactional</code> 데코레이터로 세션 관리 코드를 제거, 예외 시 자동 롤백 보장.</div>
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">다중 데이터베이스 전략 &amp; 계층적 캐싱</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>방 목록(10s)·리더보드(60s)·통계(90일)·게시판(유연한 스키마) — 데이터마다 접근 패턴이 극명히 달랐다.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div><strong>데이터마다 수명과 쓰임이 전혀 달랐다.</strong> 방 목록은 10초면 낡고, 리더보드는 1분, 통계는 90일을 쌓아야 하고, 게시판은 스키마가 계속 바뀐다. 하나의 DB로는 전부 잘 맞출 수 없었다.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Redis(TTL 캐시)·PostgreSQL(시계열 집계)·DynamoDB(교체 가능 게시판)를 <strong>데이터 특성별로 선별 적용</strong>, Ports &amp; Adapters로 저장소 교체 가능.</div>
       </div>
     </div>
