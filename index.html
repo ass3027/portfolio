@@ -692,7 +692,6 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="section-label">Infrastructure · Before / After</div>
     <h2 class="page-title">인프라 비교 — ECS Fargate ↔ Lightsail</h2>
     <div class="page-fill">
-      <div class="tradeoff-note" style="margin:0 0 10px;">상단 = <strong>전환 전후 공통</strong>(요청 엣지 + 빌드·ECR 푸시) · 아래 두 카드 = <strong>실제로 교체된 런타임 백엔드만</strong> 비교 · <strong>배포 단계(③)만 런타임별로 상이</strong>.</div>
       <div class="arch-svg">
         <svg viewBox="0 0 1020 520" font-family="'JetBrains Mono',monospace" role="img" aria-label="Before/After 인프라 비교. 상단 공통 영역에 런타임 진입(사용자·Route53·CloudFront)과 CI/CD(개발자·GitHub Actions·ECR)를 두고, 공통에서 각 런타임으로 분기한다. 좌측 Before 카드는 ALB·ECS Fargate·관리형 데이터(RDS·DynamoDB·ElastiCache), 우측 After 카드는 단일 Lightsail 인스턴스의 docker-compose(nginx·backend·redis·postgresql). 두 런타임 모두 동일 ECR 이미지를 쓰지만, 테스트·빌드와 ECR 푸시까지만 공통이고 배포 단계는 갈린다. Before는 ECS 태스크 정의를 갱신한 뒤 서비스를 롤링 업데이트하고, After는 GitHub Actions가 SSH로 접속해 docker compose pull 후 up -d 를 실행한다.">
           <defs>
