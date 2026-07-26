@@ -772,21 +772,22 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <rect x="56" y="200" width="424" height="312" rx="10" fill="#ffffff" stroke="#d0d7de"/>
           <rect x="56" y="200" width="6" height="312" rx="3" fill="#cf222e"/>
           <text x="76" y="224" font-size="13" font-weight="700" fill="#cf222e">BEFORE — ECS Fargate</text>
+          <text x="248" y="224" font-size="10" fill="#57606a">AWS 관리형 서비스 조합</text>
           <rect x="70" y="234" width="396" height="30" rx="6" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
           <text x="82" y="253" font-size="9.5" fill="#8250df">③ 배포 ┊ 태스크 정의 갱신 → 서비스 업데이트(롤링)</text>
           <g transform="translate(0,38)">
-          <line x1="140" y1="286" x2="140" y2="304" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
-          <line x1="140" y1="352" x2="140" y2="390" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
-          <use href="#p7-ic-aws-elb" x="120" y="244" width="40" height="40"/>
-          <text x="176" y="268" font-size="11" fill="#1f2328">ALB (Elastic Load Balancing)</text>
-          <use href="#p7-ic-aws-fargate" x="120" y="306" width="40" height="40"/>
-          <text x="176" y="324" font-size="11" font-weight="700" fill="#1f2328">ECS Fargate</text>
-          <text x="176" y="339" font-size="10" fill="#8250df">← 동일 ECR 이미지(③)</text>
-          <rect x="86" y="392" width="364" height="72" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
-          <text x="100" y="407" font-size="10" fill="#57606a">관리형 데이터 계층</text>
-          <use href="#p7-ic-aws-rds" x="112" y="414" width="28" height="28"/><text x="126" y="456" text-anchor="middle" font-size="10" fill="#1f2328">RDS</text>
-          <use href="#p7-ic-aws-dynamodb" x="230" y="414" width="28" height="28"/><text x="244" y="456" text-anchor="middle" font-size="10" fill="#1f2328">DynamoDB</text>
-          <use href="#p7-ic-aws-elasticache" x="348" y="414" width="28" height="28"/><text x="362" y="456" text-anchor="middle" font-size="9.5" fill="#1f2328">ElastiCache</text>
+          <line x1="140" y1="302" x2="140" y2="316" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
+          <line x1="140" y1="366" x2="140" y2="380" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
+          <use href="#p7-ic-aws-elb" x="120" y="258" width="40" height="40"/>
+          <text x="176" y="282" font-size="11" fill="#1f2328">ALB (Elastic Load Balancing)</text>
+          <use href="#p7-ic-aws-fargate" x="120" y="320" width="40" height="40"/>
+          <text x="176" y="344" font-size="11" font-weight="700" fill="#1f2328">ECS Fargate</text>
+          <text x="176" y="359" font-size="10" fill="#8250df">← 동일 ECR 이미지(③)</text>
+          <rect x="86" y="384" width="364" height="72" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
+          <text x="100" y="399" font-size="10" fill="#57606a">관리형 데이터 계층</text>
+          <use href="#p7-ic-aws-rds" x="112" y="406" width="28" height="28"/><text x="126" y="448" text-anchor="middle" font-size="10" fill="#1f2328">RDS</text>
+          <use href="#p7-ic-aws-dynamodb" x="230" y="406" width="28" height="28"/><text x="244" y="448" text-anchor="middle" font-size="10" fill="#1f2328">DynamoDB</text>
+          <use href="#p7-ic-aws-elasticache" x="348" y="406" width="28" height="28"/><text x="362" y="448" text-anchor="middle" font-size="9.5" fill="#1f2328">ElastiCache</text>
           </g>
 
           <!-- 중앙 마이그레이션 -->
@@ -797,18 +798,24 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <rect x="540" y="200" width="424" height="312" rx="10" fill="#ffffff" stroke="#d0d7de"/>
           <rect x="540" y="200" width="6" height="312" rx="3" fill="#1a7f37"/>
           <text x="560" y="224" font-size="13" font-weight="700" fill="#1a7f37">AFTER — Lightsail</text>
+          <text x="706" y="224" font-size="10" fill="#57606a">단일 노드 · free tier</text>
           <rect x="554" y="234" width="396" height="30" rx="6" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
           <text x="566" y="253" font-size="9.5" fill="#8250df">③ 배포 ┊ SSH 접속 → docker compose pull &amp;&amp; up -d</text>
           <g transform="translate(0,38)">
-          <rect x="566" y="256" width="392" height="200" rx="8" fill="#fff8f0" stroke="#ED7100" stroke-width="1.3"/>
-          <use href="#p7-ic-aws-lightsail" x="582" y="270" width="40" height="40"/>
-          <text x="634" y="288" font-size="13" font-weight="700" fill="#ba5a00">Lightsail 인스턴스</text>
-          <text x="634" y="305" font-size="10" fill="#57606a">docker-compose · 단일 노드 · free tier</text>
-          <text x="944" y="288" text-anchor="end" font-size="10" fill="#8250df">← 동일 ECR 이미지(③)</text>
-          <g transform="translate(578,326)"><rect width="176" height="46" rx="7" fill="#fff" stroke="#d0d7de"/><use href="#p7-ic-nginx" x="14" y="12" width="22" height="22"/><text x="46" y="29" font-size="11" font-weight="600" fill="#1f2328">nginx</text></g>
-          <g transform="translate(770,326)"><rect width="176" height="46" rx="7" fill="#fff" stroke="#d0d7de"/><use href="#p7-ic-python" x="14" y="12" width="22" height="22"/><text x="46" y="29" font-size="11" font-weight="600" fill="#1f2328">backend</text></g>
-          <g transform="translate(578,382)"><rect width="176" height="46" rx="7" fill="#fff" stroke="#d0d7de"/><use href="#p7-ic-redis" x="14" y="12" width="22" height="22"/><text x="46" y="29" font-size="11" font-weight="600" fill="#1f2328">redis</text></g>
-          <g transform="translate(770,382)"><rect width="176" height="46" rx="7" fill="#fff" stroke="#d0d7de"/><use href="#p7-ic-postgresql" x="14" y="12" width="22" height="22"/><text x="46" y="29" font-size="11" font-weight="600" fill="#1f2328">postgresql</text></g>
+          <rect x="566" y="234" width="392" height="230" rx="8" fill="#fff8f0" stroke="#ED7100" stroke-width="1.3"/>
+          <use href="#p7-ic-aws-lightsail" x="578" y="237" width="16" height="16"/>
+          <text x="600" y="249" font-size="9.5" font-weight="700" fill="#ba5a00">Lightsail 인스턴스 · docker-compose</text>
+          <line x1="624" y1="302" x2="624" y2="316" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
+          <line x1="624" y1="366" x2="624" y2="380" stroke="#8b949e" stroke-width="1.6" marker-end="url(#ca)"/>
+          <use href="#p7-ic-nginx" x="604" y="258" width="40" height="40"/>
+          <text x="660" y="282" font-size="11" fill="#1f2328">nginx (FE + 역방향 프록시)</text>
+          <use href="#p7-ic-python" x="604" y="320" width="40" height="40"/>
+          <text x="660" y="344" font-size="11" font-weight="700" fill="#1f2328">backend (FastAPI)</text>
+          <text x="660" y="359" font-size="10" fill="#8250df">← 동일 ECR 이미지(③)</text>
+          <rect x="574" y="384" width="370" height="72" rx="8" fill="#fffdf9" stroke="#e8cba6"/>
+          <text x="588" y="399" font-size="10" fill="#57606a">데이터 계층 (컨테이너)</text>
+          <use href="#p7-ic-postgresql" x="596" y="406" width="28" height="28"/><text x="610" y="448" text-anchor="middle" font-size="10" fill="#1f2328">postgresql</text>
+          <use href="#p7-ic-redis" x="832" y="406" width="28" height="28"/><text x="846" y="448" text-anchor="middle" font-size="10" fill="#1f2328">redis</text>
           </g>
         </svg>
       </div>
