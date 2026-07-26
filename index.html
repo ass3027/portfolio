@@ -843,7 +843,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">Redis 공유 캐시 — 같은 결과를 반복 조회하는 트래픽</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div><strong>모두가 같은 화면을 보는데, 조회 요청은 사람 수만큼 쏟아진다.</strong> 매칭 현황은 초 단위로 갱신되니 조회 빈도가 높고, 그때마다 RPCN 조회·집계를 반복하면 <strong>같은 응답을 만드는 데만 부하가 몰린다.</strong></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div><strong>같은 화면인데 조회는 사람 수만큼 반복된다.</strong> 매 요청마다 RPCN을 다시 조회하면, 내 서버는 물론 <strong>통제할 수 없는 외부 RPCN 서버에까지 부하를 떠넘기게 된다.</strong></div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>데이터 수명에 맞춘 <strong>Redis TTL 캐시</strong>(방 목록 10s · 리더보드 60s · 서버 목록 1h)로 중복 조회를 제거. 캐시를 프로세스 밖 Redis에 두어 <strong>백엔드를 여러 인스턴스로 늘려도 캐시를 공유</strong>한다.</div>
       </div>
     </div>
