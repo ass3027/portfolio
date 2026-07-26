@@ -222,6 +222,19 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .mc-result.accent { background: rgba(9,105,218,.06); border-left-color: var(--accent); }
 .mc-result.accent .mc-label { color: var(--accent); }
 
+/* 도전 카드 확대 변형(.fill): 카드를 키우고 본문 폰트도 키운다.
+   폰트·카드 높이 모두 기본(.mini-card)과 최대 확대안의 중간값 — 스캔은 쉽되 과해 보이지 않는 선.
+   grid-auto-rows:1fr 로 4장의 높이를 맞추고, 그리드는 늘리지 않아(flex:0) 남는 여백은
+   .page-fill 의 중앙정렬로 위·아래에 균등 분배된다. 박스는 flex로 늘려 카드 하단 빈틈을 없앤다. */
+.mini-grid.fill { flex: 0 1 auto; min-height: 0; gap: 13px; grid-auto-rows: 1fr; }
+.mini-grid.fill .mini-card { padding: 14.5px 16.5px; }
+.mini-grid.fill .mc-head { margin-bottom: 9.5px; }
+.mini-grid.fill .mc-num { font-size: 11.8px; padding: 1.5px 8.5px; }
+.mini-grid.fill .mc-title { font-size: 13.8px; }
+.mini-grid.fill .mc-box { flex: 1 1 auto; font-size: 12.8px; line-height: 1.58; padding: 9px 12px; margin-bottom: 7.5px; }
+.mini-grid.fill .mc-box:last-child { margin-bottom: 0; }
+.mini-grid.fill .mc-box .mc-label { font-size: 10px; margin-bottom: 3px; }
+
 /* ── 핵심 목표 (목표 → 달성여부 체크리스트) ── */
 .goal-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .goal-item { display: flex; align-items: flex-start; gap: 9px; background: rgba(26,127,55,.06); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 9px 12px; }
@@ -448,7 +461,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="section-label">핵심 목표</div>
         <h3>이루려던 것 &amp; 달성</h3>
         <ul class="goal-list">
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>SDK 없는 RPCN 프로토콜 역공학</strong><span class="goal-metric">Rust 서버 직접 분석 · <span class="goal-hit">7개 커맨드 테스트 검증</span></span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>SDK 없는 RPCN 프로토콜 역공학</strong><span class="goal-metric">Rust 서버 직접 분석 · <span class="goal-hit">프로토콜 명령 7종 테스트 검증</span></span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 대시보드 실서비스화</strong><span class="goal-metric"><span class="goal-hit">match.tag2now.click</span> 운영 중</span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>AWS 운영·자동 배포</strong><span class="goal-metric">AWS OIDC keyless 인증으로 <span class="goal-hit">ECR→ECS 배포 자동화</span></span></span></li>
         </ul>
@@ -706,26 +719,26 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="section-label">Key Challenges</div>
     <h2 class="page-title">핵심 기술적 도전</h2>
     <div class="page-fill">
-    <div class="mini-grid c2">
+    <div class="mini-grid c2 fill">
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">RPCN 호출 프로토콜 역공학 &amp; 검증된 클라이언트</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>RPCN·RPCS3는 오픈소스지만 게임의 호출 방식(요청 순서·15-byte 바이너리 헤더 + Protobuf 페이로드)은 문서화되어 있지 않고 공식 SDK도 없다. Rust 서버를 직접 실행·분석해 프로토콜을 역공학해야 했다.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>서버 목록·방 검색·리더보드·스코어 조회 등 <strong>7개 커맨드를 재현·검증</strong>. 저수준 TLS/TCP 통신은 AI 협업으로 구현하고 <strong>단위·통합 테스트로 동작을 실측 검증</strong>. 명세된 struct는 이해·재사용하고 신규 기능에 맞게 수정.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div><strong>게임 데이터를 가져올 공식 SDK·문서 미존재.</strong> 서버는 오픈소스지만, 게임이 실제로 호출하는 방식(요청 순서·바이너리 헤더 규칙)은 어디에도 기록되지 않은 상태.</div>
+        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>서버 목록·방 검색·리더보드·스코어 조회 등 <strong>7종 프로토콜 명령 재현·검증</strong>. 저수준 TLS/TCP 통신은 AI 협업으로 구현, <strong>단위·통합 테스트로 동작 실측 검증</strong>.</div>
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">스냅샷 Diff 기반 매칭 탐지 (Phantom Room)</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>매칭을 위해 방을 검색하고 있는 플레이어는 목록에서 사라져, 사용자 입장에선 활성 플레이어가 없는 것처럼 보였다.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>사라진 RANK_MATCH 방을 diff로 탐지해 "매칭 탐색 중" 플레이어를 가상 방(Phantom Room)으로 <strong>실시간 시각화</strong> → 커뮤니티 체감 활성도 향상.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>상대를 찾기 시작하면 그 방은 목록에서 빠짐 → <strong>조회 API만으로는 "매칭 중인 유저"를 볼 수 없어</strong> 실제 활동 인원이 통째로 누락.</div>
+        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>직전 스냅샷과 <strong>diff로 사라진 RANK_MATCH 방을 매칭 시작으로 판정</strong>(재등장·TTL 만료로 해제) → <strong>매칭 중 유저 수를 정확히 집계</strong>, 가상 방(Phantom Room)으로 실시간 노출.</div>
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">비동기 선언적 트랜잭션 데코레이터</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>SQLAlchemy 2.0 async 세션 관리 코드가 서비스 레이어 전반에 반복되었다.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>서비스 메서드마다 <strong>세션 열기·커밋·롤백 코드가 동일하게 반복</strong>. 정작 중요한 비즈니스 로직이 그 사이에 묻히는 구조.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Spring의 <code class="inline">@Transactional</code> 패턴을 Python async에 적용한 <code class="inline">@transactional</code> 데코레이터로 세션 관리 코드를 제거, 예외 시 자동 롤백 보장.</div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">다중 데이터베이스 전략 &amp; 계층적 캐싱</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>방 목록(10s)·리더보드(60s)·통계(90일)·게시판(유연한 스키마) — 데이터마다 접근 패턴이 극명히 달랐다.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Redis(TTL 캐시)·PostgreSQL(시계열 집계)·DynamoDB(교체 가능 게시판)를 <strong>데이터 특성별로 선별 적용</strong>, Ports &amp; Adapters로 저장소 교체 가능.</div>
+        <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">Redis 공유 캐시 — 같은 결과를 반복 조회하는 트래픽</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div><strong>같은 화면인데 조회는 사람 수만큼 반복.</strong> 매 요청마다 RPCN 재조회 시, 내 서버는 물론 <strong>통제 불가한 외부 RPCN 서버까지 부하 전가 위험.</strong></div>
+        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>데이터 수명에 맞춘 <strong>Redis TTL 캐시</strong>(방 목록 10s · 리더보드 60s · 서버 목록 1h)로 중복 조회 제거. 캐시를 프로세스 밖 Redis에 두어 <strong>백엔드를 여러 인스턴스로 늘려도 캐시 공유</strong>.</div>
       </div>
     </div>
   </div>
@@ -878,22 +891,22 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="mini-grid c2">
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">단일 원자 선점 — 1,000명 같은 좌석 경쟁 → 초과 판매 0건</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>N명이 같은 좌석을 동시 시도할 때 단 1명만 성공하고 재고가 정확히 −1 되어야 한다. 락을 흩뿌리면 경합 지점이 늘어 정합성이 깨진다.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>N명이 같은 좌석을 동시 시도해도 성공은 단 1명, 재고는 정확히 −1이어야 함. 락을 흩뿌리면 경합 지점 증가로 정합성 붕괴.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과 (L1 실측)</div>선점을 단일 원자 지점(Redis Set <code class="inline">SREM</code>/<code class="inline">SPOP</code>)에 모으고 DB <code class="inline">@Version</code> 낙관락으로 이중 방어. 1,000명 경쟁 → 성공 정확히 <strong>1건</strong>, <strong>초과판매·중복 0</strong>(3회 일관).</div>
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">조회 캐시 스탬피드 방어 — single-flight (E3)</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>조회는 모든 사용자의 진입점이라 읽기가 압도적이다. 매 요청이 DB에서 재고를 집계하면 조회 p95가 8~9초로 무너지고, TTL 만료 순간 스탬피드도 위험하다.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>조회는 모든 사용자의 진입점이라 읽기가 압도적. 매 요청이 DB에서 재고를 집계하면 조회 p95 8~9초로 붕괴, TTL 만료 순간 스탬피드 위험.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Redis 공유 단기 캐시(TTL 1s) + single-flight(winner 1개만 재계산)로 방어. 핫키 조회 <strong>p95 8~9s → 26ms</strong>, 처리량 <strong>~850 → 2,497 TPS</strong>(저히트율 한계도 함께 규명).</div>
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">비가시 입장 제어 — 대기열 없이 피크 흡수 (E2)</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>대기 순번을 노출하지 않으면서 피크를 견뎌야 한다. 입장 제어가 없으면 무경계 열화(p95 22s·VU 2,000 팽창·38k drop)로 조용히 붕괴한다.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>대기 순번 비노출 상태로 피크를 견뎌야 함. 입장 제어 부재 시 무경계 열화(p95 22s·VU 2,000 팽창·38k drop)로 조용히 붕괴.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Redis 활성자 카운터로 동시 세션을 상한 <code class="inline">K=100</code>으로 제한, 초과분은 <code class="inline">429/503+Retry-After</code>로 흡수. <strong>초과분 85.4%를 429로 흡수·dropped 0</strong>.</div>
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">Redis↔DB 드리프트 수렴 — DB를 SoT로</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>빠른 게이트(Redis)는 언제든 틀릴 수 있다. 부하 중 Redis <code class="inline">avail</code> Set과 DB 상태에 드리프트가 생기면 방치 시 오버셀로 번진다.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>빠른 게이트(Redis)는 언제든 틀릴 수 있음. 부하 중 Redis <code class="inline">avail</code> Set ↔ DB 상태 드리프트 발생, 방치 시 오버셀로 번짐.</div>
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div><code class="inline">ReconciliationService</code>(60s)가 드리프트를 <strong>DB(SoT)로 수렴</strong>(비대칭 방향·grace 5분). "Redis=게이트, DB=SoT" 계약을 닫아 <strong>오버셀 원천 차단</strong>.</div>
       </div>
     </div>
