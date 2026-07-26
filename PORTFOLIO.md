@@ -547,6 +547,16 @@ ECS 배포 후 **CloudWatch**와 **AWS Billing**을 분석한 결과, 서비스 
 → 단순한 구성, free tier 활용, 예측 가능한 비용
 ```
 
+**배포 파이프라인 — 앞단은 재사용, 마지막 단계만 교체**
+
+| 단계 | Before (ECS) | After (Lightsail) |
+|------|--------------|-------------------|
+| ① 테스트·빌드 | GitHub Actions (E2E 게이트) | 동일 |
+| ② 이미지 푸시 | ECR (OIDC keyless) | 동일 |
+| ③ 배포 | 태스크 정의 갱신 → 서비스 업데이트(롤링 · `wait-for-service-stability`) | SSH 접속 → `docker compose pull && up -d` |
+
+런타임을 교체하면서도 ①②는 그대로 재사용하고 ③만 갈아끼웠다.
+
 **트레이드오프 인식**
 
 | 항목 | ECS | Lightsail |
