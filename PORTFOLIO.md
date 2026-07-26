@@ -133,7 +133,7 @@ def _recv_reply(self) -> tuple[int, bytes]:
 ### 4-2. 스냅샷 Diff 기반 매칭 탐지 알고리즘 (Phantom Room)
 
 **문제**  
-TTT2 매칭 플로우: `방 생성(1인) → 상대 탐색 → 매칭 성사 → 방 소멸`. 매칭 대기 중인 플레이어의 방은 서버 목록에서 사라지므로, 사용자 입장에서는 활성 플레이어가 없는 것처럼 보였다.
+TTT2 매칭 플로우: `방 생성(1인) → 상대 탐색 → 매칭 성사 → 방 소멸`. 매칭 대기 중인 플레이어의 방은 서버 목록에서 사라진다. 즉 **방 목록 조회 API만으로는 "매칭 중인 유저"를 조회할 방법이 없어** 실제 활동 인원이 집계에서 누락되고, 사용자 입장에서는 활성 플레이어가 없는 것처럼 보였다.
 
 **해결** (`src/matching/matchmaking_tracker.py`)
 
@@ -169,7 +169,7 @@ def update_and_get_matchmaking(current_rooms: list[RoomInfoDTO]) -> list[RoomInf
     return [RoomInfoDTO.phantom(...) for mp in _matchmaking_players.values()]
 ```
 
-**성과**: 빈 방 목록 대신 "매칭 탐색 중" 플레이어를 실시간으로 시각화, 커뮤니티 체감 활성도 향상
+**성과**: 조회로는 알 수 없던 **매칭 중 유저 수를 정확히 집계**(사라진 방 → 매칭 시작, 재등장·TTL 만료 → 해제). 빈 방 목록 대신 "매칭 탐색 중" 플레이어를 Phantom Room으로 실시간 시각화, 커뮤니티 체감 활성도 향상
 
 ---
 

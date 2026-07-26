@@ -833,8 +833,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">스냅샷 Diff 기반 매칭 탐지 (Phantom Room)</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>매칭을 잡는 순간 해당 방은 목록에서 소멸. 접속자가 있어도 <strong>"아무도 없는 서버"로 보이는 상태.</strong></div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>사라진 RANK_MATCH 방을 diff로 탐지해 "매칭 탐색 중" 플레이어를 가상 방(Phantom Room)으로 <strong>실시간 시각화</strong> → 커뮤니티 체감 활성도 향상.</div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>상대를 찾기 시작하면 그 방은 목록에서 빠짐 → <strong>조회 API만으로는 "매칭 중인 유저"를 볼 수 없어</strong> 실제 활동 인원이 통째로 누락.</div>
+        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>직전 스냅샷과 <strong>diff로 사라진 RANK_MATCH 방을 매칭 시작으로 판정</strong>(재등장·TTL 만료로 해제) → <strong>매칭 중 유저 수를 정확히 집계</strong>, 가상 방(Phantom Room)으로 실시간 노출.</div>
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">비동기 선언적 트랜잭션 데코레이터</span></div>
