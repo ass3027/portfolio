@@ -1,2 +1,5 @@
 # 이력서 / 개인정보 문서 (버전 관리 제외)
 *.pdf
+
+# 병렬 작업용 git worktree 디렉터리 (버전 관리 제외)
+.claude/worktrees/
