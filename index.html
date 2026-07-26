@@ -842,9 +842,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Spring의 <code class="inline">@Transactional</code> 패턴을 Python async에 적용한 <code class="inline">@transactional</code> 데코레이터로 세션 관리 코드를 제거, 예외 시 자동 롤백 보장.</div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">다중 데이터베이스 전략 &amp; 계층적 캐싱</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div><strong>데이터마다 수명과 쓰임이 전혀 달랐다.</strong> 방 목록은 10초면 낡고, 리더보드는 1분, 통계는 90일을 쌓아야 하고, 게시판은 스키마가 계속 바뀐다. 하나의 DB로는 전부 잘 맞출 수 없었다.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Redis(TTL 캐시)·PostgreSQL(시계열 집계)·DynamoDB(교체 가능 게시판)를 <strong>데이터 특성별로 선별 적용</strong>, Ports &amp; Adapters로 저장소 교체 가능.</div>
+        <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">Redis 공유 캐시 — 같은 결과를 반복 조회하는 트래픽</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div><strong>모두가 같은 화면을 보는데, 조회 요청은 사람 수만큼 쏟아진다.</strong> 매칭 현황은 초 단위로 갱신되니 조회 빈도가 높고, 그때마다 RPCN 조회·집계를 반복하면 <strong>같은 응답을 만드는 데만 부하가 몰린다.</strong></div>
+        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>데이터 수명에 맞춘 <strong>Redis TTL 캐시</strong>(방 목록 10s · 리더보드 60s · 서버 목록 1h)로 중복 조회를 제거. 캐시를 프로세스 밖 Redis에 두어 <strong>백엔드를 여러 인스턴스로 늘려도 캐시를 공유</strong>한다.</div>
       </div>
     </div>
   </div>
