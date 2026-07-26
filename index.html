@@ -501,6 +501,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="section-label">Architecture &amp; Infrastructure</div>
     <h2 class="page-title">시스템 아키텍처 &amp; 인프라</h2>
     <div class="page-fill">
+    <div class="row" style="grid-template-columns:1.35fr 1fr; align-items:center;">
     <div class="arch-svg">
       <svg viewBox="0 16 760 276" role="img" aria-label="Tag2Now 시스템 아키텍처: RPCN 서버에서 RpcnClient로 수집, FastAPI 애플리케이션이 Redis와 PostgreSQL/DynamoDB에 연결">
         <defs>
@@ -539,9 +540,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <text x="550" y="277" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">영속 저장</text>
       </svg>
     </div>
-    <div class="row c2" style="margin-top:16px;">
       <div>
-        <h3>모듈 구성</h3>
+        <h3 style="margin-top:0;">모듈 구성</h3>
         <table>
           <thead><tr><th>모듈</th><th>역할</th></tr></thead>
           <tbody>
@@ -551,7 +551,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           </tbody>
         </table>
       </div>
-      <div>
+    </div>
+    <div style="margin-top:20px;">
         <h3>인프라 전환 — ECS → Lightsail</h3>
         <div class="tradeoff-note" style="margin:0 0 10px;">공통(전환 전후 유지) — <strong>Route53</strong>(도메인) + <strong>CloudFront</strong>(정적 콘텐츠 캐싱으로 오리진 트래픽·비용 절감)</div>
         <div class="compare-grid">
@@ -570,7 +571,6 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           </div>
         </div>
         <div class="tradeoff-note" style="margin-top:10px;">단일 장애점은 인식하고 감수한 트레이드오프 — 소규모 커뮤니티에서 가용성보다 비용 효율을 우선. CloudWatch·Billing 분석으로 오버스펙을 확인한 판단이다.</div>
-      </div>
     </div>
   </div>
   </div>
