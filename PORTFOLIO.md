@@ -599,11 +599,11 @@ ECS 배포 후 **CloudWatch**와 **AWS Billing**을 분석한 결과, 서비스 
 |------|-------------|
 | **프로토콜 역공학** | 오픈소스 RPCN(Rust) 서버를 직접 실행·분석해 미문서화된 게임 호출 방식을 역공학. 명세된 struct를 이해·재사용하고 신규 기능에 맞게 수정 |
 | **AI 협업 & 검증** | 저수준 TCP/TLS 통신은 AI와 협업해 구현을 가속하고, 단위·통합 테스트로 각 프로토콜 명령 동작을 실측 검증 |
-| **비동기 아키텍처** | FastAPI + asyncio + asyncpg 환경에서 이벤트 기반 설계로 응답 지연 없이 히스토리 수집 |
-| **DB 설계 판단** | 데이터 특성(빈도, 스키마 유연성, 보존 기간)에 따라 Redis / PostgreSQL / DynamoDB를 선별 적용 |
+| **실제 서비스 운영 & 피드백** | 배포로 끝내지 않고 실서비스로 운영 — 오픈 카카오톡방에서 실사용자 제보를 직접 받아 오류 수정·기능 개선을 반복. 비동기(FastAPI + asyncio + asyncpg) 설계로 수집이 돌아가는 동안에도 응답 지연 없이 유지 |
+| **다양한 DB 사용 경험** | Redis(TTL 캐시) · PostgreSQL(시계열 집계·UPSERT) · DynamoDB(게시판)를 한 서비스 안에서 함께 운용하며 각 DB의 쿼리 모델과 제약을 실제로 겪음 → 데이터 특성(빈도, 스키마 유연성, 보존 기간)에 맞는 선택 판단 |
 | **알고리즘 설계** | 스냅샷 Diff + TTL 만료로 관찰 불가능한 게임 상태를 추론하는 알고리즘 직접 고안 |
 | **클린 아키텍처** | Ports & Adapters 패턴으로 DB 구현체를 교체 가능하게 설계 (Community: DynamoDB ↔ PostgreSQL) |
 | **CI/CD 자동화** | GitHub Actions로 PR → 통합 테스트, 태그 → ECR 빌드 + ECS 배포까지 완전 자동화 |
-| **보안 설계** | AWS OIDC로 IAM 액세스 키 없이 배포 구현 — 자격증명을 Secrets에 저장하지 않는 keyless 방식 |
+| **AWS 인프라 이해** | ECR·ECS(Fargate)·ALB·ElastiCache·Route53·CloudFront·IAM을 직접 구성하고 Lightsail 단일 VPS로 옮기며 배포 경로 전체를 이해 — 그 결과 IAM 액세스 키 없이 OIDC로 인증하는 keyless 배포로 귀결 |
 | **배포 안정성** | `wait-for-service-stability` + E2E 게이트로 배포 실패를 워크플로우 레벨에서 즉시 감지 |
 | **비용 최적화** | CloudWatch + AWS Billing으로 오버스펙 인식 → Lightsail 단일 서버로 전환, 서비스 규모에 맞는 인프라 선택 판단 |
