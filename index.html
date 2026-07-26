@@ -504,7 +504,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- ══════════════════════════════════════ PAGE 5 — Tag2Now 시스템 아키텍처 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">시스템 아키텍처</h2>
+    <h2 class="page-title">🎮 Tag2Now — 시스템 아키텍처</h2>
     <div class="page-fill">
     <div class="row" style="grid-template-columns:1.35fr 1fr; align-items:center;">
     <div class="arch-svg">
@@ -565,7 +565,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- ══════════════════════════════════════ PAGE 7 — Tag2Now 인프라 비교(Before/After) ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">인프라 비교 — ECS Fargate ↔ Lightsail</h2>
+    <h2 class="page-title">🎮 Tag2Now — 인프라 비교 (ECS Fargate ↔ Lightsail)</h2>
     <div class="page-fill">
       <div class="arch-svg">
         <svg viewBox="0 0 1020 520" font-family="'JetBrains Mono',monospace" role="img" aria-label="Before/After 인프라 비교. 상단 공통 영역에 런타임 진입(사용자·Route53·CloudFront)과 CI/CD(개발자·GitHub Actions·ECR)를 두고, 공통에서 각 런타임으로 분기한다. 좌측 Before 카드는 ALB·ECS Fargate·관리형 데이터(RDS·DynamoDB·ElastiCache), 우측 After 카드는 단일 Lightsail 인스턴스의 docker-compose(nginx·backend·redis·postgresql). 두 런타임 모두 동일 ECR 이미지를 쓰지만, 테스트·빌드와 ECR 푸시까지만 공통이고 배포 단계는 갈린다. Before는 ECS 태스크 정의를 갱신한 뒤 서비스를 롤링 업데이트하고, After는 GitHub Actions가 SSH로 접속해 docker compose pull 후 up -d 를 실행한다.">
@@ -707,7 +707,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- ══════════════════════════════════════ PAGE 8 — Tag2Now 핵심 도전 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">핵심 기술적 도전</h2>
+    <h2 class="page-title">🎮 Tag2Now — 핵심 기술적 도전</h2>
     <div class="page-fill">
     <div class="mini-grid c2 fill">
       <div class="mini-card">
@@ -739,7 +739,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- ══════════════════════════════════════ PAGE 9 — Tag2Now 배운 점 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">배운 점 &amp; 성장 — Tag2Now</h2>
+    <h2 class="page-title">🎮 Tag2Now — 배운 점 &amp; 성장</h2>
     <div class="page-fill">
     <div class="learn-grid">
       <div class="learn-card"><div class="learn-icon">🔬</div><h4>프로토콜 역공학 &amp; 검증</h4><p>오픈소스 RPCN(Rust) 서버를 직접 실행·분석해 미문서화된 호출 방식을 역공학. 저수준 통신은 AI 협업으로 구현하고 단위·통합 테스트로 검증, 명세 struct는 재사용·수정.</p></div>
@@ -806,7 +806,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- ══════════════════════════════════════ PAGE 11 — KTX 아키텍처 결정 + SLO ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">아키텍처 결정 — KTX</h2>
+    <h2 class="page-title">🚄 KTX 티켓팅 — 아키텍처 결정</h2>
     <div class="page-fill">
     <div class="row c2-wide">
       <div>
@@ -871,7 +871,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- ══════════════════════════════════════ PAGE 12 — KTX 핵심 도전 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">핵심 기술적 도전 — KTX</h2>
+    <h2 class="page-title">🚄 KTX 티켓팅 — 핵심 기술적 도전</h2>
     <div class="page-fill">
     <div class="mini-grid c2">
       <div class="mini-card">
@@ -903,7 +903,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- ══════════════════════════════════════ PAGE 13 — KTX Before/After + 배운 점 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">실험으로 증명 &amp; 배운 점 — KTX</h2>
+    <h2 class="page-title">🚄 KTX 티켓팅 — 실험으로 증명 &amp; 배운 점</h2>
     <div class="page-fill">
     <h3>설계 결정을 수치로 증명</h3>
     <table>
