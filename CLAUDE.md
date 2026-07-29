@@ -19,6 +19,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **`content/`** — **콘텐츠의 원천인 마크다운 묶음.** `layout.md`(개인 소개부 + 프로젝트 목차), 숫자 접두사가 붙은 프로젝트 파일(`01-tag2now.md` 등, 숫자는 프로젝트 순서), 작성 규칙 `rule.md`. `index.html`은 여기서 나온다. [콘텐츠 작업 순서](#콘텐츠-작업-순서-중요) 참고.
 - **`index.html`** — 실제 포트폴리오 사이트이자 **산출물**. CSS는 하나의 `<style>` 블록에, JS는 하단의 하나의 `<script>` 블록에 인라인된 단일 파일. 한국어 문서(`<html lang="ko">`)이며 이 저장소의 핵심 결과물이다.
 - **`PORTFOLIO.md`** — **Tag2Now**(철권 태그 토너먼트 2 실시간 정보 대시보드) 프로젝트의 서술형 케이스 스터디. `content/` 분리 이전의 원본 자료다. **현재 Tag2Now의 콘텐츠 원천은 `content/01-tag2now.md`이며**, `PORTFOLIO.md`는 서사 배경이나 상세 맥락이 필요할 때 참고하는 자료로 남긴다.
+- **`DECK_MIGRATION_PLAN.md`** — 연속 흐름 레이아웃을 덱으로 바꾼 **전환 계획서. 이미 완료된 작업의 기록이다.** 왜 덱으로 갔는지(자동 페이지 나눔 때문에 34쪽 중 빈 페이지가 다수 생기던 문제) 배경을 알고 싶을 때만 본다. **살아 있는 계획으로 취급하지 말 것** — 문서 안의 `code-wrap`, highlight.js, Git 규칙 서술은 현재 상태와 어긋난다. 충돌하면 항상 `CLAUDE.md`가 우선이다.
 - **`랠릿프로필-star+문과 자소.pdf`** — 이력서/자기소개 문서(바이너리, 여기서 편집 불가).
 
 README, `.cursor` 규칙, Copilot 지침은 없다.
@@ -36,12 +37,16 @@ README, `.cursor` 규칙, Copilot 지침은 없다.
 
 특정한 내부 구조를 가진 손으로 작성한 단일 파일이다. 수정할 때 이 구조를 유지할 것:
 
-- **섹션**은 `<section id="...">` 블록이다: `about`, `career`, `projects`. 사이드바 `<nav>`의 링크(`href="#id"`)는 이 ID들과 항상 일치해야 한다.
-- **스크롤 동작**은 `IntersectionObserver`(1219줄 부근)가 담당한다. 섹션이 뷰에 들어오면 해당 nav 링크에 `.active` 클래스를 토글한다. 섹션을 추가/이름변경하면 `id`와 대응하는 nav `<a href="#...">`를 함께 수정한다.
-- **테마**는 `:root`에 CSS 커스텀 프로퍼티(`--bg`, `--accent` 등)로 정의된 GitHub 스타일 **라이트 팔레트**다(과거 다크에서 전환 — PDF와 색을 일치시키기 위함). 색상은 하드코딩하지 말고 이 변수를 재사용한다. 콘텐츠 폭은 `--content-max`로 고정한다([PDF 내보내기](#pdf-내보내기) 참고).
-- **모바일**은 `.mobile-header` + 햄버거 토글(`#hamburger`, 1249줄 부근 핸들러)로 사이드바를 열고 닫는다. 레이아웃을 바꾸면 모바일 폭에서도 동작하는지 확인한다.
-- **코드 블록(`.code-wrap`)은 화면·PDF 모두 숨김**(`display:none`)이다 — 포트폴리오는 코드를 정독시키지 않는다(코드는 GitHub 몫). 마크업·highlight.js는 소스에 남아 있으나 화면엔 나오지 않는다. **ASCII 아키텍처 박스(`.ascii-box`)는 표시**한다.
-- **외부 의존성**은 `<head>`에서 CDN으로 로드된다: Google Fonts(Noto Sans KR, JetBrains Mono)와 highlight.js. (코드 블록을 숨기므로 하이라이팅은 실질적으로 미노출이지만 마크업 유지 차원에서 include는 남겨둔다.)
+- **문서 골격은 `.deck` > `.page` 하나뿐**이다. `<section>`도, 사이드바도, 모바일 헤더도 없다. 앵커 링크로 이동하는 스크롤 문서가 아니라 **페이지를 넘기는 덱**이다([PDF 내보내기](#pdf-내보내기)에 구조 상세).
+- **페이지 내부 골격**: `.page` > `.page-body`(14쪽 전부) + `.page-num`(우하단 쪽번호, 14쪽 전부). 그 안은 페이지마다 다르다. `.page-fill`(본문을 남는 공간 중앙에 배치)이 13쪽, `h1`/`h2.page-title`이 9쪽, `.page-kicker`(작은 라벨)는 표지 1쪽에만 있다. **`.page-body`와 `.page-num`만 필수로 보고, 나머지는 페이지 성격에 맞게 고른다.**
+- **HTML 주석의 `PAGE N` 번호를 믿지 말 것.** 주석은 `PAGE 1`~`PAGE 5`, `PAGE 7`~`PAGE 15`로 매겨져 있어 **6이 없고 실제 개수(14)보다 크다.** 페이지를 지우면서 주석을 갱신하지 않은 흔적이다. **실제 쪽번호는 `.page-num`의 값(01~14)이 정답**이며 이쪽이 화면에도 표시된다. 페이지를 손대면 `.page-num`을 먼저 맞춘다.
+- **테마**는 `:root`의 CSS 커스텀 프로퍼티(`--bg`, `--accent` 등)로 정의된 GitHub 스타일 **라이트 팔레트**다(과거 다크에서 전환. PDF와 색을 일치시키기 위함). 색상은 하드코딩하지 말고 이 변수를 재사용한다. 페이지 크기 변수(`--page-w` 등)도 같은 곳에 있다.
+- **컴포넌트를 새로 만들기 전에 기존 어휘를 먼저 찾을 것.** 이미 있는 것들: `.row.c2`(2단 그리드), `.mini-card`(`.mc-head`/`.mc-num`/`.mc-title`/`.mc-box`/`.mc-problem`/`.mc-result`/`.mc-label`)로 만드는 문제와 성과 카드, `.goal-item`(`.goal-check`/`.goal-text`/`.goal-metric`/`.goal-hit`)의 핵심 목표 체크리스트, `.learn-card`/`.learn-icon`의 배운 점, `.pill`(+`.pill-green`/`.pill-blue`/`.pill-purple`), `.tag`, `.badge`, `code.inline`, `.ascii-box`, `.compare-grid`.
+- **CSS는 배너 주석으로 구역이 나뉘어 있다**: 페이지 공통 요소 → 페이지별(표지/경력/프로젝트 개요/프로젝트 상세 공통) → 화면 전용 네비 → 반응형 zoom. 새 스타일은 해당 구역에 넣는다.
+- **하단 `<script>`가 하는 일은 셋뿐**이다. ① `fitDeck()`이 좁은 화면에서 `.deck`에 인라인 `zoom`을 걸어 축소(인쇄 시 CSS가 `zoom: 1`로 무력화) ② `.deck-nav` 버튼과 키보드(`↑`/`↓`, `←`/`→`, PageUp/PageDown)로 페이지 이동 ③ `IntersectionObserver`가 현재 보이는 페이지를 감지해 인디케이터 텍스트를 갱신. **스크롤 스파이나 `.active` 토글이 아니다.**
+- **외부 의존성은 Google Fonts(Noto Sans KR, JetBrains Mono)뿐**이다. highlight.js와 코드 블록 마크업은 **이미 제거됐다.** 코드를 정독시키지 않는다는 방침은 그대로이므로 다시 넣지 않는다(코드는 GitHub 몫). **ASCII 아키텍처 박스(`.ascii-box`)는 표시**한다.
+
+**페이지를 추가하거나 지울 때 함께 손볼 것**: `.page-num` 값 전체, `.page` 안에 들어갈 분량(넘치면 잘림 — [검증 방법](#pdf-내보내기) 참고), 그리고 원천인 `content/`의 md.
 
 ## 편집 규칙
 
@@ -60,6 +65,8 @@ README, `.cursor` 규칙, Copilot 지침은 없다.
 ## 미리보기
 
 `index.html`을 브라우저에서 직접 열거나, 폴더를 정적으로 서빙한다(예: `python -m http.server` 실행 후 해당 파일 접속). 설치나 빌드는 필요 없다.
+
+화면은 회색 배경 위에 페이지가 카드로 쌓인 PDF 뷰어 형태다. 하단 오버레이(`.deck-nav`)의 버튼이나 키보드(`↑`/`↓`, `←`/`→`, PageUp/PageDown)로 페이지를 넘긴다. 좁은 창에서는 스크립트가 덱 전체를 자동 축소한다. 넘침을 눈으로 잡으려면 `<body>`에 `debug` 클래스를 붙인다.
 
 ## PDF 내보내기
 
