@@ -20,7 +20,7 @@ CCTV 영상분석으로 산불을 감지하는 시스템. 13개 지역에서 지
 
 ### 기술 스택
 
-`Python` `FastAPI` `Kafka` `Apache Avro` `FFmpeg` `DeepStream`
+`Python / FastAPI` `Kafka / Avro` `FFmpeg` `DeepStream`
 
 ### 핵심 기술적 도전
 

@@ -20,7 +20,7 @@ C++ gRPC 수신 서비스의 간헐적 종료와 대기시간, 혼잡도 로직 
 
 ### 기술 스택
 
-`Spring Boot` `gRPC (C++)` `MariaDB` `Prometheus` `Grafana` `Python`
+`Spring Boot` `gRPC / C++` `Prometheus / Grafana`
 
 ### 핵심 기술적 도전
 
