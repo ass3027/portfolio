@@ -63,5 +63,6 @@
 2. [KTX 티켓팅: 대규모 동시성 성능과 정합성 엔지니어링](02-ktx-ticketing.md)
 3. [FireWatcher: 산불감지 시스템](03-firewatcher.md)
 4. [김포공항 LiDAR 기반 실시간 여객 흐름과 대기시간 예측](04-lidar.md)
+5. [AI 협업 워크플로우: 설계와 적용](05-workflow.md)
 
 프로젝트 뒤 마지막 장은 [일하는 방식](working-style.md). 특정 프로젝트가 아니라 전체에 걸린 내용이라 숫자 접두사를 붙이지 않는다.
