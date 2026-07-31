@@ -1,0 +1,20 @@
+# Portfolio Workflow
+
+이 저장소는 애플리케이션 코드베이스가 아닌 개인 개발자 포트폴리오다. 작업 전
+`CLAUDE.md`를 읽고, 해당 문서의 포트폴리오 원칙과 상세 규칙을 따른다.
+
+## 콘텐츠 작업
+
+콘텐츠의 단일 기준은 `content/` 내부의 Markdown 파일이다.
+
+1. 콘텐츠 구성, 문구, 수치, 프로젝트 순서 판단은 `content/*.md`에서 먼저 확정한다.
+2. Markdown 작성 시 `content/rule.md`의 규칙을 따른다.
+3. 프로젝트 추가, 삭제, 재정렬 시 번호 접두사 파일과 `content/layout.md`의 목차를 함께 갱신한다.
+
+## index.html 갱신
+
+`index.html`은 `content/` Markdown 원천을 반영하는 산출물이다.
+
+- `content/` 내부 Markdown 파일을 수정했다고 해서 `index.html`을 자동으로 갱신하지 않는다.
+- 사용자가 `index.html` 반영 또는 포트폴리오 덱 갱신을 명시적으로 요청한 경우에만 Markdown 내용을 기준으로 `index.html`을 수정한다.
+- `index.html`을 수정할 때는 `CLAUDE.md`의 덱 구조, 페이지 번호, 분량과 넘침 검증 규칙을 따른다.
