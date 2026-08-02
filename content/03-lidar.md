@@ -22,7 +22,7 @@ LiDAR 데이터를 기반으로 실시간 여객 위치와 인원 수, 예상 �
 
 ### 기술 스택
 
-`Spring Boot` `gRPC / C++` `Prometheus / Grafana`
+`Spring Boot` `gRPC / C++` `Prometheus` `Grafana`
 
 ---
 
