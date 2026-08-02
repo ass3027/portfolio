@@ -13,8 +13,8 @@
   --bg-card: #ffffff;
   --bg-card2: #f6f8fa;
   --border: #d0d7de;
-  --icon-bg: #eaeef2;
-  --icon-border: #afb8c1;
+  --tech-card-bg: #eaeef2;
+  --tech-card-border: #afb8c1;
   --text: #1f2328;
   --text-muted: #57606a;
   --accent: #0969da;
@@ -170,9 +170,9 @@ p { margin-bottom: 10px; }
 .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; margin-bottom: 14px; }
 .card p { font-size: 14px; }
 .card p:last-child { margin-bottom: 0; }
-.tech-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; row-gap: 2px; }
-.tech-item { display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 7px 4px; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 600; }
-.tech-logos { width: 36px; height: 30px; padding: 5px; flex: 0 0 36px; display: flex; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--icon-border); border-radius: 7px; background: var(--icon-bg); }
+.tech-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
+.tech-item { display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 7px 10px; border: 1px solid var(--tech-card-border); border-radius: 8px; background: var(--tech-card-bg); font-size: 13px; font-weight: 600; }
+.tech-logos { width: 30px; height: 28px; padding: 3px; flex: 0 0 30px; display: flex; align-items: center; justify-content: center; gap: 3px; }
 .tech-logo { display: block; width: 20px; height: 20px; object-fit: contain; }
 .tech-logos.dual .tech-logo { width: 14px; height: 14px; }
 .tech-logo-generic { color: var(--text); stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; fill: none; }
