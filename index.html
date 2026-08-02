@@ -554,7 +554,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">05</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 7 — Tag2Now 인프라 비교(Before/After) ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 6 — Tag2Now 인프라 비교(Before/After) ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🎮 Tag2Now — 인프라 비교 (ECS Fargate ↔ Lightsail)</h2>
@@ -696,7 +696,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">06</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 8 — Tag2Now 핵심 도전 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 7 — Tag2Now 핵심 개선과 성과 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🎮 Tag2Now — 핵심 개선과 성과</h2>
@@ -726,7 +726,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">07</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 10 — KTX 개요 + 기술스택 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 8 — KTX 프로젝트 요약 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
@@ -770,7 +770,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">08</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 11 — KTX 아키텍처 결정 + SLO ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 9 — KTX 아키텍처 결정 + SLO ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🚄 KTX 티켓팅 — 아키텍처 결정</h2>
@@ -835,7 +835,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">09</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 12 — KTX 핵심 도전 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 10 — KTX 핵심 개선과 성과 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🚄 KTX 티켓팅 — 핵심 개선과 성과</h2>
@@ -871,26 +871,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">10</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 13 — KTX Before/After + 배운 점 ══════════════════════════════════════ -->
-<div class="page">
-  <div class="page-body">
-    <h2 class="page-title">🚄 KTX 티켓팅 — 실험으로 증명</h2>
-    <div class="page-fill">
-    <h3>설계 결정을 수치로 증명</h3>
-    <table>
-      <thead><tr><th>실험</th><th>Before</th><th>After</th><th>성과</th></tr></thead>
-      <tbody>
-        <tr><td><strong>동시성 제어</strong></td><td>선점 OFF · reserve ~1.2s</td><td>선점 ON · ~0.29s (~4×↓)</td><td>정확성 동일, <strong>DB 부하 감소</strong></td></tr>
-        <tr><td><strong>입장 제어</strong></td><td>무제한 · p95 22s · drop 38k</td><td>K=100 · 429 85.4% 흡수 · drop 0</td><td>무한 지연 대신 <strong>즉시 거절</strong></td></tr>
-        <tr><td><strong>조회 캐시</strong></td><td>off · ~850 TPS · p95 8~9s</td><td>on · 2,497 TPS · p95 26ms</td><td>조회 p95·DB 부하 동시 감소</td></tr>
-      </tbody>
-    </table>
-  </div>
-  </div>
-  <div class="page-num">11</div>
-</div>
-
-<!-- ══════════════════════════════════════ PAGE 12 — LiDAR 요약과 아키텍처 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 11 — LiDAR 프로젝트 요약 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
@@ -917,7 +898,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         </ul>
       </div>
       <div>
-        <h3>기술 스택</h3>
+        <h3>기술</h3>
         <div class="pill-list">
           <span class="pill pill-blue">Spring Boot</span>
           <span class="pill pill-yellow">gRPC / C++</span>
@@ -926,49 +907,34 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
 
-    <h3>실시간 메트릭 수집과 분석 흐름</h3>
-    <div class="arch-svg" style="margin:0 0 10px;">
-      <svg viewBox="0 0 980 118" role="img" aria-label="LiDAR 데이터 서버에서 C++ 데이터 중계 서버와 Backend를 거쳐 실시간 모니터링과 CSV 리포트로 이어지는 분석 흐름">
-        <defs>
-          <marker id="lidar-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)"/>
-          </marker>
-        </defs>
-        <g fill="none" stroke="var(--text-muted)" stroke-width="1.4" marker-end="url(#lidar-arrow)">
-          <line x1="130" y1="58" x2="158" y2="58"/><line x1="310" y1="58" x2="338" y2="58"/>
-          <line x1="455" y1="58" x2="483" y2="58"/><path d="M625 58 H642 V30 H653"/>
-          <path d="M625 58 H642 V88 H653"/><line x1="758" y1="30" x2="788" y2="30"/>
-          <line x1="745" y1="88" x2="773" y2="88"/><line x1="870" y1="88" x2="898" y2="88"/>
-        </g>
-        <g fill="var(--bg-card)" stroke="var(--border)" stroke-width="1.3">
-          <rect x="10" y="38" width="120" height="40" rx="7"/><rect x="160" y="38" width="150" height="40" rx="7"/>
-          <rect x="340" y="38" width="115" height="40" rx="7"/><rect x="485" y="38" width="140" height="40" rx="7"/>
-          <rect x="655" y="12" width="103" height="36" rx="7"/><rect x="790" y="12" width="90" height="36" rx="7"/>
-          <rect x="655" y="70" width="90" height="36" rx="7"/><rect x="775" y="70" width="95" height="36" rx="7"/>
-          <rect x="900" y="70" width="70" height="36" rx="7"/>
-        </g>
-        <g fill="var(--text)" font-family="'Noto Sans KR',sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">
-          <text x="70" y="63">LiDAR 데이터 서버</text><text x="235" y="63">C++ 데이터 중계 서버</text>
-          <text x="397" y="63">Backend</text><text x="555" y="63">메트릭 선별과 산출</text>
-          <text x="706" y="34">Prometheus</text><text x="835" y="34">Grafana</text>
-          <text x="700" y="92">CSV 로깅</text><text x="822" y="92">Python 분석</text><text x="935" y="92">리포트</text>
-        </g>
-        <g fill="var(--accent)" font-family="'JetBrains Mono',monospace" font-size="8.5" text-anchor="middle">
-          <text x="144" y="50">gRPC</text><text x="324" y="50">REST API</text>
-        </g>
-      </svg>
-    </div>
-
   </div>
   </div>
-  <div class="page-num">12</div>
+  <div class="page-num">11</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 13 — LiDAR 핵심 개선과 성과 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 12 — LiDAR 핵심 개선과 성과 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🛩️ LiDAR — 핵심 개선과 성과</h2>
     <div class="page-fill">
+    <h3>실시간 메트릭 수집과 분석 흐름</h3>
+    <div class="arch-svg" style="margin:0 0 18px;">
+      <svg viewBox="0 0 980 118" role="img" aria-label="LiDAR 데이터 서버에서 C++ 데이터 중계 서버와 Backend를 거쳐 실시간 모니터링과 CSV 리포트로 이어지는 분석 흐름">
+        <defs>
+          <marker id="lidar-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)"/></marker>
+        </defs>
+        <g fill="none" stroke="var(--text-muted)" stroke-width="1.4" marker-end="url(#lidar-arrow)">
+          <line x1="130" y1="58" x2="158" y2="58"/><line x1="310" y1="58" x2="338" y2="58"/><line x1="455" y1="58" x2="483" y2="58"/><path d="M625 58 H642 V30 H653"/><path d="M625 58 H642 V88 H653"/><line x1="758" y1="30" x2="788" y2="30"/><line x1="745" y1="88" x2="773" y2="88"/><line x1="870" y1="88" x2="898" y2="88"/>
+        </g>
+        <g fill="var(--bg-card)" stroke="var(--border)" stroke-width="1.3">
+          <rect x="10" y="38" width="120" height="40" rx="7"/><rect x="160" y="38" width="150" height="40" rx="7"/><rect x="340" y="38" width="115" height="40" rx="7"/><rect x="485" y="38" width="140" height="40" rx="7"/><rect x="655" y="12" width="103" height="36" rx="7"/><rect x="790" y="12" width="90" height="36" rx="7"/><rect x="655" y="70" width="90" height="36" rx="7"/><rect x="775" y="70" width="95" height="36" rx="7"/><rect x="900" y="70" width="70" height="36" rx="7"/>
+        </g>
+        <g fill="var(--text)" font-family="'Noto Sans KR',sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">
+          <text x="70" y="63">LiDAR 데이터 서버</text><text x="235" y="63">C++ 데이터 중계 서버</text><text x="397" y="63">Backend</text><text x="555" y="63">메트릭 선별과 산출</text><text x="706" y="34">Prometheus</text><text x="835" y="34">Grafana</text><text x="700" y="92">CSV 로깅</text><text x="822" y="92">Python 분석</text><text x="935" y="92">리포트</text>
+        </g>
+        <g fill="var(--accent)" font-family="'JetBrains Mono',monospace" font-size="8.5" text-anchor="middle"><text x="144" y="50">gRPC</text><text x="324" y="50">REST API</text></g>
+      </svg>
+    </div>
     <div class="mini-grid c3">
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">실시간 메트릭 분석 환경 구축</span></div>
@@ -991,21 +957,21 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
   </div>
   </div>
-  <div class="page-num">13</div>
+  <div class="page-num">12</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 14 — AI 사내 개선 파이프라인 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 13 — AI 워크플로우 프로젝트 요약 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
       <div><div class="meta">개인 프로젝트 · 2026</div><h2>🔁 AI 워크플로우</h2></div>
-      <span class="badge">사내 프로젝트 개선 파이프라인</span>
     </div>
     <div class="page-fill">
+      <h3>개요</h3>
       <div class="card">
         <p>AI 에이전트를 코드 생성 도구가 아닌 책임 경계, 승인 게이트, 검증 규칙을 갖춘 협업 시스템으로 설계하고 실제 작업에 적용했다. 코드 리뷰 결과를 후속 작업으로 연결하는 자동화와 모든 개발 작업에 적용하는 AI 협업 규율을 구축했다.</p>
       </div>
-      <div class="row c2" style="align-items:start; margin-bottom:12px;">
+      <div class="row c2" style="align-items:start; margin-top:14px;">
         <div>
           <h3>핵심 목표</h3>
           <ul class="goal-list">
@@ -1015,10 +981,26 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           </ul>
         </div>
         <div>
-          <h3>문제와 목표</h3>
-          <div class="card" style="margin:0;"><p>코드 리뷰 결과가 보고로 끝나면 이슈 발행, 팀 공유, 실제 수정 작업까지 이어지지 않는다. 분석 결과를 승인 가능한 이슈와 후속 작업으로 전환하는 개선 루프를 목표로 했다.</p></div>
+          <h3>기술</h3>
+          <div class="pill-list">
+            <span class="pill pill-blue">AI Agent</span>
+            <span class="pill pill-yellow">GitLab REST API / WebHook</span>
+            <span class="pill pill-purple">KakaoWork</span>
+            <span class="pill pill-blue">Git</span>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="page-num">13</div>
+</div>
+
+<!-- ══════════════════════════════════════ PAGE 14 — AI 사례 1 ══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-body">
+    <h2 class="page-title">🔁 AI 워크플로우 — 사내 프로젝트 개선 파이프라인</h2>
+    <div class="page-fill">
+      <div class="card"><p>코드 리뷰 결과가 보고로 끝나면 이슈 발행, 팀 공유, 실제 수정 작업까지 이어지지 않는다. 분석 결과를 승인 가능한 이슈와 후속 작업으로 전환하는 개선 루프를 목표로 했다.</p></div>
       <h3>워크플로우</h3>
       <div class="workflow-loop" aria-label="코드 리뷰 자동화 개선 루프">
         <div class="workflow-step"><div class="step-num">01 ANALYZE</div><h4>문제점 분석</h4><p>품질, 보안, 버그, 빌드 영역의 파일과 라인 근거 수집</p></div>
