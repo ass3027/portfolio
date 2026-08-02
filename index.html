@@ -234,6 +234,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .mc-box .mc-label { font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 2px; }
 .mc-problem { background: rgba(207,34,46,.06); border-left: 3px solid var(--red); }
 .mc-problem .mc-label { color: var(--red); }
+.mc-solution { background: rgba(9,105,218,.06); border-left: 3px solid var(--accent); }
+.mc-solution .mc-label { color: var(--accent); }
 .mc-result { background: rgba(26,127,55,.06); border-left: 3px solid var(--green); }
 .mc-result .mc-label { color: var(--green); }
 .mc-result.accent { background: rgba(9,105,218,.06); border-left-color: var(--accent); }
@@ -405,7 +407,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- ══════════════════════════════════════ PAGE 3 — 프로젝트 개요 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">프로젝트</h2>
+    <h2 class="page-title">주요 경험</h2>
     <div class="page-fill">
     <div class="projects-grid">
       <div class="project-card">
@@ -416,19 +418,19 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
       <div class="project-card">
         <div class="project-card-top"><div class="project-card-icon">🚄</div><div class="project-period">2026.06 — 2026.07</div></div>
-        <div class="project-card-name">KTX 티켓팅 — 대규모 동시성 성능·정합성 엔지니어링</div>
-        <div class="project-card-desc">명절 대규모 동시접속 선착순 예매의 초과 판매·중복 예매를 정합성을 보장하며 해결. 1,000명이 같은 좌석을 경쟁해도 <strong>초과 판매 0건</strong>, k6 부하 테스트로 Before/After 증명.</div>
+        <div class="project-card-name">KTX 티켓팅</div>
+        <div class="project-card-desc">동일 좌석 1,000명 동시 경합에서 <strong>초과 판매와 중복 0건</strong>. 예매 p95 348~408ms와 833~863 TPS를 k6 부하 테스트로 검증.</div>
         <div class="project-card-footer"><span class="badge">🔗 개인 프로젝트</span><span class="badge">부하 테스트</span></div>
       </div>
       <div class="project-card">
         <div class="project-card-top"><div class="project-card-icon">🛩️</div><div class="project-period">2025.09 — 2026.02</div></div>
         <div class="project-card-name">김포공항 LiDAR 여객 흐름 예측</div>
-        <div class="project-card-desc">LiDAR 데이터 기반 실시간 여객 위치·인원 수 체크 및 대기시간 예측. C++ gRPC 메모리 누수 수정, 알고리즘 분석 소요 시간 80% 단축. Prometheus·Grafana 모니터링 환경 구축.</div>
+        <div class="project-card-desc">LiDAR 기반 실시간 여객 위치와 인원 수, 예상 대기시간 제공. 예측 성능 분석 파이프라인 구축으로 분석과 개선 시간 80% 단축. C++ 데이터 중계 서버 안정화.</div>
         <div class="project-card-footer"><span class="badge">🏢 스피어에이엑스</span></div>
       </div>
       <div class="project-card">
         <div class="project-card-top"><div class="project-card-icon">🔁</div><div class="project-period">2026</div></div>
-        <div class="project-card-name">AI 협업 워크플로우 — 승인·검증 중심의 개선 루프</div>
+        <div class="project-card-name">AI 워크플로우</div>
         <div class="project-card-desc">코드 리뷰, 이슈 발행, 팀 알림, 후속 작업 착수를 하나의 폐쇄형 개선 루프로 설계. 되돌리기 어려운 단계에는 사람 승인 게이트를 두고, 작업 목록·테스트·Git 이력을 단일 기준으로 운영.</div>
         <div class="project-card-footer"><span class="badge">🤖 AI 오케스트레이션</span><span class="badge">승인 게이트</span><span class="badge">도구 통합</span></div>
       </div>
@@ -515,11 +517,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <rect x="140" y="106" width="480" height="72" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
         <text x="380" y="128" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#0550ae">FastAPI Application</text>
         <text x="380" y="147" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#1f2328">Matching · History · Community</text>
-        <text x="380" y="164" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">/api/rooms · /api/history · /api/community — Event Bus</text>
 
         <!-- 3층: Redis -->
         <rect x="120" y="238" width="180" height="52" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
-        <text x="210" y="260" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">Redis(valkey)</text>
+        <text x="210" y="260" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">Redis</text>
         <text x="210" y="277" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">캐시 계층</text>
 
         <!-- 3층: PostgreSQL / DynamoDB -->
@@ -537,7 +538,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <tbody>
             <tr><td><strong>Matching</strong></td><td>RPCN 서버에서 방/리더보드 실시간 수집, Redis 캐시, 매칭 탐지</td></tr>
             <tr><td><strong>History</strong></td><td>스냅샷 → PostgreSQL 저장, 시간별/일별 통계 집계</td></tr>
-            <tr><td><strong>Community</strong></td><td>게시판 CRUD (PostgreSQL / DynamoDB 어댑터 교체 가능)</td></tr>
+            <tr><td><strong>Community</strong></td><td>게시판과 댓글 CRUD</td></tr>
           </tbody>
         </table>
       </div>
@@ -698,28 +699,26 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- ══════════════════════════════════════ PAGE 8 — Tag2Now 핵심 도전 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">🎮 Tag2Now — 핵심 기술적 도전</h2>
+    <h2 class="page-title">🎮 Tag2Now — 핵심 개선과 성과</h2>
     <div class="page-fill">
-    <div class="mini-grid c2 fill">
+    <div class="mini-grid c3 fill">
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">RPCN 호출 프로토콜 역공학 &amp; 검증된 클라이언트</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div><strong>게임 데이터를 가져올 공식 SDK·문서 미존재.</strong> 서버는 오픈소스지만, 게임이 실제로 호출하는 방식(요청 순서·바이너리 헤더 규칙)은 어디에도 기록되지 않은 상태.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>서버 목록·방 검색·리더보드·스코어 조회 등 <strong>7종 프로토콜 명령 재현·검증</strong>. 저수준 TLS/TCP 통신은 AI 협업으로 구현, <strong>단위·통합 테스트로 동작 실측 검증</strong>.</div>
+        <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">RPCN 호출 프로토콜 역공학과 클라이언트 검증</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>공식 SDK와 게임별 호출 명세 부재로 요청 순서와 바이너리 헤더 규칙 확인 불가.</div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div>Rust RPCN 서버 분석 기반 호출 프로토콜 역공학 및 Python 클라이언트 구현.</div>
+        <div class="mc-box mc-result"><div class="mc-label">성과</div>서버 목록, 방 검색, 리더보드, 스코어 조회 등 <strong>프로토콜 명령 7종</strong>의 단위 테스트와 통합 테스트 검증.</div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">스냅샷 Diff 기반 매칭 탐지 (Phantom Room)</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>상대를 찾기 시작하면 그 방은 목록에서 빠짐 → <strong>조회 API만으로는 "매칭 중인 유저"를 볼 수 없어</strong> 실제 활동 인원이 통째로 누락.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>직전 스냅샷과 <strong>diff로 사라진 RANK_MATCH 방을 매칭 시작으로 판정</strong>(재등장·TTL 만료로 해제) → <strong>매칭 중 유저 수를 정확히 집계</strong>, 가상 방(Phantom Room)으로 실시간 노출.</div>
+        <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">스냅샷 Diff 기반 매칭 탐지</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>매칭 시작 시 방이 목록에서 사라져 조회 API만으로 매칭 중 유저 파악 불가.</div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div>사라진 RANK_MATCH 방의 매칭 시작 판정과 방 재등장 및 TTL 만료 기반 상태 해제.</div>
+        <div class="mc-box mc-result"><div class="mc-label">성과</div>매칭 중 유저의 <strong>Phantom Room 실시간 노출</strong>.</div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">비동기 선언적 트랜잭션 데코레이터</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>서비스 메서드마다 <strong>세션 열기·커밋·롤백 코드가 동일하게 반복</strong>. 정작 중요한 비즈니스 로직이 그 사이에 묻히는 구조.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Spring의 <code class="inline">@Transactional</code> 패턴을 Python async에 적용한 <code class="inline">@transactional</code> 데코레이터로 세션 관리 코드를 제거, 예외 시 자동 롤백 보장.</div>
-      </div>
-      <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">Redis 공유 캐시 — 같은 결과를 반복 조회하는 트래픽</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div><strong>같은 화면인데 조회는 사람 수만큼 반복.</strong> 매 요청마다 RPCN 재조회 시, 내 서버는 물론 <strong>통제 불가한 외부 RPCN 서버까지 부하 전가 위험.</strong></div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>데이터 수명에 맞춘 <strong>Redis TTL 캐시</strong>(방 목록 10s · 리더보드 60s · 서버 목록 1h)로 중복 조회 제거. 캐시를 프로세스 밖 Redis에 두어 <strong>백엔드를 여러 인스턴스로 늘려도 캐시 공유</strong>.</div>
+        <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">Redis 공유 캐시로 외부 RPCN 부하 제어</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>동일 화면의 사용자별 반복 조회로 외부 RPCN 서버에 부하 전가 위험.</div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div>Redis 공유 캐시에 방 목록 10초, 리더보드 60초, 서버 목록 1시간 TTL 적용.</div>
+        <div class="mc-box mc-result"><div class="mc-label">성과</div>외부 RPCN 요청 주기 제한과 다중 인스턴스의 캐시 공유.</div>
       </div>
     </div>
   </div>
@@ -733,7 +732,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="detail-head">
       <div>
         <div class="meta">개인 프로젝트 · 2026.06 — 2026.07</div>
-        <h2>🚄 KTX 티켓팅 — 대규모 동시성 성능·정합성 엔지니어링</h2>
+        <h2>🚄 KTX 티켓팅</h2>
       </div>
       <div class="detail-links">
         <a class="badge" href="https://github.com/ass3027/ktx-ticketing" target="_blank">🐙 GitHub</a>
@@ -743,7 +742,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="page-fill">
     <h3>개요</h3>
     <div class="card">
-      <p>명절·연휴에 수만 명이 동시에 같은 좌석을 예매하려 할 때 발생하는 <strong>초과 판매(oversell)·중복 예매·좌석 재고 깨짐</strong>을 막고, 그 정합성과 성능을 <strong>부하 테스트와 Before/After 수치로 증명</strong>하는 것을 목표로 한 프로젝트다.</p>
+      <p>명절과 연휴에 수만 명이 동시에 같은 좌석을 예매하려 할 때 발생하는 <strong>초과 판매(oversell), 중복 예매, 좌석 재고 깨짐</strong>을 막고, 그 정합성과 성능을 <strong>부하 테스트와 Before/After 수치로 증명</strong>하는 것을 목표로 한 프로젝트다.</p>
       <p><strong>N명이 한 좌석을 경합할 때 정확히 1명만 성공시키되(정합성), 그 정확성을 지키면서도 높은 처리량과 낮은 지연을 함께 보장하는(성능) 엔지니어링</strong>이 핵심이다. 예매 동시성 보장과 성능을 부하 테스트 실측으로 검증했다.</p>
     </div>
 
@@ -751,7 +750,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div>
         <h3>핵심 목표</h3>
         <ul class="goal-list">
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>초과판매·중복 0건</strong><span class="goal-metric">목표 oversell 0 · 실측 <span class="goal-hit">0 / 0</span> (3회 일관)</span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>초과판매와 중복 0건</strong><span class="goal-metric">목표 oversell 0, 실측 <span class="goal-hit">0 / 0</span> (3회 일관)</span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>예매 응답 p95 ≤ 500ms</strong><span class="goal-metric">실측 <span class="goal-hit">348~408ms</span></span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>예매 확정 처리량 ≥ 200 TPS</strong><span class="goal-metric">1,000 VU 실측 <span class="goal-hit">833~863 TPS</span></span></span></li>
         </ul>
@@ -760,14 +759,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <h3>기술 스택</h3>
         <div class="pill-list">
           <span class="pill pill-green">Spring Boot 4.0</span>
-          <span class="pill pill-green">Java 25</span>
           <span class="pill pill-blue">MySQL 8</span>
           <span class="pill pill-blue">Redis 7</span>
-          <span class="pill pill-purple">Redisson</span>
           <span class="pill pill-yellow">k6</span>
-          <span class="pill pill-yellow">Testcontainers</span>
-          <span class="pill pill-blue">Gradle (Kotlin DSL)</span>
-          <span class="pill pill-purple">GitHub Actions</span>
         </div>
       </div>
     </div>
@@ -844,28 +838,32 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- ══════════════════════════════════════ PAGE 12 — KTX 핵심 도전 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">🚄 KTX 티켓팅 — 핵심 기술적 도전</h2>
+    <h2 class="page-title">🚄 KTX 티켓팅 — 핵심 개선과 성과</h2>
     <div class="page-fill">
     <div class="mini-grid c2">
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">단일 원자 선점 — 1,000명 같은 좌석 경쟁 → 초과 판매 0건</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>N명이 같은 좌석을 동시 시도해도 성공은 단 1명, 재고는 정확히 −1이어야 함. 락을 흩뿌리면 경합 지점 증가로 정합성 붕괴.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과 (L1 실측)</div>선점을 단일 원자 지점(Redis Set <code class="inline">SREM</code>/<code class="inline">SPOP</code>)에 모으고 DB <code class="inline">@Version</code> 낙관락으로 이중 방어. 1,000명 경쟁 → 성공 정확히 <strong>1건</strong>, <strong>초과판매·중복 0</strong>(3회 일관).</div>
+        <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">동일 좌석 1,000명 경합 정합성 보장</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>1,000명의 동일 좌석 동시 예매에 따른 초과 판매와 중복 예매 위험.</div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div>Redis Set 단일 원자 선점과 DB <code class="inline">@Version</code> 최종 방어.</div>
+        <div class="mc-box mc-result"><div class="mc-label">성과</div>성공 1건, <strong>초과 판매와 중복 0건</strong>(3회).</div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">조회 캐시 스탬피드 방어 — single-flight (E3)</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>조회는 모든 사용자의 진입점이라 읽기가 압도적. 매 요청이 DB에서 재고를 집계하면 조회 p95 8~9초로 붕괴, TTL 만료 순간 스탬피드 위험.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Redis 공유 단기 캐시(TTL 1s) + single-flight(winner 1개만 재계산)로 방어. 핫키 조회 <strong>p95 8~9s → 26ms</strong>, 처리량 <strong>~850 → 2,497 TPS</strong>(저히트율 한계도 함께 규명).</div>
+        <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">조회 캐시 스탬피드 방어</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>DB 재고 집계 시 p95 8~9초, TTL 만료 시 스탬피드.</div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div>Redis TTL 1초 캐시와 single-flight 적용.</div>
+        <div class="mc-box mc-result"><div class="mc-label">성과</div><strong>p95 26ms</strong>, <strong>2,497 TPS</strong>.</div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">비가시 입장 제어 — 대기열 없이 피크 흡수 (E2)</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>대기 순번 비노출 상태로 피크를 견뎌야 함. 입장 제어 부재 시 무경계 열화(p95 22s·VU 2,000 팽창·38k drop)로 조용히 붕괴.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>Redis 활성자 카운터로 동시 세션을 상한 <code class="inline">K=100</code>으로 제한, 초과분은 <code class="inline">429/503+Retry-After</code>로 흡수. <strong>초과분 85.4%를 429로 흡수·dropped 0</strong>.</div>
+        <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">비가시 입장 제어로 피크 흡수</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>입장 제어 부재 시 p95 22초, VU 2,000, 38k drop.</div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div>Redis 활성자 카운터 <code class="inline">K=100</code>, 초과분 즉시 반려.</div>
+        <div class="mc-box mc-result"><div class="mc-label">성과</div>초과분 <strong>85.4% 반려</strong>, <strong>drop 0</strong>.</div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">Redis↔DB 드리프트 수렴 — DB를 SoT로</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>빠른 게이트(Redis)는 언제든 틀릴 수 있음. 부하 중 Redis <code class="inline">avail</code> Set ↔ DB 상태 드리프트 발생, 방치 시 오버셀로 번짐.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div><code class="inline">ReconciliationService</code>(60s)가 드리프트를 <strong>DB(SoT)로 수렴</strong>(비대칭 방향·grace 5분). "Redis=게이트, DB=SoT" 계약을 닫아 <strong>오버셀 원천 차단</strong>.</div>
+        <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">Redis와 DB 불일치 보정</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>Redis와 DB 분리 갱신으로 롤백 또는 크래시 후 불일치.</div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div>제거는 상시 수행하고 오버셀 위험이 있는 최근 5분 선점 복원은 보류.</div>
+        <div class="mc-box mc-result"><div class="mc-label">성과</div><strong>60초 주기 DB 기준 수렴</strong>.</div>
       </div>
     </div>
   </div>
@@ -892,116 +890,196 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">11</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 13 — LiDAR ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 12 — LiDAR 요약과 아키텍처 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
       <div>
         <div class="meta">스피어에이엑스 · 2025.09 — 2026.02</div>
-        <h2>🛩️ 김포공항 LiDAR 기반 실시간 여객 흐름 · 대기시간 예측</h2>
+        <h2>🛩️ 김포공항 LiDAR 기반 실시간 여객 흐름과 대기시간 예측</h2>
       </div>
     </div>
 
     <div class="page-fill">
     <h3>개요</h3>
     <div class="card">
-      <p>LiDAR 데이터로 실시간 여객 위치·인원 수를 체크하고 대기시간을 예측하는 프로젝트. 중간 참여 시점에서 기존 통계 기반 산출 방식으로는 알고리즘 개선·고객사 평가 충족에 한계가 있었다.</p>
-      <p>C++ gRPC 수신 서비스의 간헐적 종료와 대기시간·혼잡도 로직 분산으로 운영 안정성·유지보수성이 저하된 상태였다.</p>
+      <p>LiDAR 데이터를 기반으로 실시간 여객 위치와 인원 수, 예상 대기시간을 제공하는 프로젝트다. 합류 당시 기본 통계만으로는 대기시간 예측 성능을 평가하기 어려워 고객사 기준에 맞춘 개선이 지연되고 있었다.</p>
+      <p>C++ 데이터 중계 서버의 간헐적 종료로 운영 안정성이 낮았고, 대기시간과 혼잡도 로직이 분산돼 유지보수도 어려웠다.</p>
     </div>
 
     <div class="row c2" style="margin-top:14px; margin-bottom:10px; align-items:start;">
       <div>
         <h3>핵심 목표</h3>
         <ul class="goal-list">
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 메트릭 분석 환경 구축</strong><span class="goal-metric">통계 기반 한계 극복 · 분석·개선 시간 <span class="goal-hit">80% 단축</span></span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>C++ gRPC 운영 안정성 확보</strong><span class="goal-metric">간헐적 종료 <span class="goal-hit">해소</span></span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>분산 로직 공통 모듈 통합</strong><span class="goal-metric">메모리 <span class="goal-hit">70%↓</span> · 코드량 <span class="goal-hit">50%↓</span></span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 메트릭 분석 환경 구축</strong><span class="goal-metric">예측 성능 평가 기반 확보, 분석과 개선 시간 <span class="goal-hit">80% 단축</span></span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>C++ 데이터 중계 서버 안정성 확보</strong><span class="goal-metric">간헐적 종료 <span class="goal-hit">해소</span></span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>분산 로직 공통 모듈 통합</strong><span class="goal-metric">메모리 <span class="goal-hit">70%↓</span>, 코드량 <span class="goal-hit">50%↓</span></span></span></li>
         </ul>
       </div>
       <div>
         <h3>기술 스택</h3>
         <div class="pill-list">
           <span class="pill pill-blue">Spring Boot</span>
-          <span class="pill pill-yellow">gRPC (C++)</span>
-          <span class="pill pill-green">MariaDB</span>
-          <span class="pill pill-purple">Prometheus</span>
-          <span class="pill pill-purple">Grafana</span>
-          <span class="pill pill-gray">Python</span>
+          <span class="pill pill-yellow">gRPC / C++</span>
+          <span class="pill pill-purple">Prometheus / Grafana</span>
         </div>
       </div>
     </div>
 
-    <h3>핵심 기술적 도전</h3>
-    <div class="mini-grid c3">
-      <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">실시간 메트릭 분석 환경 구축</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>통계 기반 산출로는 알고리즘 개선에 필요한 인사이트 확보·고객사 평가 충족에 한계가 있었다.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>핵심 메트릭 정의·수집 확장, Prometheus·Grafana 실시간 시각화 + Python CSV 보고 자동화. 분석·개선 시간 <strong>80% 단축</strong>.</div>
-      </div>
-      <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">C++ gRPC 메모리 누수 디버깅·수정</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>C++ gRPC 수신 서비스가 간헐적으로 종료되어 운영 안정성이 저하됐다.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>자원 모니터링으로 누수 확인, 소스 분석·Visual Studio 디버깅으로 수정. 에러 핸들링·로깅 추가로 <strong>간헐적 종료 해소</strong>·신뢰성 향상.</div>
-      </div>
-      <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">혼잡도·대기시간 로직 공통 모듈 통합</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div>대기시간 기반 혼잡도·세부 처리 로직이 분산·중복되어 유지보수성이 저하됐다.</div>
-        <div class="mc-box mc-result accent"><div class="mc-label">성과</div>분산 로직을 BE 공통 모듈로 통합. 중복 제거로 메모리 <strong>70% 감소</strong>, 코드량 <strong>50% 감소</strong> 및 가독성 개선.</div>
-      </div>
+    <h3>실시간 메트릭 수집과 분석 흐름</h3>
+    <div class="arch-svg" style="margin:0 0 10px;">
+      <svg viewBox="0 0 980 118" role="img" aria-label="LiDAR 데이터 서버에서 C++ 데이터 중계 서버와 Backend를 거쳐 실시간 모니터링과 CSV 리포트로 이어지는 분석 흐름">
+        <defs>
+          <marker id="lidar-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)"/>
+          </marker>
+        </defs>
+        <g fill="none" stroke="var(--text-muted)" stroke-width="1.4" marker-end="url(#lidar-arrow)">
+          <line x1="130" y1="58" x2="158" y2="58"/><line x1="310" y1="58" x2="338" y2="58"/>
+          <line x1="455" y1="58" x2="483" y2="58"/><path d="M625 58 H642 V30 H653"/>
+          <path d="M625 58 H642 V88 H653"/><line x1="758" y1="30" x2="788" y2="30"/>
+          <line x1="745" y1="88" x2="773" y2="88"/><line x1="870" y1="88" x2="898" y2="88"/>
+        </g>
+        <g fill="var(--bg-card)" stroke="var(--border)" stroke-width="1.3">
+          <rect x="10" y="38" width="120" height="40" rx="7"/><rect x="160" y="38" width="150" height="40" rx="7"/>
+          <rect x="340" y="38" width="115" height="40" rx="7"/><rect x="485" y="38" width="140" height="40" rx="7"/>
+          <rect x="655" y="12" width="103" height="36" rx="7"/><rect x="790" y="12" width="90" height="36" rx="7"/>
+          <rect x="655" y="70" width="90" height="36" rx="7"/><rect x="775" y="70" width="95" height="36" rx="7"/>
+          <rect x="900" y="70" width="70" height="36" rx="7"/>
+        </g>
+        <g fill="var(--text)" font-family="'Noto Sans KR',sans-serif" font-size="10.5" font-weight="700" text-anchor="middle">
+          <text x="70" y="63">LiDAR 데이터 서버</text><text x="235" y="63">C++ 데이터 중계 서버</text>
+          <text x="397" y="63">Backend</text><text x="555" y="63">메트릭 선별과 산출</text>
+          <text x="706" y="34">Prometheus</text><text x="835" y="34">Grafana</text>
+          <text x="700" y="92">CSV 로깅</text><text x="822" y="92">Python 분석</text><text x="935" y="92">리포트</text>
+        </g>
+        <g fill="var(--accent)" font-family="'JetBrains Mono',monospace" font-size="8.5" text-anchor="middle">
+          <text x="144" y="50">gRPC</text><text x="324" y="50">REST API</text>
+        </g>
+      </svg>
     </div>
+
   </div>
   </div>
   <div class="page-num">12</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 14 — AI 협업 워크플로우 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 13 — LiDAR 핵심 개선과 성과 ══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-body">
+    <h2 class="page-title">🛩️ LiDAR — 핵심 개선과 성과</h2>
+    <div class="page-fill">
+    <div class="mini-grid c3">
+      <div class="mini-card">
+        <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">실시간 메트릭 분석 환경 구축</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>기본 통계만으로 예측 성능 평가와 개선 지점 파악에 한계.</div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div>핵심 메트릭 정의와 수집 범위 확장. Prometheus와 Grafana 실시간 시각화, Python CSV 리포트 자동화.</div>
+        <div class="mc-box mc-result"><div class="mc-label">성과</div>예측 성능 분석 파이프라인 구축. 분석과 개선 시간 <strong>80% 단축</strong>.</div>
+      </div>
+      <div class="mini-card">
+        <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">C++ 데이터 중계 서버 메모리 누수 해결</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>C++ 데이터 중계 서버의 프로세스 메모리 누적과 간헐적 종료.</div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div>Backend 메모리 모니터링으로 누적 확인, Visual Studio 디버깅으로 객체 좌표 데이터 해제 누락 규명. 메모리 해제와 이상 시 자동 재시작 적용.</div>
+        <div class="mc-box mc-result"><div class="mc-label">성과</div>프로세스 메모리 안정화, <strong>간헐적 종료 해소</strong>.</div>
+      </div>
+      <div class="mini-card">
+        <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">혼잡도와 대기시간 로직 공통 모듈 통합</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div>대기시간 기반 혼잡도와 세부 처리 로직의 분산 및 중복에 따른 유지보수성 저하.</div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div>분산 로직을 Backend 공통 모듈로 통합.</div>
+        <div class="mc-box mc-result"><div class="mc-label">성과</div>메모리 <strong>70% 감소</strong>, 코드량 <strong>50% 감소</strong>.</div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="page-num">13</div>
+</div>
+
+<!-- ══════════════════════════════════════ PAGE 14 — AI 사내 개선 파이프라인 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
-      <div>
-        <div class="meta">개인 프로젝트 · 2026</div>
-        <h2>🔁 AI 협업 워크플로우 · 설계와 적용</h2>
-      </div>
-      <span class="badge">AI 거버넌스 · 도구 오케스트레이션</span>
+      <div><div class="meta">개인 프로젝트 · 2026</div><h2>🔁 AI 워크플로우</h2></div>
+      <span class="badge">사내 프로젝트 개선 파이프라인</span>
     </div>
-
     <div class="page-fill">
       <div class="card">
-        <p>AI 에이전트를 코드 생성 도구가 아닌 책임 경계, 승인 게이트, 검증 규칙을 갖춘 협업 시스템으로 설계하고 실제 작업에 적용했다. 코드 리뷰 결과를 후속 작업으로 연결하는 자동화와, 모든 개발 작업에 적용하는 AI 협업 규율을 각각 구축했다.</p>
+        <p>AI 에이전트를 코드 생성 도구가 아닌 책임 경계, 승인 게이트, 검증 규칙을 갖춘 협업 시스템으로 설계하고 실제 작업에 적용했다. 코드 리뷰 결과를 후속 작업으로 연결하는 자동화와 모든 개발 작업에 적용하는 AI 협업 규율을 구축했다.</p>
       </div>
-
-      <h3>사내 프로젝트 개선 파이프라인</h3>
-      <div class="workflow-loop" aria-label="코드 리뷰 자동화 개선 루프">
-        <div class="workflow-step"><div class="step-num">01 ANALYZE</div><h4>문제점 분석</h4><p>품질·보안·버그·빌드 4개 영역을 파일·라인 근거로 점검</p></div>
-        <div class="workflow-step gate"><div class="step-num">02 APPROVE</div><h4>이슈 발행 승인</h4><p>초안을 제시하고 승인된 항목만 GitLab 이슈로 발행</p></div>
-        <div class="workflow-step"><div class="step-num">03 NOTIFY</div><h4>팀 알림</h4><p>GitLab 웹훅과 카카오워크 채널을 연동해 변경을 공유</p></div>
-        <div class="workflow-step"><div class="step-num">04 ORGANIZE</div><h4>후속 작업화</h4><p>이슈를 심각도 기준 작업 목록으로 정리해 우선순위화</p></div>
-        <div class="workflow-step gate"><div class="step-num">05 APPROVE</div><h4>작업 착수</h4><p>승인 후 구현·검증하고, 결과를 다음 분석 단계로 환류</p></div>
-      </div>
-
-      <div class="workflow-governance">
+      <div class="row c2" style="align-items:start; margin-bottom:12px;">
         <div>
-          <h3>공통 인간·AI 협업 규율</h3>
-          <div class="workflow-principles">
-            <div class="workflow-principle"><strong>작업 목록 = SoT</strong><span>설계 문서에서 추출한 체크리스트를 실행 상태의 단일 기준으로 운영</span></div>
-            <div class="workflow-principle"><strong>계획·승인 우선</strong><span>구현과 커밋 전 계획을 검토해 의도하지 않은 변경을 차단</span></div>
-            <div class="workflow-principle"><strong>검증 가능한 근거</strong><span>테스트·파일:라인 근거·Git 이력으로 결정과 결과를 추적</span></div>
-            <div class="workflow-principle"><strong>Phase 단위 마감</strong><span>결과 문서와 체크리스트로 목표 충족 여부를 검토하고 환류</span></div>
-          </div>
+          <h3>핵심 목표</h3>
+          <ul class="goal-list">
+            <li class="goal-item"><span class="goal-check">✓</span><span class="goal-text"><strong>개선 루프 구축</strong><span class="goal-metric">코드 리뷰, 이슈, 팀 알림, 후속 작업 연결</span></span></li>
+            <li class="goal-item"><span class="goal-check">✓</span><span class="goal-text"><strong>승인과 책임 경계</strong><span class="goal-metric">외부 상태 변경과 작업 착수에 사람 승인</span></span></li>
+            <li class="goal-item"><span class="goal-check">✓</span><span class="goal-text"><strong>세션 간 상태 관리</strong><span class="goal-metric">작업 목록, 테스트, Git 이력 기반 기준 유지</span></span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>문제와 목표</h3>
+          <div class="card" style="margin:0;"><p>코드 리뷰 결과가 보고로 끝나면 이슈 발행, 팀 공유, 실제 수정 작업까지 이어지지 않는다. 분석 결과를 승인 가능한 이슈와 후속 작업으로 전환하는 개선 루프를 목표로 했다.</p></div>
+        </div>
+      </div>
+      <h3>워크플로우</h3>
+      <div class="workflow-loop" aria-label="코드 리뷰 자동화 개선 루프">
+        <div class="workflow-step"><div class="step-num">01 ANALYZE</div><h4>문제점 분석</h4><p>품질, 보안, 버그, 빌드 영역의 파일과 라인 근거 수집</p></div>
+        <div class="workflow-step gate"><div class="step-num">02 APPROVE</div><h4>이슈 발행</h4><p>초안 검토 후 승인 항목만 GitLab REST API 발행</p></div>
+        <div class="workflow-step"><div class="step-num">03 NOTIFY</div><h4>팀 알림</h4><p>GitLab WebHook과 카카오워크 연동</p></div>
+        <div class="workflow-step"><div class="step-num">04 ORGANIZE</div><h4>후속 작업화</h4><p>심각도 기준 작업 목록과 우선순위 구성</p></div>
+        <div class="workflow-step gate"><div class="step-num">05 APPROVE</div><h4>작업 착수</h4><p>승인 후 구현과 검증, 결과를 다음 분석에 환류</p></div>
+      </div>
+      <div class="row c2" style="align-items:start; margin-top:14px;">
+        <div>
+          <h3>승인 게이트</h3>
+          <table><thead><tr><th>단계</th><th>자동화</th><th>사람</th></tr></thead><tbody>
+            <tr><td>분석</td><td>점검, 근거 수집, 초안</td><td>결과와 우선순위 검토</td></tr>
+            <tr><td>이슈 발행</td><td>승인 항목 API 발행</td><td>발행 대상 승인</td></tr>
+            <tr><td>작업 착수</td><td>계획, 구현, 테스트</td><td>범위와 계획 승인</td></tr>
+          </tbody></table>
         </div>
         <div class="workflow-outcome">
-          <h3>핵심 역량</h3>
-          <ul>
-            <li>AI 에이전트의 책임 경계와 승인 게이트 설계</li>
-            <li>GitLab REST API · 웹훅 · 카카오워크를 잇는 엔드투엔드 도구 통합</li>
-            <li>세션 간에도 이어지는 작업 상태·테스트 규율의 문서화</li>
-            <li>자동화 결과를 다시 개선 입력으로 돌려보내는 운영 루프 구축</li>
-          </ul>
+          <h3>성과</h3>
+          <ul><li>리뷰 결과를 승인 이슈, 팀 알림, 후속 작업, 재분석으로 연결</li><li>개발 현황의 카카오워크 채널 공유</li><li>파일과 라인 근거 및 승인 변경만 실행하는 흐름 정착</li></ul>
         </div>
       </div>
     </div>
   </div>
-  <div class="page-num">13</div>
+  <div class="page-num">14</div>
+</div>
+
+<!-- ══════════════════════════════════════ PAGE 15 — AI 공통 협업 워크플로우 ══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-body">
+    <h2 class="page-title">🔁 AI 워크플로우 — 공통 인간·AI 협업</h2>
+    <div class="page-fill">
+      <div class="card"><p>대화형 작업 목록만으로는 세션이 바뀐 뒤 작업 선정 근거, 진행 상태, 검증 결과를 복원하기 어렵다. 모든 개발 작업에 계획, 승인, 검증 기준을 적용하고 저장소의 문서와 Git 이력으로 실행 상태를 유지하는 것을 목표로 했다.</p></div>
+      <h3>워크플로우</h3>
+      <div class="workflow-loop" aria-label="공통 인간 AI 협업 워크플로우">
+        <div class="workflow-step"><div class="step-num">01 SOURCE</div><h4>작업 목록</h4><p>설계 문서에서 Task_Checklist 추출</p></div>
+        <div class="workflow-step"><div class="step-num">02 SELECT</div><h4>다음 작업 선정</h4><p>단일 기준에서 우선순위와 범위 확인</p></div>
+        <div class="workflow-step gate"><div class="step-num">03 APPROVE</div><h4>계획 승인</h4><p>구현 전 계획과 변경 범위 검토</p></div>
+        <div class="workflow-step"><div class="step-num">04 VERIFY</div><h4>구현과 테스트</h4><p>핵심 비즈니스 로직 구현과 테스트 검토</p></div>
+        <div class="workflow-step"><div class="step-num">05 RECORD</div><h4>기록과 환류</h4><p>커밋, Phase 결과 문서, 체크리스트 갱신</p></div>
+      </div>
+      <div class="row c2" style="align-items:start; margin-top:16px;">
+        <div>
+          <h3>운영 규율</h3>
+          <table><tbody>
+            <tr><td><strong>작업 목록 우선 생성</strong></td><td>Task_Checklist를 실행 상태의 단일 기준으로 적용</td></tr>
+            <tr><td><strong>계획과 승인 우선</strong></td><td>계획 승인 전 구현 금지, 커밋 메시지 사전 승인</td></tr>
+            <tr><td><strong>상태의 단일 기준화</strong></td><td>Git 이력과 작업 목록 기반 상태 관리</td></tr>
+            <tr><td><strong>테스트 범위 명확화</strong></td><td>핵심 비즈니스 로직 중심 검증</td></tr>
+            <tr><td><strong>소단위 커밋</strong></td><td>관심사별 변경 분리</td></tr>
+            <tr><td><strong>Phase 단위 검토</strong></td><td>결과 문서 검토와 체크리스트 마감</td></tr>
+          </tbody></table>
+        </div>
+        <div class="workflow-outcome">
+          <h3>성과</h3>
+          <ul><li>Task_Checklist, Git 이력, Phase 결과 문서 기반 세션 간 맥락 복원</li><li>계획, 승인, 테스트, 커밋의 일관된 실행 기준 적용</li><li>핵심 비즈니스 로직 중심 테스트와 관심사별 변경 단위 관리</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">15</div>
 </div>
 
 </div><!-- /.deck -->
@@ -1009,7 +1087,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- 화면 전용 오버레이 네비게이션 (인쇄 시 숨김) -->
 <div class="deck-nav" id="deckNav">
   <button id="prevPage" aria-label="이전 페이지">◀</button>
-  <span class="indicator" id="pageIndicator">1 / 13</span>
+  <span class="indicator" id="pageIndicator">1 / 15</span>
   <button id="nextPage" aria-label="다음 페이지">▶</button>
 </div>
 
