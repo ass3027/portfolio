@@ -16,10 +16,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 원천(source)과 산출물(output)은 다음과 같다:
 
-- **`content/`** — **콘텐츠의 원천인 마크다운 묶음.** `layout.md`(개인 소개부 + 프로젝트 목차), 숫자 접두사가 붙은 프로젝트 파일(`01-tag2now.md` 등, 숫자는 프로젝트 순서), 프로젝트가 아닌 장(`working-style.md`, 숫자 없음), 작성 규칙 `rule.md`. `index.html`은 여기서 나온다. [콘텐츠 작업 순서](#콘텐츠-작업-순서-중요) 참고.
+- **`content/`** — **콘텐츠의 원천인 마크다운 묶음.** `layout.md`(개인 소개부 + 프로젝트 목차), 숫자 접두사가 붙은 프로젝트 파일(`01-tag2now.md` 등, 숫자는 프로젝트 순서), 작성 규칙 `rule.md`. `index.html`은 여기서 나온다. [콘텐츠 작업 순서](#콘텐츠-작업-순서-중요) 참고.
 - **`index.html`** — 실제 포트폴리오 사이트이자 **산출물**. CSS는 하나의 `<style>` 블록에, JS는 하단의 하나의 `<script>` 블록에 인라인된 단일 파일. 한국어 문서(`<html lang="ko">`)이며 이 저장소의 핵심 결과물이다.
 - **`PORTFOLIO.md`** — **Tag2Now**(철권 태그 토너먼트 2 실시간 정보 대시보드) 프로젝트의 서술형 케이스 스터디. `content/` 분리 이전의 원본 자료다. **현재 Tag2Now의 콘텐츠 원천은 `content/01-tag2now.md`이며**, `PORTFOLIO.md`는 서사 배경이나 상세 맥락이 필요할 때 참고하는 자료로 남긴다.
-- **`DECK_MIGRATION_PLAN.md`** — 연속 흐름 레이아웃을 덱으로 바꾼 **전환 계획서. 이미 완료된 작업의 기록이다.** 왜 덱으로 갔는지(자동 페이지 나눔 때문에 34쪽 중 빈 페이지가 다수 생기던 문제) 배경을 알고 싶을 때만 본다. **살아 있는 계획으로 취급하지 말 것** — 문서 안의 `code-wrap`, highlight.js, Git 규칙 서술은 현재 상태와 어긋난다. 충돌하면 항상 `CLAUDE.md`가 우선이다.
 - **`랠릿프로필-star+문과 자소.pdf`** — 이력서/자기소개 문서(바이너리, 여기서 편집 불가).
 
 README, `.cursor` 규칙, Copilot 지침은 없다.
@@ -38,7 +37,7 @@ README, `.cursor` 규칙, Copilot 지침은 없다.
 특정한 내부 구조를 가진 손으로 작성한 단일 파일이다. 수정할 때 이 구조를 유지할 것:
 
 - **문서 골격은 `.deck` > `.page` 하나뿐**이다. `<section>`도, 사이드바도, 모바일 헤더도 없다. 앵커 링크로 이동하는 스크롤 문서가 아니라 **페이지를 넘기는 덱**이다([PDF 내보내기](#pdf-내보내기)에 구조 상세).
-- **페이지 내부 골격**: `.page` > `.page-body`(14쪽 전부) + `.page-num`(우하단 쪽번호, 14쪽 전부). 그 안은 페이지마다 다르다. `.page-fill`(본문을 남는 공간 중앙에 배치)이 13쪽, `h1`/`h2.page-title`이 9쪽, `.page-kicker`(작은 라벨)는 표지 1쪽에만 있다. **`.page-body`와 `.page-num`만 필수로 보고, 나머지는 페이지 성격에 맞게 고른다.**
+- **페이지 내부 골격**: `.page` > `.page-body`(13쪽 전부) + `.page-num`(우하단 쪽번호, 13쪽 전부). 그 안은 페이지마다 다르다. `.page-fill`(본문을 남는 공간 중앙에 배치)이 12쪽, `h1`/`h2.page-title`이 8쪽, `.page-kicker`(작은 라벨)는 표지 1쪽에만 있다. **`.page-body`와 `.page-num`만 필수로 보고, 나머지는 페이지 성격에 맞게 고른다.**
 - **HTML 주석의 `PAGE N` 번호를 믿지 말 것.** 주석은 `PAGE 1`~`PAGE 5`, `PAGE 7`~`PAGE 15`로 매겨져 있어 **6이 없고 실제 개수(14)보다 크다.** 페이지를 지우면서 주석을 갱신하지 않은 흔적이다. **실제 쪽번호는 `.page-num`의 값(01~14)이 정답**이며 이쪽이 화면에도 표시된다. 페이지를 손대면 `.page-num`을 먼저 맞춘다.
 - **테마**는 `:root`의 CSS 커스텀 프로퍼티(`--bg`, `--accent` 등)로 정의된 GitHub 스타일 **라이트 팔레트**다(과거 다크에서 전환. PDF와 색을 일치시키기 위함). 색상은 하드코딩하지 말고 이 변수를 재사용한다. 페이지 크기 변수(`--page-w` 등)도 같은 곳에 있다.
 - **컴포넌트를 새로 만들기 전에 기존 어휘를 먼저 찾을 것.** 이미 있는 것들: `.row.c2`(2단 그리드), `.mini-card`(`.mc-head`/`.mc-num`/`.mc-title`/`.mc-box`/`.mc-problem`/`.mc-result`/`.mc-label`)로 만드는 문제와 성과 카드, `.goal-item`(`.goal-check`/`.goal-text`/`.goal-metric`/`.goal-hit`)의 핵심 목표 체크리스트, `.learn-card`/`.learn-icon`의 배운 점, `.pill`(+`.pill-green`/`.pill-blue`/`.pill-purple`), `.tag`, `.badge`, `code.inline`, `.ascii-box`, `.compare-grid`.
@@ -88,7 +87,7 @@ README, `.cursor` 규칙, Copilot 지침은 없다.
 - **print 블록이 하는 일(이게 전부)**: `body` 배경 흰색 + `print-color-adjust: exact`, `@page` 가로 + 여백 0, `.deck { zoom: 1 !important }`(화면 반응형 zoom 무력화), `.page`의 `margin`과 `box-shadow` 제거, `.deck-nav` 숨김, `transition` 제거. **`break-inside: avoid` 규칙은 없고 필요하지도 않다** — 페이지 높이가 고정이라 요소가 페이지를 걸칠 일이 없다.
 - **트레이드오프**: 페이지 나눔이 수동이므로 콘텐츠를 늘리면 자동으로 다음 장으로 넘어가지 않고 **잘린다.** 자유롭게 쓰고 나중에 흘려보내는 방식이 아니라, 한 장에 들어갈 분량을 맞춰 쓰는 방식이다. 분량이 넘치면 `.page`를 새로 추가한다.
 
-**현재 쪽수**: `.page` 14개. 페이지를 추가하거나 지우면 `.deck-nav`의 인디케이터는 스크립트가 자동으로 갱신한다(HTML의 초기값은 하드코딩이라 실제 개수와 다를 수 있다).
+**현재 쪽수**: `.page` 13개. 페이지를 추가하거나 지우면 `.deck-nav`의 인디케이터는 스크립트가 자동으로 갱신한다(HTML의 초기값은 하드코딩이라 실제 개수와 다를 수 있다).
 
 **검증 방법 (중요)**: PDF 결과는 추측하지 말고 **브라우저로 직접 확인**한다. 이 환경엔 PDF 래스터라이저(poppler)가 없다. `file://`는 Playwright에서 차단되므로 **반드시 http로 서빙**한다(`python -m http.server`).
 

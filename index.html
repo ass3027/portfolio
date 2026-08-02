@@ -457,7 +457,6 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="card">
       <p>RPCS3 에뮬레이터로 TTT2를 즐기는 커뮤니티는 활성 유저 수, 매칭 상대, 랭킹 정보를 한눈에 볼 도구가 없었다.</p>
       <p>RPCN은 오픈소스지만 게임의 호출 방식이 문서화돼 있지 않고 공식 SDK도 없다. Rust로 된 RPCN 서버를 직접 실행·분석해 호출 프로토콜을 역공학하고, 단위·통합 테스트로 검증한 Python 클라이언트를 구현하여 실시간 대시보드를 구축했다.</p>
-      <p style="margin-bottom:0;"><strong>구현에 그치지 않고 AWS에 직접 배포하여 실제 도메인(<code class="inline">match.tag2now.click</code>)으로 서비스를 운영하는 것</strong>이 이 프로젝트의 목표였다. keyless CI/CD로 배포를 자동화하고, 오픈 카카오톡방의 실사용자 피드백을 받아 오류를 수정·개선하며 서비스를 유지했다.</p>
     </div>
 
     <div class="row c2" style="margin-top:18px; align-items:start;">
@@ -465,26 +464,18 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <h3>핵심 목표</h3>
         <ul class="goal-list">
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>SDK 없는 RPCN 프로토콜 역공학</strong><span class="goal-metric">Rust 서버 직접 분석 · <span class="goal-hit">프로토콜 명령 7종 테스트 검증</span></span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 대시보드 실서비스화</strong><span class="goal-metric"><span class="goal-hit">match.tag2now.click</span> 운영 중</span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>AWS 운영·자동 배포</strong><span class="goal-metric">AWS OIDC keyless 인증으로 <span class="goal-hit">ECR→ECS 배포 자동화</span></span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 매칭 상태 시각화</strong><span class="goal-metric">스냅샷 Diff 기반 매칭 탐지와 <span class="goal-hit">Phantom Room 실시간 노출</span></span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>AWS 서비스 조합 기반 실서비스 운영</strong><span class="goal-metric">인프라 구성·자동 배포·도메인 연결·<span class="goal-hit">운영 비용 조정</span></span></span></li>
         </ul>
       </div>
       <div>
         <h3>기술 스택</h3>
         <div class="pill-list">
           <span class="pill pill-blue">Python / FastAPI</span>
-          <span class="pill pill-blue">SQLAlchemy 2.0 (async)</span>
-          <span class="pill pill-green">PostgreSQL</span>
           <span class="pill pill-green">Redis</span>
-          <span class="pill pill-green">DynamoDB</span>
-          <span class="pill pill-purple">Docker</span>
-          <span class="pill pill-purple">Nginx</span>
+          <span class="pill pill-green">PostgreSQL</span>
+          <span class="pill pill-purple">AWS</span>
           <span class="pill pill-purple">GitHub Actions</span>
-          <span class="pill pill-purple">AWS ECS</span>
-          <span class="pill pill-purple">Lightsail</span>
-          <span class="pill pill-purple">Route53</span>
-          <span class="pill pill-purple">CloudFront</span>
-          <span class="pill pill-gray">React / TypeScript</span>
         </div>
       </div>
     </div>
@@ -736,24 +727,6 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">07</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 9 — Tag2Now 배운 점 ══════════════════════════════════════ -->
-<div class="page">
-  <div class="page-body">
-    <h2 class="page-title">🎮 Tag2Now — 배운 점 &amp; 성장</h2>
-    <div class="page-fill">
-    <div class="learn-grid">
-      <div class="learn-card"><div class="learn-icon">🔬</div><h4>프로토콜 역공학 &amp; 검증</h4><p>오픈소스 RPCN(Rust) 서버를 직접 실행·분석해 미문서화된 호출 방식을 역공학. 저수준 통신은 AI 협업으로 구현하고 단위·통합 테스트로 검증, 명세 struct는 재사용·수정.</p></div>
-      <div class="learn-card"><div class="learn-icon">🗣️</div><h4>실제 서비스 운영 &amp; 피드백</h4><p>배포로 끝내지 않고 실서비스로 운영 — 오픈 카카오톡방에서 받은 실사용자 제보로 오류 수정·기능 개선을 반복.</p></div>
-      <div class="learn-card"><div class="learn-icon">🗄️</div><h4>다양한 DB 사용 경험</h4><p>Redis(TTL 캐시) · PostgreSQL(시계열 집계) · DynamoDB(게시판)를 한 서비스에서 함께 운용하며 각 DB의 제약을 체감, 데이터 특성에 맞게 선택.</p></div>
-      <div class="learn-card"><div class="learn-icon">🔄</div><h4>CI/CD 자동화</h4><p>GitHub Actions로 PR → 통합 테스트, 태그 → ECR + ECS 배포 완전 자동화.</p></div>
-      <div class="learn-card"><div class="learn-icon">☁️</div><h4>AWS 인프라 이해</h4><p>ECR · ECS(Fargate) · ALB · ElastiCache · Route53 · CloudFront · IAM을 직접 구성하고 Lightsail로 옮기며 배포 경로 전체를 이해 — OIDC keyless 배포로 귀결.</p></div>
-      <div class="learn-card"><div class="learn-icon">📊</div><h4>비용 최적화</h4><p>CloudWatch + Billing 분석으로 오버스펙 인식 → 서비스 규모에 맞는 인프라 판단.</p></div>
-    </div>
-  </div>
-  </div>
-  <div class="page-num">08</div>
-</div>
-
 <!-- ══════════════════════════════════════ PAGE 10 — KTX 개요 + 기술스택 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
@@ -771,7 +744,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <h3>개요</h3>
     <div class="card">
       <p>명절·연휴에 수만 명이 동시에 같은 좌석을 예매하려 할 때 발생하는 <strong>초과 판매(oversell)·중복 예매·좌석 재고 깨짐</strong>을 막고, 그 정합성과 성능을 <strong>부하 테스트와 Before/After 수치로 증명</strong>하는 것을 목표로 한 프로젝트다.</p>
-      <p>CRUD 기능 수가 아니라 <strong>N명이 한 좌석을 경합할 때 정확히 1명만 성공시키되(정합성), 그 정확성을 지키면서도 높은 처리량·낮은 지연을 함께 보장하는(성능) 엔지니어링</strong>이 핵심이다. 안전과 속도는 상충하기 쉬운데, 이 트레이드오프를 실측으로 풀어냈다. 7주 단계별 계획(P0~P6)으로 설계·구현하고, 부하 시나리오 L1~L6(9종) + 필수 실험 E1~E3의 Before/After를 모두 완료했다.</p>
+      <p><strong>N명이 한 좌석을 경합할 때 정확히 1명만 성공시키되(정합성), 그 정확성을 지키면서도 높은 처리량과 낮은 지연을 함께 보장하는(성능) 엔지니어링</strong>이 핵심이다. 예매 동시성 보장과 성능을 부하 테스트 실측으로 검증했다.</p>
     </div>
 
     <div class="row c2" style="margin-top:18px; align-items:start;">
@@ -800,7 +773,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
   </div>
   </div>
-  <div class="page-num">09</div>
+  <div class="page-num">08</div>
 </div>
 
 <!-- ══════════════════════════════════════ PAGE 11 — KTX 아키텍처 결정 + SLO ══════════════════════════════════════ -->
@@ -865,7 +838,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
   </div>
   </div>
-  <div class="page-num">10</div>
+  <div class="page-num">09</div>
 </div>
 
 <!-- ══════════════════════════════════════ PAGE 12 — KTX 핵심 도전 ══════════════════════════════════════ -->
@@ -897,35 +870,26 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
   </div>
   </div>
-  <div class="page-num">11</div>
+  <div class="page-num">10</div>
 </div>
 
 <!-- ══════════════════════════════════════ PAGE 13 — KTX Before/After + 배운 점 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">🚄 KTX 티켓팅 — 실험으로 증명 &amp; 배운 점</h2>
+    <h2 class="page-title">🚄 KTX 티켓팅 — 실험으로 증명</h2>
     <div class="page-fill">
     <h3>설계 결정을 수치로 증명</h3>
     <table>
-      <thead><tr><th>실험</th><th>Before</th><th>After</th><th>보여준 것</th></tr></thead>
+      <thead><tr><th>실험</th><th>Before</th><th>After</th><th>성과</th></tr></thead>
       <tbody>
-        <tr><td><strong>E1</strong> 동시성 제어</td><td>선점 OFF · reserve ~1.2s</td><td>선점 ON · ~0.29s (~4×↓)</td><td>선점의 값 = <strong>DB 부하 회피</strong> (정확성은 양쪽 0)</td></tr>
-        <tr><td><strong>E2</strong> 입장 제어</td><td>무제한 · p95 22s·drop 38k</td><td>K=100 · 429 85.4% 흡수·drop 0</td><td>무경계 열화 → 빠른 반려</td></tr>
-        <tr><td><strong>E3</strong> 조회 캐시</td><td>off · ~850 TPS·p95 8~9s</td><td>on · 2,497 TPS·p95 26ms</td><td>조회 p95·DB 부하 대폭 감소</td></tr>
+        <tr><td><strong>동시성 제어</strong></td><td>선점 OFF · reserve ~1.2s</td><td>선점 ON · ~0.29s (~4×↓)</td><td>정확성 동일, <strong>DB 부하 감소</strong></td></tr>
+        <tr><td><strong>입장 제어</strong></td><td>무제한 · p95 22s · drop 38k</td><td>K=100 · 429 85.4% 흡수 · drop 0</td><td>무한 지연 대신 <strong>즉시 거절</strong></td></tr>
+        <tr><td><strong>조회 캐시</strong></td><td>off · ~850 TPS · p95 8~9s</td><td>on · 2,497 TPS · p95 26ms</td><td>조회 p95·DB 부하 동시 감소</td></tr>
       </tbody>
     </table>
-    <div class="tradeoff-note" style="margin-top:10px;"><strong>E1의 정직한 결론</strong>: 선점을 꺼도 <code class="inline">@Version</code> 낙관 락·DB 유니크가 오버셀을 막아 정확성은 양쪽 0 — 선점의 값은 정확성의 필요조건이 아니라 DB 부하 회피다. "정확성은 DB가 보장, 성능·가용성은 앞단 게이트가 지킨다"는 2-tier 서사를 세 실험이 실측으로 뒷받침한다.</div>
-    <div class="learn-grid" style="margin-top:16px;">
-      <div class="learn-card"><div class="learn-icon">🔒</div><h4>동시성·정합성</h4><p>Redis 원자 선점 + DB 낙관 락 이중 방어로 1,000 경합에서 oversell 0을 설계·증명.</p></div>
-      <div class="learn-card"><div class="learn-icon">⚖️</div><h4>2-tier 일관성</h4><p>조회는 약한 일관성·예매는 강한 일관성으로 명시 분리, 경계를 SLO로 측정 가능하게 함.</p></div>
-      <div class="learn-card"><div class="learn-icon">📈</div><h4>부하 테스트</h4><p>k6로 L1~L6 + E1~E3 Before/After를 설계, SLO 충족 여부를 수치로 판정.</p></div>
-      <div class="learn-card"><div class="learn-icon">🧭</div><h4>측정 후 최적화</h4><p>추측성 최적화를 배제하고 "병목으로 측정될 때만" 착수하도록 트리거 조건을 명문화.</p></div>
-      <div class="learn-card"><div class="learn-icon">🔬</div><h4>근본 원인 규명</h4><p>1,000 동시 연결 거부의 진짜 원인이 앱이 아닌 Docker NAT 포화임을 격리 실험으로 규명.</p></div>
-      <div class="learn-card"><div class="learn-icon">🤖</div><h4>AI 통제 워크플로우</h4><p>계획·테스트 유효성·커밋 승인 3개 사람 게이트로 AI에 끌려가지 않는 협업 규율 확립.</p></div>
-    </div>
   </div>
   </div>
-  <div class="page-num">12</div>
+  <div class="page-num">11</div>
 </div>
 
 <!-- ══════════════════════════════════════ PAGE 13 — LiDAR ══════════════════════════════════════ -->
@@ -987,7 +951,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
   </div>
   </div>
-  <div class="page-num">13</div>
+  <div class="page-num">12</div>
 </div>
 
 <!-- ══════════════════════════════════════ PAGE 14 — AI 협업 워크플로우 ══════════════════════════════════════ -->
@@ -995,15 +959,15 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <div class="detail-head">
       <div>
-        <div class="meta">개인 워크플로우 설계 · 2026</div>
-        <h2>🔁 AI 협업 워크플로우 — 승인·검증 중심의 개선 루프</h2>
+        <div class="meta">개인 프로젝트 · 2026</div>
+        <h2>🔁 AI 협업 워크플로우 · 설계와 적용</h2>
       </div>
       <span class="badge">AI 거버넌스 · 도구 오케스트레이션</span>
     </div>
 
     <div class="page-fill">
       <div class="card">
-        <p><strong>문제.</strong> AI를 활용한 개발 자동화는 속도만 높이면 변경 근거·승인 책임·후속 작업의 연결이 끊기기 쉽다. 코드 리뷰부터 작업 착수까지를 검증 가능한 폐쇄형 루프로 설계해, 자동화의 속도와 사람의 통제력을 함께 확보했다.</p>
+        <p>AI 에이전트를 코드 생성 도구가 아닌 책임 경계, 승인 게이트, 검증 규칙을 갖춘 협업 시스템으로 설계하고 실제 작업에 적용했다. 코드 리뷰 결과를 후속 작업으로 연결하는 자동화와, 모든 개발 작업에 적용하는 AI 협업 규율을 각각 구축했다.</p>
       </div>
 
       <h3>사내 프로젝트 개선 파이프라인</h3>
@@ -1037,7 +1001,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">14</div>
+  <div class="page-num">13</div>
 </div>
 
 </div><!-- /.deck -->
@@ -1045,7 +1009,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- 화면 전용 오버레이 네비게이션 (인쇄 시 숨김) -->
 <div class="deck-nav" id="deckNav">
   <button id="prevPage" aria-label="이전 페이지">◀</button>
-  <span class="indicator" id="pageIndicator">1 / 14</span>
+  <span class="indicator" id="pageIndicator">1 / 13</span>
   <button id="nextPage" aria-label="다음 페이지">▶</button>
 </div>
 
