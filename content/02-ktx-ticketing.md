@@ -1,4 +1,4 @@
-# KTX 티켓팅: 대규모 동시성 성능과 정합성 엔지니어링
+# KTX 티켓팅
 
 - **구분**: 개인 프로젝트, 2026.06 ~ 2026.07
 - **GitHub**: https://github.com/ass3027/ktx-ticketing
