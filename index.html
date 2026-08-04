@@ -92,7 +92,7 @@ p { margin-bottom: 10px; }
 .mt-auto { margin-top: auto; }
 
 /* ══════════════ 표지 / About (page 1) ══════════════ */
-.about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: stretch; flex: 1; min-height: 0; }
+.about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: start; flex: 1; min-height: 0; }
 .profile-card {
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
   padding: 26px 24px; text-align: center; display: flex; flex-direction: column;
@@ -111,22 +111,15 @@ p { margin-bottom: 10px; }
 }
 .contact-list li a:hover { color: var(--text); background: var(--bg-card2); }
 .contact-icon { font-size: 14px; width: 18px; text-align: center; }
-.profile-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
-.profile-stat { display: flex; justify-content: space-around; margin-top: auto; }
-.profile-stat div { text-align: center; }
-.profile-stat .stat-num { font-size: 20px; font-weight: 700; color: var(--accent); }
-.profile-stat .stat-label { font-size: 11px; color: var(--text-muted); }
 .about-content { display: flex; flex-direction: column; min-height: 0; }
 .about-title-lg { font-size: 34px; font-weight: 700; line-height: 1.2; margin-bottom: 14px;
   background: linear-gradient(135deg,#1f2328 40%,#0969da 100%); -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; background-clip: text; }
 .about-bio { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 20px; }
-.skill-bar-list { display: flex; flex-direction: column; gap: 9px; }
-.skill-bar-top { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+.skill-bar-list { display: flex; flex-direction: column; gap: 10px; }
+.skill-bar-top { display: flex; justify-content: space-between; font-size: 13px; }
 .skill-bar-top .skill-name { font-weight: 600; }
 .skill-bar-top .skill-level { color: var(--text-muted); }
-.skill-bar-bg { height: 6px; background: var(--bg-card2); border-radius: 3px; overflow: hidden; }
-.skill-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), #60a5fa); }
 
 /* ══════════════ 경력 & 자격증 (page 2) ══════════════ */
 .timeline { position: relative; padding-left: 24px; margin-bottom: 24px; }
@@ -306,19 +299,13 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="profile-card">
         <div class="avatar">👨‍💻</div>
         <div class="profile-name">이세진</div>
-        <div class="profile-title">백엔드 개발자</div>
+        <div class="profile-title">백엔드 개발자 · 4년차</div>
         <ul class="contact-list">
           <li><a href="mailto:blackfeather227@gmail.com"><span class="contact-icon">✉️</span>blackfeather227@gmail.com</a></li>
           <li><a href="https://github.com/ass3027" target="_blank"><span class="contact-icon">🐙</span>github.com/ass3027</a></li>
           <li><a href="https://www.linkedin.com/in/%EC%84%B8%EC%A7%84-%EC%9D%B4-0bbb15323/" target="_blank"><span class="contact-icon">💼</span>LinkedIn</a></li>
           <li><a href="tel:010-0000-0000"><span class="contact-icon">📱</span>010-0000-0000</a></li>
         </ul>
-        <hr class="profile-divider">
-        <div class="profile-stat">
-          <div><div class="stat-num">3년+</div><div class="stat-label">경력</div></div>
-          <div><div class="stat-num">4개</div><div class="stat-label">프로젝트</div></div>
-          <div><div class="stat-num">10+</div><div class="stat-label">기술</div></div>
-        </div>
       </div>
       <div class="about-content">
         <h1 class="about-title-lg">이세진입니다.</h1>
@@ -334,24 +321,25 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <h3>핵심 기술</h3>
         <div class="skill-bar-list">
           <div class="skill-bar-item">
-            <div class="skill-bar-top"><span class="skill-name">Java / Spring Boot</span><span class="skill-level">상</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
+            <div class="skill-bar-top"><span class="skill-name">Java / Spring Boot</span><span class="skill-level">주력 · 실무 4년</span></div>
           </div>
           <div class="skill-bar-item">
-            <div class="skill-bar-top"><span class="skill-name">Python / FastAPI</span><span class="skill-level">상</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
+            <div class="skill-bar-top"><span class="skill-name">Kubernetes</span><span class="skill-level">CKA · CKAD</span></div>
           </div>
           <div class="skill-bar-item">
-            <div class="skill-bar-top"><span class="skill-name">Docker / Kubernetes</span><span class="skill-level">상 (CKA · CKAD)</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div>
+            <div class="skill-bar-top"><span class="skill-name">AWS</span><span class="skill-level">Developer Associate · 개인 프로젝트</span></div>
           </div>
           <div class="skill-bar-item">
-            <div class="skill-bar-top"><span class="skill-name">Linux / 시스템</span><span class="skill-level">상 (리눅스마스터 1급)</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
+            <div class="skill-bar-top"><span class="skill-name">Docker</span><span class="skill-level">실무 · 빌드~배포 운영</span></div>
           </div>
           <div class="skill-bar-item">
-            <div class="skill-bar-top"><span class="skill-name">Vue.js / React</span><span class="skill-level">중</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:55%"></div></div>
+            <div class="skill-bar-top"><span class="skill-name">Python / FastAPI</span><span class="skill-level">주력 · 실무</span></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-name">Linux / 시스템</span><span class="skill-level">능숙 · 리눅스마스터 1급</span></div>
+          </div>
+          <div class="skill-bar-item">
+            <div class="skill-bar-top"><span class="skill-name">Vue.js / React</span><span class="skill-level">실무(보조) · 개인 프로젝트(React/TS)</span></div>
           </div>
         </div>
       </div>

@@ -6,15 +6,11 @@
 ### 프로필
 
 - **이름**: 이세진
-- **직군**: 백엔드 개발자
+- **직군**: 백엔드 개발자 (4년차)
 - **이메일**: blackfeather227@gmail.com
 - **GitHub**: https://github.com/ass3027
 - **LinkedIn**: https://www.linkedin.com/in/%EC%84%B8%EC%A7%84-%EC%9D%B4-0bbb15323/
 - **연락처**: 010-0000-0000
-
-| 경력 | 프로젝트 | 기술 |
-|---|---|---|
-| 3년+ | 4개 | 10+ |
 
 ### 소개
 
@@ -24,13 +20,15 @@
 
 ### 핵심 기술
 
-| 기술 | 수준 | 게이지 |
-|---|---|---|
-| Java / Spring Boot | 상 | 85% |
-| Python / FastAPI | 상 | 80% |
-| Docker / Kubernetes | 상 (CKA, CKAD) | 82% |
-| Linux / 시스템 | 상 (리눅스마스터 1급) | 80% |
-| Vue.js / React | 중 | 55% |
+| 기술 | 수준 |
+|---|---|
+| Java / Spring Boot | 주력 · 실무 4년 |
+| Kubernetes | CKA · CKAD |
+| AWS | Developer Associate · 개인 프로젝트 |
+| Docker | 실무 · 빌드~배포 운영 |
+| Python / FastAPI | 주력 · 실무 |
+| Linux / 시스템 | 능숙 · 리눅스마스터 1급 |
+| Vue.js / React | 실무(보조) · 개인 프로젝트(React/TS) |
 
 ---
 
