@@ -22,7 +22,7 @@ RPCN은 오픈소스지만 게임별 호출 방식은 문서화돼 있지 않고
 
 ### 기술 스택
 
-`Python / FastAPI` `Redis` `PostgreSQL` `AWS` `GitHub Actions`
+`FastAPI` `Redis` `PostgreSQL` `AWS` `GitHub Actions`
 
 ---
 
