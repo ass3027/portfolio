@@ -92,18 +92,20 @@ p { margin-bottom: 10px; }
 .mt-auto { margin-top: auto; }
 
 /* ══════════════ 표지 / About (page 1) ══════════════ */
-.about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: start; flex: 1; min-height: 0; }
+.about-grid { display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: stretch; margin: auto 0; min-height: 0; }
 .profile-card {
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
-  padding: 26px 24px; text-align: center; display: flex; flex-direction: column;
+  padding: 32px 24px; text-align: center; display: flex; flex-direction: column;
+  justify-content: center;
 }
 .avatar {
-  width: 88px; height: 88px; border-radius: 50%; background: var(--bg-card2);
-  border: 2px solid var(--border); margin: 0 auto 14px;
-  display: flex; align-items: center; justify-content: center; font-size: 32px;
+  width: 120px; height: 120px; border-radius: 50%; background: var(--bg-card2);
+  border: 2px solid var(--border); margin: 0 auto 16px;
+  display: flex; align-items: center; justify-content: center; font-size: 44px;
 }
 .profile-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-.profile-title { font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 18px; }
+.profile-title { font-size: 13px; color: var(--accent); font-weight: 600; }
+.profile-head { margin-bottom: 22px; }
 .contact-list { list-style: none; display: flex; flex-direction: column; gap: 5px; text-align: left; }
 .contact-list li a {
   display: flex; align-items: center; gap: 8px; font-size: 12.5px;
@@ -297,9 +299,11 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="page-kicker">Backend Developer · Portfolio</div>
     <div class="about-grid">
       <div class="profile-card">
-        <div class="avatar">👨‍💻</div>
-        <div class="profile-name">이세진</div>
-        <div class="profile-title">백엔드 개발자 · 4년차</div>
+        <div class="profile-head">
+          <div class="avatar">👨‍💻</div>
+          <div class="profile-name">이세진</div>
+          <div class="profile-title">백엔드 개발자 · 4년차</div>
+        </div>
         <ul class="contact-list">
           <li><a href="mailto:blackfeather227@gmail.com"><span class="contact-icon">✉️</span>blackfeather227@gmail.com</a></li>
           <li><a href="https://github.com/ass3027" target="_blank"><span class="contact-icon">🐙</span>github.com/ass3027</a></li>
