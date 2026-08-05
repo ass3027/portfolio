@@ -404,7 +404,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="project-card">
         <div class="project-card-top"><div class="project-card-icon">🎮</div><div class="project-period">2026.03 — 2026.05</div></div>
         <div class="project-card-name">Tag2Now</div>
-        <div class="project-card-desc">철권 태그2 실시간 매칭 확인. 오픈소스 RPCN 서버를 직접 실행·분석해 문서화 안된 호출 프로토콜을 역공학, 단위·통합 테스트로 검증한 Python 클라이언트 구현. 실시간 매칭 탐지 알고리즘 설계.</div>
+        <div class="project-card-desc">철권 태그2 실시간 매칭 확인. 오픈소스 RPCN 서버를 직접 실행·분석해 문서화 안된 바이너리 프로토콜을 역공학, 단위·통합 테스트로 검증한 Python 클라이언트 구현. 실시간 매칭 탐지 알고리즘 설계.</div>
         <div class="project-card-footer"><span class="badge">🔗 개인 프로젝트</span><span class="badge">1인 풀스택</span></div>
       </div>
       <div class="project-card">
@@ -449,14 +449,14 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <h3>개요</h3>
     <div class="card">
       <p>RPCS3 에뮬레이터로 TTT2를 즐기는 커뮤니티는 활성 유저 수, 매칭 상대, 랭킹 정보를 한눈에 볼 도구가 없었다.</p>
-      <p>RPCN은 오픈소스지만 게임의 호출 방식이 문서화돼 있지 않고 공식 SDK도 없다. Rust로 된 RPCN 서버를 직접 실행·분석해 호출 프로토콜을 역공학하고, 단위·통합 테스트로 검증한 Python 클라이언트를 구현하여 실시간 대시보드를 구축했다.</p>
+      <p>RPCN은 오픈소스지만 게임의 호출 방식이 문서화돼 있지 않고 공식 SDK도 없다. Rust로 된 RPCN 서버를 직접 실행·분석해 바이너리 프로토콜을 역공학하고, 단위·통합 테스트로 검증한 Python 클라이언트를 구현하여 실시간 대시보드를 구축했다.</p>
     </div>
 
     <div class="row c2" style="margin-top:18px; align-items:start;">
       <div>
         <h3>핵심 목표</h3>
         <ul class="goal-list">
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>SDK 없는 RPCN 프로토콜 역공학</strong><span class="goal-metric">Rust 서버 직접 분석 · <span class="goal-hit">프로토콜 명령 7종 테스트 검증</span></span></span></li>
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>SDK 없는 RPCN 바이너리 프로토콜 역공학</strong><span class="goal-metric">Rust 서버 직접 분석 · <span class="goal-hit">프로토콜 명령 7종 테스트 검증</span></span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 매칭 상태 시각화</strong><span class="goal-metric">스냅샷 Diff 기반 매칭 탐지와 <span class="goal-hit">Phantom Room 실시간 노출</span></span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>AWS 서비스 조합 기반 실서비스 운영</strong><span class="goal-metric">인프라 구성·자동 배포·도메인 연결·<span class="goal-hit">운영 비용 조정</span></span></span></li>
         </ul>
@@ -694,9 +694,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="page-fill">
     <div class="mini-grid c3 fill">
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">RPCN 호출 프로토콜 역공학과 클라이언트 검증</span></div>
+        <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">RPCN 바이너리 프로토콜 역공학과 클라이언트 검증</span></div>
         <div class="mc-box mc-problem"><div class="mc-label">문제</div>공식 SDK와 게임별 호출 명세 부재로 요청 순서와 바이너리 헤더 규칙 확인 불가.</div>
-        <div class="mc-box mc-solution"><div class="mc-label">해결</div>Rust RPCN 서버 분석 기반 호출 프로토콜 역공학 및 Python 클라이언트 구현.</div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div>Rust RPCN 서버 분석 기반 바이너리 프로토콜 역공학 및 Python 클라이언트 구현.</div>
         <div class="mc-box mc-result"><div class="mc-label">성과</div>서버 목록, 방 검색, 리더보드, 스코어 조회 등 <strong>프로토콜 명령 7종</strong>의 단위 테스트와 통합 테스트 검증.</div>
       </div>
       <div class="mini-card">
