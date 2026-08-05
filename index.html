@@ -786,7 +786,140 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">08</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 9 — KTX 아키텍처 결정 + SLO ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 9 — KTX 시스템 아키텍처 ══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-body">
+    <h2 class="page-title">🚄 KTX 티켓팅 — 시스템 아키텍처</h2>
+    <div class="page-fill">
+    <div class="row c2" style="align-items:start;">
+      <div>
+        <h3>구성 요소</h3>
+        <div class="arch-svg">
+          <svg viewBox="0 0 480 290" role="img" aria-label="KTX 구성 요소: Spring Boot가 admission·schedule·booking·reconcile 모듈로 구성되어 Redis(빠른 게이트)와 MySQL(정합성 원천)에 연결. 둘이 어긋나면 DB 기준으로 수렴">
+            <defs>
+              <marker id="ktx2-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
+              </marker>
+            </defs>
+            <rect x="50" y="10" width="380" height="70" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+            <text x="240" y="38" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#1f2328">Spring Boot 4.0</text>
+            <text x="240" y="58" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">admission · schedule · booking · reconcile</text>
+
+            <path d="M240 80 V96" fill="none" stroke="#57606a" stroke-width="1.5"/>
+            <path d="M240 96 H140 V108" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx2-arrow)"/>
+            <path d="M240 96 H340 V108" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx2-arrow)"/>
+
+            <rect x="50" y="112" width="180" height="130" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+            <text x="140" y="134" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">Redis 7</text>
+            <text x="140" y="150" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">빠른 게이트</text>
+            <text x="64" y="172" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#1f2328">avail:</text>
+            <text x="64" y="190" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#1f2328">active:</text>
+            <text x="64" y="208" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#1f2328">entry:</text>
+            <text x="64" y="226" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#1f2328">lock:</text>
+
+            <rect x="250" y="112" width="180" height="130" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+            <text x="340" y="134" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">MySQL 8</text>
+            <text x="340" y="150" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">정합성 원천</text>
+            <text x="264" y="172" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#1f2328">reservation</text>
+            <text x="264" y="190" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#1f2328">seat_inv</text>
+            <text x="264" y="208" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#1f2328">@Version</text>
+            <text x="264" y="226" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#1f2328">유니크 제약</text>
+
+            <text x="50" y="264" font-family="'JetBrains Mono',monospace" font-size="11" fill="#1f2328"><tspan font-weight="700" fill="#1a7f37">Redis</tspan> = 빠른 게이트, 부하를 앞단에서 흡수</text>
+            <text x="50" y="282" font-family="'JetBrains Mono',monospace" font-size="11" fill="#57606a">둘이 어긋나면 DB 기준으로 수렴</text>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <h3>예매 요청 경로</h3>
+        <div class="arch-svg">
+          <svg viewBox="0 0 480 380" role="img" aria-label="KTX 예매 요청 경로: 1,000 동시 요청이 입장 게이트(K=100, 초과 429 반려)와 원자 선점(SREM, 초과 409 반려)과 DB 전이(@Version, 충돌 409 반려)를 거쳐 확정 1건과 오버셀 0으로 끝남">
+            <defs>
+              <marker id="ktx3-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
+              </marker>
+              <marker id="ktx3-reject" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#cf222e"/>
+              </marker>
+            </defs>
+
+            <text x="180" y="20" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1f2328">1,000 동시 요청</text>
+            <path d="M180 28 V48" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
+
+            <rect x="60" y="50" width="240" height="54" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+            <text x="180" y="72" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1f2328">입장 게이트</text>
+            <text x="180" y="90" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">active:{id}</text>
+            <path d="M300 77 H370" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#ktx3-reject)"/>
+            <text x="374" y="81" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#cf222e">429</text>
+
+            <text x="180" y="119" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#0969da">K=100 통과</text>
+            <path d="M180 104 V128" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
+
+            <rect x="60" y="128" width="240" height="54" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+            <text x="180" y="150" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#0550ae">원자 선점</text>
+            <text x="180" y="168" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#1f2328">SREM avail:{id}</text>
+            <path d="M300 155 H370" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#ktx3-reject)"/>
+            <text x="374" y="159" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#cf222e">409</text>
+
+            <text x="180" y="197" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#0969da">승자 1명</text>
+            <path d="M180 182 V206" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
+
+            <rect x="60" y="206" width="240" height="54" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+            <text x="180" y="228" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">DB 전이</text>
+            <text x="180" y="246" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">@Version</text>
+            <path d="M300 233 H370" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#ktx3-reject)"/>
+            <text x="374" y="237" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#cf222e">409</text>
+
+            <path d="M180 260 V282" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
+            <text x="180" y="300" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">확정 1건, oversell 0</text>
+
+            <text x="60" y="326" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">탈락 요청은 즉시 반려. 뒤로 흘려보내지 않음</text>
+            <text x="60" y="342" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">앞의 두 게이트는 Redis에서 종료. DB에 닿지 않음</text>
+            <text x="60" y="358" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">정확성의 최종 방어선은 @Version 낙관 락</text>
+            <text x="60" y="374" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">선점을 꺼도 오버셀 0인 이유</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="page-num">09</div>
+</div>
+
+<!-- ══════════════════════════════════════ PAGE 10 — KTX 모듈 구성과 실행 환경 ══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-body">
+    <h2 class="page-title">🚄 KTX 티켓팅 — 모듈 구성과 실행 환경</h2>
+    <div class="page-fill">
+    <div class="row c2" style="align-items:start;">
+      <div>
+        <h3>모듈 구성</h3>
+        <table>
+          <thead><tr><th>모듈</th><th>역할</th></tr></thead>
+          <tbody>
+            <tr><td><strong>admission</strong></td><td>입장 제어. 활성자 카운터로 동시 세션 상한 K, 초과분 반려. 통과 시 입장 토큰 TTL 발급</td></tr>
+            <tr><td><strong>schedule</strong></td><td>운행편과 잔여석 조회. Redis 단기 캐시 + single-flight로 스탬피드 방어</td></tr>
+            <tr><td><strong>booking</strong></td><td>예매 생성, 확정, 취소. Redis Set 원자 선점 후 MySQL 전이. <code class="inline">@Version</code> 낙관 락이 최종 방어선</td></tr>
+            <tr><td><strong>reconcile</strong></td><td>Redis와 DB 불일치를 주기 점검, DB 기준 수렴. 감사 결과는 내부 엔드포인트로 노출</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>그 밖의 흐름과 실행 환경</h3>
+        <div class="card">
+          <p><strong>조회 경로</strong> 위 퍼널을 타지 않음. Redis 단기 캐시로 응답, 미스일 때만 single-flight로 DB 1회</p>
+          <p><strong>배경 스케줄러 2개</strong> 만료된 좌석 보유 회수 / 어긋난 상태 수렴</p>
+          <p><strong>실행</strong> Docker Compose로 앱과 MySQL 8, Redis 7</p>
+          <p><strong>부하 테스트</strong> 별도 Compose의 k6, 지표는 Prometheus와 Grafana</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="page-num">10</div>
+</div>
+
+<!-- ══════════════════════════════════════ PAGE 11 — KTX 아키텍처 결정 + SLO ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🚄 KTX 티켓팅 — 아키텍처 결정</h2>
@@ -795,16 +928,16 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div>
         <h3>Redis 동기 + 비가시 입장 제어</h3>
         <table>
-          <thead><tr><th>기준</th><th>Plan A · Redis 동기 (채택)</th><th>Plan B · MQ 비동기</th></tr></thead>
+          <thead><tr><th>기준</th><th>Plan A: Redis 동기 (채택)</th><th>Plan B: MQ 비동기</th></tr></thead>
           <tbody>
             <tr><td>정합성</td><td>분산 락 + 낙관 락</td><td>파티션 직렬화</td></tr>
             <tr><td>응답 UX</td><td>단순 (요청-응답 1회)</td><td>복잡 (추적/폴링)</td></tr>
             <tr><td>운영 복잡도</td><td>낮음</td><td>높음</td></tr>
-            <tr><td>학습/어필</td><td><strong>락 설계·경합 제어</strong></td><td>스트림·백프레셔</td></tr>
+            <tr><td>학습/어필</td><td><strong>락 설계와 경합 제어</strong></td><td>스트림과 백프레셔</td></tr>
           </tbody>
         </table>
         <div class="arch-svg" style="margin-top:12px;">
-          <svg viewBox="0 0 760 250" role="img" aria-label="KTX 2단 일관성: 조회는 결과적 일관성(Redis 단기캐시), 예매 확정은 강한 일관성(Redis 원자선점→DB), DB가 SoT">
+          <svg viewBox="0 0 760 250" role="img" aria-label="KTX 2단 일관성: 조회는 결과적 일관성(Redis 단기캐시), 예매 확정은 강한 일관성(Redis 원자선점→DB), DB가 정합성 원천">
             <defs>
               <marker id="ktx-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                 <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
@@ -816,42 +949,42 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
             <!-- 1층: 조회/표시 (결과적 일관성) -->
             <rect x="10" y="16" width="740" height="68" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
-            <text x="26" y="40" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#1f2328">조회 / 표시 <tspan fill="#57606a" font-size="11" font-weight="400">(운행 · 잔여석 · 매진)</tspan></text>
-            <text x="26" y="64" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#57606a">결과적 일관성 (staleness ≤ 2s) · Redis 단기캐시</text>
+            <text x="26" y="40" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#1f2328">조회 / 표시 <tspan fill="#57606a" font-size="11" font-weight="400">(운행, 잔여석, 매진)</tspan></text>
+            <text x="26" y="64" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#57606a">결과적 일관성 (staleness ≤ 2s), Redis 단기캐시</text>
 
             <!-- 2층: 예매 확정 (강한 일관성) -->
             <rect x="10" y="114" width="740" height="68" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
             <text x="26" y="138" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#0550ae">예매 확정 <tspan fill="#0969da" font-size="11" font-weight="400">(락 임계영역)</tspan></text>
-            <text x="26" y="162" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#1f2328">강한 일관성 · Redis 원자선점 (SREM/SPOP) → DB 전이</text>
+            <text x="26" y="162" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#1f2328">강한 일관성, Redis 원자선점 (SREM/SPOP) → DB 전이</text>
 
             <!-- 하단 캡션 -->
-            <text x="10" y="212" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#1f2328"><tspan font-weight="700" fill="#1a7f37">DB = SoT</tspan> (진실의 원천) · <tspan font-weight="700" fill="#0969da">Redis = 빠른 게이트</tspan></text>
-            <text x="10" y="232" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#57606a">부하 후 Reconciliation (60s) 이 DB로 드리프트 수렴</text>
+            <text x="10" y="212" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#1f2328"><tspan font-weight="700" fill="#1a7f37">DB = 정합성 원천</tspan>, <tspan font-weight="700" fill="#0969da">Redis = 빠른 게이트</tspan></text>
+            <text x="10" y="232" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="11.5" fill="#57606a">부하 후 Reconciliation (60s) 이 DB 기준으로 불일치 수렴</text>
           </svg>
         </div>
       </div>
       <div>
         <h3>검증 목표 — SLO</h3>
         <table>
-          <thead><tr><th>#</th><th>지표 / 목표</th><th>측정값 (P4)</th></tr></thead>
+          <thead><tr><th>지표 / 목표</th><th>측정값</th></tr></thead>
           <tbody>
-            <tr><td>S1</td><td>예매 응답 p95 ≤ 500ms</td><td>348~408ms ✅</td></tr>
-            <tr><td>S2</td><td>조회 p95 ≤ 200ms</td><td>캐시 on ~26ms ✅</td></tr>
-            <tr><td>S3</td><td>예매 확정 1,000 VU ≥ 200 TPS</td><td>833~863 TPS ✅</td></tr>
-            <tr><td><strong>S4</strong></td><td><strong>초과판매 0 / 중복 0</strong></td><td><strong>0 / 0 ✅</strong> (3회)</td></tr>
-            <tr><td>S5</td><td>5xx &lt; 1%</td><td>0.03~0.04% ✅</td></tr>
-            <tr><td>S6</td><td>임계점 수치화</td><td>천장 ~189 TPS → K=100 ✅</td></tr>
+            <tr><td>예매 응답 p95 ≤ 500ms</td><td>348~408ms ✅</td></tr>
+            <tr><td>조회 p95 ≤ 200ms</td><td>캐시 on ~26ms ✅</td></tr>
+            <tr><td>예매 확정 1,000 VU ≥ 200 TPS</td><td>833~863 TPS ✅</td></tr>
+            <tr><td><strong>초과판매 0 / 중복 0</strong></td><td><strong>0 / 0 ✅</strong> (3회)</td></tr>
+            <tr><td>5xx &lt; 1%</td><td>0.03~0.04% ✅</td></tr>
+            <tr><td>임계점 수치화</td><td>천장 ~189 TPS → K=100 ✅</td></tr>
           </tbody>
         </table>
-        <div class="tradeoff-note" style="margin-top:12px;">"남은 좌석 수가 화면마다 달라 보이는" 불일치는 버그가 아니라 조회 속도를 위해 의도적으로 감수한 트레이드오프 — 정확성이 필요한 예매 확정만 강한 일관성으로 격리하고, 그 경계를 SLO 수치(S2 staleness ≤ 2s · S4 oversell 0)로 못박았다.</div>
+        <div class="tradeoff-note" style="margin-top:12px;">남은 좌석 수가 화면마다 달라 보이는 불일치는 버그가 아니라 조회 속도를 위해 의도적으로 감수한 트레이드오프다. 정확성이 필요한 예매 확정만 강한 일관성으로 격리하고, 그 경계를 SLO 수치(조회 staleness ≤ 2s, 초과판매 0건)로 못박았다.</div>
       </div>
     </div>
   </div>
   </div>
-  <div class="page-num">09</div>
+  <div class="page-num">11</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 10 — KTX 핵심 개선과 성과 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 12 — KTX 핵심 개선과 성과 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🚄 KTX 티켓팅 — 핵심 개선과 성과</h2>
@@ -864,19 +997,19 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="mc-box mc-result"><div class="mc-label">성과</div><div class="mc-copy">성공 1건, <strong>초과 판매와 중복 0건</strong>(3회).</div></div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">조회 캐시 스탬피드 방어</span></div>
+        <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">조회 캐시 스탬피드 방어: single-flight</span></div>
         <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">DB 재고 집계 시 p95 8~9초, TTL 만료 시 스탬피드.</div></div>
         <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">Redis TTL 1초 캐시와 single-flight 적용.</div></div>
         <div class="mc-box mc-result"><div class="mc-label">성과</div><div class="mc-copy"><strong>p95 26ms</strong>, <strong>2,497 TPS</strong>.</div></div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">비가시 입장 제어로 피크 흡수</span></div>
+        <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">비가시 입장 제어: 대기열 없이 피크 흡수</span></div>
         <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">입장 제어 부재 시 p95 22초, VU 2,000, 38k drop.</div></div>
         <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">Redis 활성자 카운터 <code class="inline">K=100</code>, 초과분 즉시 반려.</div></div>
         <div class="mc-box mc-result"><div class="mc-label">성과</div><div class="mc-copy">초과분 <strong>85.4% 반려</strong>, <strong>drop 0</strong>.</div></div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">Redis와 DB 불일치 보정</span></div>
+        <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">Redis와 DB 불일치 보정: 되돌리는 쪽이 더 위험하다</span></div>
         <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">Redis와 DB 분리 갱신으로 롤백 또는 크래시 후 불일치.</div></div>
         <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">제거는 상시 수행하고 오버셀 위험이 있는 최근 5분 선점 복원은 보류.</div></div>
         <div class="mc-box mc-result"><div class="mc-label">성과</div><div class="mc-copy"><strong>60초 주기 DB 기준 수렴</strong>.</div></div>
@@ -884,10 +1017,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
   </div>
   </div>
-  <div class="page-num">10</div>
+  <div class="page-num">12</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 11 — LiDAR 프로젝트 요약 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 13 — LiDAR 프로젝트 요약 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
@@ -926,10 +1059,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
   </div>
   </div>
-  <div class="page-num">11</div>
+  <div class="page-num">13</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 12 — LiDAR 핵심 개선과 성과 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 14 — LiDAR 핵심 개선과 성과 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🛩️ LiDAR — 핵심 개선과 성과</h2>
@@ -974,10 +1107,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
   </div>
   </div>
-  <div class="page-num">12</div>
+  <div class="page-num">14</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 13 — AI 워크플로우 프로젝트 요약 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 15 — AI 워크플로우 프로젝트 요약 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
@@ -1009,10 +1142,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">13</div>
+  <div class="page-num">15</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 14 — AI 사례 1 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 16 — AI 사례 1 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🔁 AI 워크플로우 — 사내 프로젝트 개선 파이프라인</h2>
@@ -1042,10 +1175,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">14</div>
+  <div class="page-num">16</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 15 — AI 공통 협업 워크플로우 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 17 — AI 공통 협업 워크플로우 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🔁 AI 워크플로우 — 공통 인간·AI 협업</h2>
@@ -1078,7 +1211,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">15</div>
+  <div class="page-num">17</div>
 </div>
 
 </div><!-- /.deck -->
@@ -1086,7 +1219,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- 화면 전용 오버레이 네비게이션 (인쇄 시 숨김) -->
 <div class="deck-nav" id="deckNav">
   <button id="prevPage" aria-label="이전 페이지">◀</button>
-  <span class="indicator" id="pageIndicator">1 / 15</span>
+  <span class="indicator" id="pageIndicator">1 / 17</span>
   <button id="nextPage" aria-label="다음 페이지">▶</button>
 </div>
 
