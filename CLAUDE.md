@@ -37,8 +37,8 @@ README, `.cursor` 규칙, Copilot 지침은 없다.
 특정한 내부 구조를 가진 손으로 작성한 단일 파일이다. 수정할 때 이 구조를 유지할 것:
 
 - **문서 골격은 `.deck` > `.page` 하나뿐**이다. `<section>`도, 사이드바도, 모바일 헤더도 없다. 앵커 링크로 이동하는 스크롤 문서가 아니라 **페이지를 넘기는 덱**이다([PDF 내보내기](#pdf-내보내기)에 구조 상세).
-- **페이지 내부 골격**: `.page` > `.page-body`(15쪽 전부) + `.page-num`(우하단 쪽번호, 15쪽 전부). 그 안은 페이지마다 다르다. `.page-fill`(본문을 남는 공간 중앙에 배치)이 14쪽, `h1`/`h2.page-title`이 10쪽, `.page-kicker`(작은 라벨)는 표지 1쪽에만 있다. **`.page-body`와 `.page-num`만 필수로 보고, 나머지는 페이지 성격에 맞게 고른다.**
-- **HTML 주석의 `PAGE N` 번호는 실제 구조와 어긋날 수 있다.** 페이지를 지우거나 재배치한 흔적이 남을 수 있으므로 **실제 쪽번호는 `.page-num`의 값(01~15)이 정답**이며 이쪽이 화면에도 표시된다. 페이지를 손대면 `.page-num`을 먼저 맞춘다.
+- **페이지 내부 골격**: `.page` > `.page-body`(전 페이지) + `.page-num`(우하단 쪽번호, 전 페이지). 그 안은 페이지마다 다르다. `.page-fill`(본문을 남는 공간 중앙에 배치)이 대다수, `h1`/`h2.page-title`이 표지 제외 대부분, `.page-kicker`(작은 라벨)는 표지 1쪽에만 있다. **`.page-body`와 `.page-num`만 필수로 보고, 나머지는 페이지 성격에 맞게 고른다.**
+- **HTML 주석의 `PAGE N` 번호는 실제 구조와 어긋날 수 있다.** 페이지를 지우거나 재배치한 흔적이 남을 수 있으므로 **실제 쪽번호는 `.page-num`의 값이 정답**이며 이쪽이 화면에도 표시된다. 페이지를 손대면 `.page-num`을 먼저 맞춘다.
 - **테마**는 `:root`의 CSS 커스텀 프로퍼티(`--bg`, `--accent` 등)로 정의된 GitHub 스타일 **라이트 팔레트**다(과거 다크에서 전환. PDF와 색을 일치시키기 위함). 색상은 하드코딩하지 말고 이 변수를 재사용한다. 페이지 크기 변수(`--page-w` 등)도 같은 곳에 있다.
 - **컴포넌트를 새로 만들기 전에 기존 어휘를 먼저 찾을 것.** 이미 있는 것들: `.row.c2`(2단 그리드), `.mini-card`(`.mc-head`/`.mc-num`/`.mc-title`/`.mc-box`/`.mc-problem`/`.mc-result`/`.mc-label`)로 만드는 문제와 성과 카드, `.goal-item`(`.goal-check`/`.goal-text`/`.goal-metric`/`.goal-hit`)의 핵심 목표 체크리스트, `.learn-card`/`.learn-icon`의 배운 점, `.pill`(+`.pill-green`/`.pill-blue`/`.pill-purple`), `.tag`, `.badge`, `code.inline`, `.ascii-box`, `.compare-grid`.
 - **CSS는 배너 주석으로 구역이 나뉘어 있다**: 페이지 공통 요소 → 페이지별(표지/경력/프로젝트 개요/프로젝트 상세 공통) → 화면 전용 네비 → 반응형 zoom. 새 스타일은 해당 구역에 넣는다.
@@ -53,6 +53,7 @@ README, `.cursor` 규칙, Copilot 지침은 없다.
 - `index.html`은 **자기완결형**으로 유지한다(빌드 단계 없음, CDN 링크 외 로컬 외부 자산 없음). `file://`로 열거나 아무 정적 호스트에 올려도 동작해야 한다.
 - `PORTFOLIO.md`의 `[YOUR_ID]`, `[YOUR_DOMAIN]` 플레이스홀더는 의도된 것이다 — 임의의 실제 값으로 채우지 않는다.
 - 콘텐츠가 바뀌면 `content/`의 해당 md를 먼저 수정하고, 그 뒤 `index.html`에 반영한다([콘텐츠 작업 순서](#콘텐츠-작업-순서-중요)).
+- 기술 스택 아이콘(`.tech-logo`의 `src`)은 `https://cdn.simpleicons.org/${slug}` 형태로 쓴다. slug를 모르면 `https://svglogos.dev/#search=${tech_name}`에서 찾는다.
 
 ## Git 작업 규칙 (중요)
 
@@ -87,7 +88,7 @@ README, `.cursor` 규칙, Copilot 지침은 없다.
 - **print 블록이 하는 일(이게 전부)**: `body` 배경 흰색 + `print-color-adjust: exact`, `@page` 가로 + 여백 0, `.deck { zoom: 1 !important }`(화면 반응형 zoom 무력화), `.page`의 `margin`과 `box-shadow` 제거, `.deck-nav` 숨김, `transition` 제거. **`break-inside: avoid` 규칙은 없고 필요하지도 않다** — 페이지 높이가 고정이라 요소가 페이지를 걸칠 일이 없다.
 - **트레이드오프**: 페이지 나눔이 수동이므로 콘텐츠를 늘리면 자동으로 다음 장으로 넘어가지 않고 **잘린다.** 자유롭게 쓰고 나중에 흘려보내는 방식이 아니라, 한 장에 들어갈 분량을 맞춰 쓰는 방식이다. 분량이 넘치면 `.page`를 새로 추가한다.
 
-**현재 쪽수**: `.page` 15개. 페이지를 추가하거나 지우면 `.deck-nav`의 인디케이터는 스크립트가 자동으로 갱신한다(HTML의 초기값은 하드코딩이라 실제 개수와 다를 수 있다).
+**현재 쪽수**: `.page` 17개. 페이지를 추가하거나 지우면 `.deck-nav`의 인디케이터는 스크립트가 자동으로 갱신한다(HTML의 초기값은 하드코딩이라 실제 개수와 다를 수 있다 — 페이지를 손대면 `#pageIndicator`의 초기값도 함께 맞춘다).
 
 **검증 방법 (중요)**: PDF 결과는 추측하지 말고 **브라우저로 직접 확인**한다. 이 환경엔 PDF 래스터라이저(poppler)가 없다. `file://`는 Playwright에서 차단되므로 **반드시 http로 서빙**한다(`python -m http.server`).
 
