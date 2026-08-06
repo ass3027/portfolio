@@ -180,6 +180,7 @@ code.inline { font-family: var(--mono); font-size: 12px; padding: 1px 5px; backg
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th { text-align: left; padding: 7px 12px; background: var(--bg-card2); border: 1px solid var(--border); color: var(--text-muted); font-weight: 600; font-size: 12px; }
 td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
+.module-table-tall td, .module-table-tall th { padding-top: 17.8px; padding-bottom: 17.8px; }
 
 .ascii-box { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; font-family: var(--mono); font-size: 12px; line-height: 1.55; color: #8b949e; overflow: hidden; white-space: pre; }
 .arch-svg { background: var(--bg-card2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; }
@@ -508,61 +509,57 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <h2 class="page-title">🎮 Tag2Now — 시스템 아키텍처</h2>
     <div class="page-fill">
-    <div class="arch-svg">
-      <svg viewBox="0 16 760 276" role="img" aria-label="Tag2Now 시스템 아키텍처: RPCN 서버에서 RpcnClient로 수집, FastAPI 애플리케이션이 Redis와 PostgreSQL/DynamoDB에 연결">
-        <defs>
-          <marker id="t2n-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
-          </marker>
-        </defs>
-
-        <!-- 연결선 (박스 뒤로) -->
-        <line x1="380" y1="70" x2="380" y2="104" stroke="#57606a" stroke-width="1.5" marker-end="url(#t2n-arrow)"/>
-        <path d="M300 178 V210 H210 V236" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#t2n-arrow)"/>
-        <path d="M460 178 V210 H550 V236" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#t2n-arrow)"/>
-
-        <!-- 1층: RPCN Server -->
-        <rect x="200" y="20" width="360" height="50" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
-        <text x="380" y="40" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#1f2328">RPCN Server (PSN)</text>
-        <text x="380" y="57" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#57606a">TCP/TLS · Binary + Protobuf</text>
-
-        <!-- 화살표 라벨 -->
-        <text x="392" y="92" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#0969da">RpcnClient (역공학·검증)</text>
-
-        <!-- 2층: FastAPI Application -->
-        <rect x="140" y="106" width="480" height="72" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
-        <text x="380" y="128" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#0550ae">FastAPI Application</text>
-        <text x="380" y="147" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#1f2328">Matching · History · Community</text>
-
-        <!-- 3층: Redis -->
-        <rect x="120" y="238" width="180" height="52" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
-        <text x="210" y="260" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">Redis</text>
-        <text x="210" y="277" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">캐시 계층</text>
-
-        <!-- 3층: PostgreSQL / DynamoDB -->
-        <rect x="460" y="238" width="180" height="52" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
-        <text x="550" y="260" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">PostgreSQL / DynamoDB</text>
-        <text x="550" y="277" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">영속 저장</text>
-      </svg>
-    </div>
-
-    <div class="row c2" style="margin-top:20px; align-items:start;">
-      <div>
-        <h3>모듈 구성</h3>
-        <table>
-          <thead><tr><th>모듈</th><th>역할</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Matching</strong></td><td>RPCN 서버에서 방/리더보드 실시간 수집, Redis 캐시, 매칭 탐지</td></tr>
-            <tr><td><strong>History</strong></td><td>스냅샷 → PostgreSQL 저장, 시간별/일별 통계 집계</td></tr>
-            <tr><td><strong>Community</strong></td><td>게시판과 댓글 CRUD</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h3>운영 현황</h3>
-        <div class="card" style="margin:0;">
-          <p style="margin:0;">AWS Lightsail 단일 서버 + Docker Compose로 실서비스 운영 중(<code class="inline">match.tag2now.click</code>). ECS 대비 비용을 낮추기 위해 규모에 맞춰 인프라를 다운스케일했다. <strong>오픈 카카오톡방의 실사용자 피드백을 직접 받아 오류 수정·기능 개선을 반복</strong>하며 서비스를 유지하고 있다.</p>
+    <div style="display:flex; gap:20px; align-items:stretch;">
+      <div style="display: flex; flex:0 0 auto; width:30%; min-width:0; position:relative;">
+        <h3 style="position:absolute; top:-30px; left:0; margin:0;">모듈 구성</h3>
+        <div style="height: 100%; display:flex; flex-direction:column;">
+          <table class="module-table-tall" style="flex:1 1 0; height:100%;">
+            <thead><tr><th>모듈</th><th>역할</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Matching</strong></td><td>RPCN 서버에서 방/리더보드 실시간 수집, Redis 캐시, 매칭 탐지</td></tr>
+              <tr><td><strong>History</strong></td><td>스냅샷 → PostgreSQL 저장, 시간별/일별 통계 집계</td></tr>
+              <tr><td><strong>Community</strong></td><td>게시판과 댓글 CRUD</td></tr>
+            </tbody>
+          </table>
         </div>
+      </div>
+
+      <div class="arch-svg" style="flex:0 0 auto; width:60%;">
+        <svg viewBox="120 16 520 276" role="img" aria-label="Tag2Now 시스템 아키텍처: RPCN 서버에서 RpcnClient로 수집, FastAPI 애플리케이션이 Redis와 PostgreSQL/DynamoDB에 연결">
+          <defs>
+            <marker id="t2n-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
+            </marker>
+          </defs>
+
+          <!-- 연결선 (박스 뒤로) -->
+          <line x1="380" y1="70" x2="380" y2="125" stroke="#57606a" stroke-width="1.5" marker-end="url(#t2n-arrow)"/>
+          <path d="M300 181 V210 H210 V236" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#t2n-arrow)"/>
+          <path d="M460 181 V210 H550 V236" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#t2n-arrow)"/>
+
+          <!-- 1층: RPCN Server -->
+          <rect x="200" y="20" width="360" height="50" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+          <text x="380" y="40" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#1f2328">RPCN Server (PSN)</text>
+          <text x="380" y="57" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#57606a">TCP/TLS · Binary + Protobuf</text>
+
+          <!-- 화살표 라벨 -->
+          <text x="392" y="113" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#0969da">RpcnClient (역공학·검증)</text>
+
+          <!-- 2층: FastAPI Application -->
+          <rect x="140" y="127" width="480" height="54" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+          <text x="380" y="152" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#0550ae">FastAPI Application</text>
+          <text x="380" y="169" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="11" fill="#1f2328">Matching · History · Community</text>
+
+          <!-- 3층: Redis -->
+          <rect x="120" y="238" width="180" height="52" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+          <text x="210" y="260" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">Redis</text>
+          <text x="210" y="277" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">캐시 계층</text>
+
+          <!-- 3층: PostgreSQL / DynamoDB -->
+          <rect x="460" y="238" width="180" height="52" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+          <text x="550" y="260" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="13" font-weight="700" fill="#1a7f37">PostgreSQL / DynamoDB</text>
+          <text x="550" y="277" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10.5" fill="#57606a">영속 저장</text>
+        </svg>
       </div>
     </div>
   </div>
@@ -595,9 +592,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <symbol id="p7-ic-python" viewBox="0 0 256 255"><defs><linearGradient id="p7-python-SVGg39WleeP" x1="12.959%" x2="79.639%" y1="12.039%" y2="78.201%"><stop offset="0%" stop-color="#387eb8"/><stop offset="100%" stop-color="#366994"/></linearGradient><linearGradient id="p7-python-SVGlXoRkc4T" x1="19.128%" x2="90.742%" y1="20.579%" y2="88.429%"><stop offset="0%" stop-color="#ffe052"/><stop offset="100%" stop-color="#ffc331"/></linearGradient></defs><path fill="url(#p7-python-SVGg39WleeP)" d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.319V33.97S194.67.072 126.916.072M92.802 19.66a11.12 11.12 0 0 1 11.13 11.13a11.12 11.12 0 0 1-11.13 11.13a11.12 11.12 0 0 1-11.13-11.13a11.12 11.12 0 0 1 11.13-11.13"/><path fill="url(#p7-python-SVGlXoRkc4T)" d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.32v56.013s-5.235 33.897 62.518 33.897m34.114-19.586a11.12 11.12 0 0 1-11.13-11.13a11.12 11.12 0 0 1 11.13-11.131a11.12 11.12 0 0 1 11.13 11.13a11.12 11.12 0 0 1-11.13 11.13"/></symbol>
 <symbol id="p7-ic-aws-ecr" viewBox="0 0 80 80"><?xml version="1.0" encoding="UTF-8"?>
 
-    
-    
-    
+
+
+
     <defs>
         <linearGradient x1="0%" y1="100%" x2="100%" y2="0%" id="p7-aws-ecr-linearGradient-1">
             <stop stop-color="#C8511B" offset="0%"></stop>
@@ -717,7 +714,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <h2 class="page-title">🎮 Tag2Now — 핵심 개선과 성과</h2>
     <div class="page-fill">
-    <div class="mini-grid c3 fill improvement-flow">
+    <div class="mini-grid c2 improvement-flow">
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">바이너리 프로토콜 역공학과 클라이언트 검증</span></div>
         <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">공식 SDK와 게임별 호출 명세 부재로 요청 순서와 바이너리 헤더 규칙 확인 불가.</div></div>
@@ -735,6 +732,12 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">동일 화면의 사용자별 반복 조회로 외부 RPCN 서버에 부하 전가 위험.</div></div>
         <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">Redis 공유 캐시에 방 목록 10초, 리더보드 60초, 서버 목록 1시간 TTL 적용.</div></div>
         <div class="mc-box mc-result"><div class="mc-label">성과</div><div class="mc-copy">외부 RPCN 요청 주기 제한과 다중 인스턴스의 캐시 공유.</div></div>
+      </div>
+      <div class="mini-card">
+        <div class="mc-head"><span class="mc-num">4</span><span class="mc-title">실서비스 운영: 비용 다운스케일과 실사용자 피드백 반영</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">서비스 규모 대비 ECS 기반 인프라의 고정 비용 과다, 실사용자 이슈 파악 채널 부재.</div></div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">AWS Lightsail 단일 서버와 Docker Compose로 다운스케일, 오픈 카카오톡방으로 실사용자 제보 채널 운영.</div></div>
+        <div class="mc-box mc-result"><div class="mc-label">성과</div><div class="mc-copy"><code class="inline">match.tag2now.click</code> 실서비스 운영과 <strong>free tier</strong> 수준 비용, 제보 기반 오류 수정·기능 개선 반영.</div></div>
       </div>
     </div>
   </div>
