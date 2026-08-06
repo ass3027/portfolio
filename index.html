@@ -482,9 +482,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div>
         <h3>핵심 목표</h3>
         <ul class="goal-list">
+          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>AWS 서비스 조합 기반 실서비스 운영</strong><span class="goal-metric">인프라 구성·자동 배포·도메인 연결·<span class="goal-hit">운영 비용 조정</span></span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>SDK 없는 RPCN 바이너리 프로토콜 역공학</strong><span class="goal-metric">Rust 서버 직접 분석 · <span class="goal-hit">프로토콜 명령 7종 테스트 검증</span></span></span></li>
           <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 매칭 상태 시각화</strong><span class="goal-metric">스냅샷 Diff 기반 매칭 탐지와 <span class="goal-hit">Phantom Room 실시간 노출</span></span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>AWS 서비스 조합 기반 실서비스 운영</strong><span class="goal-metric">인프라 구성·자동 배포·도메인 연결·<span class="goal-hit">운영 비용 조정</span></span></span></li>
         </ul>
       </div>
       <div>
@@ -703,7 +703,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           </g>
         </svg>
       </div>
-      <div class="tradeoff-note" style="margin-top:10px;">관리 요소 <strong>다수(ALB·태스크 정의·서비스·관리형 DB) → Docker Compose 하나</strong> · 고정 과금 → <strong>free tier</strong> · 운영 복잡도↓. 가용성은 단일 노드(SPOF)로 감수한 트레이드오프다. 파이프라인 ①테스트·빌드(<strong>E2E 게이트</strong> 통과 필수) ②ECR 푸시(OIDC keyless)는 그대로 재사용하고 <strong>③배포 단계만 교체</strong>했다. 배포 실패는 <code class="inline">wait-for-service-stability</code>로 워크플로우 레벨에서 감지했다.</div>
+      <div class="tradeoff-note" style="margin-top:10px;">관리 요소 <strong>다수(ALB·태스크 정의·서비스·관리형 DB) → Docker Compose 하나</strong> · 고정 과금 → <strong>free tier</strong> · 운영 복잡도↓. 가용성은 단일 노드(SPOF)로 감수한 트레이드오프다.</div>
     </div>
   </div>
   <div class="page-num">06</div>
@@ -723,7 +723,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">스냅샷 Diff 기반 매칭 탐지</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">매칭 시작 시 방이 목록에서 사라져 조회 API만으로 매칭 중 유저 파악 불가.</div></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">매칭 시작 시 방이 목록에서 사라지고, 조회 중인 유저는 애초에 응답에 없어 조회 API만으로 매칭 중 유저(생성자·조회자 모두) 파악 불가.</div></div>
         <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">사라진 RANK_MATCH 방의 매칭 시작 판정과 방 재등장 및 TTL 만료 기반 상태 해제.</div></div>
         <div class="mc-box mc-result"><div class="mc-label">성과</div><div class="mc-copy">매칭 중 유저의 <strong>Phantom Room 실시간 노출</strong>.</div></div>
       </div>
