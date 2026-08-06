@@ -68,13 +68,13 @@ RPCN은 오픈소스지만 게임별 호출 방식은 문서화돼 있지 않고
 
 - **배포**: 태스크 정의 갱신 → 서비스 업데이트, 롤링 배포
 - **애플리케이션 계층**: ALB, ECS Fargate, 동일 ECR 이미지
-- **데이터 계층**: RDS, DynamoDB, ElastiCache
+- **데이터 계층(관리형)**: RDS, DynamoDB, ElastiCache
 
 ### AFTER: Lightsail
 
 - **배포**: SSH 접속 → `docker compose pull && up -d`
 - **애플리케이션 계층**: Lightsail 인스턴스, Docker Compose, Nginx, FastAPI Backend
-- **데이터 계층**: 컨테이너 PostgreSQL, Redis
+- **데이터 계층(컨테이너)**: PostgreSQL, Redis
 
 ### 트레이드오프
 
