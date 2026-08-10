@@ -719,7 +719,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <h2 class="page-title">🎮 Tag2Now — 인프라 비교 v2 (좌: 사용자 흐름 · 우: 개발자 흐름)</h2>
     <div class="page-fill">
       <div class="arch-svg">
-        <svg viewBox="0 0 990 540" font-family="'JetBrains Mono',monospace" role="img" aria-label="Before/After 인프라 비교 버전 2, 마름모형 배치. 좌측 상단에 요청·배포 범례를 두고, BEFORE·AFTER 카드의 세로 중앙 높이에 좌측 사용자 요청 경로 트랙(사용자·Route53·CloudFront)과 우측 개발자 배포 경로 트랙(개발자·GitHub Actions·ECR)을 마름모 꼭짓점처럼 배치한다. 중앙 위에 BEFORE 카드(ALB·ECS Fargate·데이터 계층 관리형), 아래에 AFTER 카드(nginx·backend·데이터 계층 컨테이너)를 두고, 각 카드의 배포 단계 설명은 카드 우측 바깥의 별도 라벨로 뺀다.">
+        <svg viewBox="0 0 990 540" font-family="'JetBrains Mono',monospace" role="img" aria-label="Before/After 인프라 비교 버전 2, 마름모형 배치. 좌측 상단에 요청·배포 범례를 두고, BEFORE·AFTER 카드의 세로 중앙 높이에 좌측 사용자 요청 경로 트랙(사용자·Route53·CloudFront)과 우측 개발자 배포 경로 트랙(개발자·GitHub Actions·ECR)을 마름모 꼭짓점처럼 배치한다. 중앙 위에 BEFORE 카드(ALB·ECS Fargate·데이터 계층 관리형), 아래에 AFTER 카드(docker compose 하나가 nginx·backend와 데이터 계층 컨테이너를 모두 감싼다)를 두고, 각 카드의 배포 단계 설명은 카드 우측 바깥의 별도 라벨로 뺀다.">
           <defs>
             <marker id="v2a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0969da"/></marker>
             <marker id="v2p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8250df"/></marker>
@@ -790,19 +790,21 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <rect x="276" y="328" width="380" height="196" rx="10" fill="#ffffff" stroke="#d0d7de"/>
           <rect x="276" y="328" width="380" height="7" rx="3" fill="#1a7f37"/>
           <text x="294" y="357" font-size="15" font-weight="700" fill="#1a7f37">AFTER — Lightsail</text>
-          <!-- 4개 서비스 전부를 감싸는 Docker Compose 박스 (개별 테두리 대신 하나로) -->
-          <rect x="286" y="378" width="356" height="118" rx="8" fill="none" stroke="#2496ED" stroke-width="1.3" stroke-dasharray="4 3"/>
-          <use href="#p7-ic-docker" x="294" y="384" width="17" height="17"/>
-          <text x="317" y="397" font-size="10" font-weight="700" fill="#2496ED">docker compose</text>
-          <use href="#p7-ic-nginx" x="300" y="414" width="38" height="38"/>
-          <text x="319" y="470" text-anchor="middle" font-size="11" fill="#1f2328">nginx</text>
-          <line x1="342" y1="433" x2="378" y2="433" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
-          <use href="#p7-ic-python" x="382" y="414" width="38" height="38"/>
-          <text x="401" y="470" text-anchor="middle" font-size="11" font-weight="700" fill="#1f2328">backend</text>
-          <line x1="424" y1="433" x2="460" y2="433" stroke="#0969da" stroke-width="1.4" marker-end="url(#v2a)"/>
-          <use href="#p7-ic-postgresql" x="464" y="414" width="38" height="38"/><text x="483" y="470" text-anchor="middle" font-size="9.5" fill="#1f2328">postgresql</text>
-          <use href="#p7-ic-redis" x="546" y="414" width="38" height="38"/><text x="565" y="470" text-anchor="middle" font-size="11" fill="#1f2328">redis</text>
-          <text x="294" y="508" font-size="11" fill="#57606a">단일 노드 · free tier</text>
+          <!-- 4개 서비스 전부를 감싸는 Docker Compose 박스, 그 안에 데이터 계층 박스 (BEFORE와 대칭) -->
+          <rect x="286" y="372" width="356" height="126" rx="8" fill="none" stroke="#2496ED" stroke-width="1.3" stroke-dasharray="4 3"/>
+          <use href="#p7-ic-docker" x="293" y="377" width="16" height="16"/>
+          <text x="314" y="389" font-size="9.5" font-weight="700" fill="#2496ED">docker compose</text>
+          <use href="#p7-ic-nginx" x="296" y="416" width="38" height="38"/>
+          <text x="315" y="472" text-anchor="middle" font-size="11" fill="#1f2328">nginx</text>
+          <line x1="338" y1="435" x2="372" y2="435" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
+          <use href="#p7-ic-python" x="376" y="416" width="38" height="38"/>
+          <text x="395" y="472" text-anchor="middle" font-size="11" font-weight="700" fill="#1f2328">backend</text>
+          <line x1="418" y1="435" x2="446" y2="435" stroke="#0969da" stroke-width="1.4" marker-end="url(#v2a)"/>
+          <rect x="450" y="392" width="184" height="92" rx="8" fill="#fffdf9" stroke="#e8cba6"/>
+          <text x="542" y="408" text-anchor="middle" font-size="10.5" fill="#57606a">데이터 계층 (컨테이너)</text>
+          <use href="#p7-ic-postgresql" x="481" y="416" width="38" height="38"/><text x="500" y="472" text-anchor="middle" font-size="9.5" fill="#1f2328">postgresql</text>
+          <use href="#p7-ic-redis" x="565" y="416" width="38" height="38"/><text x="584" y="472" text-anchor="middle" font-size="11" fill="#1f2328">redis</text>
+          <text x="294" y="515" font-size="11" fill="#57606a">단일 노드 · free tier</text>
 
           <!-- AFTER 배포 라벨 (카드 우측 바깥, 아이콘 + 한 줄 요약) -->
           <rect x="678" y="404" width="140" height="52" rx="8" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
