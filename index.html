@@ -830,12 +830,24 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">08</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 9 — KTX 시스템 아키텍처 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 9 — KTX 모듈 구성과 구성 요소 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🚄 KTX 티켓팅 — 시스템 아키텍처</h2>
     <div class="page-fill">
     <div class="row c2" style="align-items:start;">
+      <div>
+        <h3>모듈 구성</h3>
+        <table>
+          <thead><tr><th>모듈</th><th>역할</th></tr></thead>
+          <tbody>
+            <tr><td><strong>admission</strong></td><td>입장 제어. 활성자 카운터로 동시 세션 상한 K, 초과분 반려. 통과 시 입장 토큰 TTL 발급</td></tr>
+            <tr><td><strong>schedule</strong></td><td>운행편과 잔여석 조회. Redis 단기 캐시 + single-flight로 스탬피드 방어</td></tr>
+            <tr><td><strong>booking</strong></td><td>예매 생성, 확정, 취소. Redis Set 원자 선점 후 MySQL 전이. <code class="inline">@Version</code> 낙관 락이 최종 방어선</td></tr>
+            <tr><td><strong>reconcile</strong></td><td>Redis와 DB 불일치를 주기 점검, DB 기준 수렴. 감사 결과는 내부 엔드포인트로 노출</td></tr>
+          </tbody>
+        </table>
+      </div>
       <div>
         <h3>구성 요소</h3>
         <div class="arch-svg">
@@ -874,6 +886,18 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           </svg>
         </div>
       </div>
+    </div>
+    </div>
+  </div>
+  <div class="page-num">09</div>
+</div>
+
+<!-- ══════════════════════════════════════ PAGE 10 — KTX 예매 요청 경로와 실행 환경 ══════════════════════════════════════ -->
+<div class="page">
+  <div class="page-body">
+    <h2 class="page-title">🚄 KTX 티켓팅 — 예매 요청 경로와 실행 환경</h2>
+    <div class="page-fill">
+    <div class="row c2" style="align-items:start;">
       <div>
         <h3>예매 요청 경로</h3>
         <div class="arch-svg">
@@ -923,30 +947,6 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <text x="60" y="374" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">선점을 꺼도 오버셀 0인 이유</text>
           </svg>
         </div>
-      </div>
-    </div>
-    </div>
-  </div>
-  <div class="page-num">09</div>
-</div>
-
-<!-- ══════════════════════════════════════ PAGE 10 — KTX 모듈 구성과 실행 환경 ══════════════════════════════════════ -->
-<div class="page">
-  <div class="page-body">
-    <h2 class="page-title">🚄 KTX 티켓팅 — 모듈 구성과 실행 환경</h2>
-    <div class="page-fill">
-    <div class="row c2" style="align-items:start;">
-      <div>
-        <h3>모듈 구성</h3>
-        <table>
-          <thead><tr><th>모듈</th><th>역할</th></tr></thead>
-          <tbody>
-            <tr><td><strong>admission</strong></td><td>입장 제어. 활성자 카운터로 동시 세션 상한 K, 초과분 반려. 통과 시 입장 토큰 TTL 발급</td></tr>
-            <tr><td><strong>schedule</strong></td><td>운행편과 잔여석 조회. Redis 단기 캐시 + single-flight로 스탬피드 방어</td></tr>
-            <tr><td><strong>booking</strong></td><td>예매 생성, 확정, 취소. Redis Set 원자 선점 후 MySQL 전이. <code class="inline">@Version</code> 낙관 락이 최종 방어선</td></tr>
-            <tr><td><strong>reconcile</strong></td><td>Redis와 DB 불일치를 주기 점검, DB 기준 수렴. 감사 결과는 내부 엔드포인트로 노출</td></tr>
-          </tbody>
-        </table>
       </div>
       <div>
         <h3>그 밖의 흐름과 실행 환경</h3>
