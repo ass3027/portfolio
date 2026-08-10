@@ -167,11 +167,6 @@ p { margin-bottom: 10px; }
 .card p { font-size: 14px; }
 .card p:last-child { margin-bottom: 0; }
 .tech-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
-/* 기술 스택 열이 옆 열(핵심 목표) 높이를 따라가도록: 열을 세로 flex로 만들고
-   그리드가 남는 높이를 채우며 행을 균등 분배한다. 카드 높이는 min-height가 아닌 행 높이가 결정.
-   해당 .row.c2에는 align-items:stretch가 인라인으로 걸려 있어야 열이 늘어난다. */
-.row.c2 > div:has(> .tech-grid) { display: flex; flex-direction: column; min-height: 0; }
-.row.c2 > div > .tech-grid { flex: 1 1 auto; grid-auto-rows: 1fr; }
 .tech-item { display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-card); box-shadow: var(--tech-card-shadow); font-size: 13px; font-weight: 600; }
 .tech-logos { width: 30px; height: 28px; padding: 3px; flex: 0 0 30px; display: flex; align-items: center; justify-content: center; gap: 3px; }
 .tech-logo { display: block; width: 20px; height: 20px; object-fit: contain; }
@@ -483,7 +478,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <p>RPCN은 오픈소스지만 게임의 호출 방식이 문서화돼 있지 않고 공식 SDK도 없다. Rust로 된 RPCN 서버를 직접 실행·분석해 바이너리 프로토콜을 역공학하고, 단위·통합 테스트로 검증한 Python 클라이언트를 구현하여 실시간 대시보드를 구축했다.</p>
     </div>
 
-    <div class="row c2" style="margin-top:18px; align-items:stretch;">
+    <div class="row c2" style="margin-top:18px; align-items:start;">
       <div>
         <h3>핵심 목표</h3>
         <ul class="goal-list">
@@ -892,7 +887,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <p><strong>N명이 한 좌석을 경합할 때 정확히 1명만 성공시키되(정합성), 그 정확성을 지키면서도 높은 처리량과 낮은 지연을 함께 보장하는(성능) 엔지니어링</strong>이 핵심이다. 예매 동시성 보장과 성능을 부하 테스트 실측으로 검증했다.</p>
     </div>
 
-    <div class="row c2" style="margin-top:18px; align-items:stretch;">
+    <div class="row c2" style="margin-top:18px; align-items:start;">
       <div>
         <h3>핵심 목표</h3>
         <ul class="goal-list">
@@ -1167,7 +1162,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <p>C++ 데이터 중계 서버의 간헐적 종료로 운영 안정성이 낮았고, 대기시간과 혼잡도 로직이 분산돼 유지보수도 어려웠다.</p>
     </div>
 
-    <div class="row c2" style="margin-top:14px; margin-bottom:10px; align-items:stretch;">
+    <div class="row c2" style="margin-top:14px; margin-bottom:10px; align-items:start;">
       <div>
         <h3>핵심 목표</h3>
         <ul class="goal-list">
@@ -1251,7 +1246,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="card">
         <p>AI 에이전트를 코드 생성 도구가 아닌 책임 경계, 승인 게이트, 검증 규칙을 갖춘 협업 시스템으로 설계하고 실제 작업에 적용했다. 코드 리뷰 결과를 후속 작업으로 연결하는 자동화와 모든 개발 작업에 적용하는 AI 협업 규율을 구축했다.</p>
       </div>
-      <div class="row c2" style="align-items:stretch; margin-top:14px;">
+      <div class="row c2" style="align-items:start; margin-top:14px;">
         <div>
           <h3>핵심 목표</h3>
           <ul class="goal-list">
