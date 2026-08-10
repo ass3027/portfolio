@@ -719,7 +719,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <h2 class="page-title">🎮 Tag2Now — 인프라 비교 v2 (좌: 사용자 흐름 · 우: 개발자 흐름)</h2>
     <div class="page-fill">
       <div class="arch-svg">
-        <svg viewBox="0 0 990 540" font-family="'JetBrains Mono',monospace" role="img" aria-label="Before/After 인프라 비교 버전 2, 마름모형 배치. 좌측 상단에 요청·배포 범례를 두고, BEFORE·AFTER 카드의 세로 중앙 높이에 좌측 사용자 요청 경로 트랙(사용자·Route53·CloudFront)과 우측 개발자 배포 경로 트랙(개발자·GitHub Actions·ECR)을 마름모 꼭짓점처럼 배치한다. 중앙 위에 BEFORE 카드(ALB·ECS Fargate·데이터 계층 관리형), 아래에 AFTER 카드(docker compose 하나가 nginx·backend와 데이터 계층 컨테이너를 모두 감싼다)를 두고, 각 카드의 배포 단계 설명은 카드 우측 바깥의 별도 라벨로 뺀다.">
+        <svg viewBox="0 0 990 500" font-family="'JetBrains Mono',monospace" role="img" aria-label="Before/After 인프라 비교 버전 2, 마름모형 배치. 좌측 상단에 요청·배포 범례를 두고, BEFORE·AFTER 카드의 세로 중앙 높이에 좌측 사용자 요청 경로 트랙(사용자·Route53·CloudFront)과 우측 개발자 배포 경로 트랙(개발자·GitHub Actions·ECR)을 마름모 꼭짓점처럼 배치한다. 중앙 위에 BEFORE 카드(ALB·ECS Fargate·데이터 계층 관리형), 아래에 AFTER 카드(docker compose 하나가 nginx·backend와 데이터 계층 컨테이너를 모두 감싼다)를 두고, 각 카드의 배포 단계 설명은 카드 우측 바깥의 별도 라벨로 뺀다.">
           <defs>
             <marker id="v2a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0969da"/></marker>
             <marker id="v2p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8250df"/></marker>
@@ -732,37 +732,38 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <text x="58" y="59" font-size="11.5" font-weight="700" fill="#8250df">배포</text>
 
           <!-- ── 좌측 트랙: 사용자 요청 경로 (카드 세로 중앙 높이, BEFORE·AFTER 공통) ── -->
-          <rect x="16" y="232" width="240" height="108" rx="12" fill="#ddf4ff" stroke="#0969da" stroke-width="1.3"/>
-          <text x="136" y="253" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0550ae">사용자 요청 경로 (공통)</text>
-          <rect x="30" y="270" width="38" height="38" rx="7" fill="#ffffff" stroke="#0969da" stroke-width="1"/>
-          <use href="#p7-ic-user" x="30" y="270" width="38" height="38" color="#0969da" style="color:#0969da"/>
-          <text x="49" y="326" text-anchor="middle" font-size="11" fill="#1f2328">사용자</text>
-          <line x1="70" y1="289" x2="110" y2="289" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
-          <use href="#p7-ic-aws-route53" x="114" y="270" width="38" height="38"/>
-          <text x="133" y="326" text-anchor="middle" font-size="11" fill="#1f2328">Route 53</text>
-          <line x1="154" y1="289" x2="194" y2="289" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
-          <use href="#p7-ic-aws-cloudfront" x="198" y="270" width="38" height="38"/>
-          <text x="217" y="326" text-anchor="middle" font-size="11" fill="#1f2328">CloudFront</text>
+          <rect x="16" y="196" width="240" height="108" rx="12" fill="#ddf4ff" stroke="#0969da" stroke-width="1.3"/>
+          <text x="136" y="217" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0550ae">사용자 요청 경로 (공통)</text>
+          <rect x="30" y="234" width="38" height="38" rx="7" fill="#ffffff" stroke="#0969da" stroke-width="1"/>
+          <use href="#p7-ic-user" x="30" y="234" width="38" height="38" color="#0969da" style="color:#0969da"/>
+          <text x="49" y="290" text-anchor="middle" font-size="11" fill="#1f2328">사용자</text>
+          <line x1="70" y1="253" x2="110" y2="253" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
+          <use href="#p7-ic-aws-route53" x="114" y="234" width="38" height="38"/>
+          <text x="133" y="290" text-anchor="middle" font-size="11" fill="#1f2328">Route 53</text>
+          <line x1="154" y1="253" x2="194" y2="253" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
+          <use href="#p7-ic-aws-cloudfront" x="198" y="234" width="38" height="38"/>
+          <text x="217" y="290" text-anchor="middle" font-size="11" fill="#1f2328">CloudFront</text>
 
           <!-- ── 우측 트랙: 개발자 배포 경로 (카드 세로 중앙 높이, BEFORE·AFTER 공통, 우→중앙 순서)
                배포 라벨(x 640~770)과 가로로 절반가량 겹치도록 좌측에 배치 ── -->
-          <rect x="748" y="232" width="226" height="108" rx="12" fill="#faf5ff" stroke="#8250df" stroke-width="1.3"/>
-          <text x="861" y="253" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6639ba">개발자 배포 경로 (공통)</text>
-          <use href="#p7-ic-aws-ecr" x="766" y="270" width="38" height="38"/>
-          <text x="785" y="326" text-anchor="middle" font-size="11" fill="#1f2328">ECR</text>
-          <line x1="844" y1="289" x2="808" y2="289" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
-          <rect x="848" y="270" width="38" height="38" rx="7" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
-          <use href="#p7-ic-github" x="848" y="270" width="38" height="38" color="#1f2328" style="color:#1f2328"/>
-          <text x="867" y="326" text-anchor="middle" font-size="9.5" fill="#1f2328">GitHub Actions</text>
-          <line x1="926" y1="289" x2="890" y2="289" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
-          <rect x="930" y="270" width="38" height="38" rx="7" fill="#ffffff" stroke="#8250df" stroke-width="1"/>
-          <use href="#p7-ic-dev" x="930" y="270" width="38" height="38" color="#8250df" style="color:#8250df"/>
-          <text x="949" y="326" text-anchor="middle" font-size="11" fill="#1f2328">개발자</text>
+          <rect x="748" y="196" width="226" height="108" rx="12" fill="#faf5ff" stroke="#8250df" stroke-width="1.3"/>
+          <text x="861" y="217" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6639ba">개발자 배포 경로 (공통)</text>
+          <use href="#p7-ic-aws-ecr" x="766" y="234" width="38" height="38"/>
+          <text x="785" y="290" text-anchor="middle" font-size="11" fill="#1f2328">ECR</text>
+          <line x1="844" y1="253" x2="808" y2="253" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <rect x="848" y="234" width="38" height="38" rx="7" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+          <use href="#p7-ic-github" x="848" y="234" width="38" height="38" color="#1f2328" style="color:#1f2328"/>
+          <text x="867" y="290" text-anchor="middle" font-size="9.5" fill="#1f2328">GitHub Actions</text>
+          <line x1="926" y1="253" x2="890" y2="253" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <rect x="930" y="234" width="38" height="38" rx="7" fill="#ffffff" stroke="#8250df" stroke-width="1"/>
+          <use href="#p7-ic-dev" x="930" y="234" width="38" height="38" color="#8250df" style="color:#8250df"/>
+          <text x="949" y="290" text-anchor="middle" font-size="11" fill="#1f2328">개발자</text>
 
           <!-- ── 중앙 위: BEFORE 카드 ── -->
-          <rect x="276" y="16" width="380" height="196" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+          <rect x="276" y="16" width="380" height="176" rx="10" fill="#ffffff" stroke="#d0d7de"/>
           <rect x="276" y="16" width="380" height="7" rx="3" fill="#cf222e"/>
           <text x="294" y="45" font-size="15" font-weight="700" fill="#cf222e">BEFORE — ECS Fargate</text>
+          <text x="486" y="45" font-size="11" fill="#57606a">AWS 관리형 서비스 조합</text>
           <use href="#p7-ic-aws-elb" x="290" y="110" width="38" height="38"/>
           <text x="309" y="166" text-anchor="middle" font-size="11" fill="#1f2328">ALB</text>
           <line x1="332" y1="129" x2="370" y2="129" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
@@ -774,11 +775,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <use href="#p7-ic-aws-dynamodb" x="527" y="110" width="38" height="38"/><text x="546" y="166" text-anchor="middle" font-size="10" fill="#1f2328">DynamoDB</text>
           <use href="#p7-ic-aws-elasticache" x="588" y="110" width="38" height="38"/><text x="607" y="166" text-anchor="middle" font-size="9.5" fill="#1f2328">ElastiCache</text>
           <line x1="412" y1="129" x2="452" y2="129" stroke="#0969da" stroke-width="1.4" marker-end="url(#v2a)"/>
-          <text x="294" y="196" font-size="11" fill="#57606a">AWS 관리형 서비스 조합</text>
 
           <!-- BEFORE → AFTER 전환 -->
-          <text x="466" y="248" text-anchor="middle" font-size="13" font-weight="700" fill="#57606a">마이그레이션</text>
-          <text x="466" y="310" text-anchor="middle" font-size="54" font-weight="700" fill="#57606a">↓</text>
+          <text x="466" y="216" text-anchor="middle" font-size="13" font-weight="700" fill="#57606a">마이그레이션</text>
+          <text x="466" y="288" text-anchor="middle" font-size="44" font-weight="700" fill="#57606a">↓</text>
 
           <!-- BEFORE 배포 라벨 (카드 우측 바깥, 아이콘 + 한 줄 요약) -->
           <rect x="678" y="96" width="140" height="52" rx="8" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
@@ -787,37 +787,37 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <text x="730" y="133" font-size="9.5" fill="#6639ba">롤링 업데이트</text>
 
           <!-- ── 중앙 아래: AFTER 카드 ── -->
-          <rect x="276" y="328" width="380" height="196" rx="10" fill="#ffffff" stroke="#d0d7de"/>
-          <rect x="276" y="328" width="380" height="7" rx="3" fill="#1a7f37"/>
-          <text x="294" y="357" font-size="15" font-weight="700" fill="#1a7f37">AFTER — Lightsail</text>
+          <rect x="276" y="308" width="380" height="176" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+          <rect x="276" y="308" width="380" height="7" rx="3" fill="#1a7f37"/>
+          <text x="294" y="337" font-size="15" font-weight="700" fill="#1a7f37">AFTER — Lightsail</text>
+          <text x="459" y="337" font-size="11" fill="#57606a">단일 노드 · free tier</text>
           <!-- 4개 서비스 전부를 감싸는 Docker Compose 박스, 그 안에 데이터 계층 박스 (BEFORE와 대칭) -->
-          <rect x="286" y="372" width="356" height="126" rx="8" fill="none" stroke="#2496ED" stroke-width="1.3" stroke-dasharray="4 3"/>
-          <use href="#p7-ic-docker" x="293" y="377" width="16" height="16"/>
-          <text x="314" y="389" font-size="9.5" font-weight="700" fill="#2496ED">docker compose</text>
-          <use href="#p7-ic-nginx" x="296" y="416" width="38" height="38"/>
-          <text x="315" y="472" text-anchor="middle" font-size="11" fill="#1f2328">nginx</text>
-          <line x1="338" y1="435" x2="372" y2="435" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
-          <use href="#p7-ic-python" x="376" y="416" width="38" height="38"/>
-          <text x="395" y="472" text-anchor="middle" font-size="11" font-weight="700" fill="#1f2328">backend</text>
-          <line x1="418" y1="435" x2="446" y2="435" stroke="#0969da" stroke-width="1.4" marker-end="url(#v2a)"/>
-          <rect x="450" y="392" width="184" height="92" rx="8" fill="#fffdf9" stroke="#e8cba6"/>
-          <text x="542" y="408" text-anchor="middle" font-size="10.5" fill="#57606a">데이터 계층 (컨테이너)</text>
-          <use href="#p7-ic-postgresql" x="481" y="416" width="38" height="38"/><text x="500" y="472" text-anchor="middle" font-size="9.5" fill="#1f2328">postgresql</text>
-          <use href="#p7-ic-redis" x="565" y="416" width="38" height="38"/><text x="584" y="472" text-anchor="middle" font-size="11" fill="#1f2328">redis</text>
-          <text x="294" y="515" font-size="11" fill="#57606a">단일 노드 · free tier</text>
+          <rect x="286" y="352" width="356" height="126" rx="8" fill="none" stroke="#2496ED" stroke-width="1.3" stroke-dasharray="4 3"/>
+          <use href="#p7-ic-docker" x="293" y="357" width="16" height="16"/>
+          <text x="314" y="369" font-size="9.5" font-weight="700" fill="#2496ED">docker compose</text>
+          <use href="#p7-ic-nginx" x="296" y="396" width="38" height="38"/>
+          <text x="315" y="452" text-anchor="middle" font-size="11" fill="#1f2328">nginx</text>
+          <line x1="338" y1="415" x2="372" y2="415" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
+          <use href="#p7-ic-python" x="376" y="396" width="38" height="38"/>
+          <text x="395" y="452" text-anchor="middle" font-size="11" font-weight="700" fill="#1f2328">backend</text>
+          <line x1="418" y1="415" x2="446" y2="415" stroke="#0969da" stroke-width="1.4" marker-end="url(#v2a)"/>
+          <rect x="450" y="372" width="184" height="92" rx="8" fill="#fffdf9" stroke="#e8cba6"/>
+          <text x="542" y="388" text-anchor="middle" font-size="10.5" fill="#57606a">데이터 계층 (컨테이너)</text>
+          <use href="#p7-ic-postgresql" x="481" y="396" width="38" height="38"/><text x="500" y="452" text-anchor="middle" font-size="9.5" fill="#1f2328">postgresql</text>
+          <use href="#p7-ic-redis" x="565" y="396" width="38" height="38"/><text x="584" y="452" text-anchor="middle" font-size="11" fill="#1f2328">redis</text>
 
           <!-- AFTER 배포 라벨 (카드 우측 바깥, 아이콘 + 한 줄 요약) -->
-          <rect x="678" y="404" width="140" height="52" rx="8" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
-          <rect x="686" y="411" width="38" height="38" rx="7" fill="#ffffff" stroke="#2496ED" stroke-width="1"/>
-          <use href="#p7-ic-docker" x="686" y="411" width="38" height="38"/>
-          <text x="730" y="425" font-size="10" font-weight="700" fill="#8250df">배포</text>
-          <text x="730" y="441" font-size="9.5" fill="#6639ba">SSH → pull &amp; up</text>
+          <rect x="678" y="384" width="140" height="52" rx="8" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
+          <rect x="686" y="391" width="38" height="38" rx="7" fill="#ffffff" stroke="#2496ED" stroke-width="1"/>
+          <use href="#p7-ic-docker" x="686" y="391" width="38" height="38"/>
+          <text x="730" y="405" font-size="10" font-weight="700" fill="#8250df">배포</text>
+          <text x="730" y="421" font-size="9.5" fill="#6639ba">SSH → pull &amp; up</text>
 
           <!-- ── 트랙 → 카드 연결 (마름모 대각선) ── -->
-          <path d="M236 260 L 286 140" fill="none" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
-          <path d="M236 318 L 286 428" fill="none" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
-          <path d="M838 260 L 795 158" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
-          <path d="M838 318 L 795 396" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <path d="M236 224 L 286 132" fill="none" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
+          <path d="M236 276 L 286 396" fill="none" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
+          <path d="M838 224 L 795 150" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <path d="M838 276 L 795 366" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
         </svg>
       </div>
       <div class="tradeoff-note" style="margin-top:10px;">관리 요소 <strong>다수(ALB·태스크 정의·서비스·관리형 DB) → Docker Compose 하나</strong> · 고정 과금 → <strong>free tier</strong> · 운영 복잡도↓. 가용성은 단일 노드(SPOF)로 감수한 트레이드오프다.</div>
