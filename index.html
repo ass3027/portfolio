@@ -1282,7 +1282,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <h2 class="page-title">🔁 AI 워크플로우 — 사내 프로젝트 개선 파이프라인</h2>
     <div class="page-fill">
       <div class="card"><p>코드 리뷰 결과가 보고로 끝나면 이슈 발행, 팀 공유, 실제 수정 작업까지 이어지지 않는다. 분석 결과를 승인 가능한 이슈와 후속 작업으로 전환하는 개선 루프를 목표로 했다.</p></div>
-      <h3>워크플로우</h3>
+      <h3 style="margin-top:16px;">워크플로우</h3>
       <div class="workflow-loop" aria-label="코드 리뷰 자동화 개선 루프">
         <div class="workflow-step"><div class="step-num" data-n="1">ANALYZE</div><h4>문제점 분석</h4><p>품질, 보안, 버그, 빌드 영역의 파일과 라인 근거 수집</p></div>
         <div class="workflow-step gate"><div class="step-num" data-n="2">APPROVE</div><h4>이슈 발행</h4><p>초안 검토 후 승인 항목만 GitLab REST API 발행</p></div>
@@ -1290,7 +1290,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="workflow-step"><div class="step-num" data-n="4">ORGANIZE</div><h4>후속 작업화</h4><p>심각도 기준 작업 목록과 우선순위 구성</p></div>
         <div class="workflow-step gate"><div class="step-num" data-n="5">APPROVE</div><h4>작업 착수</h4><p>승인 후 구현과 검증, 결과를 다음 분석에 환류</p></div>
       </div>
-      <div class="row c2" style="align-items:start; margin-top:14px;">
+      <div class="row c2" style="align-items:start; margin-top:30px;">
         <div>
           <h3>승인 게이트</h3>
           <table><thead><tr><th>단계</th><th>자동화</th><th>사람</th></tr></thead><tbody>
@@ -1315,7 +1315,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <h2 class="page-title">🔁 AI 워크플로우 — 공통 인간·AI 협업</h2>
     <div class="page-fill">
       <div class="card"><p>대화형 작업 목록만으로는 세션이 바뀐 뒤 작업 선정 근거, 진행 상태, 검증 결과를 복원하기 어렵다. 모든 개발 작업에 계획, 승인, 검증 기준을 적용하고 저장소의 문서와 Git 이력으로 실행 상태를 유지하는 것을 목표로 했다.</p></div>
-      <h3>워크플로우</h3>
+      <h3 style="margin-top:14px;">워크플로우</h3>
       <div class="workflow-loop" aria-label="공통 인간 AI 협업 워크플로우">
         <div class="workflow-step"><div class="step-num" data-n="1">SOURCE</div><h4>작업 목록</h4><p>설계 문서에서 Task_Checklist 추출</p></div>
         <div class="workflow-step"><div class="step-num" data-n="2">SELECT</div><h4>다음 작업 선정</h4><p>단일 기준에서 우선순위와 범위 확인</p></div>
@@ -1323,7 +1323,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="workflow-step"><div class="step-num" data-n="4">VERIFY</div><h4>구현과 테스트</h4><p>핵심 비즈니스 로직 구현과 테스트 검토</p></div>
         <div class="workflow-step"><div class="step-num" data-n="5">RECORD</div><h4>기록과 환류</h4><p>커밋, Phase 결과 문서, 체크리스트 갱신</p></div>
       </div>
-      <div class="row c2" style="align-items:start; margin-top:16px;">
+      <div class="row c2" style="align-items:start; margin-top:26px;">
         <div>
           <h3>운영 규율</h3>
           <table><tbody>
