@@ -781,10 +781,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <text x="466" y="288" text-anchor="middle" font-size="44" font-weight="700" fill="#57606a">↓</text>
 
           <!-- BEFORE 배포 라벨 (카드 우측 바깥, 아이콘 + 한 줄 요약) -->
-          <rect x="678" y="96" width="140" height="52" rx="8" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
-          <use href="#p7-ic-aws-ecs" x="686" y="103" width="38" height="38"/>
-          <text x="730" y="117" font-size="10" font-weight="700" fill="#8250df">배포</text>
-          <text x="730" y="133" font-size="9.5" fill="#6639ba">롤링 업데이트</text>
+          <rect x="708" y="96" width="140" height="52" rx="8" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
+          <use href="#p7-ic-aws-ecs" x="716" y="103" width="38" height="38"/>
+          <text x="760" y="117" font-size="10" font-weight="700" fill="#8250df">배포</text>
+          <text x="760" y="133" font-size="9.5" fill="#6639ba">롤링 업데이트</text>
 
           <!-- ── 중앙 아래: AFTER 카드 ── -->
           <rect x="276" y="308" width="380" height="176" rx="10" fill="#ffffff" stroke="#d0d7de"/>
@@ -807,21 +807,21 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <use href="#p7-ic-redis" x="565" y="396" width="38" height="38"/><text x="584" y="452" text-anchor="middle" font-size="11" fill="#1f2328">redis</text>
 
           <!-- AFTER 배포 라벨 (카드 우측 바깥, 아이콘 + 한 줄 요약) -->
-          <rect x="678" y="384" width="140" height="52" rx="8" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
-          <rect x="686" y="391" width="38" height="38" rx="7" fill="#ffffff" stroke="#2496ED" stroke-width="1"/>
-          <use href="#p7-ic-docker" x="686" y="391" width="38" height="38"/>
-          <text x="730" y="405" font-size="10" font-weight="700" fill="#8250df">배포</text>
-          <text x="730" y="421" font-size="9.5" fill="#6639ba">SSH → pull &amp; up</text>
+          <rect x="708" y="384" width="140" height="52" rx="8" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
+          <rect x="716" y="391" width="38" height="38" rx="7" fill="#ffffff" stroke="#2496ED" stroke-width="1"/>
+          <use href="#p7-ic-docker" x="716" y="391" width="38" height="38"/>
+          <text x="760" y="405" font-size="10" font-weight="700" fill="#8250df">배포</text>
+          <text x="760" y="421" font-size="9.5" fill="#6639ba">SSH → pull &amp; up</text>
 
           <!-- ── 트랙 → 카드 연결 (마름모 대각선) ── -->
           <path d="M236 224 L 286 132" fill="none" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
           <path d="M236 276 L 286 396" fill="none" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
           <!-- 트랙 → 배포 박스 -->
-          <path d="M770 196 L 748 154" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
-          <path d="M770 304 L 748 378" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <path d="M818 196 L 778 154" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <path d="M818 304 L 778 378" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
           <!-- 배포 박스 → B/A 카드 -->
-          <path d="M674 122 L 662 122" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
-          <path d="M674 410 L 662 410" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <path d="M704 122 L 662 122" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <path d="M704 410 L 662 410" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
         </svg>
       </div>
       <div class="tradeoff-note" style="margin-top:10px;">관리 요소 <strong>다수(ALB·태스크 정의·서비스·관리형 DB) → Docker Compose 하나</strong> · 고정 과금 → <strong>free tier</strong> · 운영 복잡도↓. 가용성은 단일 노드(SPOF)로 감수한 트레이드오프다.</div>
