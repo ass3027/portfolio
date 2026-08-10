@@ -554,11 +554,13 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
           <!-- 2층: FastAPI Application (내부 모듈 박스 포함) -->
           <rect x="140" y="100" width="480" height="146" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
-          <text x="152" y="118" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="12.5" font-weight="700" fill="#0550ae">FastAPI Application</text>
+          <use href="#p7-ic-fastapi" x="152" y="106" width="15" height="15"/>
+          <text x="171" y="118" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="12.5" font-weight="700" fill="#0550ae">FastAPI Application</text>
 
           <!-- 2층 내부: RpcnClient (RPCN 서버와 맞닿는 통신 계층) -->
           <rect x="152" y="128" width="456" height="44" rx="5" fill="#ffffff" stroke="#0969da" stroke-width="1.2"/>
-          <text x="380" y="147" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#0550ae">RpcnClient</text>
+          <use href="#p7-ic-python" x="336" y="136" width="13" height="13"/>
+          <text x="386" y="147" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#0550ae">RpcnClient</text>
           <text x="380" y="162" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10" fill="#57606a">역공학한 바이너리 프로토콜 · 명령 7종</text>
 
           <!-- 2층 내부: 기능 모듈 3종 -->
@@ -576,13 +578,16 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
           <!-- 3층: Redis -->
           <rect x="120" y="288" width="180" height="52" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
-          <text x="210" y="310" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1a7f37">Redis</text>
+          <use href="#p7-ic-redis" x="185" y="300" width="14" height="14"/>
+          <text x="220" y="310" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1a7f37">Redis</text>
           <text x="210" y="327" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">캐시 계층</text>
 
           <!-- 3층: PostgreSQL / DynamoDB -->
           <rect x="460" y="288" width="180" height="52" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
-          <text x="550" y="310" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1a7f37">PostgreSQL / DynamoDB</text>
-          <text x="550" y="327" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">영속 저장</text>
+          <use href="#p7-ic-postgresql" x="507" y="299" width="12" height="12"/>
+          <text x="525" y="309" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#1a7f37">PostgreSQL</text>
+          <use href="#p7-ic-aws-dynamodb" x="507" y="316" width="12" height="12"/>
+          <text x="525" y="326" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#1a7f37">DynamoDB</text>
         </svg>
       </div>
     </div>
