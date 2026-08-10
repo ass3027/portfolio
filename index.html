@@ -835,10 +835,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <h2 class="page-title">🚄 KTX 티켓팅 — 시스템 아키텍처</h2>
     <div class="page-fill">
-    <div class="row c2" style="align-items:start;">
-      <div>
-        <h3>모듈 구성</h3>
-        <table>
+    <div style="display:flex; gap:20px; align-items:stretch; height:60%; margin-top:16px;">
+      <div style="flex:1 1 38%; min-width:0; position:relative;">
+        <h3 style="position:absolute; top:-30px; left:0; margin:0;">모듈 구성</h3>
+        <table class="module-table-tall" style="height:100%;">
           <thead><tr><th>모듈</th><th>역할</th></tr></thead>
           <tbody>
             <tr><td><strong>admission</strong></td><td>입장 제어. 활성자 카운터로 동시 세션 상한 K, 초과분 반려. 통과 시 입장 토큰 TTL 발급</td></tr>
@@ -848,10 +848,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           </tbody>
         </table>
       </div>
-      <div>
-        <h3>구성 요소</h3>
-        <div class="arch-svg">
-          <svg viewBox="0 0 480 290" role="img" aria-label="KTX 구성 요소: Spring Boot가 admission·schedule·booking·reconcile 모듈로 구성되어 Redis(빠른 게이트)와 MySQL(정합성 원천)에 연결. 둘이 어긋나면 DB 기준으로 수렴">
+      <div style="flex:1 1 62%; min-width:0; position:relative; display:flex;">
+        <h3 style="position:absolute; top:-30px; left:0; margin:0;">구성 요소</h3>
+        <div class="arch-svg" style="flex:1 1 auto; min-width:0; display:flex; align-items:center; padding:16px;">
+          <svg viewBox="0 0 480 290" style="width:100%; height:auto;" preserveAspectRatio="xMidYMid meet" role="img" aria-label="KTX 구성 요소: Spring Boot가 admission·schedule·booking·reconcile 모듈로 구성되어 Redis(빠른 게이트)와 MySQL(정합성 원천)에 연결. 둘이 어긋나면 DB 기준으로 수렴">
             <defs>
               <marker id="ktx2-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                 <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
