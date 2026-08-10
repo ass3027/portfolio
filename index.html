@@ -206,9 +206,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .tradeoff-note::before { content: '⚠️ '; }
 
 /* ══════════════ AI 협업 워크플로우 ══════════════ */
-.workflow-loop { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; align-items: stretch; }
+.workflow-loop { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; align-items: stretch; }
 .workflow-step { position: relative; background: var(--bg-card); border: 1px solid var(--border); border-radius: 9px; padding: 11px 10px; }
-.workflow-step:not(:last-child)::after { content: '→'; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); z-index: 1; color: var(--accent); font-weight: 700; font-size: 16px; }
+.workflow-step:not(:last-child)::after { content: '→'; position: absolute; left: 100%; width: 22px; top: 50%; transform: translateY(-50%); text-align: center; color: var(--accent); font-weight: 700; font-size: 17px; line-height: 1; }
 .workflow-step .step-num { color: var(--accent); font: 700 10px var(--mono); }
 .workflow-step h4 { margin: 3px 0 5px; font-size: 12px; }
 .workflow-step p { margin: 0; color: var(--text-muted); font-size: 10.5px; line-height: 1.45; }
