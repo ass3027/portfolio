@@ -579,10 +579,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <h2 class="page-title">🎮 Tag2Now — 인프라 비교 (ECS Fargate ↔ Lightsail)</h2>
     <div class="page-fill">
       <div class="arch-svg">
-        <svg viewBox="0 0 1020 565" font-family="'JetBrains Mono',monospace" role="img" aria-label="Before/After 인프라 비교. 상단 공통 영역에 런타임 진입(사용자·Route53·CloudFront)과 CI/CD(개발자·GitHub Actions·ECR)를 두고, 공통에서 각 런타임으로 분기한다. 좌측 Before 카드는 ALB·ECS Fargate·데이터 계층 관리형(RDS·DynamoDB·ElastiCache), 우측 After 카드는 단일 Lightsail 인스턴스의 docker-compose(nginx·backend·redis·postgresql, 데이터 계층 컨테이너). 두 런타임 모두 동일 ECR 이미지를 쓰지만, 테스트·빌드와 ECR 푸시까지만 공통이고 배포 단계는 갈린다. Before는 ECS 태스크 정의를 갱신한 뒤 서비스를 롤링 업데이트하고, After는 GitHub Actions가 SSH로 접속해 docker compose pull 후 up -d 를 실행한다.">
+        <svg viewBox="0 0 990 500" font-family="'JetBrains Mono',monospace" role="img" aria-label="Before/After 인프라 비교, 마름모형 배치. 좌측 상단에 요청·배포 범례를 두고, BEFORE·AFTER 카드의 세로 중앙 높이에 좌측 사용자 요청 경로 트랙(사용자·Route53·CloudFront)과 우측 개발자 배포 경로 트랙(개발자·GitHub Actions·ECR)을 마름모 꼭짓점처럼 배치한다. 중앙 위에 BEFORE 카드(ALB·ECS Fargate·데이터 계층 관리형), 아래에 AFTER 카드(docker compose 하나가 nginx·backend와 데이터 계층 컨테이너를 모두 감싼다)를 두고, 각 카드의 배포 단계 설명은 카드 우측 바깥의 별도 라벨로 빼고, 배포 경로는 트랙에서 그 배포 라벨을 거쳐 카드로 들어가는 두 단계 화살표로 잇는다.">
           <defs>
-            <marker id="ca" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0969da"/></marker>
-            <marker id="cp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8250df"/></marker>
+            <marker id="v2a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0969da"/></marker>
+            <marker id="v2p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8250df"/></marker>
             <symbol id="p7-ic-aws-route53" viewBox="0 0 256 256"><defs><linearGradient id="p7-aws-route53-SVGusebDeuy" x1="0%" x2="100%" y1="100%" y2="0%"><stop offset="0%" stop-color="#4d27a8"/><stop offset="100%" stop-color="#a166ff"/></linearGradient></defs><path fill="url(#p7-aws-route53-SVGusebDeuy)" d="M0 0h256v256H0z"/><path fill="#fff" d="M155.814 130.174q3.549 3.279 3.55 8.794q0 6.003-4.318 9.585q-4.32 3.586-11.603 3.585q-5.756-.002-11.392-2.452v-4.901q6.676 2.207 11.392 2.205q4.655 0 7.165-2.08q2.51-2.085 2.509-5.942c0-4.942-3.12-7.414-9.37-7.414q-2.937.001-5.817.304v-4.04l12.864-14.03h-18.128v-5.023h24.924v4.84l-12.617 13.355c.208-.041.406-.06.614-.06h.611q6.066 0 9.616 3.274m-35.577-1.069q3.73 3.492 3.731 9.614c0 4.004-1.446 7.24-4.349 9.712c-2.899 2.471-6.713 3.707-11.45 3.707q-6.241-.002-11.695-2.452v-4.901q6.796 2.207 11.635 2.205c3.104 0 5.481-.7 7.133-2.112c1.654-1.409 2.483-3.438 2.483-6.095q-.001-4.35-2.33-6.31q-2.328-1.96-7.593-1.962c-2.532 0-5.693.208-9.492.614v-4.043l1.165-18.317h22.352v5.022h-17.21l-.796 12.437q3.368-.61 6.06-.611q6.616-.001 10.356 3.492m46.025 44.904c-15.532 2.791-29.136 9.117-38.262 14.27c-9.13-5.153-22.733-11.479-38.262-14.27c-4.372-.784-26.157-5.333-26.157-17.927c0-5.836 2.09-9.706 6.102-16.618c4.794-8.265 10.759-18.554 10.759-33.366c0-10.586-2.775-20.738-8.253-30.21c.643-.794 1.299-1.597 1.958-2.407c8.115 4.056 16.563 6.11 25.152 6.11c10.496 0 20.141-2.755 28.701-8.194c8.557 5.439 18.202 8.195 28.698 8.195c8.588 0 17.04-2.055 25.155-6.111c.656.81 1.312 1.613 1.955 2.407c-5.478 9.472-8.253 19.624-8.253 30.21c0 14.812 5.965 25.1 10.768 33.38c4.003 6.898 6.093 10.768 6.093 16.604c0 12.594-21.786 17.143-26.154 17.927m15.693-67.911c0-10.106 2.851-19.793 8.467-28.792a3.19 3.19 0 0 0-.233-3.72a1524 1524 0 0 1-5.015-6.172a3.2 3.2 0 0 0-4.035-.79c-7.881 4.357-16.102 6.565-24.441 6.565c-10.061 0-18.852-2.705-26.877-8.265a3.2 3.2 0 0 0-3.645 0c-8.026 5.56-16.816 8.265-26.877 8.265c-8.339 0-16.56-2.208-24.441-6.565a3.2 3.2 0 0 0-4.036.79a1464 1464 0 0 1-5.014 6.172a3.19 3.19 0 0 0-.234 3.72c5.62 8.999 8.468 18.686 8.468 28.792c0 13.09-5.488 22.55-9.898 30.162c-4.32 7.433-6.963 12.37-6.963 19.822c0 17.245 24.051 22.908 31.424 24.23c15.552 2.795 29.133 9.386 37.785 14.422a3.19 3.19 0 0 0 3.22 0c8.652-5.036 22.23-11.627 37.782-14.422c7.373-1.322 31.424-6.985 31.424-24.23c0-7.452-2.643-12.389-6.963-19.832c-4.41-7.603-9.898-17.062-9.898-30.152m-12.374 86.404c-19.62 3.528-36.067 14.08-41.581 17.943c-5.517-3.864-21.965-14.415-41.584-17.943c-38.618-6.937-41.616-29.63-41.616-36.42c0-11.17 4.387-18.727 8.63-26.042c4.045-6.97 8.228-14.178 8.228-23.942c0-15.424-8.906-26.317-13.3-30.751c4.621-5.621 16.295-19.854 22.052-27.271C79.133 56.309 89.274 60.8 99.3 60.8c11.129 0 20.332-4.53 28.7-14.195c8.365 9.665 17.568 14.195 28.698 14.195c10.025 0 20.166-4.492 28.892-12.725c5.757 7.417 17.428 21.65 22.048 27.271c-4.393 4.434-13.299 15.327-13.299 30.751c0 9.764 4.186 16.973 8.227 23.942c4.247 7.315 8.634 14.873 8.634 26.042c0 6.79-3.002 29.483-41.62 36.42m38.522-65.673c-3.952-6.812-7.363-12.693-7.363-20.731c0-16.922 13.171-27.867 13.3-27.97a3.23 3.23 0 0 0 1.174-2.17a3.2 3.2 0 0 0-.717-2.359c-.214-.256-21.19-25.687-25.997-32.275a3.2 3.2 0 0 0-2.39-1.309a3.15 3.15 0 0 0-2.531 1.008c-8.064 8.625-17.607 13.375-26.88 13.375c-10.253 0-18.317-4.568-26.157-14.812c-1.213-1.581-3.869-1.581-5.082 0c-7.843 10.244-15.907 14.812-26.16 14.812c-9.273 0-18.816-4.75-26.88-13.375c-.653-.697-1.58-1.094-2.531-1.008a3.2 3.2 0 0 0-2.39 1.31C62.69 47.911 41.715 73.342 41.5 73.598a3.2 3.2 0 0 0-.71 2.356c.083.849.502 1.63 1.161 2.167c.134.11 13.306 11.054 13.306 27.976c0 8.038-3.412 13.919-7.364 20.731c-4.45 7.67-9.494 16.362-9.494 29.253c0 21.477 17.526 37.448 46.886 42.724c22.103 3.972 40.583 17.99 40.765 18.135a3.2 3.2 0 0 0 3.898-.004c.185-.14 18.601-14.15 40.761-18.131c29.36-5.276 46.89-21.247 46.89-42.724c0-12.891-5.046-21.583-9.498-29.253"/></symbol>
 <symbol id="p7-ic-aws-cloudfront" viewBox="0 0 256 256"><defs><linearGradient id="p7-aws-cloudfront-SVGusebDeuy" x1="0%" x2="100%" y1="100%" y2="0%"><stop offset="0%" stop-color="#4d27a8"/><stop offset="100%" stop-color="#a166ff"/></linearGradient></defs><path fill="url(#p7-aws-cloudfront-SVGusebDeuy)" d="M0 0h256v256H0z"/><path fill="#fff" d="M176.39 166.794c0-5.293-4.307-9.6-9.6-9.6s-9.6 4.307-9.6 9.6s4.308 9.6 9.6 9.6c5.293 0 9.6-4.308 9.6-9.6m6.4 0c0 8.822-7.177 16-16 16c-8.822 0-16-7.178-16-16c0-8.823 7.178-16 16-16c8.823 0 16 7.177 16 16m-85.536-46.18c0-5.292-4.307-9.6-9.6-9.6c-5.296 0-9.6 4.308-9.6 9.6c0 5.293 4.304 9.6 9.6 9.6c5.293 0 9.6-4.307 9.6-9.6m6.4 0c0 8.823-7.18 16-16 16c-8.822 0-16-7.177-16-16c0-8.822 7.178-16 16-16c8.82 0 16 7.178 16 16m23.482-50.192c0 5.293 4.307 9.6 9.6 9.6c5.296 0 9.6-4.307 9.6-9.6c0-5.296-4.304-9.6-9.6-9.6c-5.293 0-9.6 4.304-9.6 9.6m-6.4 0c0-8.822 7.18-16 16-16c8.822 0 16 7.178 16 16c0 8.823-7.178 16-16 16c-8.82 0-16-7.177-16-16M211.2 128c0-29.674-15.91-57.126-41.562-71.971c-4.598.928-9.046 2.198-14.595 4.205l-2.176-6.02a131 131 0 0 1 7.984-2.61A83 83 0 0 0 128 44.8c-5.405 0-10.723.56-15.92 1.574c3.763 2.202 7.1 4.397 10.342 6.855l-3.868 5.097c-4.57-3.462-9.306-6.396-15.524-9.654c-31.42 9.882-54.05 37.594-57.644 70.138c6.588-1.335 12.915-2.061 19.939-2.234l.157 6.397c-7.36.182-13.684.963-20.596 2.483c-.028.848-.086 1.706-.086 2.544c0 27.706 13.706 53.235 36.246 68.63c-4.01-11.939-6.006-23.222-6.006-34.243c0-6.285 1.082-11.446 2.224-16.909c.266-1.264.534-2.55.797-3.884l6.281 1.238c-.268 1.357-.544 2.672-.812 3.962c-1.12 5.35-2.09 9.97-2.09 15.593c0 12.506 2.746 25.437 8.333 39.479c11.9 6.179 24.752 9.334 38.227 9.334c8.82 0 17.427-1.408 25.638-4.115c3.223-6.359 5.613-12.359 7.61-19.248l6.147 1.782a114 114 0 0 1-5.126 14.147c5.165-2.323 10.051-5.196 14.637-8.55c-1.104-2.707-2.288-5.398-3.597-8.02l5.725-2.863c1.113 2.227 2.134 4.505 3.11 6.797C200.656 175.28 211.2 152.512 211.2 128m6.4 0c0 27.926-12.691 53.757-34.813 70.877c-5.478 4.256-11.42 7.789-17.702 10.633c-2.666 1.21-5.38 2.33-8.17 3.27c-9.216 3.198-18.953 4.82-28.915 4.82c-14.72 0-29.338-3.667-42.278-10.605C56.534 191.38 38.4 161.11 38.4 128c0-2.195.058-3.866.189-5.411c2.179-37.389 27.83-69.75 63.814-80.458C110.598 39.658 119.216 38.4 128 38.4c15.386 0 30.525 3.962 43.789 11.453C200.042 65.68 217.6 95.629 217.6 128m-98.195-46.518l-4.205-4.823c-7.174 6.26-12.755 12.906-19.274 22.944l5.37 3.485c6.17-9.507 11.418-15.766 18.109-21.606m-9.725 41.484l-2.08 6.052c14.698 5.046 27.52 13.097 40.349 25.337l4.419-4.63c-13.523-12.9-27.088-21.402-42.688-26.759m42.787-37.628c12.007 18.31 18.768 38.41 20.093 59.744l-6.387.396c-1.258-20.21-7.667-39.264-19.053-56.63z"/></symbol>
 <symbol id="p7-ic-aws-elb" viewBox="0 0 256 256"><defs><linearGradient id="p7-aws-elb-SVGusebDeuy" x1="0%" x2="100%" y1="100%" y2="0%"><stop offset="0%" stop-color="#4d27a8"/><stop offset="100%" stop-color="#a166ff"/></linearGradient></defs><path fill="url(#p7-aws-elb-SVGusebDeuy)" d="M0 0h256v256H0z"/><path fill="#fff" d="M96 169.6c-22.938 0-41.6-18.662-41.6-41.6S73.062 86.4 96 86.4s41.6 18.662 41.6 41.6s-18.662 41.6-41.6 41.6m96 19.2c0 7.06-5.74 12.8-12.8 12.8s-12.8-5.74-12.8-12.8s5.74-12.8 12.8-12.8s12.8 5.74 12.8 12.8M179.2 54.4c7.06 0 12.8 5.74 12.8 12.8S186.26 80 179.2 80s-12.8-5.74-12.8-12.8s5.74-12.8 12.8-12.8m9.6 60.8c7.06 0 12.8 5.74 12.8 12.8s-5.74 12.8-12.8 12.8S176 135.06 176 128s5.74-12.8 12.8-12.8m-44.963 16h26.051c1.53 9.066 9.418 16 18.912 16c10.589 0 19.2-8.611 19.2-19.2s-8.611-19.2-19.2-19.2c-9.494 0-17.382 6.934-18.912 16h-26.051a47.5 47.5 0 0 0-4.407-17.107l28.397-25.06c3.187 2.356 7.114 3.767 11.373 3.767c10.589 0 19.2-8.611 19.2-19.2S189.789 48 179.2 48S160 56.611 160 67.2c0 4.02 1.245 7.747 3.363 10.835L136.26 101.95C127.693 88.762 112.867 80 96 80c-26.467 0-48 21.533-48 48s21.533 48 48 48c16.867 0 31.693-8.762 40.26-21.949l27.103 23.914A19.1 19.1 0 0 0 160 188.8c0 10.589 8.611 19.2 19.2 19.2s19.2-8.611 19.2-19.2s-8.611-19.2-19.2-19.2c-4.26 0-8.186 1.411-11.373 3.766l-28.397-25.059a47.5 47.5 0 0 0 4.407-17.107"/></symbol>
@@ -619,117 +619,6 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <symbol id="p7-ic-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297a12 12 0 0 0-3.794 23.4c.6.111.82-.26.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416c-.546-1.387-1.333-1.756-1.333-1.756c-1.09-.745.083-.73.083-.73c1.205.085 1.839 1.237 1.839 1.237c1.07 1.834 2.808 1.304 3.493.997c.108-.775.418-1.304.762-1.604c-2.665-.303-5.467-1.334-5.467-5.931c0-1.31.469-2.381 1.236-3.221c-.124-.303-.536-1.524.117-3.176c0 0 1.008-.322 3.3 1.23A11.49 11.49 0 0 1 12 5.069c1.02.005 2.045.138 3.003.404c2.291-1.552 3.297-1.23 3.297-1.23c.655 1.652.243 2.873.12 3.176c.77.84 1.235 1.911 1.235 3.221c0 4.609-2.807 5.625-5.479 5.921c.43.371.814 1.102.814 2.222v3.293c0 .32.216.694.825.576A12.003 12.003 0 0 0 12 .297"/></symbol>
 <symbol id="p7-ic-user" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></symbol>
 <symbol id="p7-ic-dev" viewBox="0 0 24 24"><path fill="currentColor" d="M10 4a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4m7 8a.26.26 0 0 0-.26.21l-.19 1.32c-.3.13-.59.29-.85.47l-1.24-.5c-.11 0-.24 0-.31.13l-1 1.73c-.06.11-.04.24.06.32l1.06.82a4.2 4.2 0 0 0 0 1l-1.06.82a.26.26 0 0 0-.06.32l1 1.73c.06.13.19.13.31.13l1.24-.5c.26.18.54.35.85.47l.19 1.32c.02.12.12.21.26.21h2c.11 0 .22-.09.24-.21l.19-1.32c.3-.13.57-.29.84-.47l1.23.5c.13 0 .26 0 .33-.13l1-1.73a.26.26 0 0 0-.06-.32l-1.07-.82c.02-.17.04-.33.04-.5s-.01-.33-.04-.5l1.06-.82a.26.26 0 0 0 .06-.32l-1-1.73c-.06-.13-.19-.13-.32-.13l-1.23.5c-.27-.18-.54-.35-.85-.47l-.19-1.32A.236.236 0 0 0 19 12zm-7 2c-4.42 0-8 1.79-8 4v2h9.68a7 7 0 0 1-.68-3a7 7 0 0 1 .64-2.91c-.53-.06-1.08-.09-1.64-.09m8 1.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5c-.84 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5"/></symbol>
-          </defs>
-
-          <!-- ── 공통 박스 ── -->
-          <rect x="56" y="16" width="908" height="128" rx="12" fill="#f6f8fa" stroke="#d0d7de"/>
-          <text x="74" y="36" font-size="12" font-weight="700" fill="#57606a">공통 — 전환 전후 동일</text>
-          <line x1="508" y1="48" x2="508" y2="134" stroke="#d0d7de" stroke-width="1"/>
-          <text x="78" y="56" font-size="10" fill="#8b949e">① 런타임 진입 (요청)</text>
-          <text x="528" y="56" font-size="10" fill="#8b949e">② CI/CD (빌드·ECR 푸시)</text>
-
-          <line x1="126" y1="90" x2="192" y2="90" stroke="#0969da" stroke-width="1.8" marker-end="url(#ca)"/>
-          <line x1="236" y1="90" x2="302" y2="90" stroke="#0969da" stroke-width="1.8" marker-end="url(#ca)"/>
-          <use href="#p7-ic-user" x="84" y="70" width="40" height="40" color="#0969da" style="color:#0969da"/>
-          <use href="#p7-ic-aws-route53" x="194" y="70" width="40" height="40"/>
-          <use href="#p7-ic-aws-cloudfront" x="304" y="70" width="40" height="40"/>
-          <text x="104" y="128" text-anchor="middle" font-size="10.5" fill="#1f2328">사용자</text>
-          <text x="214" y="128" text-anchor="middle" font-size="10.5" fill="#1f2328">Route 53</text>
-          <text x="324" y="128" text-anchor="middle" font-size="10.5" fill="#1f2328">CloudFront</text>
-
-          <line x1="602" y1="90" x2="668" y2="90" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#cp)"/>
-          <line x1="712" y1="90" x2="788" y2="90" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#cp)"/>
-          <use href="#p7-ic-dev" x="560" y="70" width="40" height="40" color="#8250df" style="color:#8250df"/>
-          <use href="#p7-ic-github-actions" x="670" y="70" width="40" height="40"/>
-          <use href="#p7-ic-aws-ecr" x="790" y="70" width="40" height="40"/>
-          <text x="580" y="128" text-anchor="middle" font-size="10.5" fill="#8250df" font-weight="700">개발자</text>
-          <text x="690" y="128" text-anchor="middle" font-size="10.5" fill="#1f2328">GitHub Actions</text>
-          <text x="810" y="128" text-anchor="middle" font-size="10.5" fill="#1f2328">ECR</text>
-          <text x="846" y="86" font-size="9" fill="#8250df">배포 단계(③)는</text>
-          <text x="846" y="100" font-size="9" fill="#8250df">런타임별로 상이</text>
-
-          <!-- ── 공통 → 각 런타임 분기 : 회색 실선(요청)은 안쪽, 보라 점선(배포)은 바깥쪽으로 중첩 없이 ── -->
-          <line x1="486" y1="144" x2="486" y2="168" stroke="#0969da" stroke-width="1.8"/>
-          <line x1="486" y1="168" x2="204" y2="190" stroke="#0969da" stroke-width="1.8" marker-end="url(#ca)"/>
-          <line x1="486" y1="168" x2="640" y2="190" stroke="#0969da" stroke-width="1.8" marker-end="url(#ca)"/>
-          <line x1="534" y1="144" x2="534" y2="168" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4"/>
-          <line x1="534" y1="168" x2="366" y2="190" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#cp)"/>
-          <line x1="534" y1="168" x2="820" y2="190" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4" marker-end="url(#cp)"/>
-          <!-- 범례 -->
-          <line x1="70" y1="158" x2="98" y2="158" stroke="#0969da" stroke-width="1.8"/>
-          <text x="104" y="162" font-size="9.5" fill="#57606a">요청</text>
-          <line x1="144" y1="158" x2="172" y2="158" stroke="#8250df" stroke-width="2.2" stroke-dasharray="6 4"/>
-          <text x="178" y="162" font-size="9.5" font-weight="700" fill="#8250df">배포</text>
-
-          <!-- ── 좌: BEFORE 카드 ── -->
-          <rect x="56" y="190" width="424" height="360" rx="10" fill="#ffffff" stroke="#d0d7de"/>
-          <rect x="56" y="190" width="6" height="360" rx="3" fill="#cf222e"/>
-          <text x="76" y="214" font-size="13" font-weight="700" fill="#cf222e">BEFORE — ECS Fargate</text>
-          <text x="248" y="214" font-size="10" fill="#57606a">AWS 관리형 서비스 조합</text>
-          <rect x="70" y="224" width="396" height="30" rx="6" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
-          <text x="82" y="243" font-size="9.5" fill="#8250df">③ 배포 ┊ 태스크 정의 갱신 → 서비스 업데이트(롤링)</text>
-          <g transform="translate(0,28)">
-          <line x1="140" y1="302" x2="140" y2="316" stroke="#0969da" stroke-width="1.8" marker-end="url(#ca)"/>
-          <line x1="140" y1="366" x2="140" y2="392" stroke="#0969da" stroke-width="1.8" marker-end="url(#ca)"/>
-          <use href="#p7-ic-aws-elb" x="120" y="258" width="40" height="40"/>
-          <text x="176" y="282" font-size="11" fill="#1f2328">ALB (Elastic Load Balancing)</text>
-          <use href="#p7-ic-aws-fargate" x="120" y="320" width="40" height="40"/>
-          <text x="176" y="344" font-size="11" font-weight="700" fill="#1f2328">ECS Fargate</text>
-          <text x="176" y="359" font-size="10" fill="#8250df">← 동일 ECR 이미지(③)</text>
-          <rect x="86" y="396" width="364" height="112" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
-          <text x="100" y="416" font-size="10" fill="#57606a">데이터 계층 (관리형)</text>
-          <use href="#p7-ic-aws-rds" x="112" y="428" width="34" height="34"/><text x="129" y="480" text-anchor="middle" font-size="10" fill="#1f2328">RDS</text>
-          <use href="#p7-ic-aws-dynamodb" x="230" y="428" width="34" height="34"/><text x="247" y="480" text-anchor="middle" font-size="10" fill="#1f2328">DynamoDB</text>
-          <use href="#p7-ic-aws-elasticache" x="348" y="428" width="34" height="34"/><text x="365" y="480" text-anchor="middle" font-size="9.5" fill="#1f2328">ElastiCache</text>
-          </g>
-
-          <!-- 중앙 마이그레이션 -->
-          <text x="510" y="374" text-anchor="middle" font-size="9.5" fill="#57606a">마이그레이션</text>
-          <text x="510" y="406" text-anchor="middle" font-size="28" font-weight="700" fill="#57606a">➜</text>
-
-          <!-- ── 우: AFTER 카드 ── -->
-          <rect x="540" y="190" width="424" height="360" rx="10" fill="#ffffff" stroke="#d0d7de"/>
-          <rect x="540" y="190" width="6" height="360" rx="3" fill="#1a7f37"/>
-          <text x="560" y="214" font-size="13" font-weight="700" fill="#1a7f37">AFTER — Lightsail</text>
-          <text x="706" y="214" font-size="10" fill="#57606a">단일 노드 · free tier</text>
-          <rect x="554" y="224" width="396" height="30" rx="6" fill="#faf5ff" stroke="#8250df" stroke-width="1.1" stroke-dasharray="4 3"/>
-          <text x="566" y="243" font-size="9.5" fill="#8250df">③ 배포 ┊ SSH 접속 → docker compose pull &amp;&amp; up -d</text>
-          <g transform="translate(0,28)">
-          <rect x="566" y="224" width="392" height="292" rx="8" fill="#fff8f0" stroke="#ED7100" stroke-width="1.3"/>
-          <use href="#p7-ic-aws-lightsail" x="578" y="227" width="16" height="16"/>
-          <text x="600" y="239" font-size="9.5" font-weight="700" fill="#ba5a00">Lightsail 인스턴스 · docker-compose</text>
-          <line x1="624" y1="302" x2="624" y2="316" stroke="#0969da" stroke-width="1.8" marker-end="url(#ca)"/>
-          <line x1="624" y1="366" x2="624" y2="392" stroke="#0969da" stroke-width="1.8" marker-end="url(#ca)"/>
-          <use href="#p7-ic-nginx" x="604" y="258" width="40" height="40"/>
-          <text x="660" y="282" font-size="11" fill="#1f2328">nginx (FE + 역방향 프록시)</text>
-          <use href="#p7-ic-python" x="604" y="320" width="40" height="40"/>
-          <text x="660" y="344" font-size="11" font-weight="700" fill="#1f2328">backend (FastAPI)</text>
-          <text x="660" y="359" font-size="10" fill="#8250df">← 동일 ECR 이미지(③)</text>
-          <rect x="574" y="396" width="370" height="112" rx="8" fill="#fffdf9" stroke="#e8cba6"/>
-          <text x="588" y="416" font-size="10" fill="#57606a">데이터 계층 (컨테이너)</text>
-          <rect x="580" y="424" width="75" height="70" rx="6" fill="none" stroke="#2496ED" stroke-width="1.2" stroke-dasharray="3 2"/>
-          <use href="#p7-ic-postgresql" x="598" y="430" width="34" height="34"/><text x="617" y="480" text-anchor="middle" font-size="10" fill="#1f2328">postgresql</text>
-          <rect x="826" y="424" width="75" height="70" rx="6" fill="none" stroke="#2496ED" stroke-width="1.2" stroke-dasharray="3 2"/>
-          <use href="#p7-ic-redis" x="847" y="430" width="34" height="34"/><text x="863" y="480" text-anchor="middle" font-size="10" fill="#1f2328">redis</text>
-          </g>
-        </svg>
-      </div>
-      <div class="tradeoff-note" style="margin-top:10px;">관리 요소 <strong>다수(ALB·태스크 정의·서비스·관리형 DB) → Docker Compose 하나</strong> · 고정 과금 → <strong>free tier</strong> · 운영 복잡도↓. 가용성은 단일 노드(SPOF)로 감수한 트레이드오프다.</div>
-    </div>
-  </div>
-  <div class="page-num">06</div>
-</div>
-
-<!-- ══════════════════════════════════════ PAGE 6b — Tag2Now 인프라 비교(버전 2: 좌우 트랙 구조) ══════════════════════════════════════ -->
-<div class="page">
-  <div class="page-body">
-    <h2 class="page-title">🎮 Tag2Now — 인프라 비교 v2 (좌: 사용자 흐름 · 우: 개발자 흐름)</h2>
-    <div class="page-fill">
-      <div class="arch-svg">
-        <svg viewBox="0 0 990 500" font-family="'JetBrains Mono',monospace" role="img" aria-label="Before/After 인프라 비교 버전 2, 마름모형 배치. 좌측 상단에 요청·배포 범례를 두고, BEFORE·AFTER 카드의 세로 중앙 높이에 좌측 사용자 요청 경로 트랙(사용자·Route53·CloudFront)과 우측 개발자 배포 경로 트랙(개발자·GitHub Actions·ECR)을 마름모 꼭짓점처럼 배치한다. 중앙 위에 BEFORE 카드(ALB·ECS Fargate·데이터 계층 관리형), 아래에 AFTER 카드(docker compose 하나가 nginx·backend와 데이터 계층 컨테이너를 모두 감싼다)를 두고, 각 카드의 배포 단계 설명은 카드 우측 바깥의 별도 라벨로 빼고, 배포 경로는 트랙에서 그 배포 라벨을 거쳐 카드로 들어가는 두 단계 화살표로 잇는다.">
-          <defs>
-            <marker id="v2a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0969da"/></marker>
-            <marker id="v2p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8250df"/></marker>
           </defs>
 
           <!-- ── 좌측 상단: 범례 ── -->
@@ -834,7 +723,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="tradeoff-note" style="margin-top:10px;">관리 요소 <strong>다수(ALB·태스크 정의·서비스·관리형 DB) → Docker Compose 하나</strong> · 고정 과금 → <strong>free tier</strong> · 운영 복잡도↓. 가용성은 단일 노드(SPOF)로 감수한 트레이드오프다.</div>
     </div>
   </div>
-  <div class="page-num">06b</div>
+  <div class="page-num">06</div>
 </div>
 
 <!-- ══════════════════════════════════════ PAGE 7 — Tag2Now 핵심 개선과 성과 ══════════════════════════════════════ -->
