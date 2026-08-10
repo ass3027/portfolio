@@ -207,13 +207,15 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
 /* ══════════════ AI 협업 워크플로우 ══════════════ */
 .workflow-loop { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; align-items: stretch; }
-.workflow-step { position: relative; background: var(--bg-card); border: 1px solid var(--border); border-radius: 9px; padding: 11px 10px; }
+.workflow-step { position: relative; background: var(--bg-card); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 9px; padding: 8px 9px 9px; }
 .workflow-step:not(:last-child)::after { content: '→'; position: absolute; left: 100%; width: 22px; top: 50%; transform: translateY(-50%); text-align: center; color: var(--accent); font-weight: 700; font-size: 17px; line-height: 1; }
-.workflow-step .step-num { color: var(--accent); font: 700 10px var(--mono); }
-.workflow-step h4 { margin: 3px 0 5px; font-size: 12px; }
-.workflow-step p { margin: 0; color: var(--text-muted); font-size: 10.5px; line-height: 1.45; }
-.workflow-step.gate { border-top: 3px solid var(--red); }
+.workflow-step .step-num { display: flex; align-items: center; gap: 5px; color: var(--accent); font: 700 9px var(--mono); letter-spacing: .04em; }
+.workflow-step .step-num::before { content: attr(data-n); display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; border-radius: 50%; background: var(--accent-glow); color: var(--accent); font-size: 8.5px; flex-shrink: 0; }
+.workflow-step h4 { margin: 4px 0 4px; font-size: 11.5px; }
+.workflow-step p { margin: 0; color: var(--text-muted); font-size: 10px; line-height: 1.4; }
+.workflow-step.gate { border-top-color: var(--red); }
 .workflow-step.gate .step-num { color: var(--red); }
+.workflow-step.gate .step-num::before { background: rgba(207,34,46,.1); color: var(--red); }
 .workflow-governance { display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px; margin-top: 13px; }
 .workflow-principles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .workflow-principle { background: var(--bg-card2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
@@ -1282,11 +1284,11 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="card"><p>코드 리뷰 결과가 보고로 끝나면 이슈 발행, 팀 공유, 실제 수정 작업까지 이어지지 않는다. 분석 결과를 승인 가능한 이슈와 후속 작업으로 전환하는 개선 루프를 목표로 했다.</p></div>
       <h3>워크플로우</h3>
       <div class="workflow-loop" aria-label="코드 리뷰 자동화 개선 루프">
-        <div class="workflow-step"><div class="step-num">01 ANALYZE</div><h4>문제점 분석</h4><p>품질, 보안, 버그, 빌드 영역의 파일과 라인 근거 수집</p></div>
-        <div class="workflow-step gate"><div class="step-num">02 APPROVE</div><h4>이슈 발행</h4><p>초안 검토 후 승인 항목만 GitLab REST API 발행</p></div>
-        <div class="workflow-step"><div class="step-num">03 NOTIFY</div><h4>팀 알림</h4><p>GitLab WebHook과 카카오워크 연동</p></div>
-        <div class="workflow-step"><div class="step-num">04 ORGANIZE</div><h4>후속 작업화</h4><p>심각도 기준 작업 목록과 우선순위 구성</p></div>
-        <div class="workflow-step gate"><div class="step-num">05 APPROVE</div><h4>작업 착수</h4><p>승인 후 구현과 검증, 결과를 다음 분석에 환류</p></div>
+        <div class="workflow-step"><div class="step-num" data-n="1">ANALYZE</div><h4>문제점 분석</h4><p>품질, 보안, 버그, 빌드 영역의 파일과 라인 근거 수집</p></div>
+        <div class="workflow-step gate"><div class="step-num" data-n="2">APPROVE</div><h4>이슈 발행</h4><p>초안 검토 후 승인 항목만 GitLab REST API 발행</p></div>
+        <div class="workflow-step"><div class="step-num" data-n="3">NOTIFY</div><h4>팀 알림</h4><p>GitLab WebHook과 카카오워크 연동</p></div>
+        <div class="workflow-step"><div class="step-num" data-n="4">ORGANIZE</div><h4>후속 작업화</h4><p>심각도 기준 작업 목록과 우선순위 구성</p></div>
+        <div class="workflow-step gate"><div class="step-num" data-n="5">APPROVE</div><h4>작업 착수</h4><p>승인 후 구현과 검증, 결과를 다음 분석에 환류</p></div>
       </div>
       <div class="row c2" style="align-items:start; margin-top:14px;">
         <div>
@@ -1315,11 +1317,11 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="card"><p>대화형 작업 목록만으로는 세션이 바뀐 뒤 작업 선정 근거, 진행 상태, 검증 결과를 복원하기 어렵다. 모든 개발 작업에 계획, 승인, 검증 기준을 적용하고 저장소의 문서와 Git 이력으로 실행 상태를 유지하는 것을 목표로 했다.</p></div>
       <h3>워크플로우</h3>
       <div class="workflow-loop" aria-label="공통 인간 AI 협업 워크플로우">
-        <div class="workflow-step"><div class="step-num">01 SOURCE</div><h4>작업 목록</h4><p>설계 문서에서 Task_Checklist 추출</p></div>
-        <div class="workflow-step"><div class="step-num">02 SELECT</div><h4>다음 작업 선정</h4><p>단일 기준에서 우선순위와 범위 확인</p></div>
-        <div class="workflow-step gate"><div class="step-num">03 APPROVE</div><h4>계획 승인</h4><p>구현 전 계획과 변경 범위 검토</p></div>
-        <div class="workflow-step"><div class="step-num">04 VERIFY</div><h4>구현과 테스트</h4><p>핵심 비즈니스 로직 구현과 테스트 검토</p></div>
-        <div class="workflow-step"><div class="step-num">05 RECORD</div><h4>기록과 환류</h4><p>커밋, Phase 결과 문서, 체크리스트 갱신</p></div>
+        <div class="workflow-step"><div class="step-num" data-n="1">SOURCE</div><h4>작업 목록</h4><p>설계 문서에서 Task_Checklist 추출</p></div>
+        <div class="workflow-step"><div class="step-num" data-n="2">SELECT</div><h4>다음 작업 선정</h4><p>단일 기준에서 우선순위와 범위 확인</p></div>
+        <div class="workflow-step gate"><div class="step-num" data-n="3">APPROVE</div><h4>계획 승인</h4><p>구현 전 계획과 변경 범위 검토</p></div>
+        <div class="workflow-step"><div class="step-num" data-n="4">VERIFY</div><h4>구현과 테스트</h4><p>핵심 비즈니스 로직 구현과 테스트 검토</p></div>
+        <div class="workflow-step"><div class="step-num" data-n="5">RECORD</div><h4>기록과 환류</h4><p>커밋, Phase 결과 문서, 체크리스트 갱신</p></div>
       </div>
       <div class="row c2" style="align-items:start; margin-top:16px;">
         <div>
