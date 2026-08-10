@@ -719,7 +719,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <h2 class="page-title">🎮 Tag2Now — 인프라 비교 v2 (좌: 사용자 흐름 · 우: 개발자 흐름)</h2>
     <div class="page-fill">
       <div class="arch-svg">
-        <svg viewBox="0 0 990 500" font-family="'JetBrains Mono',monospace" role="img" aria-label="Before/After 인프라 비교 버전 2, 마름모형 배치. 좌측 상단에 요청·배포 범례를 두고, BEFORE·AFTER 카드의 세로 중앙 높이에 좌측 사용자 요청 경로 트랙(사용자·Route53·CloudFront)과 우측 개발자 배포 경로 트랙(개발자·GitHub Actions·ECR)을 마름모 꼭짓점처럼 배치한다. 중앙 위에 BEFORE 카드(ALB·ECS Fargate·데이터 계층 관리형), 아래에 AFTER 카드(docker compose 하나가 nginx·backend와 데이터 계층 컨테이너를 모두 감싼다)를 두고, 각 카드의 배포 단계 설명은 카드 우측 바깥의 별도 라벨로 뺀다.">
+        <svg viewBox="0 0 990 500" font-family="'JetBrains Mono',monospace" role="img" aria-label="Before/After 인프라 비교 버전 2, 마름모형 배치. 좌측 상단에 요청·배포 범례를 두고, BEFORE·AFTER 카드의 세로 중앙 높이에 좌측 사용자 요청 경로 트랙(사용자·Route53·CloudFront)과 우측 개발자 배포 경로 트랙(개발자·GitHub Actions·ECR)을 마름모 꼭짓점처럼 배치한다. 중앙 위에 BEFORE 카드(ALB·ECS Fargate·데이터 계층 관리형), 아래에 AFTER 카드(docker compose 하나가 nginx·backend와 데이터 계층 컨테이너를 모두 감싼다)를 두고, 각 카드의 배포 단계 설명은 카드 우측 바깥의 별도 라벨로 빼고, 배포 경로는 트랙에서 그 배포 라벨을 거쳐 카드로 들어가는 두 단계 화살표로 잇는다.">
           <defs>
             <marker id="v2a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0969da"/></marker>
             <marker id="v2p" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8250df"/></marker>
@@ -816,8 +816,12 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <!-- ── 트랙 → 카드 연결 (마름모 대각선) ── -->
           <path d="M236 224 L 286 132" fill="none" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
           <path d="M236 276 L 286 396" fill="none" stroke="#0969da" stroke-width="1.6" marker-end="url(#v2a)"/>
-          <path d="M838 224 L 795 150" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
-          <path d="M838 276 L 795 366" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <!-- 트랙 → 배포 박스 -->
+          <path d="M790 200 L 812 156" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <path d="M790 300 L 812 376" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <!-- 배포 박스 → B/A 카드 -->
+          <path d="M674 122 L 662 122" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
+          <path d="M674 410 L 662 410" fill="none" stroke="#8250df" stroke-width="1.6" stroke-dasharray="5 3" marker-end="url(#v2p)"/>
         </svg>
       </div>
       <div class="tradeoff-note" style="margin-top:10px;">관리 요소 <strong>다수(ALB·태스크 정의·서비스·관리형 DB) → Docker Compose 하나</strong> · 고정 과금 → <strong>free tier</strong> · 운영 복잡도↓. 가용성은 단일 노드(SPOF)로 감수한 트레이드오프다.</div>
