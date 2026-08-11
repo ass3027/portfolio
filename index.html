@@ -911,7 +911,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div>
         <h3>예매 요청 경로</h3>
         <div class="arch-svg">
-          <svg viewBox="0 0 480 380" role="img" aria-label="KTX 예매 요청 경로: 1,000 동시 요청이 입장 게이트(K=100, 초과 429 반려)와 원자 선점(SREM, 초과 409 반려)과 DB 전이(@Version, 충돌 409 반려)를 거쳐 확정 1건과 오버셀 0으로 끝남">
+          <svg viewBox="0 0 480 342" role="img" aria-label="KTX 예매 요청 경로: 1,000 동시 요청이 Redis 입장 게이트(INCR active, 동시 예매 세션 상한 K 초과 시 HTTP 429 입장 초과)와 Redis 원자 선점(SREM·SPOP, 실패 시 HTTP 409 선점 실패)과 MySQL DB 전이(@Version, 충돌 시 HTTP 409 버전 충돌)를 거쳐 확정 1건과 오버셀 0으로 끝남. 탈락 요청은 앞의 두 게이트에서 즉시 반려되어 DB에 닿지 않음">
             <defs>
               <marker id="ktx3-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                 <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
@@ -921,40 +921,43 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
               </marker>
             </defs>
 
+            <text x="4" y="17" font-family="'Noto Sans KR',sans-serif" font-size="10" fill="#57606a"><tspan font-size="13" font-weight="700" fill="#8250df">K</tspan> 동시 예매 세션 상한</text>
+
             <text x="180" y="20" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1f2328">1,000 동시 요청</text>
             <path d="M180 28 V48" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
 
-            <rect x="60" y="50" width="240" height="54" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
-            <text x="180" y="72" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1f2328">입장 게이트</text>
-            <text x="180" y="90" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">active:{id}</text>
+            <rect x="60" y="50" width="240" height="54" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+            <use href="#p7-ic-redis" x="70" y="67" width="20" height="20"/>
+            <text x="180" y="72" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#0550ae">입장 게이트</text>
+            <text x="180" y="90" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#1f2328">INCR active:{id} ≤ <tspan font-size="13.5" font-weight="700" fill="#8250df">K</tspan></text>
             <path d="M300 77 H370" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#ktx3-reject)"/>
-            <text x="374" y="81" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#cf222e">429</text>
+            <text x="374" y="74" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#cf222e">HTTP 429</text>
+            <text x="374" y="91" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">입장 초과</text>
 
-            <text x="180" y="119" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#0969da">K=100 통과</text>
             <path d="M180 104 V128" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
 
             <rect x="60" y="128" width="240" height="54" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+            <use href="#p7-ic-redis" x="70" y="145" width="20" height="20"/>
             <text x="180" y="150" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#0550ae">원자 선점</text>
-            <text x="180" y="168" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#1f2328">SREM avail:{id}</text>
+            <text x="180" y="168" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#1f2328">SREM · SPOP avail:{id}</text>
             <path d="M300 155 H370" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#ktx3-reject)"/>
-            <text x="374" y="159" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#cf222e">409</text>
+            <text x="374" y="152" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#cf222e">HTTP 409</text>
+            <text x="374" y="169" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">선점 실패</text>
 
-            <text x="180" y="197" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#0969da">승자 1명</text>
             <path d="M180 182 V206" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
 
             <rect x="60" y="206" width="240" height="54" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+            <use href="#p7-ic-mysql" x="70" y="223" width="20" height="20"/>
             <text x="180" y="228" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1a7f37">DB 전이</text>
             <text x="180" y="246" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">@Version</text>
             <path d="M300 233 H370" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#ktx3-reject)"/>
-            <text x="374" y="237" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#cf222e">409</text>
+            <text x="374" y="230" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#cf222e">HTTP 409</text>
+            <text x="374" y="247" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">버전 충돌</text>
 
             <path d="M180 260 V282" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
             <text x="180" y="300" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1a7f37">확정 1건, oversell 0</text>
 
-            <text x="60" y="326" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">탈락 요청은 즉시 반려. 뒤로 흘려보내지 않음</text>
-            <text x="60" y="342" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">앞의 두 게이트는 Redis에서 종료. DB에 닿지 않음</text>
-            <text x="60" y="358" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">정확성의 최종 방어선은 @Version 낙관 락</text>
-            <text x="60" y="374" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">선점을 꺼도 오버셀 0인 이유</text>
+            <text x="60" y="332" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">최종 방어선은 @Version 낙관 락 — 선점을 꺼도 오버셀 0</text>
           </svg>
         </div>
       </div>
