@@ -205,10 +205,6 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .exp-tbl td, .exp-tbl th { padding: 5px 10px; }
 .exp-tbl .ok { font-weight: 600; }
 
-/* 측정 환경 — 표의 수치가 나온 조건. 아래 신뢰성 노트의 전제이기도 하다 */
-.env-line { margin-top: 8px; font-size: 11.5px; color: var(--text-muted); word-break: keep-all; }
-.env-line strong { color: var(--text); font-weight: 600; }
-
 /* 측정 신뢰성 — 위 숫자가 성립하는 전제. 한계(.tradeoff-note)가 아니라 근거다 */
 .trust-note { display: flex; align-items: baseline; gap: 10px; margin-top: 11px; padding: 9px 13px; background: var(--bg-card2); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 6px; font-size: 12px; line-height: 1.55; word-break: keep-all; }
 .trust-label { flex: none; font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: .02em; }
@@ -1028,8 +1024,6 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <tr><td>임계점</td><td>무너지는 지점을 수치로 파악</td><td><strong class="ok">천장 ~189 TPS → K=100 확정</strong> <span class="cond">L5b</span></td></tr>
         </tbody>
       </table>
-
-      <p class="env-line"><strong>측정 환경</strong> — 로컬 Windows 위 Docker Compose(앱 · MySQL · Redis)로 실행하고, k6도 같은 네트워크의 컨테이너에서 돌렸다.</p>
 
       <div class="exp-head">
         <h3>근거 — 각 장치를 껐다 켜서 직접 쟀다</h3>
