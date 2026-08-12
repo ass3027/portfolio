@@ -198,7 +198,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .verify-tbl.slo-tbl .ok { font-size: 14px; }
 
 /* 보조: 대조 실험 — 결론의 근거. 작게 */
-.exp-head { display: flex; align-items: baseline; gap: 8px; margin-top: 15px; padding-top: 11px; border-top: 1px solid var(--border); }
+.exp-head { display: flex; align-items: baseline; gap: 8px; margin-top: 15px; padding-top: 11px; border-top: 1px solid var(--border); word-break: keep-all; }
 .exp-head h3 { margin: 0; font-size: 12.5px; }
 .exp-head .exp-why { font-size: 11px; color: var(--text-muted); }
 .exp-tbl { margin-top: 7px; font-size: 11.5px; }
@@ -1004,8 +1004,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </table>
 
       <div class="exp-head">
-        <h3>근거 — 각 장치를 <em>껐을 때</em>를 직접 쟀다</h3>
-        <span class="exp-why">목표 달성이 장치 덕분임을 Before/After로 확인</span>
+        <h3>근거 — 각 장치를 껐다 켜서 직접 쟀다</h3>
+        <span class="exp-why">목표 달성이 그 장치 덕분인지 확인</span>
       </div>
       <table class="verify-tbl exp-tbl">
         <thead><tr><th style="width:14%">실험</th><th style="width:26%">Before (끔)</th><th style="width:26%">After (켬)</th><th style="width:34%">규명한 것</th></tr></thead>
