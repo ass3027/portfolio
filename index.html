@@ -875,6 +875,12 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
               <marker id="ktx2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                 <path d="M0 1.5 L10 5 L0 8.5 z" fill="#1f2328"/>
               </marker>
+              <marker id="ktx2-arrow-load" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 1.5 L10 5 L0 8.5 z" fill="#7D64FF"/>
+              </marker>
+              <marker id="ktx2-arrow-obs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 1.5 L10 5 L0 8.5 z" fill="#E6522C"/>
+              </marker>
             </defs>
             <!-- Docker Compose 경계: 모든 요소가 한 네트워크 안에 있다 -->
             <rect x="95" y="12" width="266" height="178" rx="8" fill="none" stroke="#2496ED" stroke-width="1.1" stroke-dasharray="4 3"/>
@@ -908,8 +914,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <text x="295" y="85" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.6" fill="#57606a">불일치 수렴</text>
 
             <!-- 부하: k6 → 앱 -->
-            <path d="M147 39 H197" fill="none" stroke="#1f2328" stroke-width="0.9" marker-end="url(#ktx2-arrow)"/>
-            <text x="172" y="35" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#1f2328">부하</text>
+            <path d="M145 39 H199" fill="none" stroke="#7D64FF" stroke-width="1" marker-end="url(#ktx2-arrow-load)"/>
+            <text x="171" y="35" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#7D64FF">부하</text>
 
             <!-- 앱 → 데이터 -->
             <path d="M265 94 V126" fill="none" stroke="#1f2328" stroke-width="0.9"/>
@@ -925,19 +931,19 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <text x="298" y="181" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" fill="#57606a">정합성 원천</text>
 
             <!-- 관측: Prometheus가 앱 지표를 수집(pull), Grafana가 조회 -->
-            <use href="#p7-ic-prometheus" x="117" y="84" width="26" height="26"/>
-            <text x="130" y="116" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#E6522C">Prometheus</text>
-            <text x="130" y="123" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" fill="#57606a">지표 수집</text>
+            <use href="#p7-ic-prometheus" x="117" y="78" width="26" height="26"/>
+            <text x="130" y="110" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#E6522C">Prometheus</text>
+            <text x="130" y="117" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" fill="#57606a">지표 수집</text>
 
             <use href="#p7-ic-grafana" x="117" y="142" width="26" height="26"/>
             <text x="130" y="174" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#F46800">Grafana</text>
             <text x="130" y="181" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" fill="#57606a">시계열 관찰</text>
 
             <!-- Prometheus가 앱의 Actuator 지표를 긁어감 (pull) -->
-            <path d="M197 92 H147" fill="none" stroke="#1f2328" stroke-width="0.9" stroke-dasharray="3 2" marker-end="url(#ktx2-arrow)"/>
-            <text x="174" y="88" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.6" font-weight="700" fill="#1f2328">Actuator</text>
+            <path d="M199 88 H145" fill="none" stroke="#E6522C" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ktx2-arrow-obs)"/>
+            <text x="173" y="84" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.6" font-weight="700" fill="#E6522C">Actuator</text>
 
-            <path d="M130 128 V139" fill="none" stroke="#1f2328" stroke-width="0.9" marker-end="url(#ktx2-arrow)"/>
+            <path d="M130 122 V139" fill="none" stroke="#E6522C" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ktx2-arrow-obs)"/>
           </svg>
         </div>
       </div>
