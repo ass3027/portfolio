@@ -205,6 +205,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .exp-tbl td, .exp-tbl th { padding: 5px 10px; }
 .exp-tbl .ok { font-weight: 600; }
 
+/* 측정 신뢰성 — 위 숫자가 성립하는 전제. 한계(.tradeoff-note)가 아니라 근거다 */
+.trust-note { display: flex; align-items: baseline; gap: 10px; margin-top: 11px; padding: 9px 13px; background: var(--bg-card2); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 6px; font-size: 12px; line-height: 1.55; }
+.trust-label { flex: none; font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: .02em; }
+
 .ascii-box { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; font-family: var(--mono); font-size: 12px; line-height: 1.55; color: #8b949e; overflow: hidden; white-space: pre; }
 .arch-svg { background: var(--bg-card2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; }
 .arch-svg svg { display: block; width: 100%; height: auto; }
@@ -1012,7 +1016,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         </tbody>
       </table>
 
-      <div class="tradeoff-note" style="margin-top:12px;">호스트 k6는 Windows NAT 포화로 연결 거부가 섞여 <strong>"진짜 1,000 동시" 전제가 깨졌다.</strong> 같은 네트워크의 컨테이너 k6로 전환해 우회했다 — 이 트러블슈팅 자체가 측정의 신뢰성을 만든 작업이다.</div>
+      <div class="trust-note">
+        <span class="trust-label">측정 신뢰성</span>
+        <span><strong>부하 발생기 자신이 병목이었다</strong> — 호스트 k6는 연결 거부가 섞여 "진짜 1,000 동시" 전제가 깨져 있었다(Windows NAT 포화). 같은 네트워크의 컨테이너 k6로 옮겨서야 위 수치가 성립한다.</span>
+      </div>
     </div>
   </div>
   <div class="page-num">11</div>
