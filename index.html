@@ -1008,11 +1008,11 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <span class="exp-why">목표 달성이 그 장치 덕분인지 확인</span>
       </div>
       <table class="verify-tbl exp-tbl">
-        <thead><tr><th style="width:14%">실험</th><th style="width:26%">Before (끔)</th><th style="width:26%">After (켬)</th><th style="width:34%">규명한 것</th></tr></thead>
+        <thead><tr><th style="width:14%">장치</th><th style="width:26%">OFF</th><th style="width:26%">ON</th><th style="width:34%">규명한 것</th></tr></thead>
         <tbody>
-          <tr><td><strong>E1</strong> 원자 선점</td><td>oversell 0, reserve 중앙값 ~1.2s</td><td>oversell 0, <strong class="ok">~0.29s</strong></td><td>선점의 값은 정확성이 아니라 <strong>DB 부하 회피</strong></td></tr>
-          <tr><td><strong>E2</strong> 입장 제어</td><td>p95 22s, drop 38k, VU 2,000 팽창</td><td><strong class="ok">429로 85.4% 흡수</strong>, drop 0</td><td>제어 부재의 비용은 5xx가 아니라 <strong>무경계 열화</strong></td></tr>
-          <tr><td><strong>E3</strong> 조회 캐시</td><td>~850 TPS, p95 8~9s</td><td><strong class="ok">2,497 TPS, p95 26ms</strong></td><td>측정이 드러낸 지연을 캐시로 정면 해결</td></tr>
+          <tr><td><strong>원자 선점</strong></td><td>oversell 0, reserve 중앙값 ~1.2s</td><td>oversell 0, <strong class="ok">~0.29s</strong></td><td>선점의 값은 정확성이 아니라 <strong>DB 부하 회피</strong></td></tr>
+          <tr><td><strong>입장 제어</strong></td><td>p95 22s, drop 38k, VU 2,000 팽창</td><td><strong class="ok">429로 85.4% 흡수</strong>, drop 0</td><td>제어 부재의 비용은 5xx가 아니라 <strong>무경계 열화</strong></td></tr>
+          <tr><td><strong>조회 캐시</strong></td><td>~850 TPS, p95 8~9s</td><td><strong class="ok">2,497 TPS, p95 26ms</strong></td><td>측정이 드러낸 지연을 캐시로 정면 해결</td></tr>
         </tbody>
       </table>
 
