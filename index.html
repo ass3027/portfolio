@@ -192,7 +192,19 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .verify-tbl td, .verify-tbl th { padding-top: 8px; padding-bottom: 8px; }
 .verify-tbl .ok { color: var(--green); }
 .verify-tbl .cond { font-size: 11px; color: var(--text-muted); }
-.exp-tbl { margin-top: 8px; }
+
+/* 주력: SLO 달성표 — 이 페이지의 결론. 크게 */
+.verify-tbl.slo-tbl { font-size: 13.5px; }
+.verify-tbl.slo-tbl td, .verify-tbl.slo-tbl th { padding-top: 9px; padding-bottom: 9px; }
+.verify-tbl.slo-tbl .ok { font-size: 14px; }
+
+/* 보조: 대조 실험 — 결론의 근거. 작게 */
+.exp-head { display: flex; align-items: baseline; gap: 8px; margin-top: 15px; padding-top: 11px; border-top: 1px solid var(--border); }
+.exp-head h3 { margin: 0; font-size: 12.5px; }
+.exp-head .exp-why { font-size: 11px; color: var(--text-muted); }
+.exp-tbl { margin-top: 7px; font-size: 11.5px; }
+.exp-tbl td, .exp-tbl th { padding: 5px 10px; }
+.exp-tbl .ok { font-weight: 600; }
 
 .ascii-box { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; font-family: var(--mono); font-size: 12px; line-height: 1.55; color: #8b949e; overflow: hidden; white-space: pre; }
 .arch-svg { background: var(--bg-card2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; }
@@ -978,7 +990,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="page-fill">
       <p class="verify-lead">목표 기준은 티켓팅 도메인에서 <strong>직접 도출</strong>한 뒤 <strong>k6로 실측</strong>했다. 정합성은 확률로 타협할 수 없는 <strong>불변식</strong>이라 0으로, 지연은 사용자가 화면 앞에서 기다리는 <strong>동기 요청</strong>이라 예매 500ms / 조회 200ms로, 임계점은 <strong>무너지는 지점을 아는 것</strong> 자체를 목표로 잡았다.</p>
 
-      <table class="verify-tbl" style="margin-top:10px;">
+      <table class="verify-tbl slo-tbl" style="margin-top:10px;">
         <thead><tr><th style="width:18%">지표</th><th style="width:30%">목표</th><th style="width:52%">측정값</th></tr></thead>
         <tbody>
           <tr><td><strong>정합성</strong></td><td><strong>초과 판매 0 / 중복 0</strong></td><td><strong class="ok">0 / 0</strong> <span class="cond">L1 단일좌석 1,000, 3회 일관</span></td></tr>
@@ -990,7 +1002,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         </tbody>
       </table>
 
-      <h3 style="margin-top:14px;">Before / After 대조 실험 — 각 장치를 <em>껐을 때</em>를 직접 쟀다</h3>
+      <div class="exp-head">
+        <h3>근거 — 각 장치를 <em>껐을 때</em>를 직접 쟀다</h3>
+        <span class="exp-why">목표 달성이 장치 덕분임을 Before/After로 확인</span>
+      </div>
       <table class="verify-tbl exp-tbl">
         <thead><tr><th style="width:14%">실험</th><th style="width:26%">Before (끔)</th><th style="width:26%">After (켬)</th><th style="width:34%">규명한 것</th></tr></thead>
         <tbody>
