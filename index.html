@@ -188,7 +188,6 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .ktx-tbl td, .ktx-tbl th { padding-top: 16px; padding-bottom: 16px; }
 
 /* 검증 목표와 실측 (KTX) — 목표·근거·측정값 대조표 */
-.verify-lead { font-size: 13px; line-height: 1.6; color: var(--text-muted); margin: 0; }
 .verify-tbl td, .verify-tbl th { padding-top: 8px; padding-bottom: 8px; }
 .verify-tbl .ok { color: var(--green); }
 .verify-tbl .cond { font-size: 11px; color: var(--text-muted); }
@@ -988,9 +987,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-body">
     <h2 class="page-title">🚄 KTX 티켓팅 — 검증 목표와 실측</h2>
     <div class="page-fill">
-      <p class="verify-lead">지표는 SRE의 SLO 설계 관행을 따라 <strong>시스템 자원이 아닌 사용자 경로(예매·조회) 기준</strong>으로 잡고, 지연은 평균 대신 <strong>p95</strong>로 봤다. 목표값은 티켓팅 도메인에서 직접 도출했다 — 정합성은 타협 불가능한 <strong>불변식</strong>이라 0으로, 지연은 사용자가 기다리는 <strong>동기 요청</strong>이라 예매 500ms / 조회 200ms로, 임계점은 <strong>무너지는 지점을 아는 것</strong> 자체를 목표로 잡았다.</p>
-
-      <table class="verify-tbl slo-tbl" style="margin-top:10px;">
+      <table class="verify-tbl slo-tbl">
         <thead><tr><th style="width:18%">지표</th><th style="width:30%">목표</th><th style="width:52%">측정값</th></tr></thead>
         <tbody>
           <tr><td><strong>정합성</strong></td><td><strong>초과 판매 0 / 중복 0</strong></td><td><strong class="ok">0 / 0</strong> <span class="cond">L1 단일좌석 1,000, 3회 일관</span></td></tr>
