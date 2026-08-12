@@ -878,19 +878,19 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             </defs>
             <!-- Docker Compose 경계: 모든 요소가 한 네트워크 안에 있다 -->
             <rect x="95" y="12" width="266" height="170" rx="8" fill="none" stroke="#2496ED" stroke-width="1.1" stroke-dasharray="4 3"/>
-            <use href="#p7-ic-docker" x="101" y="14.5" width="8" height="8"/>
-            <text x="112" y="20.5" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="6.6" font-weight="700" fill="#2496ED">Docker Compose · 단일 네트워크</text>
+            <use href="#p7-ic-docker" x="100" y="13.5" width="11" height="11"/>
+            <text x="114" y="21" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="6.2" font-weight="700" fill="#2496ED">Docker Compose · 단일 네트워크</text>
 
             <!-- 부하 발생 -->
             <rect x="101" y="32" width="58" height="26" rx="5" fill="#ffffff" stroke="#7D64FF" stroke-width="1.3"/>
-            <use href="#p7-ic-k6" x="112" y="35.5" width="7" height="7"/>
-            <text x="136" y="41.5" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="7.4" font-weight="700" fill="#7D64FF">k6</text>
-            <text x="130" y="52" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" fill="#57606a">부하 · 1,000 VU</text>
+            <use href="#p7-ic-k6" x="110" y="34" width="11" height="11"/>
+            <text x="138" y="42.5" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="6.6" font-weight="700" fill="#7D64FF">k6</text>
+            <text x="130" y="53" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.4" fill="#57606a">부하 · 1,000 VU</text>
 
             <!-- 앱 -->
             <rect x="199" y="28" width="132" height="66" rx="7" fill="#ddf4ff" stroke="#0969da" stroke-width="1.4"/>
-            <use href="#p7-ic-springboot" x="206" y="31.5" width="7.5" height="7.5"/>
-            <text x="216" y="37.5" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="7" font-weight="700" fill="#0550ae">Spring Boot 4.0</text>
+            <use href="#p7-ic-springboot" x="205" y="30" width="11" height="11"/>
+            <text x="219" y="38.5" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="6.6" font-weight="700" fill="#0550ae">Spring Boot 4.0</text>
 
             <rect x="206" y="43" width="58" height="21" rx="4" fill="#ffffff" stroke="#0969da" stroke-width="1"/>
             <text x="235" y="51" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="6.8" font-weight="700" fill="#0550ae">admission</text>
@@ -918,25 +918,25 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <path d="M265 120 H317 V143" fill="none" stroke="#57606a" stroke-width="1.3" marker-end="url(#ktx2-arrow)"/>
 
             <rect x="180" y="145" width="67" height="26" rx="6" fill="#ffffff" stroke="#1a7f37" stroke-width="1.3"/>
-            <use href="#p7-ic-redis" x="194" y="149" width="7.5" height="7.5"/>
-            <text x="217" y="155" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="7.4" font-weight="700" fill="#1a7f37">Redis 7</text>
-            <text x="213" y="165" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" fill="#57606a">빠른 게이트</text>
+            <use href="#p7-ic-redis" x="191" y="147.5" width="11" height="11"/>
+            <text x="220" y="156" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="6.6" font-weight="700" fill="#1a7f37">Redis 7</text>
+            <text x="213" y="166" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.4" fill="#57606a">빠른 게이트</text>
 
             <rect x="284" y="145" width="67" height="26" rx="6" fill="#ffffff" stroke="#1a7f37" stroke-width="1.3"/>
-            <use href="#p7-ic-mysql" x="296" y="149" width="7.5" height="7.5"/>
-            <text x="321" y="155" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="7.4" font-weight="700" fill="#1a7f37">MySQL 8</text>
-            <text x="317" y="165" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" fill="#57606a">정합성 원천</text>
+            <use href="#p7-ic-mysql" x="293" y="147.5" width="11" height="11"/>
+            <text x="324" y="156" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="6.6" font-weight="700" fill="#1a7f37">MySQL 8</text>
+            <text x="317" y="166" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.4" fill="#57606a">정합성 원천</text>
 
             <!-- 관측: Prometheus가 앱 지표를 수집(pull), Grafana가 조회 -->
             <rect x="101" y="90" width="60" height="26" rx="5" fill="#ffffff" stroke="#E6522C" stroke-width="1.3"/>
-            <use href="#p7-ic-prometheus" x="106" y="93.5" width="6.5" height="6.5"/>
-            <text x="137" y="99.5" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="6.4" font-weight="700" fill="#E6522C">Prometheus</text>
-            <text x="131" y="110" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" fill="#57606a">지표 수집</text>
+            <use href="#p7-ic-prometheus" x="104" y="92.5" width="10" height="10"/>
+            <text x="139" y="100.5" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.9" font-weight="700" fill="#E6522C">Prometheus</text>
+            <text x="131" y="111" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.4" fill="#57606a">지표 수집</text>
 
             <rect x="101" y="145" width="60" height="26" rx="5" fill="#ffffff" stroke="#F46800" stroke-width="1.3"/>
-            <use href="#p7-ic-grafana" x="112" y="148.5" width="7" height="7"/>
-            <text x="136" y="154.5" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="7" font-weight="700" fill="#F46800">Grafana</text>
-            <text x="131" y="165" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" fill="#57606a">시계열 관찰</text>
+            <use href="#p7-ic-grafana" x="109" y="147.5" width="11" height="11"/>
+            <text x="138" y="156" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="6.4" font-weight="700" fill="#F46800">Grafana</text>
+            <text x="131" y="166" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.4" fill="#57606a">시계열 관찰</text>
 
             <!-- Prometheus가 앱의 Actuator 지표를 긁어감 (pull) -->
             <path d="M197 84 H163" fill="none" stroke="#E6522C" stroke-width="1.4" stroke-dasharray="3 2" marker-end="url(#ktx2-arrow)"/>
