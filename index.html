@@ -212,6 +212,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .ascii-box { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; font-family: var(--mono); font-size: 12px; line-height: 1.55; color: #8b949e; overflow: hidden; white-space: pre; }
 .arch-svg { background: var(--bg-card2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; }
 .arch-svg svg { display: block; width: 100%; height: auto; }
+.combo-cap { font-size: 12.5px; font-weight: 700; color: var(--text-muted); margin: 0 0 6px 2px; }
 
 .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .compare-grid.stack { grid-template-columns: 1fr; }
@@ -858,30 +859,39 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">08</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 9 — KTX 모듈 구성과 구성 요소 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 9 — KTX 시스템 아키텍처와 예매 요청 경로 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
-    <h2 class="page-title">🚄 KTX 티켓팅 — 시스템 아키텍처</h2>
+    <h2 class="page-title">🚄 KTX 티켓팅 — 시스템 아키텍처와 예매 요청 경로</h2>
     <div class="page-fill">
-    <div style="margin-top:6px;">
-      <div>
-        <div class="arch-svg" style="padding:8px 18px; max-width:880px; margin:0 auto;">
-          <svg viewBox="108 8 264 174" style="width:100%; height:auto;" preserveAspectRatio="xMidYMid meet" role="img" aria-label="KTX 시스템 아키텍처: Docker Compose 한 네트워크 안에 Spring Boot 앱(admission·schedule·booking·reconcile 네 모듈), Redis(빠른 게이트), MySQL(정합성 원천)이 있고, k6 컨테이너가 앱에 부하를 준다. Prometheus가 앱의 Actuator 지표를 수집하고 Grafana가 이를 시계열로 조회한다">
+      <div class="row" style="width:100%; grid-template-columns:2.05fr 1fr; align-items:start; gap:20px;">
+        <div>
+          <div class="combo-cap">시스템 구성</div>
+          <div class="arch-svg" style="padding:10px 12px;">
+            <svg viewBox="108 8 241 174" style="width:100%; height:auto;" preserveAspectRatio="xMidYMid meet" role="img" aria-label="KTX 시스템 아키텍처: Docker Compose 한 네트워크 안에 Spring Boot 앱(admission·schedule·booking·reconcile 네 모듈), Redis(빠른 게이트), MySQL(정합성 원천)이 있고, k6 컨테이너가 앱에 부하를 준다. Prometheus가 앱의 Actuator 지표를 수집하고 Grafana가 이를 시계열로 조회한다">
             <defs>
-              <marker id="ktx2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M0 1.5 L10 5 L0 8.5 z" fill="#1f2328"/>
-              </marker>
-              <marker id="ktx2-arrow-load" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M0 1.5 L10 5 L0 8.5 z" fill="#7D64FF"/>
-              </marker>
-              <marker id="ktx2-arrow-obs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M0 1.5 L10 5 L0 8.5 z" fill="#E6522C"/>
-              </marker>
+            <marker id="t-ktx2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 1.5 L10 5 L0 8.5 z" fill="#57606a"/>
+            </marker>
+            <marker id="t-ktx2-arrow-load" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 1.5 L10 5 L0 8.5 z" fill="#7D64FF"/>
+            </marker>
+            <marker id="t-ktx2-arrow-obs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 1.5 L10 5 L0 8.5 z" fill="#BC4C00"/>
+            </marker>
             </defs>
             <!-- Docker Compose 경계: 모든 요소가 한 네트워크 안에 있다 -->
-            <rect x="112" y="12" width="256" height="166" rx="8" fill="none" stroke="#2496ED" stroke-width="1.1" stroke-dasharray="4 3"/>
+            <rect x="112" y="12" width="233" height="166" rx="8" fill="none" stroke="#2496ED" stroke-width="1.1" stroke-dasharray="4 3"/>
             <use href="#p7-ic-docker" x="117" y="13.5" width="11" height="11"/>
             <text x="131" y="21" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="6.2" font-weight="700" fill="#2496ED">Docker Compose · 단일 네트워크</text>
+
+            <!-- 범례: 선 색 = 역할(부하 / 데이터 / 관측). 실선 = 데이터 평면, 점선 = 관측 평면 -->
+            <path d="M257 19.2 H266" fill="none" stroke="#7D64FF" stroke-width="1"/>
+            <text x="268" y="21" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="4.6" font-weight="700" fill="#7D64FF">부하</text>
+            <path d="M283 19.2 H292" fill="none" stroke="#57606a" stroke-width="1"/>
+            <text x="294" y="21" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="4.6" font-weight="700" fill="#57606a">데이터</text>
+            <path d="M314 19.2 H323" fill="none" stroke="#BC4C00" stroke-width="1" stroke-dasharray="3 2"/>
+            <text x="325" y="21" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="4.6" font-weight="700" fill="#BC4C00">관측</text>
 
             <!-- ── 좌: 부하 ── -->
             <use href="#p7-ic-k6" x="120" y="48" width="26" height="26"/>
@@ -889,34 +899,34 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <text x="133" y="87" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" fill="#57606a">부하 · 1,000 VU</text>
 
             <!-- ── 중: 앱 ── -->
-            <rect x="171" y="38" width="101" height="50" rx="6" fill="#ddf4ff" stroke="#0969da" stroke-width="1.3"/>
-            <use href="#p7-ic-springboot" x="176" y="39.5" width="9" height="9"/>
-            <text x="187" y="46.5" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#0550ae">Spring Boot 4.0</text>
+            <rect x="178" y="38" width="101" height="50" rx="6" fill="#ddf4ff" stroke="#0969da" stroke-width="1.3"/>
+            <use href="#p7-ic-springboot" x="183" y="39.5" width="9" height="9"/>
+            <text x="194" y="46.5" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#0550ae">Spring Boot 4.0</text>
 
-            <rect x="177" y="51" width="43" height="15" rx="3" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
-            <text x="198.5" y="57" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" font-weight="700" fill="#0550ae">admission</text>
-            <text x="198.5" y="63" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4" fill="#57606a">상한 K</text>
+            <rect x="184" y="51" width="43" height="15" rx="3" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
+            <text x="205.5" y="57" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" font-weight="700" fill="#0550ae">admission</text>
+            <text x="205.5" y="63" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4" fill="#57606a">상한 K</text>
 
-            <rect x="224" y="51" width="43" height="15" rx="3" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
-            <text x="245.5" y="57" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" font-weight="700" fill="#0550ae">schedule</text>
-            <text x="245.5" y="63" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4" fill="#57606a">조회 · 캐시</text>
+            <rect x="231" y="51" width="43" height="15" rx="3" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
+            <text x="252.5" y="57" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" font-weight="700" fill="#0550ae">schedule</text>
+            <text x="252.5" y="63" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4" fill="#57606a">조회 · 캐시</text>
 
-            <rect x="177" y="69" width="43" height="15" rx="3" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
-            <text x="198.5" y="75" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" font-weight="700" fill="#0550ae">booking</text>
-            <text x="198.5" y="81" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4" fill="#57606a">선점 · 확정</text>
+            <rect x="184" y="69" width="43" height="15" rx="3" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
+            <text x="205.5" y="75" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" font-weight="700" fill="#0550ae">booking</text>
+            <text x="205.5" y="81" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4" fill="#57606a">선점 · 확정</text>
 
-            <rect x="224" y="69" width="43" height="15" rx="3" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
-            <text x="245.5" y="75" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" font-weight="700" fill="#0550ae">reconcile</text>
-            <text x="245.5" y="81" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4" fill="#57606a">불일치 수렴</text>
+            <rect x="231" y="69" width="43" height="15" rx="3" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
+            <text x="252.5" y="75" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" font-weight="700" fill="#0550ae">reconcile</text>
+            <text x="252.5" y="81" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4" fill="#57606a">불일치 수렴</text>
 
             <!-- 부하: k6 → 앱 (왼 → 오) -->
-            <path d="M148 61 H169" fill="none" stroke="#7D64FF" stroke-width="1" marker-end="url(#ktx2-arrow-load)"/>
+            <path d="M148 61 H176" fill="none" stroke="#7D64FF" stroke-width="1" marker-end="url(#t-ktx2-arrow-load)"/>
             <text x="158" y="57" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#7D64FF">부하</text>
 
             <!-- 중: 앱 → 데이터 (아래로) -->
-            <path d="M221.5 88 V116" fill="none" stroke="#1f2328" stroke-width="0.9"/>
-            <path d="M221.5 116 H186 V129" fill="none" stroke="#1f2328" stroke-width="0.9" marker-end="url(#ktx2-arrow)"/>
-            <path d="M221.5 116 H266 V129" fill="none" stroke="#1f2328" stroke-width="0.9" marker-end="url(#ktx2-arrow)"/>
+            <path d="M228.5 88 V116" fill="none" stroke="#57606a" stroke-width="1"/>
+            <path d="M228.5 116 H186 V129" fill="none" stroke="#57606a" stroke-width="1" marker-end="url(#t-ktx2-arrow)"/>
+            <path d="M228.5 116 H266 V129" fill="none" stroke="#57606a" stroke-width="1" marker-end="url(#t-ktx2-arrow)"/>
 
             <use href="#p7-ic-redis" x="173" y="132" width="26" height="26"/>
             <text x="186" y="164" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#1a7f37">Redis 7</text>
@@ -927,88 +937,81 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <text x="266" y="171" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.8" fill="#57606a">정합성 원천</text>
 
             <!-- ── 우: 관측 (앱 → Prometheus → Grafana, 전부 왼 → 오/아래) ── -->
-            <path d="M274 61 H307" fill="none" stroke="#E6522C" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ktx2-arrow-obs)"/>
-            <text x="290" y="57" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.6" font-weight="700" fill="#E6522C">Actuator</text>
+            <path d="M281 61 H307" fill="none" stroke="#BC4C00" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#t-ktx2-arrow-obs)"/>
+            <text x="294" y="57" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.6" font-weight="700" fill="#BC4C00">Actuator</text>
+            <text x="294" y="68" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="4.4" fill="#57606a">scrape</text>
 
             <use href="#p7-ic-prometheus" x="309" y="48" width="26" height="26"/>
-            <text x="322" y="80" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#E6522C">Prometheus</text>
+            <text x="322" y="80" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#BC4C00">Prometheus</text>
 
-            <path d="M322 92 V129" fill="none" stroke="#E6522C" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ktx2-arrow-obs)"/>
+            <path d="M322 92 V129" fill="none" stroke="#BC4C00" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#t-ktx2-arrow-obs)"/>
+            <text x="326" y="112" text-anchor="start" font-family="'Noto Sans KR',sans-serif" font-size="4.4" fill="#57606a">query</text>
 
             <use href="#p7-ic-grafana" x="309" y="132" width="26" height="26"/>
-            <text x="322" y="164" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#F46800">Grafana</text>
-          </svg>
+            <text x="322" y="164" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="5.8" font-weight="700" fill="#BC4C00">Grafana</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="combo-cap">예매 요청 경로</div>
+          <div class="arch-svg" style="padding:10px 12px;">
+            <svg viewBox="0 0 305 470" role="img" aria-label="KTX 예매 요청 경로: 1,000 동시 요청이 Redis 입장 게이트(INCR active, 동시 예매 세션 상한 K 초과 시 HTTP 429 입장 초과)와 Redis 원자 선점(SREM·SPOP, 실패 시 HTTP 409 선점 실패)과 MySQL DB 전이(@Version, 충돌 시 HTTP 409 버전 충돌)를 거쳐 확정 1건과 오버셀 0으로 끝남. 탈락 요청은 앞의 두 게이트에서 즉시 반려되어 DB에 닿지 않음. 선점을 꺼도 오버셀은 0이며, 선점의 값은 DB 부하 회피에 있음">
+            <defs>
+            <marker id="t-ktx3-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
+            </marker>
+            <marker id="t-ktx3-reject" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#cf222e"/>
+            </marker>
+            </defs>
+
+            <text x="300" y="16" text-anchor="end" font-family="'Noto Sans KR',sans-serif" font-size="9.5" fill="#57606a"><tspan font-size="12.5" font-weight="700" fill="#8250df">K</tspan> 동시 예매 세션 상한</text>
+
+            <text x="114" y="20" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1f2328">1,000 동시 요청</text>
+            <path d="M114 28 V82" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#t-ktx3-arrow)"/>
+
+            <rect x="16" y="84" width="196" height="54" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+            <use href="#p7-ic-redis" x="26" y="101" width="20" height="20"/>
+            <text x="114" y="106" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#0550ae">입장 게이트</text>
+            <text x="114" y="124" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#1f2328">INCR active:{id} ≤ <tspan font-size="13.5" font-weight="700" fill="#8250df">K</tspan></text>
+            <path d="M212 111 H240" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#t-ktx3-reject)"/>
+            <text x="244" y="108" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#cf222e">HTTP 429</text>
+            <text x="244" y="125" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">입장 초과</text>
+
+            <path d="M114 138 V194" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#t-ktx3-arrow)"/>
+
+            <rect x="16" y="196" width="196" height="54" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+            <use href="#p7-ic-redis" x="26" y="213" width="20" height="20"/>
+            <text x="114" y="218" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#0550ae">원자 선점</text>
+            <text x="114" y="236" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#1f2328">SREM · SPOP avail:{id}</text>
+            <path d="M212 223 H240" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#t-ktx3-reject)"/>
+            <text x="244" y="220" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#cf222e">HTTP 409</text>
+            <text x="244" y="237" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">선점 실패</text>
+
+            <path d="M114 250 V306" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#t-ktx3-arrow)"/>
+
+            <rect x="16" y="308" width="196" height="54" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+            <use href="#p7-ic-mysql" x="26" y="325" width="20" height="20"/>
+            <text x="114" y="330" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1a7f37">DB 전이</text>
+            <text x="114" y="348" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">@Version</text>
+            <path d="M212 335 H240" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#t-ktx3-reject)"/>
+            <text x="244" y="332" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#cf222e">HTTP 409</text>
+            <text x="244" y="349" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">버전 충돌</text>
+
+            <path d="M114 362 V420" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#t-ktx3-arrow)"/>
+            <text x="114" y="440" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1a7f37">확정 1건, oversell 0</text>
+
+            <text x="16" y="464" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">선점을 꺼도 오버셀 0 — 선점의 값은 DB 부하 회피</text>
+            </svg>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   </div>
   <div class="page-num">09</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 10 — KTX 예매 요청 경로 ══════════════════════════════════════ -->
-<div class="page">
-  <div class="page-body">
-    <h2 class="page-title">🚄 KTX 티켓팅 — 예매 요청 경로</h2>
-    <div class="page-fill">
-      <div style="width:100%; max-width:820px; margin:0 auto;">
-        <div class="arch-svg">
-          <svg viewBox="0 0 480 334" role="img" aria-label="KTX 예매 요청 경로: 1,000 동시 요청이 Redis 입장 게이트(INCR active, 동시 예매 세션 상한 K 초과 시 HTTP 429 입장 초과)와 Redis 원자 선점(SREM·SPOP, 실패 시 HTTP 409 선점 실패)과 MySQL DB 전이(@Version, 충돌 시 HTTP 409 버전 충돌)를 거쳐 확정 1건과 오버셀 0으로 끝남. 탈락 요청은 앞의 두 게이트에서 즉시 반려되어 DB에 닿지 않음. 선점을 꺼도 오버셀은 0이며, 선점의 값은 DB 부하 회피에 있음">
-            <defs>
-              <marker id="ktx3-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
-              </marker>
-              <marker id="ktx3-reject" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M0 0 L10 5 L0 10 z" fill="#cf222e"/>
-              </marker>
-            </defs>
-
-            <text x="4" y="17" font-family="'Noto Sans KR',sans-serif" font-size="10" fill="#57606a"><tspan font-size="13" font-weight="700" fill="#8250df">K</tspan> 동시 예매 세션 상한</text>
-
-            <text x="180" y="20" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1f2328">1,000 동시 요청</text>
-            <path d="M180 28 V48" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
-
-            <rect x="60" y="50" width="240" height="54" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
-            <use href="#p7-ic-redis" x="70" y="67" width="20" height="20"/>
-            <text x="180" y="72" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#0550ae">입장 게이트</text>
-            <text x="180" y="90" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#1f2328">INCR active:{id} ≤ <tspan font-size="13.5" font-weight="700" fill="#8250df">K</tspan></text>
-            <path d="M300 77 H370" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#ktx3-reject)"/>
-            <text x="374" y="74" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#cf222e">HTTP 429</text>
-            <text x="374" y="91" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">입장 초과</text>
-
-            <path d="M180 104 V128" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
-
-            <rect x="60" y="128" width="240" height="54" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
-            <use href="#p7-ic-redis" x="70" y="145" width="20" height="20"/>
-            <text x="180" y="150" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#0550ae">원자 선점</text>
-            <text x="180" y="168" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#1f2328">SREM · SPOP avail:{id}</text>
-            <path d="M300 155 H370" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#ktx3-reject)"/>
-            <text x="374" y="152" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#cf222e">HTTP 409</text>
-            <text x="374" y="169" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">선점 실패</text>
-
-            <path d="M180 182 V206" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
-
-            <rect x="60" y="206" width="240" height="54" rx="8" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
-            <use href="#p7-ic-mysql" x="70" y="223" width="20" height="20"/>
-            <text x="180" y="228" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1a7f37">DB 전이</text>
-            <text x="180" y="246" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">@Version</text>
-            <path d="M300 233 H370" fill="none" stroke="#cf222e" stroke-width="1.5" marker-end="url(#ktx3-reject)"/>
-            <text x="374" y="230" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#cf222e">HTTP 409</text>
-            <text x="374" y="247" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">버전 충돌</text>
-
-            <path d="M180 260 V282" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#ktx3-arrow)"/>
-            <text x="180" y="300" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" font-weight="700" fill="#1a7f37">확정 1건, oversell 0</text>
-
-            <text x="60" y="326" font-family="'Noto Sans KR',sans-serif" font-size="10.5" fill="#57606a">선점을 꺼도 오버셀 0 — 선점의 값은 DB 부하 회피</text>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="page-num">10</div>
-</div>
-
-<!-- ══════════════════════════════════════ PAGE 11 — KTX 검증 목표와 실측 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 10 — KTX 검증 목표와 실측 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🚄 KTX 티켓팅 — 검증 목표와 실측</h2>
@@ -1044,10 +1047,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">11</div>
+  <div class="page-num">10</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 12 — KTX 핵심 개선과 성과 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 11 — KTX 핵심 개선과 성과 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🚄 KTX 티켓팅 — 핵심 개선과 성과</h2>
@@ -1080,10 +1083,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
   </div>
   </div>
-  <div class="page-num">12</div>
+  <div class="page-num">11</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 13 — LiDAR 프로젝트 요약 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 12 — LiDAR 프로젝트 요약 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
@@ -1122,10 +1125,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
   </div>
   </div>
-  <div class="page-num">13</div>
+  <div class="page-num">12</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 14 — LiDAR 핵심 개선과 성과 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 13 — LiDAR 핵심 개선과 성과 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🛩️ LiDAR — 핵심 개선과 성과</h2>
@@ -1170,10 +1173,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
   </div>
   </div>
-  <div class="page-num">14</div>
+  <div class="page-num">13</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 15 — AI 워크플로우 프로젝트 요약 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 14 — AI 워크플로우 프로젝트 요약 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
@@ -1205,10 +1208,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">15</div>
+  <div class="page-num">14</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 16 — AI 사례 1 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 15 — AI 사례 1 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🔁 AI 워크플로우 — 사내 프로젝트 개선 파이프라인</h2>
@@ -1238,10 +1241,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">16</div>
+  <div class="page-num">15</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 17 — AI 공통 협업 워크플로우 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 16 — AI 공통 협업 워크플로우 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🔁 AI 워크플로우 — 공통 인간·AI 협업</h2>
@@ -1274,7 +1277,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">17</div>
+  <div class="page-num">16</div>
 </div>
 
 </div><!-- /.deck -->
@@ -1282,7 +1285,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- 화면 전용 오버레이 네비게이션 (인쇄 시 숨김) -->
 <div class="deck-nav" id="deckNav">
   <button id="prevPage" aria-label="이전 페이지">◀</button>
-  <span class="indicator" id="pageIndicator">1 / 17</span>
+  <span class="indicator" id="pageIndicator">1 / 16</span>
   <button id="nextPage" aria-label="다음 페이지">▶</button>
 </div>
 
