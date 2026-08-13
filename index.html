@@ -873,7 +873,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div>
           <div class="combo-cap">시스템 구성</div>
           <div class="arch-svg" style="padding:10px 12px;">
-            <svg viewBox="0 0 340 199" style="width:100%; height:auto;" preserveAspectRatio="xMidYMid meet" role="img" aria-label="KTX 시스템 아키텍처: Docker Compose 단일 네트워크 안에 k6 부하 발생기와 Spring Boot 4.0 앱(admission·schedule·booking·reconcile 네 모듈), Redis 7, MySQL 8이 있다. k6가 앱에 HTTP API로 1,000 VUs 부하를 준다. admission은 Redis에 대기열 상태를, schedule은 Redis에 조회 캐시를, booking은 MySQL에 예약 원장을, reconcile은 MySQL에 보정 데이터를 접근한다. 관측은 pull 방식이다: 경계 밖의 Prometheus가 앱의 GET /actuator/prometheus를 scrape하고, Grafana가 Prometheus에 PromQL로 query한다">
+            <svg viewBox="0 0 340 202" style="width:100%; height:auto;" preserveAspectRatio="xMidYMid meet" role="img" aria-label="KTX 시스템 아키텍처: Docker Compose 단일 네트워크 안에 k6 부하 발생기와 Spring Boot 4.0 앱(admission·schedule·booking·reconcile 네 모듈), Redis 7, MySQL 8이 있다. k6가 앱에 HTTP API로 1,000 VUs 부하를 준다. admission은 Redis에 대기열 상태를, schedule은 Redis에 조회 캐시를, booking은 MySQL에 예약 원장을, reconcile은 MySQL에 보정 데이터를 접근한다. 관측은 pull 방식이다: 경계 밖의 Prometheus가 앱의 GET /actuator/prometheus를 scrape하고, Grafana가 Prometheus에 PromQL로 query한다">
             <defs>
             <marker id="t-ktx2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M0 1.5 L10 5 L0 8.5 z" fill="#57606a"/>
@@ -896,7 +896,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <text x="270" y="37" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="6" font-weight="700" fill="#BC4C00">관측</text>
 
             <!-- Docker Compose 경계: 부하·앱·데이터가 한 네트워크 안 -->
-            <rect x="4" y="6" width="228" height="190" rx="8" fill="none" stroke="#2496ED" stroke-width="1.1" stroke-dasharray="4 3"/>
+            <rect x="4" y="6" width="228" height="193" rx="8" fill="none" stroke="#2496ED" stroke-width="1.1" stroke-dasharray="4 3"/>
             <use href="#p7-ic-docker" x="11" y="11" width="12" height="12"/>
             <text x="27" y="20" text-anchor="start" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="8" font-weight="700" fill="#2496ED">Docker Compose · 단일 네트워크</text>
 
@@ -906,7 +906,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <text x="29" y="107" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5.6" fill="#57606a">부하 · 1,000 VUs</text>
 
             <path d="M47 71 H73" fill="none" stroke="#7D64FF" stroke-width="1.2" marker-end="url(#t-ktx2-arrow-load)"/>
-            <text x="60" y="67" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#7D64FF">HTTP API · 1,000 VUs</text>
+            <text x="60" y="67" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#7D64FF">HTTP API</text>
 
             <!-- 중: 앱 -->
             <rect x="76" y="40" width="128" height="72" rx="7" fill="#ffffff" stroke="#0969da" stroke-width="1.4"/>
@@ -921,7 +921,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <rect x="143" y="61" width="54" height="21" rx="4" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
             <use href="#p7-ic-mod-schedule" x="146" y="66" width="11" height="11"/>
             <text x="180" y="70" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5.8" font-weight="700" fill="#0550ae">schedule</text>
-            <text x="180" y="78" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="4.6" fill="#57606a">스케줄 조회 · 캐시</text>
+            <text x="180" y="78" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="4.2" fill="#57606a">스케줄 조회 · 캐시</text>
 
             <rect x="83" y="86" width="57" height="21" rx="4" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
             <use href="#p7-ic-mod-booking" x="86" y="91" width="11" height="11"/>
@@ -937,24 +937,24 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <path d="M95 112 V143" fill="none" stroke="#57606a" stroke-width="1" marker-end="url(#t-ktx2-arrow)"/>
             <text x="93" y="127" text-anchor="end" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#57606a">대기열 상태</text>
             <path d="M124 112 V143" fill="none" stroke="#57606a" stroke-width="1" marker-end="url(#t-ktx2-arrow)"/>
-            <text x="127" y="122" text-anchor="start" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#57606a">조회 캐시</text>
+            <text x="127" y="127" text-anchor="start" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#57606a">조회 캐시</text>
             <path d="M156 112 V143" fill="none" stroke="#57606a" stroke-width="1" marker-end="url(#t-ktx2-arrow)"/>
-            <text x="154" y="134" text-anchor="end" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#57606a">예약 원장</text>
+            <text x="159" y="127" text-anchor="start" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#57606a">예약 원장</text>
             <path d="M185 112 V143" fill="none" stroke="#57606a" stroke-width="1" marker-end="url(#t-ktx2-arrow)"/>
             <text x="188" y="127" text-anchor="start" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#57606a">보정 데이터</text>
 
             <use href="#p7-ic-redis" x="95" y="146" width="30" height="30"/>
-            <text x="110" y="183" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="7.5" font-weight="700" fill="#1a7f37">Redis 7</text>
-            <text x="110" y="192" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#57606a">대기열 · 조회 캐시</text>
+            <text x="110" y="185.5" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="7.5" font-weight="700" fill="#1a7f37">Redis 7</text>
+            <text x="110" y="194.5" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#57606a">대기열 · 조회 캐시</text>
 
             <use href="#p7-ic-mysql" x="156" y="146" width="30" height="30"/>
-            <text x="171" y="183" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="7.5" font-weight="700" fill="#1a7f37">MySQL 8</text>
-            <text x="171" y="192" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#57606a">예약 원장 · 정합성</text>
+            <text x="171" y="185.5" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="7.5" font-weight="700" fill="#1a7f37">MySQL 8</text>
+            <text x="171" y="194.5" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5" fill="#57606a">예약 원장 · 정합성</text>
 
             <!-- 우: 관측 (경계 밖). pull이므로 화살표가 왼쪽·위로 향한다 -->
-            <rect x="206" y="88" width="52" height="17" rx="3" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
-            <text x="232" y="94.5" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="4.8" font-weight="700" fill="#1f2328">GET</text>
-            <text x="232" y="101.5" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="4.8" font-weight="700" fill="#1f2328">/actuator/prometheus</text>
+            <rect x="203" y="87" width="59" height="18" rx="3" fill="#ffffff" stroke="#0969da" stroke-width="0.8"/>
+            <text x="232.5" y="94" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="4.6" font-weight="700" fill="#1f2328">GET</text>
+            <text x="232.5" y="101" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="4.3" font-weight="700" fill="#1f2328">/actuator/prometheus</text>
 
             <path d="M290 71 H208" fill="none" stroke="#BC4C00" stroke-width="1.2" stroke-dasharray="3 2" marker-end="url(#t-ktx2-arrow-obs)"/>
             <text x="249" y="79" text-anchor="middle" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="5.4" fill="#BC4C00">scrape · metrics</text>
