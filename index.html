@@ -873,7 +873,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div>
           <div class="combo-cap">시스템 구성</div>
           <div class="arch-svg" style="padding:10px 12px;">
-            <svg viewBox="0 0 324 214" style="width:100%; height:auto;" preserveAspectRatio="xMidYMid meet" role="img" aria-label="KTX 시스템 아키텍처: Docker Compose 단일 네트워크 안에 k6 부하 발생기와 Spring Boot 4.0 앱(admission·schedule·booking·reconcile 네 모듈), Redis 7, MySQL 8이 있다. k6가 앱에 HTTP API로 1,000 VUs 부하를 준다. admission은 Redis에 대기열 상태를, schedule은 Redis에 조회 캐시를, booking은 MySQL에 예약 원장을, reconcile은 MySQL에 보정 데이터를 접근한다. 관측은 pull 방식이다: 경계 밖의 Prometheus가 앱의 GET /actuator/prometheus를 scrape하고, Grafana가 Prometheus에 PromQL로 query한다">
+            <svg viewBox="0 14 324 200" style="width:100%; height:auto;" preserveAspectRatio="xMidYMid meet" role="img" aria-label="KTX 시스템 아키텍처: Docker Compose 단일 네트워크 안에 k6 부하 발생기와 Spring Boot 4.0 앱(admission·schedule·booking·reconcile 네 모듈), Redis 7, MySQL 8이 있다. k6가 앱에 HTTP API로 1,000 VUs 부하를 준다. admission은 Redis에 대기열 상태를, schedule은 Redis에 조회 캐시를, booking은 MySQL에 예약 원장을, reconcile은 MySQL에 보정 데이터를 접근한다. 관측은 pull 방식이다: 경계 밖의 Prometheus가 앱의 GET /actuator/prometheus를 scrape하고, Grafana가 Prometheus에 PromQL로 query한다">
             <defs>
             <marker id="t-ktx2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M0 1.5 L10 5 L0 8.5 z" fill="#57606a"/>
@@ -886,14 +886,14 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             </marker>
             </defs>
 
-            <!-- 범례: 우상단 박스. 선 색 = 역할(부하 요청 / 데이터 접근 / 관측) -->
+            <!-- 범례: 경계 안 상단 우측. 선 색 = 역할(부하 요청 / 데이터 접근 / 관측) -->
             
-            <path d="M144 9 H158" fill="none" stroke="#7D64FF" stroke-width="1.4" marker-end="url(#t-ktx2-arrow-load)"/>
-            <text x="161" y="11.5" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="6" font-weight="700" fill="#7D64FF">부하 요청</text>
-            <path d="M197 9 H211" fill="none" stroke="#57606a" stroke-width="1.4" marker-end="url(#t-ktx2-arrow)"/>
-            <text x="214" y="11.5" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="6" fill="#1f2328">데이터 접근</text>
-            <path d="M259 9 H273" fill="none" stroke="#BC4C00" stroke-width="1.4" stroke-dasharray="3 2" marker-end="url(#t-ktx2-arrow-obs)"/>
-            <text x="276" y="11.5" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="6" font-weight="700" fill="#BC4C00">관측</text>
+            <path d="M155 30 H169" fill="none" stroke="#7D64FF" stroke-width="1.4" marker-end="url(#t-ktx2-arrow-load)"/>
+            <text x="172" y="32.5" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="6" font-weight="700" fill="#7D64FF">부하 요청</text>
+            <path d="M208 30 H222" fill="none" stroke="#57606a" stroke-width="1.4" marker-end="url(#t-ktx2-arrow)"/>
+            <text x="225" y="32.5" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="6" fill="#1f2328">데이터 접근</text>
+            <path d="M270 30 H284" fill="none" stroke="#BC4C00" stroke-width="1.4" stroke-dasharray="3 2" marker-end="url(#t-ktx2-arrow-obs)"/>
+            <text x="287" y="32.5" font-family="&apos;Noto Sans KR&apos;,sans-serif" font-size="6" font-weight="700" fill="#BC4C00">관측</text>
 
             <!-- Docker Compose 경계: 부하·앱·데이터가 한 네트워크 안 -->
             <rect x="4" y="18" width="316" height="193" rx="8" fill="none" stroke="#2496ED" stroke-width="1.1" stroke-dasharray="4 3"/>
