@@ -10,7 +10,6 @@
 - **이메일**: blackfeather227@gmail.com
 - **GitHub**: https://github.com/ass3027
 - **LinkedIn**: https://www.linkedin.com/in/%EC%84%B8%EC%A7%84-%EC%9D%B4-0bbb15323/
-- **연락처**: 010-0000-0000
 
 ### 소개
 
