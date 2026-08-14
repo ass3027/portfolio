@@ -21,7 +21,7 @@
 
 ### 기술 스택
 
-`Spring Boot 4.0` `MySQL 8` `Redis 7` `k6`
+`Spring Boot` `MySQL` `Redis` `k6`
 
 ---
 
