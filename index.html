@@ -315,7 +315,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 
 /* ── 핵심 목표 (목표 → 달성여부 체크리스트) ── */
 .goal-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.goal-item { display: flex; align-items: flex-start; gap: 9px; min-height: 57.6px; background: rgba(26,127,55,.06); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 9px 12px; }
+/* 초록은 이 덱에서 성과를 뜻한다. 목표는 성과가 아니므로 중립인 파랑을 쓴다 */
+.goal-item { display: flex; align-items: flex-start; gap: 9px; min-height: 57.6px; background: rgba(9,105,218,.05); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 9px 12px; }
 /* 목표는 달성한 성과가 아니라 무엇을 했는지를 말하므로 체크가 아닌 중립 불릿 */
 .goal-check { color: var(--text-muted); flex-shrink: 0; line-height: 1.5; font-size: 17px; width: 13px; text-align: center; }
 .goal-text { font-size: 14.5px; line-height: 1.5; }
