@@ -1110,7 +1110,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">11</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 12 — LiDAR 프로젝트 요약 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 12 — LiDAR 개요 + 핵심 개선과 성과 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
@@ -1118,47 +1118,20 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="meta">스피어에이엑스 · 2025.09 — 2026.02</div>
         <h2>🛩️ 김포공항 LiDAR 기반 실시간 여객 흐름과 대기시간 예측</h2>
       </div>
+      <div class="tech-grid tech-row">
+        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/springboot" alt=""></span><span>Spring Boot</span></div>
+        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://grpc.io/img/logos/grpc-icon-color.png" alt=""></span><span>gRPC / C++</span></div>
+        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/prometheus" alt=""></span><span>Prometheus</span></div>
+        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/grafana" alt=""></span><span>Grafana</span></div>
+      </div>
     </div>
 
     <div class="page-fill">
-    <h3>개요</h3>
     <div class="card">
-      <p>LiDAR 데이터를 기반으로 실시간 여객 위치와 인원 수, 예상 대기시간을 제공하는 프로젝트다. 합류 당시 기본 통계만으로는 대기시간 예측 성능을 평가하기 어려워 고객사 기준에 맞춘 개선이 지연되고 있었다.</p>
-      <p>C++ 데이터 중계 서버의 간헐적 종료로 운영 안정성이 낮았고, 대기시간과 혼잡도 로직이 분산돼 유지보수도 어려웠다.</p>
+      <p>LiDAR 데이터를 기반으로 실시간 여객 위치와 인원 수, 예상 대기시간을 제공하는 프로젝트다. 합류 당시 기본 통계만으로는 대기시간 예측 성능을 평가하기 어려워 고객사 기준에 맞춘 개선이 지연되고 있었다. C++ 데이터 중계 서버의 간헐적 종료로 운영 안정성도 낮았다.</p>
     </div>
-
-    <div class="row c2" style="margin-top:14px; margin-bottom:10px; align-items:start;">
-      <div>
-        <h3>핵심 목표</h3>
-        <ul class="goal-list">
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 메트릭 분석 환경 구축</strong><span class="goal-metric">예측 성능 평가 기반 확보, 분석과 개선 시간 <span class="goal-hit">80% 단축</span></span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>C++ 데이터 중계 서버 안정성 확보</strong><span class="goal-metric">간헐적 종료 <span class="goal-hit">해소</span></span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>분산 로직 공통 모듈 통합</strong><span class="goal-metric">메모리 <span class="goal-hit">70%↓</span>, 코드량 <span class="goal-hit">50%↓</span></span></span></li>
-        </ul>
-      </div>
-      <div>
-        <h3>기술 스택</h3>
-        <div class="tech-grid">
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/springboot" alt=""></span><span>Spring Boot</span></div>
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://grpc.io/img/logos/grpc-icon-color.png" alt=""></span><span>gRPC / C++</span></div>
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/prometheus" alt=""></span><span>Prometheus</span></div>
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/grafana" alt=""></span><span>Grafana</span></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  </div>
-  <div class="page-num">12</div>
-</div>
-
-<!-- ══════════════════════════════════════ PAGE 13 — LiDAR 핵심 개선과 성과 ══════════════════════════════════════ -->
-<div class="page">
-  <div class="page-body">
-    <h2 class="page-title">🛩️ LiDAR — 핵심 개선과 성과</h2>
-    <div class="page-fill">
-    <h3>실시간 메트릭 수집과 분석 흐름</h3>
-    <div class="arch-svg" style="margin:0 0 18px;">
+    <h3 style="margin-top:14px;">실시간 메트릭 수집과 분석 흐름</h3>
+    <div class="arch-svg" style="margin:0 0 14px;">
       <svg viewBox="0 0 980 118" role="img" aria-label="LiDAR 데이터 서버에서 C++ 데이터 중계 서버와 Backend를 거쳐 실시간 모니터링과 CSV 리포트로 이어지는 분석 흐름">
         <defs>
           <marker id="lidar-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--text-muted)"/></marker>
@@ -1197,10 +1170,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     </div>
   </div>
   </div>
-  <div class="page-num">13</div>
+  <div class="page-num">12</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 14 — AI 워크플로우 개요 + 사례 1 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 13 — AI 워크플로우 개요 + 사례 1 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
@@ -1241,10 +1214,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">14</div>
+  <div class="page-num">13</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 15 — AI 공통 협업 워크플로우 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 14 — AI 공통 협업 워크플로우 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🔁 AI 워크플로우 — 공통 인간·AI 협업</h2>
@@ -1277,7 +1250,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">15</div>
+  <div class="page-num">14</div>
 </div>
 
 </div><!-- /.deck -->
@@ -1285,7 +1258,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- 화면 전용 오버레이 네비게이션 (인쇄 시 숨김) -->
 <div class="deck-nav" id="deckNav">
   <button id="prevPage" aria-label="이전 페이지">◀</button>
-  <span class="indicator" id="pageIndicator">1 / 15</span>
+  <span class="indicator" id="pageIndicator">1 / 14</span>
   <button id="nextPage" aria-label="다음 페이지">▶</button>
 </div>
 
