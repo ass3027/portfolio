@@ -163,8 +163,7 @@ p { margin-bottom: 10px; }
 .detail-head .meta { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
 .detail-head h2 { font-size: 21px; font-weight: 700; margin: 0; line-height: 1.2; }
 .detail-links { display: flex; gap: 8px; flex-shrink: 0; }
-/* 헤더 우측에 링크 버튼과 기술 스택을 위아래로 쌓을 때 */
-.detail-aside { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; flex-shrink: 0; }
+.detail-head .detail-title { min-width: 0; }
 .link-btn { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 600; border: 1px solid var(--border); background: var(--bg-card2); color: inherit; text-decoration: none; }
 .link-btn:hover { border-color: var(--accent); color: var(--accent); }
 .link-btn .link-icon { display: block; width: 18px; height: 18px; flex: 0 0 18px; object-fit: contain; }
@@ -173,13 +172,13 @@ svg.link-icon { color: var(--text); stroke: currentColor; stroke-width: 1.8; fil
 .card p { font-size: 14px; }
 .card p:last-child { margin-bottom: 0; }
 .tech-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
-/* 헤더 우측에 한 줄로 놓는 변형. 세로 높이를 줄이려고 아이콘과 글자를 압축한다 */
-.tech-grid.tech-row { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
-.tech-grid.tech-row .tech-item { min-height: 0; padding: 5px 10px; gap: 6px; font-size: 12.5px; }
-.tech-grid.tech-row .tech-logos { width: 20px; height: 20px; padding: 0; flex: 0 0 20px; }
-.tech-grid.tech-row .tech-logo { width: 17px; height: 17px; }
+/* 헤더 제목 아래에 한 줄로 놓는 변형. 2열 그리드 대신 가로로 흘린다 */
+.tech-grid.tech-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tech-grid.tech-row .tech-item { min-height: 0; padding: 5px 11px; gap: 7px; font-size: 13px; }
+.tech-grid.tech-row .tech-logos { width: 21px; height: 21px; padding: 0; flex: 0 0 21px; }
+.tech-grid.tech-row .tech-logo { width: 18px; height: 18px; }
 /* AWS는 가로형 워드마크라 정사각 로고와 크기를 따로 잡는다 */
-.tech-grid.tech-row .tech-logo.aws-wordmark { width: 20px; height: 14px; }
+.tech-grid.tech-row .tech-logo.aws-wordmark { width: 21px; height: 14px; }
 .tech-item { display: flex; align-items: center; gap: 10px; min-height: 57.6px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-card); box-shadow: var(--tech-card-shadow); font-size: 13px; font-weight: 600; }
 .tech-logos { width: 30px; height: 28px; padding: 3px; flex: 0 0 30px; display: flex; align-items: center; justify-content: center; gap: 3px; }
 .tech-logo { display: block; width: 20px; height: 20px; object-fit: contain; }
@@ -501,15 +500,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
-      <div>
+      <div class="detail-title">
         <div class="meta">개인 프로젝트 · 2026.03 — 2026.05 · 1인 풀스택</div>
         <h2>🎮 Tag2Now — 철권 태그2 실시간 대시보드</h2>
-      </div>
-      <div class="detail-aside">
-        <div class="detail-links">
-          <a class="link-btn" href="https://github.com/orgs/tag2now/repositories" target="_blank"><img class="link-icon" src="https://cdn.simpleicons.org/github/1f2328" alt="">GitHub</a>
-          <a class="link-btn" href="https://match.tag2now.click/" target="_blank"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>서비스</a>
-        </div>
         <div class="tech-grid tech-row">
           <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/fastapi" alt=""></span><span>FastAPI</span></div>
           <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/redis" alt=""></span><span>Redis</span></div>
@@ -517,6 +510,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
           <div class="tech-item"><span class="tech-logos"><img class="tech-logo aws-wordmark" src="assets/aws-logo.png" alt="AWS"></span><span>AWS</span></div>
           <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/github" alt=""></span><span>GitHub Actions</span></div>
         </div>
+      </div>
+      <div class="detail-links">
+        <a class="link-btn" href="https://github.com/orgs/tag2now/repositories" target="_blank"><img class="link-icon" src="https://cdn.simpleicons.org/github/1f2328" alt="">GitHub</a>
+        <a class="link-btn" href="https://match.tag2now.click/" target="_blank"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>서비스</a>
       </div>
     </div>
 
@@ -829,20 +826,18 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
-      <div>
+      <div class="detail-title">
         <div class="meta">개인 프로젝트 · 2026.06 — 2026.07</div>
         <h2>🚄 KTX 티켓팅</h2>
-      </div>
-      <div class="detail-aside">
-        <div class="detail-links">
-          <a class="link-btn" href="https://github.com/ass3027/ktx-ticketing" target="_blank"><img class="link-icon" src="https://cdn.simpleicons.org/github/1f2328" alt="">GitHub</a>
-        </div>
         <div class="tech-grid tech-row">
           <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/springboot" alt=""></span><span>Spring Boot 4.0</span></div>
           <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/mysql" alt=""></span><span>MySQL 8</span></div>
           <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/redis" alt=""></span><span>Redis 7</span></div>
           <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/k6" alt=""></span><span>k6</span></div>
         </div>
+      </div>
+      <div class="detail-links">
+        <a class="link-btn" href="https://github.com/ass3027/ktx-ticketing" target="_blank"><img class="link-icon" src="https://cdn.simpleicons.org/github/1f2328" alt="">GitHub</a>
       </div>
     </div>
 
@@ -1109,15 +1104,15 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
-      <div>
+      <div class="detail-title">
         <div class="meta">스피어에이엑스 · 2025.09 — 2026.02</div>
         <h2>🛩️ 김포공항 LiDAR 기반 실시간 여객 흐름과 대기시간 예측</h2>
-      </div>
-      <div class="tech-grid tech-row">
-        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/springboot" alt=""></span><span>Spring Boot</span></div>
-        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://grpc.io/img/logos/grpc-icon-color.png" alt=""></span><span>gRPC / C++</span></div>
-        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/prometheus" alt=""></span><span>Prometheus</span></div>
-        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/grafana" alt=""></span><span>Grafana</span></div>
+        <div class="tech-grid tech-row">
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/springboot" alt=""></span><span>Spring Boot</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://grpc.io/img/logos/grpc-icon-color.png" alt=""></span><span>gRPC / C++</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/prometheus" alt=""></span><span>Prometheus</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/grafana" alt=""></span><span>Grafana</span></div>
+        </div>
       </div>
     </div>
 
@@ -1172,12 +1167,15 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
-      <div><div class="meta">개인 프로젝트 · 2026</div><h2>🔁 AI 워크플로우 — 사내 프로젝트 개선 파이프라인</h2></div>
-      <div class="tech-grid tech-row">
-        <div class="tech-item"><span class="tech-logos"><svg class="tech-logo tech-logo-generic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6"/></svg></span><span>AI Agent</span></div>
-        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/gitlab" alt=""></span><span>GitLab REST API / WebHook</span></div>
-        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/kakao" alt=""></span><span>KakaoWork</span></div>
-        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/git" alt=""></span><span>Git</span></div>
+      <div class="detail-title">
+        <div class="meta">개인 프로젝트 · 2026</div>
+        <h2>🔁 AI 워크플로우 — 사내 프로젝트 개선 파이프라인</h2>
+        <div class="tech-grid tech-row">
+          <div class="tech-item"><span class="tech-logos"><svg class="tech-logo tech-logo-generic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6"/></svg></span><span>AI Agent</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/gitlab" alt=""></span><span>GitLab REST API / WebHook</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/kakao" alt=""></span><span>KakaoWork</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/git" alt=""></span><span>Git</span></div>
+        </div>
       </div>
     </div>
     <div class="page-fill">
