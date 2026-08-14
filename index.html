@@ -175,9 +175,11 @@ svg.link-icon { color: var(--text); stroke: currentColor; stroke-width: 1.8; fil
 .tech-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
 /* 헤더 우측에 한 줄로 놓는 변형. 세로 높이를 줄이려고 아이콘과 글자를 압축한다 */
 .tech-grid.tech-row { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
-.tech-grid.tech-row .tech-item { min-height: 0; padding: 4px 9px; gap: 6px; font-size: 11.5px; }
-.tech-grid.tech-row .tech-logos { width: 18px; height: 18px; padding: 0; flex: 0 0 18px; }
-.tech-grid.tech-row .tech-logo { width: 15px; height: 15px; }
+.tech-grid.tech-row .tech-item { min-height: 0; padding: 5px 10px; gap: 6px; font-size: 12.5px; }
+.tech-grid.tech-row .tech-logos { width: 20px; height: 20px; padding: 0; flex: 0 0 20px; }
+.tech-grid.tech-row .tech-logo { width: 17px; height: 17px; }
+/* AWS는 가로형 워드마크라 정사각 로고와 크기를 따로 잡는다 */
+.tech-grid.tech-row .tech-logo.aws-wordmark { width: 20px; height: 14px; }
 .tech-item { display: flex; align-items: center; gap: 10px; min-height: 57.6px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-card); box-shadow: var(--tech-card-shadow); font-size: 13px; font-weight: 600; }
 .tech-logos { width: 30px; height: 28px; padding: 3px; flex: 0 0 30px; display: flex; align-items: center; justify-content: center; gap: 3px; }
 .tech-logo { display: block; width: 20px; height: 20px; object-fit: contain; }
