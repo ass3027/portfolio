@@ -163,6 +163,8 @@ p { margin-bottom: 10px; }
 .detail-head .meta { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
 .detail-head h2 { font-size: 21px; font-weight: 700; margin: 0; line-height: 1.2; }
 .detail-links { display: flex; gap: 8px; flex-shrink: 0; }
+/* 헤더 우측에 링크 버튼과 기술 스택을 위아래로 쌓을 때 */
+.detail-aside { display: flex; flex-direction: column; align-items: flex-end; gap: 7px; flex-shrink: 0; }
 .link-btn { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border-radius: 8px; font-size: 14px; font-weight: 600; border: 1px solid var(--border); background: var(--bg-card2); color: inherit; text-decoration: none; }
 .link-btn:hover { border-color: var(--accent); color: var(--accent); }
 .link-btn .link-icon { display: block; width: 18px; height: 18px; flex: 0 0 18px; object-fit: contain; }
@@ -501,9 +503,18 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="meta">개인 프로젝트 · 2026.03 — 2026.05 · 1인 풀스택</div>
         <h2>🎮 Tag2Now — 철권 태그2 실시간 대시보드</h2>
       </div>
-      <div class="detail-links">
-        <a class="link-btn" href="https://github.com/orgs/tag2now/repositories" target="_blank"><img class="link-icon" src="https://cdn.simpleicons.org/github/1f2328" alt="">GitHub</a>
-        <a class="link-btn" href="https://match.tag2now.click/" target="_blank"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>서비스</a>
+      <div class="detail-aside">
+        <div class="detail-links">
+          <a class="link-btn" href="https://github.com/orgs/tag2now/repositories" target="_blank"><img class="link-icon" src="https://cdn.simpleicons.org/github/1f2328" alt="">GitHub</a>
+          <a class="link-btn" href="https://match.tag2now.click/" target="_blank"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>서비스</a>
+        </div>
+        <div class="tech-grid tech-row">
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/fastapi" alt=""></span><span>FastAPI</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/redis" alt=""></span><span>Redis</span></div>
+          <div class="tech-item"><span class="tech-logos"><svg class="tech-logo" viewBox="0 0 256 264" role="img" aria-label="PostgreSQL"><use href="#p7-ic-postgresql"/></svg></span><span>PostgreSQL</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo aws-wordmark" src="assets/aws-logo.png" alt="AWS"></span><span>AWS</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/github" alt=""></span><span>GitHub Actions</span></div>
+        </div>
       </div>
     </div>
 
@@ -514,26 +525,12 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <p>RPCN은 오픈소스지만 게임의 호출 방식이 문서화돼 있지 않고 공식 SDK도 없다. Rust로 된 RPCN 서버를 직접 실행·분석해 바이너리 프로토콜을 역공학하고, 단위·통합 테스트로 검증한 Python 클라이언트를 구현하여 실시간 대시보드를 구축했다.</p>
     </div>
 
-    <div class="row c2" style="margin-top:18px; align-items:start;">
-      <div>
-        <h3>핵심 목표</h3>
-        <ul class="goal-list">
-          <li class="goal-item"><span class="goal-check goal-bullet">·</span><span class="goal-text"><strong>SDK 없는 RPCN 바이너리 프로토콜 역공학</strong><span class="goal-metric">공식 SDK와 호출 명세 부재 · 서버 구현이 유일한 근거</span></span></li>
-          <li class="goal-item"><span class="goal-check goal-bullet">·</span><span class="goal-text"><strong>조회 API가 답하지 않는 매칭 상태 시각화</strong><span class="goal-metric">매칭 중인 방과 유저 모두 응답에 없음</span></span></li>
-          <li class="goal-item"><span class="goal-check goal-bullet">·</span><span class="goal-text"><strong>개인 부담 가능한 비용으로 실서비스 운영</strong><span class="goal-metric">인프라 구성부터 배포, 도메인, 비용까지 1인 부담</span></span></li>
-        </ul>
-      </div>
-      <div>
-        <h3>기술 스택</h3>
-        <div class="tech-grid">
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/fastapi" alt=""></span><span>FastAPI</span></div>
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/redis" alt=""></span><span>Redis</span></div>
-          <div class="tech-item"><span class="tech-logos"><svg class="tech-logo" viewBox="0 0 256 264" role="img" aria-label="PostgreSQL"><use href="#p7-ic-postgresql"/></svg></span><span>PostgreSQL</span></div>
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo aws-wordmark" src="assets/aws-logo.png" alt="AWS"></span><span>AWS</span></div>
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/github" alt=""></span><span>GitHub Actions</span></div>
-        </div>
-      </div>
-    </div>
+    <h3 style="margin-top:18px;">핵심 목표</h3>
+    <ul class="goal-list">
+      <li class="goal-item"><span class="goal-check goal-bullet">·</span><span class="goal-text"><strong>SDK 없는 RPCN 바이너리 프로토콜 역공학</strong><span class="goal-metric">공식 SDK와 호출 명세 부재 · 서버 구현이 유일한 근거</span></span></li>
+      <li class="goal-item"><span class="goal-check goal-bullet">·</span><span class="goal-text"><strong>조회 API가 답하지 않는 매칭 상태 시각화</strong><span class="goal-metric">매칭 중인 방과 유저 모두 응답에 없음</span></span></li>
+      <li class="goal-item"><span class="goal-check goal-bullet">·</span><span class="goal-text"><strong>개인 부담 가능한 비용으로 실서비스 운영</strong><span class="goal-metric">인프라 구성부터 배포, 도메인, 비용까지 1인 부담</span></span></li>
+    </ul>
 
   </div>
   </div>
@@ -834,8 +831,16 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div class="meta">개인 프로젝트 · 2026.06 — 2026.07</div>
         <h2>🚄 KTX 티켓팅</h2>
       </div>
-      <div class="detail-links">
-        <a class="link-btn" href="https://github.com/ass3027/ktx-ticketing" target="_blank"><img class="link-icon" src="https://cdn.simpleicons.org/github/1f2328" alt="">GitHub</a>
+      <div class="detail-aside">
+        <div class="detail-links">
+          <a class="link-btn" href="https://github.com/ass3027/ktx-ticketing" target="_blank"><img class="link-icon" src="https://cdn.simpleicons.org/github/1f2328" alt="">GitHub</a>
+        </div>
+        <div class="tech-grid tech-row">
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/springboot" alt=""></span><span>Spring Boot 4.0</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/mysql" alt=""></span><span>MySQL 8</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/redis" alt=""></span><span>Redis 7</span></div>
+          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/k6" alt=""></span><span>k6</span></div>
+        </div>
       </div>
     </div>
 
@@ -846,25 +851,12 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <p><strong>N명이 한 좌석을 경합할 때 정확히 1명만 성공시키되(정합성), 그 정확성을 지키면서도 높은 처리량과 낮은 지연을 함께 보장하는(성능) 엔지니어링</strong>이 핵심이다. 예매 동시성 보장과 성능을 부하 테스트 실측으로 검증했다.</p>
     </div>
 
-    <div class="row c2" style="margin-top:18px; align-items:start;">
-      <div>
-        <h3>핵심 목표</h3>
-        <ul class="goal-list">
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>초과판매와 중복 0건</strong><span class="goal-metric">목표 oversell 0, 실측 <span class="goal-hit">0 / 0</span> (3회 일관)</span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>예매 응답 p95 ≤ 500ms</strong><span class="goal-metric">실측 <span class="goal-hit">348~408ms</span></span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>예매 확정 처리량 ≥ 200 TPS</strong><span class="goal-metric">1,000 VU 실측 <span class="goal-hit">833~863 TPS</span></span></span></li>
-        </ul>
-      </div>
-      <div>
-        <h3>기술 스택</h3>
-        <div class="tech-grid">
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/springboot" alt=""></span><span>Spring Boot 4.0</span></div>
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/mysql" alt=""></span><span>MySQL 8</span></div>
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/redis" alt=""></span><span>Redis 7</span></div>
-          <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/k6" alt=""></span><span>k6</span></div>
-        </div>
-      </div>
-    </div>
+    <h3 style="margin-top:18px;">핵심 목표</h3>
+    <ul class="goal-list">
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>초과판매와 중복 0건</strong><span class="goal-metric">목표 oversell 0, 실측 <span class="goal-hit">0 / 0</span> (3회 일관)</span></span></li>
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>예매 응답 p95 ≤ 500ms</strong><span class="goal-metric">실측 <span class="goal-hit">348~408ms</span></span></span></li>
+      <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>예매 확정 처리량 ≥ 200 TPS</strong><span class="goal-metric">1,000 VU 실측 <span class="goal-hit">833~863 TPS</span></span></span></li>
+    </ul>
   </div>
   </div>
   <div class="page-num">08</div>
