@@ -314,8 +314,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .improvement-flow .mc-result strong { color: var(--green); }
 
 /* ── 핵심 목표 (목표 → 달성여부 체크리스트) ── */
-.goal-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-.goal-item { display: flex; align-items: flex-start; gap: 9px; background: rgba(26,127,55,.06); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 7px 11px; }
+/* 가로로 흘린다. 세로로 쌓으면 상자가 폭을 다 먹어 우측에 500~700px이 빈다 */
+.goal-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.goal-item { display: flex; align-items: flex-start; gap: 9px; flex: 0 1 auto; background: rgba(26,127,55,.06); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 7px 11px; }
 .goal-check { color: var(--green); font-weight: 700; flex-shrink: 0; line-height: 1.5; font-size: 13px; }
 /* 성과가 아니라 풀어야 했던 난제를 나열할 때. 달성 표시인 체크 대신 중립 불릿 */
 .goal-check.goal-bullet { color: var(--text-muted); font-size: 17px; width: 13px; text-align: center; }
