@@ -256,8 +256,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .workflow-principle strong { display: block; font-size: 11.5px; margin-bottom: 3px; color: var(--accent); }
 .workflow-principle span { display: block; font-size: 10.5px; line-height: 1.45; color: var(--text-muted); }
 .workflow-outcome h3 { margin: 0 0 7px; font-size: 15.5px; color: var(--text); font-weight: 700; }
-.workflow-outcome ul { margin: 0; padding-left: 16px; }
-.workflow-outcome li { margin: 4px 0; color: var(--text); font-size: 13px; line-height: 1.5; }
+/* 초록은 이 덱에서 성과를 뜻한다. 목표에서 떼어낸 카드 스타일을 여기에 쓴다 */
+.workflow-outcome ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.workflow-outcome li { margin: 0; color: var(--text); font-size: 13px; line-height: 1.5; background: rgba(26,127,55,.06); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 8px 11px; }
 
 /* ── 압축 도전 카드 (가로 그리드로 배치) ── */
 .mini-grid { display: grid; gap: 12px; }
