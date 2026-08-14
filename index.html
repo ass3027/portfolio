@@ -171,6 +171,11 @@ svg.link-icon { color: var(--text); stroke: currentColor; stroke-width: 1.8; fil
 .card p { font-size: 14px; }
 .card p:last-child { margin-bottom: 0; }
 .tech-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
+/* 헤더 우측에 한 줄로 놓는 변형. 세로 높이를 줄이려고 아이콘과 글자를 압축한다 */
+.tech-grid.tech-row { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.tech-grid.tech-row .tech-item { min-height: 0; padding: 4px 9px; gap: 6px; font-size: 11.5px; }
+.tech-grid.tech-row .tech-logos { width: 18px; height: 18px; padding: 0; flex: 0 0 18px; }
+.tech-grid.tech-row .tech-logo { width: 15px; height: 15px; }
 .tech-item { display: flex; align-items: center; gap: 10px; min-height: 57.6px; padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-card); box-shadow: var(--tech-card-shadow); font-size: 13px; font-weight: 600; }
 .tech-logos { width: 30px; height: 28px; padding: 3px; flex: 0 0 30px; display: flex; align-items: center; justify-content: center; gap: 3px; }
 .tech-logo { display: block; width: 20px; height: 20px; object-fit: contain; }
@@ -1195,47 +1200,23 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
   <div class="page-num">13</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 14 — AI 워크플로우 프로젝트 요약 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 14 — AI 워크플로우 개요 + 사례 1 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <div class="detail-head">
-      <div><div class="meta">개인 프로젝트 · 2026</div><h2>🔁 AI 워크플로우</h2></div>
+      <div><div class="meta">개인 프로젝트 · 2026</div><h2>🔁 AI 워크플로우 — 사내 프로젝트 개선 파이프라인</h2></div>
+      <div class="tech-grid tech-row">
+        <div class="tech-item"><span class="tech-logos"><svg class="tech-logo tech-logo-generic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6"/></svg></span><span>AI Agent</span></div>
+        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/gitlab" alt=""></span><span>GitLab REST API / WebHook</span></div>
+        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/kakao" alt=""></span><span>KakaoWork</span></div>
+        <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/git" alt=""></span><span>Git</span></div>
+      </div>
     </div>
     <div class="page-fill">
-      <h3>개요</h3>
       <div class="card">
-        <p>AI 에이전트를 코드 생성 도구가 아닌 책임 경계, 승인 게이트, 검증 규칙을 갖춘 협업 시스템으로 설계하고 실제 작업에 적용했다. 코드 리뷰 결과를 후속 작업으로 연결하는 자동화와 모든 개발 작업에 적용하는 AI 협업 규율을 구축했다.</p>
+        <p>AI 에이전트를 코드 생성 도구가 아닌 책임 경계, 승인 게이트, 검증 규칙을 갖춘 협업 시스템으로 설계하고 실제 작업에 적용했다.</p>
+        <p>코드 리뷰 결과가 보고로 끝나면 이슈 발행, 팀 공유, 실제 수정 작업까지 이어지지 않는다. 분석 결과를 승인 가능한 이슈와 후속 작업으로 전환하는 개선 루프를 목표로 했다.</p>
       </div>
-      <div class="row c2" style="align-items:start; margin-top:14px;">
-        <div>
-          <h3>핵심 목표</h3>
-          <ul class="goal-list">
-            <li class="goal-item"><span class="goal-check">✓</span><span class="goal-text"><strong>개선 루프 구축</strong><span class="goal-metric">코드 리뷰, 이슈, 팀 알림, 후속 작업 연결</span></span></li>
-            <li class="goal-item"><span class="goal-check">✓</span><span class="goal-text"><strong>승인과 책임 경계</strong><span class="goal-metric">외부 상태 변경과 작업 착수에 사람 승인</span></span></li>
-            <li class="goal-item"><span class="goal-check">✓</span><span class="goal-text"><strong>세션 간 상태 관리</strong><span class="goal-metric">작업 목록, 테스트, Git 이력 기반 기준 유지</span></span></li>
-          </ul>
-        </div>
-        <div>
-          <h3>기술 스택</h3>
-          <div class="tech-grid">
-            <div class="tech-item"><span class="tech-logos"><svg class="tech-logo tech-logo-generic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6"/></svg></span><span>AI Agent</span></div>
-            <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/gitlab" alt=""></span><span>GitLab REST API / WebHook</span></div>
-            <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/kakao" alt=""></span><span>KakaoWork</span></div>
-            <div class="tech-item"><span class="tech-logos"><img class="tech-logo" src="https://cdn.simpleicons.org/git" alt=""></span><span>Git</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="page-num">14</div>
-</div>
-
-<!-- ══════════════════════════════════════ PAGE 15 — AI 사례 1 ══════════════════════════════════════ -->
-<div class="page">
-  <div class="page-body">
-    <h2 class="page-title">🔁 AI 워크플로우 — 사내 프로젝트 개선 파이프라인</h2>
-    <div class="page-fill">
-      <div class="card"><p>코드 리뷰 결과가 보고로 끝나면 이슈 발행, 팀 공유, 실제 수정 작업까지 이어지지 않는다. 분석 결과를 승인 가능한 이슈와 후속 작업으로 전환하는 개선 루프를 목표로 했다.</p></div>
       <h3 style="margin-top:16px;">워크플로우</h3>
       <div class="workflow-loop" aria-label="코드 리뷰 자동화 개선 루프">
         <div class="workflow-step"><div class="step-num" data-n="1">ANALYZE</div><h4>문제점 분석</h4><p>품질, 보안, 버그, 빌드 영역의 파일과 라인 근거 수집</p></div>
@@ -1260,10 +1241,10 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">15</div>
+  <div class="page-num">14</div>
 </div>
 
-<!-- ══════════════════════════════════════ PAGE 16 — AI 공통 협업 워크플로우 ══════════════════════════════════════ -->
+<!-- ══════════════════════════════════════ PAGE 15 — AI 공통 협업 워크플로우 ══════════════════════════════════════ -->
 <div class="page">
   <div class="page-body">
     <h2 class="page-title">🔁 AI 워크플로우 — 공통 인간·AI 협업</h2>
@@ -1296,7 +1277,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
     </div>
   </div>
-  <div class="page-num">16</div>
+  <div class="page-num">15</div>
 </div>
 
 </div><!-- /.deck -->
@@ -1304,7 +1285,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 <!-- 화면 전용 오버레이 네비게이션 (인쇄 시 숨김) -->
 <div class="deck-nav" id="deckNav">
   <button id="prevPage" aria-label="이전 페이지">◀</button>
-  <span class="indicator" id="pageIndicator">1 / 16</span>
+  <span class="indicator" id="pageIndicator">1 / 15</span>
   <button id="nextPage" aria-label="다음 페이지">▶</button>
 </div>
 
