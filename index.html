@@ -314,14 +314,15 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .improvement-flow .mc-result strong { color: var(--green); }
 
 /* ── 핵심 목표 (목표 → 달성여부 체크리스트) ── */
-.goal-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.goal-item { display: flex; align-items: flex-start; gap: 9px; min-height: 57.6px; background: rgba(26,127,55,.06); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 9px 12px; }
+.goal-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.goal-item { display: flex; align-items: flex-start; gap: 9px; background: rgba(26,127,55,.06); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 7px 11px; }
 .goal-check { color: var(--green); font-weight: 700; flex-shrink: 0; line-height: 1.5; font-size: 13px; }
 /* 성과가 아니라 풀어야 했던 난제를 나열할 때. 달성 표시인 체크 대신 중립 불릿 */
 .goal-check.goal-bullet { color: var(--text-muted); font-size: 17px; width: 13px; text-align: center; }
 .goal-text { font-size: 12.5px; line-height: 1.5; }
 .goal-text strong { color: var(--text); }
-.goal-metric { display: block; font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+/* 제목 뒤에 이어 붙인다. 줄을 따로 쓰면 두 줄짜리 내용이 항목당 58px을 차지한다 */
+.goal-metric { font-size: 11px; color: var(--text-muted); margin-left: 6px; }
 .goal-metric .goal-hit { color: var(--green); font-weight: 700; font-family: var(--mono); }
 
 /* ── 배운 점 ── */
