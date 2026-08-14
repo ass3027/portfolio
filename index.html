@@ -314,6 +314,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .goal-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .goal-item { display: flex; align-items: flex-start; gap: 9px; min-height: 57.6px; background: rgba(26,127,55,.06); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 9px 12px; }
 .goal-check { color: var(--green); font-weight: 700; flex-shrink: 0; line-height: 1.5; font-size: 13px; }
+/* 성과가 아니라 풀어야 했던 난제를 나열할 때. 달성 표시인 체크 대신 중립 불릿 */
+.goal-check.goal-bullet { color: var(--text-muted); font-size: 17px; width: 13px; text-align: center; }
 .goal-text { font-size: 12.5px; line-height: 1.5; }
 .goal-text strong { color: var(--text); }
 .goal-metric { display: block; font-size: 11px; color: var(--text-muted); margin-top: 1px; }
@@ -516,9 +518,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div>
         <h3>핵심 목표</h3>
         <ul class="goal-list">
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>AWS 서비스 조합 기반 실서비스 운영</strong><span class="goal-metric">인프라 구성·자동 배포·도메인 연결·<span class="goal-hit">운영 비용 조정</span></span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>SDK 없는 RPCN 바이너리 프로토콜 역공학</strong><span class="goal-metric">Rust 서버 직접 분석 · <span class="goal-hit">프로토콜 명령 7종 테스트 검증</span></span></span></li>
-          <li class="goal-item"><span class="goal-check">✅</span><span class="goal-text"><strong>실시간 매칭 상태 시각화</strong><span class="goal-metric">스냅샷 Diff 기반 매칭 탐지와 <span class="goal-hit">Phantom Room 실시간 노출</span></span></span></li>
+          <li class="goal-item"><span class="goal-check goal-bullet">·</span><span class="goal-text"><strong>SDK 없는 RPCN 바이너리 프로토콜 역공학</strong><span class="goal-metric">공식 SDK와 호출 명세 부재 · 서버 구현이 유일한 근거</span></span></li>
+          <li class="goal-item"><span class="goal-check goal-bullet">·</span><span class="goal-text"><strong>조회 API가 답하지 않는 매칭 상태 시각화</strong><span class="goal-metric">매칭 중인 방과 유저 모두 응답에 없음</span></span></li>
+          <li class="goal-item"><span class="goal-check goal-bullet">·</span><span class="goal-text"><strong>개인 부담 가능한 비용으로 실서비스 운영</strong><span class="goal-metric">인프라 구성부터 배포, 도메인, 비용까지 1인 부담</span></span></li>
         </ul>
       </div>
       <div>
