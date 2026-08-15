@@ -1159,7 +1159,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">분산 비즈니스 로직 통합과 객체 수명 정리</span></div>
         <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">service 계층과 FE에 흩어진 비즈니스 로직, 해제 시점 없는 객체 누적.</div></div>
-        <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">로직을 도메인 엔티티로 이동. FE/BE 중복 데이터 처리는 목적에 맞는 신규 클래스로 통합, 누적 객체 TTL 적용.</div></div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">로직을 도메인 엔티티로 이동. FE/BE 중복 데이터 처리는 계산과 집계 전담 클래스로 통합, 누적 객체 TTL 적용.</div></div>
         <div class="mc-box mc-result"><div class="mc-label">성과</div><div class="mc-copy">메모리 <strong>70% 감소</strong>, 코드량 <strong>50% 감소</strong>.</div></div>
       </div>
     </div>
