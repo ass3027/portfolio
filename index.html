@@ -258,6 +258,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 .workflow-principle { background: var(--bg-card2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
 .workflow-principle strong { display: block; font-size: 11.5px; margin-bottom: 3px; color: var(--accent); }
 .workflow-principle span { display: block; font-size: 10.5px; line-height: 1.45; color: var(--text-muted); }
+/* 표가 못 말하는 것, 왜 그 선을 거기 그었는지를 표 밑에서 말한다 */
+.gate-note { margin: 9px 0 0; font-size: 11.5px; line-height: 1.5; color: var(--text-muted); }
+.gate-note strong { color: var(--text); }
 .workflow-outcome h3 { margin: 0 0 7px; font-size: 15.5px; color: var(--text); font-weight: 700; }
 /* 초록은 이 덱에서 성과를 뜻한다. 목표에서 떼어낸 카드 스타일을 여기에 쓴다 */
 .workflow-outcome ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
@@ -1198,12 +1201,13 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       </div>
       <div class="row c2" style="align-items:start; margin-top:30px;">
         <div>
-          <h3>승인 게이트</h3>
+          <h3>자동화와 사람의 경계</h3>
           <table><thead><tr><th>단계</th><th>자동화</th><th>사람</th></tr></thead><tbody>
             <tr><td>코드 리뷰</td><td>점검, 근거 수집, 초안</td><td>결과와 우선순위 검토</td></tr>
             <tr><td>이슈 발행</td><td>승인 항목 API 발행</td><td>발행 대상 승인</td></tr>
-            <tr><td>작업 착수</td><td>계획, 구현, 테스트</td><td>범위와 계획 승인</td></tr>
+            <tr><td>작업 착수</td><td>계획과 구현 제안, 승인 후 실행</td><td>범위와 계획 승인</td></tr>
           </tbody></table>
+          <p class="gate-note">외부 상태를 바꾸는 <strong>이슈 발행과 작업 착수는 사람이 승인</strong>한다. 자동화 속도와 변경 통제력을 함께 확보하기 위한 경계다.</p>
         </div>
         <div class="workflow-outcome">
           <h3>성과</h3>
