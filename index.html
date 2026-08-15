@@ -1229,11 +1229,11 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="card"><p>대화형 작업 목록만으로는 <strong>세션이 바뀐 뒤</strong> 작업 선정 근거, 진행 상태, 검증 결과를 <strong>복원하기 어렵다</strong>. 모든 개발 작업에 계획, 승인, 검증 기준을 적용하고 <strong>저장소의 문서와 Git 이력으로 실행 상태를 유지</strong>하는 것을 목표로 했다.</p></div>
       <h3 style="margin-top:14px;">워크플로우</h3>
       <div class="workflow-loop" aria-label="공통 인간 AI 협업 워크플로우">
-        <div class="workflow-step"><div class="step-num" data-n="1"></div><h4>작업 목록</h4><p>설계 문서에서 Task_Checklist 추출</p></div>
+        <div class="workflow-step"><div class="step-num" data-n="1"></div><h4>작업 추출</h4><p>설계 문서에서 Task_Checklist 전개</p></div>
         <div class="workflow-step"><div class="step-num" data-n="2"></div><h4>다음 작업 선정</h4><p>단일 기준에서 우선순위와 범위 확인</p></div>
         <div class="workflow-step gate"><div class="step-num" data-n="3"></div><h4>계획 승인</h4><p>구현 전 계획과 변경 범위 검토</p></div>
-        <div class="workflow-step"><div class="step-num" data-n="4"></div><h4>구현과 테스트</h4><p>핵심 비즈니스 로직 구현과 테스트 검토</p></div>
-        <div class="workflow-step"><div class="step-num" data-n="5"></div><h4>기록과 환류</h4><p>커밋, Phase 결과 문서, 체크리스트 갱신</p></div>
+        <div class="workflow-step"><div class="step-num" data-n="4"></div><h4>구현과 테스트</h4><p>언어와 프레임워크 동작을 뺀 핵심 로직 검증</p></div>
+        <div class="workflow-step gate"><div class="step-num" data-n="5"></div><h4>기록과 환류</h4><p>커밋 승인 후 결과 문서와 체크리스트 갱신, 다음 작업으로 환류</p></div>
       </div>
       <div class="row c2" style="align-items:start; margin-top:26px;">
         <div>
@@ -1246,10 +1246,11 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
             <tr><td><strong>소단위 커밋</strong></td><td>관심사별 변경 분리</td></tr>
             <tr><td><strong>Phase 단위 검토</strong></td><td>결과 문서 검토와 체크리스트 마감</td></tr>
           </tbody></table>
+          <p class="gate-note">대화는 세션과 함께 사라지지만 <strong>저장소와 Git 이력은 남는다.</strong> 상태를 기억이나 대화창이 아닌 저장소에 두기 위한 규율이다.</p>
         </div>
         <div class="workflow-outcome">
           <h3>성과</h3>
-          <ul><li>Task_Checklist, Git 이력, Phase 결과 문서 기반 세션 간 맥락 복원</li><li>계획, 승인, 테스트, 커밋의 일관된 실행 기준 적용</li><li>핵심 비즈니스 로직 중심 테스트와 관심사별 변경 단위 관리</li></ul>
+          <ul><li><strong>세션 간 맥락 복원</strong> 대화가 끊기면 사라지던 선정 근거와 진행 상태를 저장소에서 확인</li><li><strong>일관된 실행 기준</strong> 작업마다 달라지던 진행 방식이 계획, 승인, 검증의 같은 순서로 고정</li><li><strong>변경 단위 관리</strong> 뭉쳐 올리던 변경을 관심사별 커밋으로 분리, 이력 추적 가능</li></ul>
         </div>
       </div>
     </div>
