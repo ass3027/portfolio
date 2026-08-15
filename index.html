@@ -1146,20 +1146,20 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="mini-grid c3 improvement-flow">
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">1</span><span class="mc-title">실시간 메트릭 분석 환경 구축</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">기본 통계만으로 예측 성능 평가와 개선 지점 파악에 한계.</div></div>
-        <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">핵심 메트릭 정의와 수집 범위 확장. Prometheus와 Grafana 실시간 시각화, Python CSV 리포트 자동화.</div></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">예측 성능 평가와 개선 지점 파악에 한계.</div></div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">핵심 메트릭 정의와 수집 범위 확장. Prometheus + Grafana 실시간 시각화, Python CSV 리포트 자동화.</div></div>
         <div class="mc-box mc-result"><div class="mc-label">성과</div><div class="mc-copy">예측 성능 분석 파이프라인 구축. 분석과 개선 시간 <strong>80% 단축</strong>.</div></div>
       </div>
       <div class="mini-card">
         <div class="mc-head"><span class="mc-num">2</span><span class="mc-title">C++ 데이터 중계 서버 메모리 누수 해결</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">C++ 데이터 중계 서버의 프로세스 메모리 누적과 간헐적 종료.</div></div>
-        <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">Backend 메모리 모니터링으로 누적 확인, Visual Studio 디버깅으로 객체 좌표 데이터 해제 누락 규명. 메모리 해제와 이상 시 자동 재시작 적용.</div></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">C++ 데이터 중계 서버의 프로세스 메모리 누수와 간헐적 종료.</div></div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">Visual Studio 디버깅으로 누수 지점 확인. Backend에 메모리 모니터링 및 이상 시 자동 재시작 기능 추가.</div></div>
         <div class="mc-box mc-result"><div class="mc-label">성과</div><div class="mc-copy">프로세스 메모리 안정화, <strong>간헐적 종료 해소</strong>.</div></div>
       </div>
       <div class="mini-card">
-        <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">혼잡도와 대기시간 로직 공통 모듈 통합</span></div>
-        <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">대기시간 기반 혼잡도와 세부 처리 로직의 분산 및 중복에 따른 유지보수성 저하.</div></div>
-        <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">분산 로직을 Backend 공통 모듈로 통합.</div></div>
+        <div class="mc-head"><span class="mc-num">3</span><span class="mc-title">분산 비즈니스 로직 통합과 객체 수명 정리</span></div>
+        <div class="mc-box mc-problem"><div class="mc-label">문제</div><div class="mc-copy">service 계층과 FE에 흩어진 비즈니스 로직, 해제 시점 없는 객체 누적.</div></div>
+        <div class="mc-box mc-solution"><div class="mc-label">해결</div><div class="mc-copy">로직을 도메인 엔티티로 이동. FE/BE 중복 데이터 처리는 목적에 맞는 신규 클래스로 통합, 누적 객체 TTL 적용.</div></div>
         <div class="mc-box mc-result"><div class="mc-label">성과</div><div class="mc-copy">메모리 <strong>70% 감소</strong>, 코드량 <strong>50% 감소</strong>.</div></div>
       </div>
     </div>
