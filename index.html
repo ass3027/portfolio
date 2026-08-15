@@ -265,6 +265,8 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
 /* 초록은 이 덱에서 성과를 뜻한다. 목표에서 떼어낸 카드 스타일을 여기에 쓴다 */
 .workflow-outcome ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .workflow-outcome li { margin: 0; color: var(--text); font-size: 13px; line-height: 1.5; background: rgba(26,127,55,.06); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 8px; padding: 8px 11px; }
+/* 성과 항목의 앞머리 라벨. 세 줄을 훑을 때 무엇에 대한 성과인지 먼저 잡히게 한다 */
+.workflow-outcome li strong { display: block; font-size: 11px; color: var(--green); letter-spacing: .01em; margin-bottom: 2px; }
 
 /* ── 압축 도전 카드 (가로 그리드로 배치) ── */
 .mini-grid { display: grid; gap: 12px; }
@@ -1211,7 +1213,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         </div>
         <div class="workflow-outcome">
           <h3>성과</h3>
-          <ul><li>리뷰 결과를 승인 이슈, 팀 알림, 후속 작업, 재분석으로 연결</li><li>개발 현황의 카카오워크 채널 공유</li><li>파일과 라인 근거 및 승인 변경만 실행하는 흐름 정착</li></ul>
+          <ul><li><strong>개선 루프</strong> 사람이 옮겨 적던 이슈 등록과 작업 배분이 승인만으로 처리</li><li><strong>개발 현황 공유</strong> 따로 묻지 않아도 리뷰 결과와 개발 진행이 채널로 도착</li><li><strong>실행 근거 보존</strong> 구두 지적 대신 파일과 라인 근거, 승인된 변경만 실행</li></ul>
         </div>
       </div>
     </div>
