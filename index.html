@@ -497,7 +497,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
       <div class="project-card">
         <div class="project-card-top"><div class="project-card-icon">🔁</div><div class="project-period">2026</div></div>
         <div class="project-card-name">AI 워크플로우</div>
-        <div class="project-card-desc">코드 리뷰, 이슈 발행, 팀 알림, 후속 작업 착수를 하나의 폐쇄형 개선 루프로 설계. 되돌리기 어려운 단계에는 사람 승인 게이트를 두고, 작업 목록·테스트·Git 이력을 단일 기준으로 운영.</div>
+        <div class="project-card-desc">코드 리뷰, 이슈 발행, 팀 알림, 후속 작업 착수를 하나의 폐쇄형 개선 루프로 설계. 되돌리기 어려운 단계에는 사람 승인 게이트를 두고, 체크리스트·테스트·Git 이력을 단일 기준으로 운영.</div>
         <div class="project-card-footer"><span class="badge">🤖 AI 오케스트레이션</span><span class="badge">승인 게이트</span><span class="badge">도구 통합</span></div>
       </div>
     </div>
@@ -1228,7 +1228,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="page-fill">
       <div class="card">
         <p>그때그때 떠오르는 대로 개발하지 않기 위해 만들었다. <strong>설계와 계획을 먼저 세우고 작업을 단계로 쪼갠 뒤</strong>, 각 단계마다 소단위 계획과 검증을 반복해 완성도를 올린다.</p>
-        <p>다만 대화형 작업 목록만으로는 <strong>세션이 바뀌면</strong> 선정 근거와 진행 상태가 함께 사라진다. 계획, 승인, 검증 기준을 모든 작업에 적용하고 <strong>저장소의 문서와 Git 이력</strong>을 실행 상태의 단일 기준으로 삼았다.</p>
+        <p>다만 세션 안에만 있는 작업 목록으로는 <strong>세션이 바뀌면</strong> 선정 근거와 진행 상태가 함께 사라진다. 계획, 승인, 검증 기준을 모든 작업에 적용하고 <strong>저장소의 문서와 Git 이력</strong>을 실행 상태의 단일 기준으로 삼았다.</p>
       </div>
       <h3 style="margin-top:14px;">워크플로우</h3>
       <div class="workflow-loop" aria-label="공통 인간 AI 협업 워크플로우">
@@ -1242,9 +1242,9 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
         <div>
           <h3>운영 규율</h3>
           <table><tbody>
-            <tr><td><strong>작업 목록 우선 생성</strong></td><td>Task_Checklist를 실행 상태의 단일 기준으로 적용</td></tr>
+            <tr><td><strong>체크리스트 우선 생성</strong></td><td>Task_Checklist를 실행 상태의 단일 기준으로 적용</td></tr>
             <tr><td><strong>계획과 승인 우선</strong></td><td>계획 승인 전 구현 금지, 커밋 메시지 사전 승인</td></tr>
-            <tr><td><strong>상태의 단일 기준화</strong></td><td>Git 이력과 작업 목록 기반 상태 관리</td></tr>
+            <tr><td><strong>상태의 단일 기준화</strong></td><td>세션 임시 목록 대신 Task_Checklist와 Git 이력</td></tr>
             <tr><td><strong>테스트 범위 명확화</strong></td><td>핵심 비즈니스 로직 중심 검증</td></tr>
             <tr><td><strong>소단위 커밋</strong></td><td>관심사별 변경 분리</td></tr>
             <tr><td><strong>Phase 단위 검토</strong></td><td>결과 문서 검토와 체크리스트 마감</td></tr>
