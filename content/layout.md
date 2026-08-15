@@ -5,6 +5,7 @@
 
 ### 프로필
 
+- **사진**: assets/profile-photo.jpg
 - **이름**: 이세진
 - **직군**: 백엔드 개발자 (4년차)
 - **이메일**: blackfeather227@gmail.com

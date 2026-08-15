@@ -101,7 +101,7 @@ p { margin-bottom: 10px; }
 .avatar {
   width: 120px; height: 120px; border-radius: 50%; background: var(--bg-card2);
   border: 2px solid var(--border); margin: 0 auto 16px;
-  display: flex; align-items: center; justify-content: center; font-size: 44px;
+  display: block; object-fit: cover; object-position: center 28%;
 }
 .profile-name { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
 .profile-title { font-size: 13px; color: var(--accent); font-weight: 600; }
@@ -380,7 +380,7 @@ td { padding: 7px 12px; border: 1px solid var(--border); vertical-align: top; }
     <div class="about-grid">
       <div class="profile-card">
         <div class="profile-head">
-          <div class="avatar">👨‍💻</div>
+          <img class="avatar" src="assets/profile-photo.jpg" alt="이세진 프로필 사진">
           <div class="profile-name">이세진</div>
           <div class="profile-title">백엔드 개발자 · 4년차</div>
         </div>
