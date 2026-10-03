@@ -64,6 +64,20 @@ public class SubmissionService {
 - **해결 방향:** 전체 저장을 묶을 `submit()`에 선언하거나, 저장 책임을 별도 Spring 빈으로 분리해 주입된 빈 호출.
 - **구분:** 외부 메서드에서 시작한 트랜잭션이 이미 있다면 내부 DB 작업도 그 트랜잭션에 참여 가능. 내부 어노테이션 설정 무시와 트랜잭션 부재는 별개.
 
+### 바깥 메서드에 트랜잭션이 있으면
+
+아래는 같은 Spring 빈 안의 직접 호출이며, 바깥 메서드의 트랜잭션 선언은 외부 프록시 호출로 적용된 경우다.
+
+| 바깥 메서드 | 내부 메서드 설정 | 실제 동작 |
+| --- | --- | --- |
+| 트랜잭션 없음 | `@Transactional` | 내부 선언에 따른 새 트랜잭션 생성 불가 |
+| 트랜잭션 있음 | `@Transactional` | 바깥 트랜잭션 안에서 작업 가능. 내부 설정은 미적용 |
+| 트랜잭션 있음 | `REQUIRES_NEW` | 새 트랜잭션 생성 및 바깥 트랜잭션 일시 중단 미적용 |
+
+별도 Spring 빈의 프록시를 거쳐야 전파 설정을 적용할 수 있다. 그때 `REQUIRED`는 기존 트랜잭션에 참여하고 `REQUIRES_NEW`는 독립된 트랜잭션을 사용하므로, 빈을 나누는 것과 트랜잭션을 나누는 것도 구분한다. [Spring 전파 방식 문서](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-propagation.html)
+
+외부 API 호출 코드를 같은 클래스의 어노테이션 없는 메서드로 옮겨도, 호출한 메서드의 트랜잭션이 이미 진행 중이면 호출은 그 시간 범위 안에 남는다. 메서드 분리만으로 트랜잭션 밖의 실행이 보장되지는 않는다.
+
 ## 3. 예외와 롤백
 
 기본 규칙에서는 `RuntimeException`과 `Error`가 트랜잭션 경계 밖으로 전파되면 롤백 대상이다. 체크 예외는 기본적으로 롤백 대상이 아니며, 필요한 예외를 `rollbackFor`로 지정할 수 있다. 프로젝트에서 기본 규칙을 변경했는지도 확인한다. [Spring 롤백 문서](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/rolling-back.html)
