@@ -137,18 +137,26 @@
 
 - 네트워크 타임아웃 때문에 클라이언트가 재시도하는 상황도 고려해 주세요.
 
+[모범 답변](interview-answers-artificial-society.md#q16)
+
 ### 17. 교사용 학습 현황 화면에서 통계 조회가 느려지면 어떻게 개선하겠어요?
 
 - 실시간 집계와 사전 집계 중 어떤 기준으로 선택하나요?
 - 통계의 최신성과 조회 성능 사이에서 어떤 타협이 가능한가요?
 
+[모범 답변](interview-answers-artificial-society.md#q17)
+
 ### 18. 서비스 운영 중 큰 테이블의 스키마를 변경해야 한다면 어떻게 진행하나요?
 
 - 구버전 서버와 신버전 서버가 함께 실행되는 동안의 호환성은 어떻게 보장하나요?
 
+[모범 답변](interview-answers-artificial-society.md#q18)
+
 ### 19. REST API에서 리소스, HTTP 메서드, 상태 코드를 어떻게 결정하나요?
 
 - 과제 제출, 채점 요청, 채점 결과 조회를 각각 어떻게 표현하겠어요?
+
+[모범 답변](interview-answers-artificial-society.md#q19)
 
 ## 4. AWS·EKS 운영
 
@@ -158,21 +166,31 @@ AWS·EKS는 공고에 명시된 만큼, 사용한 서비스와 운영 경험의 
 
 - Deployment, Service, Ingress의 역할을 설명해 주세요.
 
+[모범 답변](interview-answers-artificial-society.md#q20)
+
 ### 21. Readiness Probe와 Liveness Probe는 어떻게 다르게 설정하나요?
 
 - 일시적인 DB 장애가 발생했을 때 모든 Pod가 재시작된다면 어떤 문제가 생기나요?
+
+[모범 답변](interview-answers-artificial-society.md#q21)
 
 ### 22. 무중단 배포 중 처리하던 요청이 끊기지 않도록 어떻게 하겠어요?
 
 - 종료 신호를 받은 서버와 트래픽 라우팅을 어떻게 처리하나요?
 
+[모범 답변](interview-answers-artificial-society.md#q22)
+
 ### 23. 서버 수를 늘렸는데 RDS 연결 오류가 증가했습니다. 원인은 무엇일까요?
 
 - Pod 수와 각 서버의 커넥션 풀 크기를 어떤 기준으로 정하나요?
 
+[모범 답변](interview-answers-artificial-society.md#q23)
+
 ### 24. S3에 학생의 제출 파일을 저장한다면 업로드와 접근 권한을 어떻게 설계하나요?
 
 - 다른 학생의 파일에 접근하지 못하게 하려면 어떤 검증이 필요한가요?
+
+[모범 답변](interview-answers-artificial-society.md#q24)
 
 ## 5. AI·교육 서비스 설계
 
@@ -183,18 +201,26 @@ AI 처리와 교육 현장의 요구를 백엔드 설계에 반영하는 질문�
 - 동기 처리와 비동기 처리 중 무엇을 선택하나요?
 - 사용자는 진행 상태와 실패 여부를 어떻게 확인하나요?
 
+[모범 답변](interview-answers-artificial-society.md#q25)
+
 ### 26. AI 서비스가 타임아웃되거나 호출 제한에 걸려도 학생의 제출 내용은 보존해야 합니다. 어떻게 설계하겠어요?
 
 - 저장과 AI 호출을 어떻게 분리하나요?
 - 재시도로 같은 피드백이 중복 생성되는 것은 어떻게 막나요?
 
+[모범 답변](interview-answers-artificial-society.md#q26)
+
 ### 27. 교사는 담당 학급만, 학생은 본인의 학습 결과만 볼 수 있어야 합니다. 권한을 어떻게 설계하나요?
 
 - 로그인 여부와 역할 확인 외에 어떤 검증이 필요한가요?
 
+[모범 답변](interview-answers-artificial-society.md#q27)
+
 ### 28. 한국과 미국의 교육과정·언어·시간대가 다르면 어떤 부분을 공통화하고 어떤 부분을 분리하겠어요?
 
 - 과제 마감 시간과 국가별 콘텐츠를 어떻게 모델링하나요?
+
+[모범 답변](interview-answers-artificial-society.md#q28)
 
 ## 6. 협업·지원 동기
 
@@ -202,10 +228,14 @@ AI 처리와 교육 현장의 요구를 백엔드 설계에 반영하는 질문�
 
 - 일정 안에 모든 요구사항을 구현할 수 없다면 무엇을 기준으로 범위를 줄이나요?
 
+[모범 답변](interview-answers-artificial-society.md#q29)
+
 ### 30. 아티피셜소사이어티에 지원한 이유와, 입사 후 기여할 수 있는 부분을 설명해 주세요.
 
 - 교육 서비스에 관심을 가진 이유는 무엇인가요?
 - 본인의 경험 중 이 서비스의 문제를 해결하는 데 직접 도움이 될 것은 무엇인가요?
+
+[모범 답변](interview-answers-artificial-society.md#q30)
 
 ## 답변 준비 방법
 

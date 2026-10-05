@@ -259,102 +259,212 @@ N+1은 목록 조회 후 각 항목의 연관 데이터를 가져오면서 추�
 
 **학생이 제출 버튼을 여러 번 눌러도 결과가 중복 저장되지 않도록 어떻게 설계하나요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#16-학생이-제출-버튼을-여러-번-눌러도-결과가-중복-저장되지-않도록-어떻게-설계하나요)
+
 ### 내 답변
 
+### 모범 답변
+
+같은 제출 시도와 재시도에는 동일한 멱등 키를 보내도록 하고, 사용자와 요청 키의 조합에 DB 유니크 제약을 두겠습니다. 제출 내용과 처리 결과는 같은 트랜잭션으로 저장해, 응답을 받지 못해 재시도하더라도 기존 결과를 반환하겠습니다. 같은 키로 다른 내용을 보내면 거절하고, 처리 중이면 진행 상태를 안내하겠습니다. 과제당 한 번만 제출할 수 있는 정책이라면 학생과 과제의 조합에도 유니크 제약을 두겠습니다.
+
+참고: [멱등 API와 재시도](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/), [MySQL 유니크 제약](https://dev.mysql.com/doc/refman/8.4/en/constraint-primary-key.html)
 
 ## Q17
 
 **교사용 학습 현황 화면에서 통계 조회가 느려지면 어떻게 개선하겠어요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#17-교사용-학습-현황-화면에서-통계-조회가-느려지면-어떻게-개선하겠어요)
+
 ### 내 답변
 
+### 모범 답변
+
+먼저 API 내부 처리와 SQL 실행 시간을 나눠 측정하고, 쿼리가 느리면 EXPLAIN으로 조회 범위와 인덱스 사용을 확인하겠습니다. 쿼리 개선 후에도 반복 집계 비용이 크면 학급이나 날짜별로 사전 집계하겠습니다. 방금 제출한 결과처럼 최신성이 중요한 값은 실시간으로 조회하고, 추세 통계는 허용 가능한 지연에 맞춰 주기적으로 갱신하겠습니다. 화면에는 집계 기준 시각을 표시하고, 응답 시간과 원본 대비 집계 결과의 정확성을 함께 확인하겠습니다.
+
+참고: [MySQL 실행계획 분석](https://dev.mysql.com/doc/refman/8.4/en/using-explain.html)
 
 ## Q18
 
 **서비스 운영 중 큰 테이블의 스키마를 변경해야 한다면 어떻게 진행하나요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#18-서비스-운영-중-큰-테이블의-스키마를-변경해야-한다면-어떻게-진행하나요)
+
 ### 내 답변
 
+### 모범 답변
+
+먼저 운영 DB 버전에서 해당 변경의 Online DDL 지원 여부와 락, 작업 시간을 사전 검증하겠습니다. 컬럼을 교체한다면 기존 컬럼을 유지한 채 새 컬럼을 추가하고, 새 버전은 양쪽에 값을 기록하면서 구버전과 호환되도록 하겠습니다. 기존 데이터는 작은 배치로 보정하고, 구버전 종료 후 추가 변경분까지 맞춰 누락과 불일치를 검증하겠습니다. 새 컬럼으로 읽기를 전환하고 안정화한 뒤, 별도 배포에서 기존 컬럼을 제거하겠습니다.
+
+참고: [MySQL Online DDL](https://dev.mysql.com/doc/refman/8.4/en/innodb-online-ddl-operations.html)
 
 ## Q19
 
 **REST API에서 리소스, HTTP 메서드, 상태 코드를 어떻게 결정하나요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#19-rest-api에서-리소스-http-메서드-상태-코드를-어떻게-결정하나요)
+
 ### 내 답변
 
+### 모범 답변
+
+리소스는 명사로 표현하고, 조회는 GET, 생성은 POST처럼 요청의 의미에 맞는 메서드를 선택하겠습니다. 과제 제출은 POST /assignments/{id}/submissions로 처리하고 생성되면 201을 반환하겠습니다. 채점은 POST /submissions/{id}/grading-jobs로 요청받아 비동기 처리라면 작업 ID와 함께 202를 반환하고, GET /grading-jobs/{id}로 상태와 결과를 조회하게 하겠습니다. 오류는 잘못된 입력 400, 없는 리소스 404, 현재 상태와의 충돌 409처럼 의미에 맞게 구분하겠습니다.
+
+참고: [HTTP 메서드와 상태 코드](https://www.rfc-editor.org/rfc/rfc9110.html)
 
 ## Q20
 
 **EKS에 Spring Boot 서비스를 배포한다면 어떤 구성 요소가 필요한가요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#20-eks에-spring-boot-서비스를-배포한다면-어떤-구성-요소가-필요한가요)
+
 ### 내 답변
 
+### 모범 답변
+
+Spring Boot 이미지를 ECR에 올리고, Deployment로 Pod 수와 롤링 업데이트를 관리하겠습니다. Service는 바뀌는 Pod 주소 대신 안정적인 접근 지점을 제공하고, Ingress는 외부 HTTP 요청을 도메인이나 경로에 따라 Service로 연결합니다. EKS에서는 AWS Load Balancer Controller를 설치해 Ingress에 맞는 ALB를 구성할 수 있습니다. 여기에 설정과 비밀 값의 관리, AWS 접근 권한, 리소스 제한, 상태 점검과 로그 수집을 함께 구성하겠습니다.
+
+참고: [Kubernetes Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), [Service](https://kubernetes.io/docs/concepts/services-networking/service/), [EKS Load Balancer Controller](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html)
 
 ## Q21
 
 **Readiness Probe와 Liveness Probe는 어떻게 다르게 설정하나요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#21-readiness-probe와-liveness-probe는-어떻게-다르게-설정하나요)
+
 ### 내 답변
 
+### 모범 답변
+
+Readiness는 현재 요청을 받을 수 있는지 확인해 실패한 Pod를 트래픽 대상에서 제외하고, Liveness는 재시작으로 회복할 수 있는 애플리케이션 이상을 확인하겠습니다. DB가 필수인 서비스라면 DB 장애를 Readiness에 반영할 수 있지만, Liveness가 DB 연결 실패만으로 실패하도록 만들지는 않겠습니다. DB 장애 때 모든 Pod가 재시작되면 연결 재시도가 몰리고 복구도 늦어질 수 있기 때문입니다. 시작 시간이 긴 서비스는 Startup Probe로 초기 기동 시간을 별도로 보장하겠습니다.
+
+참고: [Kubernetes 상태 점검](https://kubernetes.io/docs/concepts/workloads/pods/probes/)
 
 ## Q22
 
 **무중단 배포 중 처리하던 요청이 끊기지 않도록 어떻게 하겠어요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#22-무중단-배포-중-처리하던-요청이-끊기지-않도록-어떻게-하겠어요)
+
 ### 내 답변
 
+### 모범 답변
+
+새 Pod가 Ready 상태가 된 뒤 기존 Pod를 종료하도록 롤링 업데이트를 설정하겠습니다. 종료되는 Pod로 신규 요청이 전달되지 않도록 라우팅 제외와 로드밸런서의 연결 종료 대기를 확인하겠습니다. 애플리케이션은 SIGTERM을 받으면 신규 요청 수락을 중단하고 진행 중인 요청을 마치는 Graceful Shutdown을 사용하겠습니다. 라우팅 변경의 전파 시간과 요청 처리 시간을 고려해 preStop과 terminationGracePeriodSeconds를 설정하고, 배포 중 요청이 끊기지 않는지 검증하겠습니다.
+
+참고: [Pod 종료 과정](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/), [Spring Boot Graceful Shutdown](https://docs.spring.io/spring-boot/reference/web/graceful-shutdown.html)
 
 ## Q23
 
 **서버 수를 늘렸는데 RDS 연결 오류가 증가했습니다. 원인은 무엇일까요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#23-서버-수를-늘렸는데-rds-연결-오류가-증가했습니다-원인은-무엇일까요)
+
 ### 내 답변
 
+### 모범 답변
+
+먼저 오류 메시지와 RDS 연결 수를 확인해 max_connections 초과인지 판단하겠습니다. 서버마다 커넥션 풀이 있으므로 최대 Pod 수에 각 풀 크기를 곱하고, 다른 서비스와 관리용 연결도 합산하겠습니다. 롤링 배포 때 추가로 뜨는 Pod까지 포함해 DB 한도 안에 여유를 두도록 풀 크기를 정하겠습니다. 이 값은 연결 수의 상한이므로, 부하 테스트에서 커넥션 획득 대기와 DB 처리 여력을 보고 실제 크기를 조정하겠습니다.
+
+참고: [RDS 최대 연결 수](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Limits.html#RDS_Limits.MaxConnections)
 
 ## Q24
 
 **S3에 학생의 제출 파일을 저장한다면 업로드와 접근 권한을 어떻게 설계하나요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#24-s3에-학생의-제출-파일을-저장한다면-업로드와-접근-권한을-어떻게-설계하나요)
+
 ### 내 답변
 
+### 모범 답변
+
+S3 버킷은 비공개로 두고, 서버가 로그인 사용자와 과제 제출 권한을 확인한 뒤 업로드용 Presigned URL을 발급하겠습니다. 저장할 객체 키는 서버가 정하고, 업로드 완료 시 실제 객체와 크기 등을 확인한 뒤 제출 기록에 연결하겠습니다. 다운로드도 파일 ID로 소유자나 담당 교사 여부를 확인한 뒤 짧은 유효기간의 URL을 발급하겠습니다. 클라이언트가 보낸 학생 ID나 객체 키만 믿고 다른 학생의 파일에 접근을 허용하지 않겠습니다.
+
+참고: [S3 Presigned URL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html)
 
 ## Q25
 
 **AI 피드백 생성에 수십 초가 걸린다면 API와 처리 흐름을 어떻게 설계하겠어요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#25-ai-피드백-생성에-수십-초가-걸린다면-api와-처리-흐름을-어떻게-설계하겠어요)
+
 ### 내 답변
 
+### 모범 답변
+
+수십 초가 걸리는 AI 처리는 비동기로 분리하겠습니다. 처리할 입력과 작업을 DB에 저장한 뒤 작업 ID와 함께 202를 반환하고, 별도 작업자가 대기 중인 작업을 가져와 AI를 호출하도록 하겠습니다. 사용자는 상태 조회 API를 주기적으로 호출해 대기, 처리 중, 완료, 실패를 확인하고 완료된 결과를 받게 하겠습니다. 타임아웃과 재시도 횟수, 작업자 동시 처리 수를 제한해 외부 AI 호출이 몰리지 않도록 하겠습니다.
+
+참고: [HTTP 202의 의미](https://www.rfc-editor.org/rfc/rfc9110.html#section-15.3.3)
 
 ## Q26
 
 **AI 서비스가 타임아웃되거나 호출 제한에 걸려도 학생의 제출 내용은 보존해야 합니다. 어떻게 설계하겠어요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#26-ai-서비스가-타임아웃되거나-호출-제한에-걸려도-학생의-제출-내용은-보존해야-합니다-어떻게-설계하겠어요)
+
 ### 내 답변
 
+### 모범 답변
+
+제출 내용과 AI 처리 요청을 같은 DB 트랜잭션으로 저장하고, AI 호출은 커밋 후 별도 작업자가 수행하도록 하겠습니다. 실패해도 제출 내용은 유지하고, 일시적인 오류만 간격을 늘리며 제한된 횟수로 재시도하겠습니다. 제출 버전과 피드백 종류를 작업의 식별 기준으로 삼고, 유니크 제약과 원자적인 상태 변경으로 중복 작업과 결과 저장을 막겠습니다. 타임아웃 뒤 외부 AI 호출 자체의 중복까지 막으려면 해당 서비스의 멱등 키 지원이 필요하며, 지원하지 않으면 중복 호출 가능성은 남습니다.
+
+참고: [Transactional Outbox](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html), [멱등 API](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)
 
 ## Q27
 
 **교사는 담당 학급만, 학생은 본인의 학습 결과만 볼 수 있어야 합니다. 권한을 어떻게 설계하나요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#27-교사는-담당-학급만-학생은-본인의-학습-결과만-볼-수-있어야-합니다-권한을-어떻게-설계하나요)
+
 ### 내 답변
 
+### 모범 답변
+
+로그인과 역할 확인에 더해, 요청한 데이터와 사용자의 관계를 서버에서 검증하겠습니다. 학생은 제출 기록의 소유자와 로그인 사용자 ID가 같은지, 교사는 해당 학급을 담당하는지와 학교 범위가 맞는지 확인하겠습니다. 목록 조회에도 같은 권한 조건을 적용해 허용된 데이터만 DB에서 조회하겠습니다. 클라이언트가 보낸 사용자 ID나 역할은 신뢰하지 않고, 권한 검증을 공통화해 개별 API에서 빠지지 않도록 하겠습니다.
+
+참고: [Spring Security 메서드 권한 검증](https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html)
 
 ## Q28
 
 **한국과 미국의 교육과정·언어·시간대가 다르면 어떤 부분을 공통화하고 어떤 부분을 분리하겠어요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#28-한국과-미국의-교육과정언어시간대가-다르면-어떤-부분을-공통화하고-어떤-부분을-분리하겠어요)
+
 ### 내 답변
 
+### 모범 답변
+
+사용자, 과제, 제출, 피드백의 기본 처리 흐름은 공통화하겠습니다. 교육과정과 평가 기준은 국가별 설정과 버전으로, 콘텐츠와 번역은 교육과정과 언어별로 분리하겠습니다. 언어와 국가를 같은 값으로 취급하지 않고 별도로 관리하겠습니다. 과제 마감은 학교의 현지 시각과 시간대에서 UTC 시각으로 변환해 저장하고, 화면에는 사용자 시간대로 표시하겠습니다. 시간대는 America/New_York 같은 지역 ID를 사용하고, 서머타임으로 중복되거나 존재하지 않는 시각의 처리 기준도 정하겠습니다.
+
+참고: [Java ZoneId와 시간대 규칙](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/ZoneId.html)
 
 ## Q29
 
 **1주 단위 스프린트에서 기능 개발, 장애 대응, 기술 부채의 우선순위를 어떻게 정하나요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#29-1주-단위-스프린트에서-기능-개발-장애-대응-기술-부채의-우선순위를-어떻게-정하나요)
+
 ### 내 답변
 
+### 모범 답변
+
+데이터 유실이나 수업 중단을 일으키는 장애를 먼저 처리하고, 기능 개발은 이번 스프린트 목표와 사용자 영향에 따라 우선순위를 정하겠습니다. 기술 부채는 장애 재발이나 다음 개발을 막는 항목부터 함께 계획하겠습니다. 일정이 부족하면 핵심 사용자 흐름을 유지하면서 부가 기능을 줄이는 안과 일정 영향을 기획자에게 공유하겠습니다. 정확성과 권한 검증은 유지하고, 실제 완료 가능한 범위를 합의하겠습니다.
+
+참고: [Scrum의 목표와 범위 협의](https://scrumguides.org/scrum-guide.html)
 
 ## Q30
 
 **아티피셜소사이어티에 지원한 이유와, 입사 후 기여할 수 있는 부분을 설명해 주세요.**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#30-아티피셜소사이어티에-지원한-이유와-입사-후-기여할-수-있는-부분을-설명해-주세요)
+
 ### 내 답변
+
+### 모범 답변
+
+Learney처럼 학생의 학습 진행에 맞춰 AI 지원을 제공하는 서비스에서, 백엔드 개선이 실제 학습 경험으로 이어지는 일을 하고 싶습니다. 저는 LiDAR 프로젝트에서 API와 SQL을 개선해 통계 화면 표시 시간을 40초대에서 약 1.5초로 줄였고, Tag2Now를 AWS에서 운영하며 사용자 제보를 반영했습니다. 이 경험을 바탕으로 교사용 통계 조회의 성능과 수업 중 서비스 안정성을 개선하는 데 기여하고 싶습니다. 입사 후에는 주요 요청과 지표를 먼저 파악해 사용자가 겪는 지연과 실패부터 개선하겠습니다.
+
+참고: [아티피셜소사이어티 서비스 소개](https://www.artificial.sc/)
+
+### 확인 필요
+
+- 지원 동기 문구는 초안. 교육 서비스에 관심을 갖게 된 개인적인 계기와 위 동기의 일치 여부 확인.
