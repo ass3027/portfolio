@@ -237,6 +237,22 @@ AI 처리와 교육 현장의 요구를 백엔드 설계에 반영하는 질문�
 
 [모범 답변](interview-answers-artificial-society.md#q30)
 
+## 7. LiDAR gRPC 경험 심화
+
+<a id="q31"></a>
+
+### 31. LiDAR 프로젝트에서 gRPC를 어떻게 사용했고, C++ 중계 서버의 안정성을 어떻게 개선했나요?
+
+- gRPC 통신 구간과 클라이언트, 서버의 역할은 무엇인가요?
+- REST API와 비교했을 때 gRPC의 특징과 도입 배경은 무엇인가요?
+- Unary와 Streaming 중 어떤 방식을 사용했나요?
+- `.proto`, Protobuf, Channel, Stub의 역할은 무엇인가요?
+- 연결이 끊기거나 수신 속도가 처리 속도보다 빠르면 어떻게 대응하나요?
+- 메모리 누수의 실제 원인과 수정, 검증 방법은 무엇인가요?
+- C++ 중계 서버를 거쳐 REST API로 연계한 이유는 무엇인가요?
+
+[답변과 확인 필요 항목](interview-answers-artificial-society.md#q31) | [gRPC 학습 자료](lidar-grpc.md)
+
 ## 답변 준비 방법
 
 답변은 **문제 상황 → 본인의 역할 → 원인 분석 → 선택한 해결책과 대안 → 결과 → 아쉬운 점** 순서로 준비한다.
