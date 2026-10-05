@@ -136,43 +136,123 @@ DB가 병목이면 느린 쿼리와 반복 조회를 확인해 쿼리 개선이�
 
 **Spring MVC에서 요청이 들어와 응답이 나가기까지의 흐름을 설명해 주세요.**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#9-spring-mvc에서-요청이-들어와-응답이-나가기까지의-흐름을-설명해-주세요)
+
 ### 내 답변
 
+### 모범 답변
+
+일반적인 동기 요청을 기준으로, 서블릿 컨테이너가 요청을 받고 Filter 체인을 거쳐 DispatcherServlet으로 전달합니다. DispatcherServlet은 HandlerMapping으로 요청을 처리할 Controller와 Interceptor를 찾습니다. Interceptor의 preHandle을 통과하면 HandlerAdapter가 요청 파라미터와 본문을 메서드 인자로 변환하고, 필요한 검증을 수행한 뒤 Controller를 호출합니다.
+
+Controller는 Service와 Repository를 통해 작업을 수행합니다. REST API라면 반환값을 HttpMessageConverter로 JSON 등의 응답 본문으로 변환하고, Interceptor와 Filter의 후처리를 거쳐 응답을 반환합니다. 화면을 반환하는 MVC라면 ViewResolver로 View를 찾아 렌더링합니다.
+
+Filter는 DispatcherServlet 바깥에서 인코딩이나 보안 같은 공통 처리를 담당하고, Interceptor는 선택된 Handler를 기준으로 호출 전후의 공통 처리를 담당합니다. Controller Advice는 요청이 항상 통과하는 단계가 아니라 여러 Controller에 적용할 예외 처리나 바인딩 설정 등을 모으는 기능입니다. 특히 @RestControllerAdvice의 @ExceptionHandler는 MVC의 예외 처리 과정에서 예외를 공통 오류 응답으로 변환합니다. Filter에서 발생한 예외까지 자동으로 처리하는 것은 아닙니다.
+
+참고: [Spring MVC 처리 구조](https://docs.spring.io/spring-framework/reference/6.2/web/webmvc/mvc-servlet/special-bean-types.html), [응답 본문 변환](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-methods/responsebody.html), [예외 처리](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-exceptionhandler.html)
 
 ## Q10
 
 **Spring Bean은 기본적으로 싱글턴인데, 요청마다 달라지는 값을 필드에 저장하면 어떤 문제가 생기나요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#10-spring-bean은-기본적으로-싱글턴인데-요청마다-달라지는-값을-필드에-저장하면-어떤-문제가-생기나요)
+
 ### 내 답변
 
+### 모범 답변
+
+Spring의 기본 싱글턴 Bean은 컨테이너 안에서 하나의 인스턴스를 여러 요청이 공유합니다. 따라서 요청마다 달라지는 사용자 ID나 처리 결과를 필드에 저장하면, 동시에 들어온 다른 요청이 값을 덮어써 잘못된 결과가 나오거나 다른 사용자의 정보가 섞일 수 있습니다. 싱글턴이라는 사실만으로 스레드 안전성이 보장되지는 않습니다.
+
+예를 들어 아래 코드에서 A 요청이 사용자 ID를 저장한 뒤 B 요청이 같은 필드를 덮어쓰면, A 요청도 B의 ID를 반환할 수 있습니다.
+
+```java
+@Service
+class UserService {
+    private Long userId;
+
+    public Long process(Long requestUserId) {
+        this.userId = requestUserId;
+        return this.userId;
+    }
+}
+```
+
+요청별 값은 메서드 인자와 지역 변수로 전달하고, Service는 요청 상태를 필드에 보관하지 않도록 작성하겠습니다. 요청별 객체를 여러 곳에서 공유해야 한다면 Request Scope를 검토할 수 있습니다. 지역 변수라도 그 변수가 가리키는 객체를 다른 요청과 공유하고 수정한다면 별도의 동시성 문제가 남습니다.
+
+참고: [Spring Bean Scope](https://docs.spring.io/spring-framework/reference/core/beans/factory-scopes.html)
 
 ## Q11
 
 **Java의 `equals()`와 `hashCode()`는 어떤 관계인가요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#11-java의-equals와-hashcode는-어떤-관계인가요)
+
 ### 내 답변
 
+### 모범 답변
+
+equals는 두 객체가 논리적으로 같은지를 판단하고, hashCode는 HashMap이나 HashSet에서 저장 위치를 찾는 데 사용하는 해시 값을 반환합니다. 핵심 규칙은 equals가 true인 두 객체는 반드시 같은 hashCode를 반환해야 한다는 것입니다. 반대로 hashCode가 같아도 서로 다른 객체일 수 있으므로 equals로 다시 구분합니다.
+
+예를 들어 사용자 ID가 같으면 같은 객체로 판단하도록 equals만 재정의하고 hashCode를 맞추지 않으면, 같은 사용자를 나타내는 객체가 서로 다른 해시 위치에 저장될 수 있습니다. 이 경우 HashSet에 중복이 들어가거나 HashMap에서 같은 ID의 새 객체로 기존 값을 조회하지 못할 수 있습니다.
+
+따라서 equals를 재정의할 때는 hashCode도 같은 동등성 기준에 맞춰 재정의하겠습니다. 또한 HashMap의 키나 HashSet의 원소로 넣은 뒤에는 동등성 비교와 해시 계산에 사용하는 값을 바꾸지 않겠습니다. 값을 바꾸면 저장된 위치와 조회할 위치가 달라져 찾지 못할 수 있기 때문입니다.
+
+참고: [Java Object의 equals와 hashCode 계약](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html)
 
 ## Q12
 
 **JPA를 사용한다면 N+1 문제를 어떻게 발견하고 해결하나요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#12-jpa를-사용한다면-n1-문제를-어떻게-발견하고-해결하나요)
+
 ### 내 답변
 
+### 모범 답변
+
+N+1은 목록을 한 번 조회한 뒤, 각 항목의 연관 데이터를 가져오면서 추가 쿼리가 반복되는 문제입니다. 예를 들어 제출물 20개를 조회한 후 각각의 학생 정보를 별도 쿼리로 가져오면, 목록 조회 1번과 학생 조회 최대 20번이 실행될 수 있습니다. SQL 로그나 Hibernate 통계로 한 요청의 쿼리 수와 반복되는 쿼리를 확인하고, 목록 크기에 따라 쿼리 수가 증가하는지 보겠습니다.
+
+해결할 때는 해당 API에서 필요한 연관 데이터만 함께 조회하겠습니다. 엔티티와 연관 객체를 함께 사용한다면 Fetch Join이나 EntityGraph로 조회 범위를 지정하고, 화면에 필요한 값만 있으면 DTO 조회를 고려하겠습니다. 연관 관계를 모두 EAGER로 바꾸는 것은 불필요한 조회를 늘리고 N+1도 확실히 없애지 못하므로 피하겠습니다.
+
+특히 일대다 컬렉션을 Fetch Join하면 부모 하나가 여러 SQL 행으로 늘어나므로 페이징을 주의해야 합니다. Hibernate가 전체 결과를 가져와 메모리에서 페이징하면 데이터가 커질 때 문제가 됩니다. 이 경우 부모 ID를 먼저 DB에서 페이징하고 해당 ID의 연관 데이터를 별도로 조회하거나, 부모 목록은 페이징하면서 연관 데이터를 Batch Fetch로 묶어 읽겠습니다. 여러 컬렉션을 동시에 Fetch Join하면 조합에 따라 결과 행이 곱으로 늘어날 수 있어 피하겠습니다. 적용 후에는 쿼리 수뿐 아니라 응답 시간과 결과의 정확성도 확인하겠습니다.
+
+참고: [Hibernate Fetch Join과 페이징 제약](https://docs.jboss.org/hibernate/orm/7.0/querylanguage/html_single/Hibernate_Query_Language.html), [Hibernate 조회 전략과 Batch Fetch](https://docs.hibernate.org/orm/6.6/userguide/html_single/)
 
 ## Q13
 
 **API의 검증 오류와 서버 내부 오류를 어떻게 구분하고 응답하나요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#13-api의-검증-오류와-서버-내부-오류를-어떻게-구분하고-응답하나요)
+
 ### 내 답변
 
+### 모범 답변
+
+클라이언트가 요청을 수정해서 해결할 수 있는 입력 오류와, 서버가 정상적으로 처리하지 못한 내부 오류를 구분하겠습니다. 필수 값 누락이나 형식 오류는 요청 DTO에 Bean Validation을 적용하고 400으로 응답하겠습니다. 이미 제출된 과제를 다시 변경하는 것처럼 현재 상태와 충돌하는 경우는 409로 구분하겠습니다. 예상하지 못한 내부 예외는 500으로 처리하고, 외부 서비스 장애나 과부하처럼 의미가 다른 오류는 API의 상태 코드 정책에 맞게 구분하겠습니다.
+
+Spring MVC에서는 @RestControllerAdvice와 @ExceptionHandler로 오류 응답을 공통화하겠습니다. 응답에는 HTTP 상태와 함께 고정된 오류 코드, 사용자에게 보여줄 메시지, 요청을 추적할 ID를 넣고, 검증 오류에는 문제가 있는 필드와 이유를 추가하겠습니다. 예를 들어 code가 VALIDATION_ERROR이고 fieldErrors에 title의 필수 값 누락을 넣으면, 클라이언트는 메시지 문구에 의존하지 않고 해당 입력란에 오류를 표시할 수 있습니다.
+
+내부 오류는 사용자에게 일반적인 안내와 추적 ID만 반환하고, 서버 로그에 같은 ID와 예외 원인을 남기겠습니다. SQL이나 스택 트레이스 같은 내부 정보는 응답에 포함하지 않겠습니다. 검증 오류와 내부 오류를 모두 200으로 반환하면 클라이언트와 모니터링에서 성공과 실패를 구분하기 어려우므로 적절한 HTTP 상태를 사용하겠습니다.
+
+참고: [Spring MVC 공통 예외 처리](https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-exceptionhandler.html)
 
 ## Q14
 
 **배포 후 특정 API의 응답 시간이 갑자기 증가했다면 무엇부터 확인하나요?**
 
+[질문과 꼬리 질문](interview-questions-artificial-society.md#14-배포-후-특정-api의-응답-시간이-갑자기-증가했다면-무엇부터-확인하나요)
+
 ### 내 답변
 
+### 모범 답변
+
+먼저 배포 시점과 지연 발생 시점을 비교하고, 특정 API나 새 버전의 인스턴스에서만 느려졌는지 확인하겠습니다. 배포 전후의 p95 응답 시간과 오류율, 요청량을 비교하고, 변경된 코드와 설정을 확인하겠습니다. 수업 진행처럼 핵심 기능에 영향이 크고 배포가 원인으로 의심된다면, 데이터와 스키마 호환성을 확인한 뒤 롤백으로 복구를 우선하겠습니다.
+
+원인은 요청의 전체 시간 중 어디에서 지연이 늘었는지를 기준으로 좁히겠습니다. 처리 스레드가 모두 사용 중이면 요청 대기 여부와 스레드 덤프를 확인해 DB, 외부 API, 락 중 무엇을 기다리는지 보겠습니다. DB 커넥션 풀이 모두 사용 중이고 연결 획득 대기가 늘었다면, 연결을 오래 점유하는 트랜잭션이나 느린 쿼리, 연결 반환 누락을 조사하겠습니다. 연결을 얻는 데 걸린 시간과 실제 SQL 실행 시간은 구분하겠습니다.
+
+GC는 중단 시간과 발생 빈도, 힙 사용량을 지연 시점과 비교하고, 외부 API는 호출 구간의 응답 시간과 타임아웃, 재시도 횟수를 확인하겠습니다. 예를 들어 SQL 실행 시간은 그대로인데 커넥션 획득 시간이 늘었다면 풀 대기 쪽을, 외부 API 호출 시간만 늘었다면 해당 의존 서비스나 호출 방식 쪽을 조사하겠습니다. 필요한 지표가 없다면 구간별 시간 측정을 추가하겠습니다.
+
+원인을 확인한 뒤 느린 쿼리나 트랜잭션 범위, 외부 호출 제한 등을 수정하겠습니다. 풀 크기 증가는 DB나 외부 서비스에 여유가 있을 때만 검토하고, 같은 요청 조건에서 응답 시간과 오류율이 회복됐는지 확인하겠습니다.
+
+참고: [Spring Boot의 HTTP, JVM, DB 연결 메트릭](https://docs.spring.io/spring-boot/reference/actuator/metrics.html), [HikariCP 연결 풀 설정](https://github.com/brettwooldridge/HikariCP#configuration-knobs-baby)
 
 ## Q15
 

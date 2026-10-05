@@ -93,25 +93,37 @@
 
 - Filter, Interceptor, Controller Advice는 각각 어디에서 어떤 역할을 하나요?
 
+[모범 답변](interview-answers-artificial-society.md#q09)
+
 ### 10. Spring Bean은 기본적으로 싱글턴인데, 요청마다 달라지는 값을 필드에 저장하면 어떤 문제가 생기나요?
 
 - 실제로 이런 문제가 발생할 수 있는 코드 예시를 들어 주세요.
+
+[모범 답변](interview-answers-artificial-society.md#q10)
 
 ### 11. Java의 `equals()`와 `hashCode()`는 어떤 관계인가요?
 
 - 이를 잘못 구현하면 `HashMap`이나 `HashSet`에서 어떤 문제가 발생하나요?
 
+[모범 답변](interview-answers-artificial-society.md#q11)
+
 ### 12. JPA를 사용한다면 N+1 문제를 어떻게 발견하고 해결하나요?
 
 - Fetch Join을 적용할 때 페이징과 컬렉션 조회에서 무엇을 주의해야 하나요?
+
+[모범 답변](interview-answers-artificial-society.md#q12)
 
 ### 13. API의 검증 오류와 서버 내부 오류를 어떻게 구분하고 응답하나요?
 
 - 클라이언트가 안정적으로 처리할 수 있는 오류 응답 형식은 어떻게 설계하겠어요?
 
+[모범 답변](interview-answers-artificial-society.md#q13)
+
 ### 14. 배포 후 특정 API의 응답 시간이 갑자기 증가했다면 무엇부터 확인하나요?
 
 - 스레드 풀, DB 커넥션 풀, GC, 외부 API 지연을 어떻게 구분하겠어요?
+
+[모범 답변](interview-answers-artificial-society.md#q14)
 
 ## 3. DB·API 설계
 
