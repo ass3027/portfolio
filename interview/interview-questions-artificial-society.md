@@ -237,18 +237,21 @@ AI 처리와 교육 현장의 요구를 백엔드 설계에 반영하는 질문�
 
 [모범 답변](interview-answers-artificial-society.md#q30)
 
-## 7. LiDAR gRPC 경험 심화
+## 7. gRPC와 REST API 비교
 
 <a id="q31"></a>
 
-### 31. LiDAR 프로젝트에서 gRPC를 어떻게 사용했고, C++ 중계 서버의 안정성을 어떻게 개선했나요?
+### 31. gRPC는 REST API와 무엇이 다르고, 어떤 상황에서 선택하겠나요?
 
 - gRPC 통신 구간과 클라이언트, 서버의 역할은 무엇인가요?
-- REST API와 비교했을 때 gRPC의 특징과 도입 배경은 무엇인가요?
+- 리소스 중심 설계와 원격 메서드 호출은 어떤 차이가 있나요?
+- JSON과 Protobuf, HTTP/1.1과 HTTP/2는 각각 무엇을 비교하는 개념인가요?
+- `.proto` 기반 코드 생성의 장점과 계약 변경 시 주의점은 무엇인가요?
 - Unary와 Streaming 중 어떤 방식을 사용했나요?
 - `.proto`, Protobuf, Channel, Stub의 역할은 무엇인가요?
-- 연결이 끊기거나 수신 속도가 처리 속도보다 빠르면 어떻게 대응하나요?
-- 메모리 누수의 실제 원인과 수정, 검증 방법은 무엇인가요?
+- gRPC가 항상 REST API보다 빠른가요?
+- 브라우저 연동, 캐시, 오류 응답과 디버깅에는 어떤 차이가 있나요?
+- 내부 서버 통신과 외부 공개 API에서 선택 기준은 무엇인가요?
 - C++ 중계 서버를 거쳐 REST API로 연계한 이유는 무엇인가요?
 
 [답변과 확인 필요 항목](interview-answers-artificial-society.md#q31) | [gRPC 학습 자료](lidar-grpc.md)

@@ -1,10 +1,10 @@
-# LiDAR 프로젝트 gRPC 면접 준비
+# gRPC와 REST API 비교 및 LiDAR 면접 준비
 
 [회사별 답변 Q31](interview-answers-artificial-society.md#q31) | [예상 질문 Q31](interview-questions-artificial-society.md#q31)
 
 작성일: 2026-10-06
 
-프로젝트 사실은 [LiDAR 원천 문서](../content/03-lidar.md)와 [누수 해결 답변](answers.md#q14)을 기준으로 정리한다. 아래 일반 원리와 설계 예시는 당시 구현을 증명하지 않는다.
+학습 중심은 gRPC 자체와 REST API의 차이다. 프로젝트 사실은 [LiDAR 원천 문서](../content/03-lidar.md)를 기준으로 정리한다. 아래 일반 원리와 설계 예시는 당시 구현을 증명하지 않는다.
 
 ## 1. 먼저 설명할 프로젝트 구조
 
@@ -13,12 +13,11 @@ LiDAR 데이터 서버 -> gRPC -> C++ 데이터 중계 서버 -> REST API -> Bac
 ```
 
 - 확인된 통신 구간: LiDAR 데이터 서버와 C++ 중계 서버 사이의 gRPC.
-- 확인된 본인 경험: C++ 수신 서비스 메모리 문제 분석, Visual Studio 디버깅, 수정 및 예외 처리와 로깅 보강.
 - 확인 필요: RPC 요청 시작 주체와 서버 역할. 데이터 흐름 화살표만으로 클라이언트와 서버 판정 불가.
 - 확인 필요: 원시 포인트 클라우드 수신 여부. 프로젝트 목적만으로 데이터 형식 판정 불가.
 - 확인 필요: 기존 도입 배경과 C++ 중계 유지 이유. 후반 합류 경험과 최초 설계 책임 구분.
 
-면접에서는 통신 구간, 받은 데이터, 본인 수정 범위를 먼저 설명한다. 이후 사용한 RPC 유형과 장애 처리로 이어간다.
+면접에서는 gRPC 개념과 REST API 비교를 먼저 준비한다. 프로젝트 질문에서는 실제 통신 구간과 사용한 RPC 유형으로 연결한다.
 
 ## 2. gRPC와 REST API 비교
 
@@ -31,6 +30,9 @@ gRPC는 원격 메서드 호출을 위한 프레임워크다. REST는 리소스 
 | 호출 코드 | HTTP 클라이언트 또는 생성 SDK | 계약에서 생성한 Stub |
 | 연속 전송 | SSE 등 별도 방식으로 구현 가능 | RPC 유형으로 Streaming 지원 |
 | 조사와 연계 | 일반 HTTP 도구와 브라우저 활용 용이 | 스키마와 gRPC 지원 도구 활용 |
+| 계약과 코드 생성 | OpenAPI 등의 명세와 생성 도구 선택 가능 | `.proto`와 생성 Stub 중심의 개발 흐름 |
+| 오류 표현 | HTTP 상태 코드와 오류 본문 | gRPC Status와 필요 시 오류 상세 |
+| 조회 캐시 | GET 응답의 HTTP 캐시 활용 가능 | 일반 HTTP 캐시보다 애플리케이션 캐시 검토 |
 
 - HTTP/2: 하나의 연결에서 여러 스트림 전송 지원. RPC 메시지 스트리밍과 전송 계층 스트림 구분.
 - Protobuf: 스키마 기반 직렬화와 언어별 코드 생성. 효율적인 데이터 표현 가능.
@@ -38,6 +40,59 @@ gRPC는 원격 메서드 호출을 위한 프레임워크다. REST는 리소스 
 - 도입 이유 답변: 일반적인 적합성과 당시 실제 선택 근거 구분.
 
 참고: [gRPC 소개](https://grpc.io/docs/what-is-grpc/introduction/), [gRPC C++ 기본 안내](https://grpc.io/docs/languages/cpp/basics/)
+
+### 같은 기능의 호출 형태
+
+공항 구역의 현재 인원 조회를 가정한 학습 예시다.
+
+```text
+REST: GET /zones/A/passenger-count -> {"count": 120}
+gRPC: stub.GetPassengerCount({zone_id: "A"}) -> PassengerCountResponse
+```
+
+REST는 구역의 인원 수라는 리소스와 GET의 의미를 조합한다. gRPC는 GetPassengerCount라는 원격 메서드와 요청 및 응답 타입을 계약에 정의한다. Stub은 실제 네트워크 요청을 수행하므로 로컬 호출처럼 보여도 지연과 실패가 발생한다. [REST 원전](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm), [gRPC 소개](https://grpc.io/docs/what-is-grpc/introduction/)
+
+### Protobuf와 JSON의 차이
+
+- JSON: 텍스트 표현, 필드 이름과 값을 전송, 사람이 본문 확인 가능.
+- Protobuf: 스키마 기반 바이너리 표현, 필드 번호와 타입에 따른 인코딩, 해석 시 스키마 및 도구 활용.
+- 코드 생성: `.proto`에서 메시지 클래스와 RPC Stub 생성. 언어별 타입 계약 공유.
+- 계약 수정: 새 필드 번호, 기존 번호 보존, 삭제 번호 예약 등 호환성 관리.
+- 검증 범위: 타입 계약과 업무 규칙 검증 구분. 좌표 범위와 필수 업무 값은 별도 검증 필요.
+
+Protobuf는 JSON보다 메시지 크기와 직렬화 비용을 줄일 수 있다. 효과는 데이터 구조와 구현에 따라 달라지므로 동일 조건에서 측정한다. [Protobuf 인코딩](https://protobuf.dev/programming-guides/encoding/), [proto3 계약](https://protobuf.dev/programming-guides/proto3/)
+
+REST API도 OpenAPI로 요청 및 응답 타입과 인터페이스를 정의하고 클라이언트 및 서버 코드를 생성할 수 있다. 계약과 타입 안전성의 유무만으로 두 방식을 구분하지 않는다. [OpenAPI 명세](https://spec.openapis.org/oas/latest.html), [OpenAPI 코드 생성](https://openapi-generator.tech/docs/generators/)
+
+### HTTP/2가 주는 것
+
+HTTP/2는 하나의 연결에서 여러 스트림을 다중화하고 헤더를 압축한다. 여러 요청을 같은 연결에서 처리할 수 있지만, TCP 패킷 손실 시 그 연결의 여러 스트림이 영향을 받을 수 있다. REST API도 HTTP/2를 사용할 수 있다. HTTP 버전과 API 설계 방식은 별개다. [HTTP/2 표준](https://www.rfc-editor.org/rfc/rfc9113.html)
+
+HTTP/2의 스트림은 전송 계층 개념이고, gRPC Streaming은 한 RPC에서 여러 메시지를 주고받는 호출 모델이다. Unary gRPC도 HTTP/2 스트림을 사용한다. [gRPC 핵심 개념](https://grpc.io/docs/what-is-grpc/core-concepts/)
+
+### 브라우저, 캐시와 오류 처리
+
+- 브라우저: REST API는 일반 HTTP 요청으로 연동. 네이티브 gRPC는 브라우저에서 동일 방식으로 직접 호출하기 어려워 gRPC-Web 등 별도 연동 방식 검토.
+- gRPC-Web: 네이티브 gRPC와 기능 동일성 가정 금지. 공식 구현의 Client Streaming 및 Bidirectional Streaming 지원 제한 확인.
+- 캐시: REST의 GET 응답은 Cache-Control과 검증자를 활용한 HTTP 캐시 검토. 모든 GET의 무조건 캐시 가능 의미는 아님.
+- gRPC 캐시: RPC별 애플리케이션 캐시 및 명시적인 캐시 계층 검토. 일반 HTTP GET 캐시와 방식 차이.
+- 오류: REST에서는 HTTP 400, 404, 500 등과 본문, gRPC에서는 INVALID_ARGUMENT, NOT_FOUND, INTERNAL 등 Status 활용.
+- 디버깅: JSON은 본문 확인 용이. gRPC는 grpcurl 등 지원 도구와 스키마 또는 서버 Reflection 활용.
+
+참고: [gRPC-Web 공식 저장소](https://github.com/grpc/grpc-web), [HTTP 의미론](https://www.rfc-editor.org/rfc/rfc9110.html), [gRPC 상태 코드](https://grpc.io/docs/guides/status-codes/)
+
+### 선택 기준
+
+| 조건 | 우선 검토할 방식과 이유 |
+| --- | --- |
+| 내부 시스템, 계약 배포 통제 가능 | gRPC의 언어별 생성 코드와 공통 계약 활용 |
+| 빈번한 메시지 교환 | gRPC 및 Protobuf의 크기와 직렬화 비용 측정 |
+| 연속 또는 양방향 데이터 교환 | gRPC Streaming 검토, 소비자 환경 확인 |
+| 브라우저 및 외부 공개 소비자 | REST API의 접근성과 HTTP 도구 활용 |
+| 캐시 가능한 조회 | REST GET과 HTTP 캐시 검토 |
+| 단순 CRUD, 처리 비용이 DB에 집중 | REST API 유지 가능, 전송 방식 변경 효과 측정 |
+
+이는 비교에 따른 설계 판단이다. 내부 시스템의 REST API도 유효하고 외부 소비자에 gRPC를 제공할 수도 있다. 시스템 경계마다 다른 방식을 함께 사용하는 것도 가능하다.
 
 ## 3. 네 가지 RPC 유형과 실제 유형 확인
 
@@ -105,26 +160,7 @@ gRPC는 스트리밍 전송의 흐름 제어를 제공한다. 애플리케이션
 
 증분 이벤트를 최신 데이터 하나로 덮어쓰면 이동 경로나 집계가 손상될 수 있다. 데이터의 의미를 확인한 뒤 정책을 선택한다.
 
-## 7. 메모리 누수 경험의 핵심 꼬리 질문
-
-이 부분이 본인 경험과 직접 연결되므로 우선 준비한다.
-
-1. 메모리가 증가한 프로세스와 최초 관찰 증상.
-2. 누수로 판단한 근거와 재현 조건.
-3. 누수 객체의 종류, 할당 위치, 소유자와 해제 시점.
-4. 정상 경로와 오류 및 재접속 경로의 차이.
-5. 실제 수정 코드와 같은 조건의 수정 후 메모리 추이.
-
-- 해제 누락: 소유권과 모든 종료 경로 점검. RAII나 스마트 포인터는 소유권에 맞게 검토.
-- 큐 적체: 처리량, 큐 길이, 가장 오래된 메시지 대기 시간 확인.
-- 객체 보관: 컨테이너에서 제거되지 않는 객체와 순환 참조 가능성 확인.
-- 할당자 및 버퍼: RSS 증가만으로 누수 단정 불가. 살아 있는 할당과 처리 중 데이터량 확인.
-- 비동기 수명: 완료 전에 객체 해제 시 잘못된 메모리 접근 가능. API와 콜백 완료 시점 확인.
-- 재시작: 가용성 회복 수단. 누수 수정 및 검증과 역할 구분.
-
-현재 문서에는 누수 지점의 실제 객체나 수정 코드가 없다. `new/delete` 누락, gRPC 라이브러리 결함, 스마트 포인터 적용 등을 원인이나 해결책으로 임의 추가하지 않는다.
-
-## 8. Protobuf 계약 변경
+## 7. Protobuf 계약 변경
 
 - 필드 번호: 전송 데이터의 필드 식별자. 배포된 필드 번호 변경과 재사용 금지.
 - 필드 삭제: 삭제한 번호의 `reserved` 지정. 이름 예약도 함께 검토.
@@ -133,13 +169,13 @@ gRPC는 스트리밍 전송의 흐름 제어를 제공한다. 애플리케이션
 
 참고: [Protobuf proto3 가이드](https://protobuf.dev/programming-guides/proto3/)
 
-## 9. 면접 직전 확인 순서
+## 8. 면접 직전 확인 순서
 
-1. `.proto`의 메서드 선언과 대표 메시지 확인.
-2. C++ Channel, Stub, 수신 루프 또는 콜백 확인.
-3. 정상 종료, 오류 및 재접속 시 자원 정리 확인.
-4. 메모리 누수 수정 전후 코드와 관찰 기록 확인.
-5. 수신 주기와 데이터 종류, 중계 서버와 백엔드 간 호출 방향 확인.
-6. 최초 선택 이유와 본인 기여 범위 정리.
+1. REST 리소스 설계와 gRPC 메서드 호출 차이 설명.
+2. Protobuf, HTTP/2, 코드 생성과 Streaming의 역할 구분.
+3. 브라우저 연동, 캐시와 오류 처리 비교.
+4. 성능 측정 조건과 기술 선택 기준 정리.
+5. 실제 `.proto`의 RPC 유형과 수신 데이터 확인.
+6. 최초 선택 이유와 본인 기여 범위 확인.
 
-우선 목표는 실제 통신 흐름과 수정 경험의 설명이다. CompletionQueue 내부 구현 같은 심화 주제는 당시 비동기 API 사용 여부를 확인한 뒤 준비한다.
+우선 목표는 기술의 차이와 선택 근거 설명이다. CompletionQueue 내부 구현 같은 심화 주제는 당시 비동기 API 사용 여부를 확인한 뒤 준비한다.
