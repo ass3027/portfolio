@@ -1,6 +1,6 @@
 # gRPC와 REST API 비교 및 LiDAR 면접 준비
 
-[회사별 답변 Q31](interview-answers-artificial-society.md#q31) | [예상 질문 Q31](interview-questions-artificial-society.md#q31)
+[회사별 답변 Q31](artificial-society/answers.md#q31) | [예상 질문 Q31](artificial-society/questions.md#q31)
 
 작성일: 2026-10-06
 

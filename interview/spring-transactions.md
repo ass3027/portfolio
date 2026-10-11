@@ -1,6 +1,6 @@
 # Spring 트랜잭션 설계와 동작
 
-[회사별 답변 Q03](interview-answers-artificial-society.md#q03) | [예상 질문](interview-questions-artificial-society.md)
+[회사별 답변 Q03](artificial-society/answers.md#q03) | [예상 질문](artificial-society/questions.md)
 
 일반적인 JDBC 또는 JPA 기반 서비스와 Spring의 기본 프록시 방식을 기준으로 설명한다. 아래 상황은 학습용 예시이며 실무 경험으로 주장하지 않는다.
 

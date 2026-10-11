@@ -1,5 +1,9 @@
 # 면접 준비 자료 안내
 
+- 공통 자료: `interview/`의 이력서·포트폴리오 참조, 공통 질문·답변, 자기소개와 학습 자료
+- 기업별 자료: `interview/<기업명>/`의 `questions.md`, `answers.md`, 필요 시 `jd.md`
+- 질문·답변 연결: 기업별 Q번호와 상호 링크 유지
+
 ## 이력서와 포트폴리오 참조
 
 | 자료 | Markdown | 원문 PDF | 범위 |
@@ -44,24 +48,26 @@
 | LiDAR 기간 | 이력서 1쪽: 2025.08~2026.03. 포트폴리오 3·12쪽: 2025.09~2026.02 | [기존 확인 항목](questions.md#면접-전-확인할-문서수치)에도 기간 차이 기록 | 실제 참여 기간과 각 문서의 기간 기준 확인 |
 | LiDAR 40초에서 1.5초 | 이력서 1쪽: 쿼리 응답 시간. 2쪽: 대량 데이터 조인 조회 응답 시간 | [사용자 확인 답변 Q13](answers.md#q13): API와 SQL 개선을 합친 화면 결과 표시 시간 | 답변에는 사용자 확인 범위 적용. SQL 단독 성과로 단정 금지 |
 | 학력 | 새 이력서 3쪽: 2026.03 전문학사 졸업 | 기존 `questions.md`에는 졸업 예정 표기 확인 메모 존재 | 현재 PDF는 졸업으로 기록. 졸업 예정이라는 과거 메모와 구분 |
-| gRPC 기여 범위 | 포트폴리오 2쪽: gRPC 기반 실시간 데이터 연계 설계 | [회사별 Q31](interview-answers-artificial-society.md#q31): 최초 선택 주체, 설계 및 구현 범위 확인 필요 | 최초 도입, 연계 설계, 기존 수신 서비스 유지보수의 본인 범위 확인 |
+| gRPC 기여 범위 | 포트폴리오 2쪽: gRPC 기반 실시간 데이터 연계 설계 | [회사별 Q31](artificial-society/answers.md#q31): 최초 선택 주체, 설계 및 구현 범위 확인 필요 | 최초 도입, 연계 설계, 기존 수신 서비스 유지보수의 본인 범위 확인 |
 | LiDAR 메모리 70%, 코드량 50% | 이력서 2쪽은 여러 개선을 함께 서술. 포트폴리오 12쪽은 로직 통합과 객체 수명 정리의 성과로 배치 | C++ 누수 해결과 로직 통합 사례 별도 | 두 수치를 C++ 누수 수정만의 효과로 합쳐 설명하지 않음 |
 | 두 종류의 80% | LiDAR: 분석 및 개선 시간. FireWatcher: 영상 장애 확인 및 조치 시간 | [LiDAR Q16](answers.md#q16), [FireWatcher 원문 정리](resume-reference.md#firewatcher) | 측정 업무와 프로젝트를 각각 구분 |
 | KTX 성능 수치 | 포트폴리오 10쪽: L1, L2, L3, L5b로 분리 | [기존 질문 목록](questions.md)에 실험 조건 구분 항목 존재 | 833~863 TPS, 2,497 TPS, 약 189 TPS를 같은 시나리오 결과로 혼합 금지 |
 | Tag2Now 비용 | 포트폴리오 6~7쪽: free tier, free tier 수준 비용 | 월별 청구 내역과 무료 혜택 기간은 PDF에 미기재 | 영구 무료 또는 특정 월 비용으로 확대 해석 금지 |
 | 재직 기간과 경력 연차 | 이력서 1쪽: 4년 3개월, 2022.08부터 재직 중. 포트폴리오 1쪽: 4년 차 | PDF 발급일과 경력 개월 수 산식 미기재 | 원문 표기를 보존하고 실제 지원 시점 기준 연차 별도 확인 |
 
-## 기존 면접 질문과 답변
+## 공통 면접 질문과 학습 자료
 
 - [공통 예상 질문](questions.md)
 - [공통 답변과 사용자 확인 사실](answers.md)
 - [자기소개](introduction.md)
-- [아티피셜소사이어티 질문](interview-questions-artificial-society.md)
-- [아티피셜소사이어티 답변](interview-answers-artificial-society.md)
-- [알피(ARPI) JD와 경험 연결](jd-arpi.md)
-- [알피(ARPI) 예상 기술면접 질문](interview-questions-arpi.md)
-- [알피(ARPI) 내 답변 작성](interview-answers-arpi.md)
 - [gRPC와 REST 비교](lidar-grpc.md)
 - [Spring 트랜잭션](spring-transactions.md)
+
+## 기업별 면접 자료
+
+| 기업 | 공고 정리 | 예상 질문 | 답변 |
+| --- | --- | --- | --- |
+| 알피(ARPI) | [JD와 경험 연결](arpi/jd.md) | [질문](arpi/questions.md) | [내 답변 작성](arpi/answers.md) |
+| 아티피셜소사이어티 | [질문 문서의 공고 정보](artificial-society/questions.md) | [질문](artificial-society/questions.md) | [답변](artificial-society/answers.md) |
 
 참조 문서는 제출 자료의 내용 확인용이며, 질문과 답변은 기존 문서에서 관리한다. 새 면접 답변에 들어갈 실제 경험, 측정 조건, 본인 기여는 확인된 범위에서 작성한다.

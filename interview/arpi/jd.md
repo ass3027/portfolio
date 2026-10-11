@@ -1,6 +1,6 @@
 # 알피(ARPI) Backend Engineer 공고 정리
 
-[면접 자료 목차](README.md) | [예상 질문](interview-questions-arpi.md)
+[면접 자료 목차](../README.md) | [예상 질문](questions.md)
 
 - 출처: [원티드 공고 389685](https://www.wanted.co.kr/wd/389685)
 - 확인일: 2026-10-11
@@ -26,14 +26,14 @@
 
 | 공고 관심사 | 연결할 경험과 원문 | 준비 방향 |
 | --- | --- | --- |
-| 대용량 조회 | [이력서 LiDAR](resume-reference.md#lidar), 1~2쪽 | 실행 계획, 복합 인덱스, API 호출 개선의 효과 분리 |
-| AI 분석 연계 | [이력서 FireWatcher](resume-reference.md#firewatcher), 2쪽 | Kafka·Avro 구현 범위, 전달 보장, 장애와 적체 |
-| 데이터 파이프라인 안정성 | [포트폴리오 LiDAR](portfolio-reference.md#lidar), 12쪽 | 수신 장애, 메트릭, 객체 수명과 메모리 |
-| 트랜잭션·동시성 | [포트폴리오 KTX](portfolio-reference.md#ktx), 8~11쪽 | DB 최종 정합성, Redis 실패, 보정의 한계 |
-| JPA·도메인 설계 | [이력서 Hemp](resume-reference.md#hemp), 2~3쪽 | 상태 전이와 정책 응집, 영속성과 트랜잭션 |
-| 배포·운영 | [이력서 Secuwatcher](resume-reference.md#secuwatcher), 1쪽 | 환경 설정, 배포 재현성, 현장 장애 대응 |
-| 클라우드 선택 | [포트폴리오 Tag2Now](portfolio-reference.md#tag2now-infra), 6~7쪽 | 비용과 SPOF, 의료 서비스에 필요한 판단 변화 |
-| 테스트·리뷰 | [Tag2Now](portfolio-reference.md#tag2now), 4~7쪽, [AI 워크플로우](portfolio-reference.md#ai-workflow), 13~14쪽 | 실제 검증 사례, 리뷰 판단, AI 오탐 확인 |
+| 대용량 조회 | [이력서 LiDAR](../resume-reference.md#lidar), 1~2쪽 | 실행 계획, 복합 인덱스, API 호출 개선의 효과 분리 |
+| AI 분석 연계 | [이력서 FireWatcher](../resume-reference.md#firewatcher), 2쪽 | Kafka·Avro 구현 범위, 전달 보장, 장애와 적체 |
+| 데이터 파이프라인 안정성 | [포트폴리오 LiDAR](../portfolio-reference.md#lidar), 12쪽 | 수신 장애, 메트릭, 객체 수명과 메모리 |
+| 트랜잭션·동시성 | [포트폴리오 KTX](../portfolio-reference.md#ktx), 8~11쪽 | DB 최종 정합성, Redis 실패, 보정의 한계 |
+| JPA·도메인 설계 | [이력서 Hemp](../resume-reference.md#hemp), 2~3쪽 | 상태 전이와 정책 응집, 영속성과 트랜잭션 |
+| 배포·운영 | [이력서 Secuwatcher](../resume-reference.md#secuwatcher), 1쪽 | 환경 설정, 배포 재현성, 현장 장애 대응 |
+| 클라우드 선택 | [포트폴리오 Tag2Now](../portfolio-reference.md#tag2now-infra), 6~7쪽 | 비용과 SPOF, 의료 서비스에 필요한 판단 변화 |
+| 테스트·리뷰 | [Tag2Now](../portfolio-reference.md#tag2now), 4~7쪽, [AI 워크플로우](../portfolio-reference.md#ai-workflow), 13~14쪽 | 실제 검증 사례, 리뷰 판단, AI 오탐 확인 |
 
 ## 경험 확인이 필요한 영역
 

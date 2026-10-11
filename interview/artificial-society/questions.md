@@ -1,6 +1,6 @@
 # 아티피셜소사이어티 백엔드 개발자 예상 면접 질문
 
-[답변 모음](interview-answers-artificial-society.md)
+[답변 모음](answers.md)
 
 - 지원 포지션: 백엔드 개발자 — 경력 4년 이상
 - 공고: [원티드 채용 공고](https://www.wanted.co.kr/wd/378144)
@@ -31,7 +31,7 @@
 - 가장 어려웠던 기술적 의사결정과 그 이유는 무엇인가요?
 - 다시 만든다면 무엇을 바꾸겠어요?
 
-[답변과 준비 메모](interview-answers-artificial-society.md#q01)
+[답변과 준비 메모](answers.md#q01)
 
 ### 2. 실제로 성능 문제를 발견하고 개선한 경험이 있나요?
 
@@ -39,7 +39,7 @@
 - 애플리케이션, DB, 외부 서비스 중 어디가 병목인지 어떻게 구분했나요?
 - 개선 전후 결과와 부작용은 어떻게 확인했나요?
 
-[답변과 준비 메모](interview-answers-artificial-society.md#q02)
+[답변과 준비 메모](answers.md#q02)
 
 ### 3. 여러 DB 변경이 모두 성공하거나 모두 취소돼야 한다면, `@Transactional`을 어느 메서드에 붙이겠어요?
 
@@ -48,7 +48,7 @@
 - 같은 클래스 내부 호출에서는 왜 문제가 생길 수 있나요?
 - 트랜잭션 안에서 외부 API를 호출하면 어떤 위험이 있나요?
 
-[답변과 학습 자료](interview-answers-artificial-society.md#q03)
+[답변과 학습 자료](answers.md#q03)
 
 ### 4. 여러 요청이 동시에 같은 데이터를 수정하는 상황을 어떻게 처리했나요?
 
@@ -57,7 +57,7 @@
 - 애플리케이션에서만 동시성을 제어할 때의 한계는 무엇인가요?
 - 중복 요청과 재시도까지 고려하면 어떻게 설계하겠어요?
 
-[답변과 준비 메모](interview-answers-artificial-society.md#q04)
+[답변과 준비 메모](answers.md#q04)
 
 ### 5. MySQL 쿼리가 느릴 때 어떤 순서로 분석하나요?
 
@@ -65,7 +65,7 @@
 - 복합 인덱스의 컬럼 순서는 어떻게 결정하나요?
 - 인덱스를 추가했는데도 성능이 개선되지 않는 이유는 무엇일까요?
 
-[답변과 준비 메모](interview-answers-artificial-society.md#q05)
+[답변과 준비 메모](answers.md#q05)
 
 ### 6. AWS에서 서비스를 운영하면서 장애를 해결한 경험을 설명해 주세요.
 
@@ -93,37 +93,37 @@
 
 - Filter, Interceptor, Controller Advice는 각각 어디에서 어떤 역할을 하나요?
 
-[모범 답변](interview-answers-artificial-society.md#q09)
+[모범 답변](answers.md#q09)
 
 ### 10. Spring Bean은 기본적으로 싱글턴인데, 요청마다 달라지는 값을 필드에 저장하면 어떤 문제가 생기나요?
 
 - 실제로 이런 문제가 발생할 수 있는 코드 예시를 들어 주세요.
 
-[모범 답변](interview-answers-artificial-society.md#q10)
+[모범 답변](answers.md#q10)
 
 ### 11. Java의 `equals()`와 `hashCode()`는 어떤 관계인가요?
 
 - 이를 잘못 구현하면 `HashMap`이나 `HashSet`에서 어떤 문제가 발생하나요?
 
-[모범 답변](interview-answers-artificial-society.md#q11)
+[모범 답변](answers.md#q11)
 
 ### 12. JPA를 사용한다면 N+1 문제를 어떻게 발견하고 해결하나요?
 
 - Fetch Join을 적용할 때 페이징과 컬렉션 조회에서 무엇을 주의해야 하나요?
 
-[모범 답변](interview-answers-artificial-society.md#q12)
+[모범 답변](answers.md#q12)
 
 ### 13. API의 검증 오류와 서버 내부 오류를 어떻게 구분하고 응답하나요?
 
 - 클라이언트가 안정적으로 처리할 수 있는 오류 응답 형식은 어떻게 설계하겠어요?
 
-[모범 답변](interview-answers-artificial-society.md#q13)
+[모범 답변](answers.md#q13)
 
 ### 14. 배포 후 특정 API의 응답 시간이 갑자기 증가했다면 무엇부터 확인하나요?
 
 - 스레드 풀, DB 커넥션 풀, GC, 외부 API 지연을 어떻게 구분하겠어요?
 
-[모범 답변](interview-answers-artificial-society.md#q14)
+[모범 답변](answers.md#q14)
 
 ## 3. DB·API 설계
 
@@ -137,26 +137,26 @@
 
 - 네트워크 타임아웃 때문에 클라이언트가 재시도하는 상황도 고려해 주세요.
 
-[모범 답변](interview-answers-artificial-society.md#q16)
+[모범 답변](answers.md#q16)
 
 ### 17. 교사용 학습 현황 화면에서 통계 조회가 느려지면 어떻게 개선하겠어요?
 
 - 실시간 집계와 사전 집계 중 어떤 기준으로 선택하나요?
 - 통계의 최신성과 조회 성능 사이에서 어떤 타협이 가능한가요?
 
-[모범 답변](interview-answers-artificial-society.md#q17)
+[모범 답변](answers.md#q17)
 
 ### 18. 서비스 운영 중 큰 테이블의 스키마를 변경해야 한다면 어떻게 진행하나요?
 
 - 구버전 서버와 신버전 서버가 함께 실행되는 동안의 호환성은 어떻게 보장하나요?
 
-[모범 답변](interview-answers-artificial-society.md#q18)
+[모범 답변](answers.md#q18)
 
 ### 19. REST API에서 리소스, HTTP 메서드, 상태 코드를 어떻게 결정하나요?
 
 - 과제 제출, 채점 요청, 채점 결과 조회를 각각 어떻게 표현하겠어요?
 
-[모범 답변](interview-answers-artificial-society.md#q19)
+[모범 답변](answers.md#q19)
 
 ## 4. AWS·EKS 운영
 
@@ -166,31 +166,31 @@ AWS·EKS는 공고에 명시된 만큼, 사용한 서비스와 운영 경험의 
 
 - Deployment, Service, Ingress의 역할을 설명해 주세요.
 
-[모범 답변](interview-answers-artificial-society.md#q20)
+[모범 답변](answers.md#q20)
 
 ### 21. Readiness Probe와 Liveness Probe는 어떻게 다르게 설정하나요?
 
 - 일시적인 DB 장애가 발생했을 때 모든 Pod가 재시작된다면 어떤 문제가 생기나요?
 
-[모범 답변](interview-answers-artificial-society.md#q21)
+[모범 답변](answers.md#q21)
 
 ### 22. 무중단 배포 중 처리하던 요청이 끊기지 않도록 어떻게 하겠어요?
 
 - 종료 신호를 받은 서버와 트래픽 라우팅을 어떻게 처리하나요?
 
-[모범 답변](interview-answers-artificial-society.md#q22)
+[모범 답변](answers.md#q22)
 
 ### 23. 서버 수를 늘렸는데 RDS 연결 오류가 증가했습니다. 원인은 무엇일까요?
 
 - Pod 수와 각 서버의 커넥션 풀 크기를 어떤 기준으로 정하나요?
 
-[모범 답변](interview-answers-artificial-society.md#q23)
+[모범 답변](answers.md#q23)
 
 ### 24. S3에 학생의 제출 파일을 저장한다면 업로드와 접근 권한을 어떻게 설계하나요?
 
 - 다른 학생의 파일에 접근하지 못하게 하려면 어떤 검증이 필요한가요?
 
-[모범 답변](interview-answers-artificial-society.md#q24)
+[모범 답변](answers.md#q24)
 
 ## 5. AI·교육 서비스 설계
 
@@ -201,26 +201,26 @@ AI 처리와 교육 현장의 요구를 백엔드 설계에 반영하는 질문�
 - 동기 처리와 비동기 처리 중 무엇을 선택하나요?
 - 사용자는 진행 상태와 실패 여부를 어떻게 확인하나요?
 
-[모범 답변](interview-answers-artificial-society.md#q25)
+[모범 답변](answers.md#q25)
 
 ### 26. AI 서비스가 타임아웃되거나 호출 제한에 걸려도 학생의 제출 내용은 보존해야 합니다. 어떻게 설계하겠어요?
 
 - 저장과 AI 호출을 어떻게 분리하나요?
 - 재시도로 같은 피드백이 중복 생성되는 것은 어떻게 막나요?
 
-[모범 답변](interview-answers-artificial-society.md#q26)
+[모범 답변](answers.md#q26)
 
 ### 27. 교사는 담당 학급만, 학생은 본인의 학습 결과만 볼 수 있어야 합니다. 권한을 어떻게 설계하나요?
 
 - 로그인 여부와 역할 확인 외에 어떤 검증이 필요한가요?
 
-[모범 답변](interview-answers-artificial-society.md#q27)
+[모범 답변](answers.md#q27)
 
 ### 28. 한국과 미국의 교육과정·언어·시간대가 다르면 어떤 부분을 공통화하고 어떤 부분을 분리하겠어요?
 
 - 과제 마감 시간과 국가별 콘텐츠를 어떻게 모델링하나요?
 
-[모범 답변](interview-answers-artificial-society.md#q28)
+[모범 답변](answers.md#q28)
 
 ## 6. 협업·지원 동기
 
@@ -228,14 +228,14 @@ AI 처리와 교육 현장의 요구를 백엔드 설계에 반영하는 질문�
 
 - 일정 안에 모든 요구사항을 구현할 수 없다면 무엇을 기준으로 범위를 줄이나요?
 
-[모범 답변](interview-answers-artificial-society.md#q29)
+[모범 답변](answers.md#q29)
 
 ### 30. 아티피셜소사이어티에 지원한 이유와, 입사 후 기여할 수 있는 부분을 설명해 주세요.
 
 - 교육 서비스에 관심을 가진 이유는 무엇인가요?
 - 본인의 경험 중 이 서비스의 문제를 해결하는 데 직접 도움이 될 것은 무엇인가요?
 
-[모범 답변](interview-answers-artificial-society.md#q30)
+[모범 답변](answers.md#q30)
 
 ## 7. gRPC와 REST API 비교
 
@@ -254,7 +254,7 @@ AI 처리와 교육 현장의 요구를 백엔드 설계에 반영하는 질문�
 - 내부 서버 통신과 외부 공개 API에서 선택 기준은 무엇인가요?
 - C++ 중계 서버를 거쳐 REST API로 연계한 이유는 무엇인가요?
 
-[답변과 확인 필요 항목](interview-answers-artificial-society.md#q31) | [gRPC 학습 자료](lidar-grpc.md)
+[답변과 확인 필요 항목](answers.md#q31) | [gRPC 학습 자료](../lidar-grpc.md)
 
 ## 답변 준비 방법
 
