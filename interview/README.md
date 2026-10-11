@@ -58,6 +58,8 @@
 - [자기소개](introduction.md)
 - [아티피셜소사이어티 질문](interview-questions-artificial-society.md)
 - [아티피셜소사이어티 답변](interview-answers-artificial-society.md)
+- [알피(ARPI) JD와 경험 연결](jd-arpi.md)
+- [알피(ARPI) 예상 기술면접 질문](interview-questions-arpi.md)
 - [gRPC와 REST 비교](lidar-grpc.md)
 - [Spring 트랜잭션](spring-transactions.md)
 
