@@ -22,6 +22,7 @@
 | P4 | [기존 소개](../content/layout.md) | 이름, 연락처, 경력과 핵심 기술 |
 | P5 | 현재 대화의 Tag2Now 아키텍처 검토 | 사용자 지적과 코드 대조, 주체 기준 화살표, 원본 접근과 큐 역할 보완 |
 | P6 | 서비스 관계도 v4: `output/imagegen/tag2now-service-architecture-v4.png`, 전적 처리도 v4: `output/imagegen/tag2now-record-processing-v4.png` | P5에서 수정한 이미지 산출물 |
+| P7 | KTX L1 시나리오와 결과: `ktx-ticketing-be/load-tests/scenarios/L1_single_seat_race.js`, `ktx-ticketing-be/docs/results/P4_Result.md` | 입장 토큰 사전 발급, k6 1,000 VU, 동일 좌석 경합, 부하 후 DB 검증 |
 | T1 | 실시간 방 명세: `tag2now-BE/docs/spec/01-live-rooms.md` | 방 관측과 Phantom Room 판정, TTL과 단일 프로세스 제약 |
 | T2 | 전적 명세: `tag2now-BE/docs/spec/11-records.md` | 세이브 비교, 상대 매칭, 큐 상태와 재처리 |
 | T3 | 전적 서비스 구현: `tag2now-BE/src/records/service.py` | 상태와 이벤트의 원자적 저장, 이벤트 처리 트랜잭션 |
@@ -44,7 +45,7 @@
 | 5회 | T4 | 처리 실패의 dead 전환 기준 |
 | 6MB와 60ms | T6 | 697명 스냅샷의 전체 키 비교안 JSON 크기와 디코딩 시간 |
 | 38KB와 0.3ms | T6 | 같은 스냅샷의 변경 후 최대 계급 키와 디코딩 시간 |
-| 1,000명과 3회 | P2 | L1 동일 좌석 경합 검증 |
+| 1,000 VU와 3회 | P2, P7 | k6 L1 동일 좌석 경합 검증 |
 | 348~408ms와 833~863 TPS | P2 | L2 예매 부하 결과 |
 | 8~9초와 26ms | P2 | L3 조회 캐시 OFF/ON 비교 |
 | 85.4% | P2 | 입장 제어 실험의 초과 요청 반려 비율 |
