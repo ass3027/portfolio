@@ -111,6 +111,7 @@
 - 구성: 인라인 스타일 1개와 탐색 스크립트 1개
 - 도표: HTML에 포함한 SVG
 - AWS 도식과 전환 주석의 Lightsail 표기: [AWS Architecture Icons](https://aws.amazon.com/architecture/icons/) 2026-07-31 패키지의 SVG
+- KTX 도식의 k6·MySQL 아이콘 · [Grafana Labs 상표 목록](https://grafana.com/trademark-policy/trademark-list/), [MySQL Workbench 소스](https://github.com/mysql/mysql-shell-plugins/blob/main/gui/frontend/src/assets/images/admin/mysql-logo.svg)
 - 프로필 이미지: HTML에 포함한 데이터 URL
 - 외부 표시 의존성: Google Fonts
 - 탐색: 버튼, 방향키, 표지 링크와 직접 스크롤 확인
