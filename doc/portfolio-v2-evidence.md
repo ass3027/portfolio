@@ -27,11 +27,14 @@
 | T3 | 전적 서비스 구현: `tag2now-BE/src/records/service.py` | 상태와 이벤트의 원자적 저장, 이벤트 처리 트랜잭션 |
 | T4 | PostgreSQL 어댑터: `tag2now-BE/src/records/adapters/postgresql.py` | SKIP LOCKED, 방 단위 잠금, 재시도와 dead 상태 |
 | T5 | E2E 리플레이 안내: `tag2now-BE/tests/e2e/records/README.md` | 장애와 재시작 재현 시나리오, 검증 한계 |
-| T6 | 세이브 관리 명세: `tag2now-BE/docs/spec/09-save-admin.md` | 세이브 조회 경계, 계급별 캐시와 디코딩 측정 |
+| T6 | 세이브 관리 명세: `tag2now-BE/docs/spec/09-save-admin.md` | 수정 미리보기, SHA-256 검증, 세이브 조회와 디코딩 측정 |
 | T7 | 운영 compose: `tag2now-BE/compose.prod.yml` | Lightsail 서비스 구성, 운영 Redis 부재 |
 | T8 | 공유 RPCN 세션: `tag2now-BE/src/matching/rpcn_lifecycle.py` | 공유 세션, 잠금과 재연결 쿨다운 |
 | T9 | 태스크 시작 코드: `tag2now-BE/src/app.py` | Collector, SaveCapture, EventConsumer의 BE 내부 실행 |
 | T10 | save-admin 안내: `tag2now-save-admin/README.md` | RPCN DB의 읽기 전용 조회와 TUS 파일 접근 |
+| T11 | save-admin 수정 구현: `tag2now-save-admin/script/tdt_admin.py`, `tag2now-save-admin/script/tdt_admin_server.py` | 접속 확인, 백업과 체크섬, 파일 재읽기와 최신 세이브 ID 확인, 감사 로그 |
+| T12 | save-admin 테스트: `tag2now-save-admin/script/tests/test_server.py`, `tag2now-save-admin/script/tests/test_cli.py` | 미리보기 이후 원본 변경 거부, 접속 중 계정 차단, 백업 복구 테스트 구성 |
+| T13 | RPCN 클라이언트 구현: `tag2now-BE/src/rpcn_client/client.py` | TLS 연결, ServerInfo 버전 검증, 로그인, 패킷 헤더와 길이 기반 수신, Protobuf 조회 |
 
 ## 수치의 사용 범위
 
@@ -39,7 +42,7 @@
 |---|---|---|
 | 60초 | T1 | 매칭 추론의 기본 TTL |
 | 5회 | T4 | 처리 실패의 dead 전환 기준 |
-| 6MB와 60ms | T6 | 697명 스냅샷의 전체 캐시 JSON 크기와 디코딩 시간 |
+| 6MB와 60ms | T6 | 697명 스냅샷의 전체 키 비교안 JSON 크기와 디코딩 시간 |
 | 38KB와 0.3ms | T6 | 같은 스냅샷의 변경 후 최대 계급 키와 디코딩 시간 |
 | 1,000명과 3회 | P2 | L1 동일 좌석 경합 검증 |
 | 348~408ms와 833~863 TPS | P2 | L2 예매 부하 결과 |
@@ -55,7 +58,8 @@
 - 세이브 파서가 공유하는 상수로 작성한 리플레이의 포맷 검증 한계 유지
 - API 전체 응답 성능과 캐시 디코딩 비용 구분
 - 승인된 예매의 성능과 반려 응답을 포함한 전체 요청 성능 구분
-- v1의 운영 Redis, DynamoDB와 다중 인스턴스 표현을 v2로 승계하지 않음
+- Route 53, CloudFront, ALB, ECS Fargate, RDS와 ElastiCache Redis는 [초기 AWS 운영 기록](../PORTFOLIO.md#6-8-비용-최적화--ecs에서-lightsail로-전환)에 근거해 전환 전 구성으로 표기
+- 전환 이후 운영 구성은 BE의 운영 Compose와 배포 워크플로 기준
 - 무료 혜택 기간과 청구 내역이 없는 비용 수치 제외
 - 기여 범위가 확인되지 않은 세이브 포맷 분석 표본 수치 제외
 - Tag2Now의 종료 시점을 최신 기능까지 확대 추정하지 않고 기간 표기 보류
@@ -91,26 +95,27 @@
 | 서술식 판단 | 검토 완료 | 개요와 설계 판단에 서술식 사용 |
 | 사실과 논지 | 검토 완료 | 기능과 측정 조건은 항목, 트레이드오프는 문단 |
 | 용어 | 통과 | 개조식 표기 사용 |
-| 페이지 구분 | 통과 | 소개 1쪽, Tag2Now 6쪽, KTX 2쪽, AI 2쪽 |
+| 페이지 구분 | 통과 | 소개 1쪽, Tag2Now 5쪽, KTX 2쪽, AI 2쪽 |
 | 사례 구조 | 통과 | 개선 사례별 문제, 해결, 성과 확인 |
 | 링크 | 통과 | 원고 링크와 근거 파일의 존재 확인 |
 | Mermaid | 통과 | 전체 아키텍처 도표의 파서 검사 |
 | 현재 덱 | 보존 | v1 원고와 `index.html` 수정 없음 |
-| 화면 배치 | 통과 | 가로 11쪽 브라우저 확인, 데스크톱과 390px 화면 및 인쇄 모드의 넘침 없음 |
+| 화면 배치 | 통과 | 가로 10쪽 브라우저 확인, 데스크톱과 390px 화면 및 인쇄 모드의 넘침 없음 |
 | AI 개발 사례 | 추가 확인 대기 | 두 번째 사례를 실제 설계도 검토 범위로 한정 |
 
 ## HTML 산출물 검증
 
-- 문서 구조: A4 가로 크기의 고정 페이지 11개
+- 문서 구조: A4 가로 크기의 고정 페이지 10개
 - 페이지 대응: Markdown H2와 HTML 페이지의 일대일 매핑
 - 구성: 인라인 스타일 1개와 탐색 스크립트 1개
 - 도표: HTML에 포함한 SVG
+- AWS 도식과 전환 주석의 Lightsail 표기: [AWS Architecture Icons](https://aws.amazon.com/architecture/icons/) 2026-07-31 패키지의 SVG
 - 프로필 이미지: HTML에 포함한 데이터 URL
 - 외부 표시 의존성: Google Fonts
 - 탐색: 버튼, 방향키, 표지 링크와 직접 스크롤 확인
 - 인쇄: 화면과 같은 페이지 크기, 탐색 UI 숨김 확인
 - 원고 보존: v2 원고 4개 파일의 SHA-256 동일
 - 기존 덱 보존: `index.html`의 SHA-256 동일
-- 브라우저 검증 결과: 데스크톱, 390px 화면과 인쇄 모드의 11쪽 넘침 없음
-- 콘텐츠 대조: 원고 항목과 표 셀 219개, 누락 없음
+- 브라우저 검증 결과: 데스크톱, 390px 화면과 인쇄 모드의 10쪽 넘침 없음
+- AWS 도식 대조: 초기 운영 기록의 서비스 구성과 배포 흐름 확인
 - 검증 스크립트와 스크린샷: 로컬 임시 산출물, 버전 관리 제외
