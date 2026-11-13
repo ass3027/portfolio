@@ -53,8 +53,8 @@ AWS 서비스에는 [AWS Architecture Icons](https://aws.amazon.com/architecture
 | 04 | EventConsumer에서 방 관측과 세이브 이벤트 결합 | RPCN과 save-admin 조회, 공유 PostgreSQL의 이벤트 적재와 선점, 전적 저장 |
 | 05 | save-admin의 게임 세이브 파싱과 API | RPCN DB와 세이브 파일의 역할, 관리자 수정과 복구 |
 | 06 | 파란색 사용자 요청 경로와 초록색 개발자 배포 경로 | RDS와 ElastiCache, Lightsail 전환 이유 |
-| 07 | MySQL의 최종 정합성 방어 | Redis 입장 제어와 원자 선점, 동일 좌석 실험 결과 |
-| 08 | 각 실험의 대표 OFF와 ON 측정값 | 실험별 범위와 보조 지표 |
+| 07 | Redis 원자 선점과 MySQL 최종 검증 | Redis 입장 제어, 동일 좌석 실험 결과 |
+| 08 | 원자 선점 적용 전후 예매 응답 시간 중앙값 | 조회 캐시와 입장 제어의 대표 측정값, 실험별 보조 지표 |
 | 09 | 이슈 발행과 구현 착수의 두 승인 지점 | API 오류 응답 표준화 GitLab 이슈 사례 |
 | 10 | 실제 큐 조회 요청 방향 | SQL 근거, 기존 데이터 이동 표현 |
 
