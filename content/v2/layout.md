@@ -52,7 +52,7 @@ AWS 서비스에는 [AWS Architecture Icons](https://aws.amazon.com/architecture
 | 03 | TLS 소켓 위에서 동작하는 Python RPCN 클라이언트 | 서버 버전 확인, 로그인 패킷, Protobuf 조회 |
 | 04 | EventConsumer에서 방 관측과 세이브 이벤트 결합 | RPCN과 save-admin 조회, 공유 PostgreSQL의 이벤트 적재와 선점, 전적 저장 |
 | 05 | save-admin의 게임 세이브 파싱과 API | RPCN DB와 세이브 파일의 역할, 관리자 수정과 복구 |
-| 06 | CloudFront에서 ECS Fargate로 이어지는 초기 서비스 경로 | RDS와 ElastiCache, ECR 배포, Lightsail 전환 이유 |
+| 06 | 파란색 사용자 요청 경로와 초록색 개발자 배포 경로 | RDS와 ElastiCache, Lightsail 전환 이유 |
 | 07 | MySQL의 최종 정합성 방어 | Redis 입장 제어와 원자 선점, 동일 좌석 실험 결과 |
 | 08 | 각 실험의 대표 OFF와 ON 측정값 | 실험별 범위와 보조 지표 |
 | 09 | 이슈 발행과 구현 착수의 두 승인 지점 | API 오류 응답 표준화 GitLab 이슈 사례 |
