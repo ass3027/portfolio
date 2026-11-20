@@ -15,3 +15,7 @@
 
 # 로컬 작업 메모 (할 일은 GitHub Issues로 관리)
 /todo.md
+
+# 로컬 검증 스크립트, 미리보기 및 디버그 로그
+/tmp/
+/debug.log
