@@ -1,11 +1,11 @@
-# Tag2Now — 포트폴리오
+# Tag2Now 포트폴리오
 
 > **철권 태그 토너먼트 2 실시간 정보 대시보드**  
-> 오픈소스 PS3 에뮬레이터(RPCS3)의 온라인 서버(RPCN)에 직접 접속하여 실시간 플레이어 현황·리더보드·통계를 제공하는 웹 서비스
+> 오픈소스 PS3 에뮬레이터(RPCS3)의 온라인 서버(RPCN)에 직접 접속하여 실시간 플레이어 현황, 리더보드, 통계를 제공하는 웹 서비스
 
 | 항목 | 내용 |
 |------|------|
-| **역할** | 1인 풀스택 개발 (기획 · 설계 · 구현 · 배포) |
+| **역할** | 1인 풀스택 개발 (기획, 설계, 구현, 배포) |
 | **GitHub** | `github.com/[YOUR_ID]/tag2now` |
 | **서비스** | `[YOUR_DOMAIN]` |
 
@@ -13,7 +13,7 @@
 
 ## 1. 프로젝트 배경
 
-RPCS3 에뮬레이터로 TTT2를 즐기는 국내외 커뮤니티는 활성 유저 수, 대기 중인 매칭 상대, 랭킹 정보를 한눈에 볼 수 있는 도구가 없었다. RPCN은 오픈소스지만 게임의 호출 방식이 문서화되어 있지 않고 공식 클라이언트 SDK도 없다. Rust 서버를 직접 실행·분석해 호출 프로토콜을 역공학하고, 클라이언트를 구현·검증하여 문제를 해결했다.
+RPCS3 에뮬레이터로 TTT2를 즐기는 국내외 커뮤니티는 활성 유저 수, 대기 중인 매칭 상대, 랭킹 정보를 한눈에 볼 수 있는 도구가 없었다. RPCN은 오픈소스지만 게임의 호출 방식이 문서화되어 있지 않고 공식 클라이언트 SDK도 없다. Rust 서버를 직접 실행하고 분석해 호출 프로토콜을 파악했다. 이 규격을 재현한 클라이언트를 구현하고 동작을 검증했다.
 
 ---
 
@@ -33,7 +33,7 @@ RPCS3 에뮬레이터로 TTT2를 즐기는 국내외 커뮤니티는 활성 유�
 | Cloud | Amazon ECR, Amazon ECS (Fargate), AWS Lightsail, Route53, CloudFront, AWS OIDC |
 
 ### Frontend
-React 18 · TypeScript 5 · Vite · Tailwind CSS · Recharts (Vitest + Playwright)
+React 18, TypeScript 5, Vite, Tailwind CSS, Recharts (Vitest + Playwright)
 
 ---
 
@@ -80,9 +80,9 @@ React 18 · TypeScript 5 · Vite · Tailwind CSS · Recharts (Vitest + Playwrigh
 ### 4-1. RPCN 호출 프로토콜 역공학 & 검증된 클라이언트 구현
 
 **문제**  
-RPCN·RPCS3는 오픈소스지만, *각 게임이 RPCN을 어떻게 호출하는지*(요청 순서·패킷 구성)는 문서화되어 있지 않고 공식 클라이언트 SDK도 없다. 그래서 Rust로 작성된 RPCN 서버를 직접 실행·관찰하고 소스를 읽어 호출 프로토콜을 역공학한 뒤, Python 클라이언트로 재현했다.
+RPCN과 RPCS3는 오픈소스지만, *각 게임이 RPCN을 어떻게 호출하는지*(요청 순서와 패킷 구성)는 문서화되어 있지 않고 공식 클라이언트 SDK도 없다. 그래서 Rust로 작성된 RPCN 서버를 직접 실행해 동작을 관찰하고 소스를 읽어 호출 프로토콜을 파악한 뒤, Python 클라이언트로 재현했다.
 
-저수준 TCP/TLS 통신 코드 자체는 AI(Claude)와 협업해 구현을 가속했고, **단위·통합 테스트를 작성해 각 프로토콜 명령의 요청/응답 동작을 실측으로 검증**하는 방식으로 정확성을 확보했다. 패킷 struct는 새로 설계한 것이 아니라 **RPCN에 명세된 구조체를 이해·재사용**하고, 신규 기능에 필요한 부분만 수정했다.
+저수준 TCP/TLS 통신 코드 자체는 AI(Claude)와 협업해 구현을 가속했고, **단위 테스트와 통합 테스트를 작성해 각 프로토콜 명령의 요청/응답 동작을 실측으로 검증**하는 방식으로 정확성을 확보했다. 패킷 struct는 새로 설계한 것이 아니라 **RPCN에 명세된 구조체를 파악해 재사용**하고, 신규 기능에 필요한 부분만 수정했다.
 
 **프로토콜 구조**
 
@@ -126,7 +126,7 @@ def _recv_reply(self) -> tuple[int, bytes]:
         # ...
 ```
 
-**성과**: 공식 SDK 없이 서버 목록, 방 검색, 리더보드, 스코어 조회 등 7종 프로토콜 명령을 재현하고, 단위·통합 테스트로 동작을 검증
+**성과**: 공식 SDK 없이 서버 목록, 방 검색, 리더보드, 스코어 조회 등 7종 프로토콜 명령을 재현하고, 단위 테스트와 통합 테스트로 동작을 검증
 
 ---
 
@@ -169,7 +169,7 @@ def update_and_get_matchmaking(current_rooms: list[RoomInfoDTO]) -> list[RoomInf
     return [RoomInfoDTO.phantom(...) for mp in _matchmaking_players.values()]
 ```
 
-**성과**: 조회로는 알 수 없던 **매칭 중 유저 수를 정확히 집계**(사라진 방 → 매칭 시작, 재등장·TTL 만료 → 해제). 빈 방 목록 대신 "매칭 탐색 중" 플레이어를 Phantom Room으로 실시간 시각화, 커뮤니티 체감 활성도 향상
+**성과**: 조회로는 알 수 없던 **매칭 중 유저 수를 정확히 집계**(사라진 방 → 매칭 시작, 방 재등장 또는 TTL 만료 → 해제). 빈 방 목록 대신 "매칭 탐색 중" 플레이어를 Phantom Room으로 실시간 시각화, 커뮤니티 체감 활성도 향상
 
 ---
 
@@ -200,7 +200,7 @@ def read_only(fn):
     return wrapper
 ```
 
-**사용 예시** — 서비스 레이어에서 세션 관리 코드가 완전히 제거됨:
+**세션 관리 코드를 제거한 서비스 레이어 예시**
 
 ```python
 @transactional
@@ -223,7 +223,7 @@ async def get_player_stats(npid: str, *, session: AsyncSession) -> PlayerStats:
 - 플레이 통계: 90일 장기 보관, 사전 집계 필요
 - 게시판: 유연한 스키마, 댓글 중첩
 
-**해결 — DB 선택 기준**
+**DB 선택 기준**
 
 | 데이터 | 저장소 | 이유 |
 |--------|--------|------|
@@ -242,11 +242,11 @@ stats     (통계)        → 5분
 phantom rooms           → 캐시 안 함 (매 스냅샷마다 재계산)
 ```
 
-**캐시를 프로세스 밖에 두는 이유 — 조회 API 최적화 & 멀티 인스턴스**
+**조회 API와 멀티 인스턴스를 위한 외부 캐시**
 
-모든 사용자가 사실상 같은 화면(방 목록·매칭 현황)을 보기 때문에, 조회 요청은 사용자 수만큼 늘어나지만 응답 내용은 동일하다. 매 요청마다 RPCN을 다시 조회·집계하면 같은 결과를 만드는 데만 부하가 몰리고, 더 큰 문제는 그 부하가 **내가 통제할 수 없는 외부 RPCN 서버로 전가된다는 점**이다(커뮤니티가 운영하는 서버이므로 트래픽을 마음대로 늘릴 수 없다). TTL 캐시로 이 중복을 제거하고, 캐시를 애플리케이션 메모리가 아닌 **외부 Redis**에 둔 덕에 백엔드를 여러 인스턴스로 확장해도 인스턴스별로 캐시가 갈리지 않고 하나를 공유한다.
+모든 사용자가 사실상 같은 화면(방 목록과 매칭 현황)을 보기 때문에, 조회 요청은 사용자 수만큼 늘어나지만 응답 내용은 동일하다. 매 요청마다 RPCN을 다시 조회하고 집계하면 같은 결과를 만드는 데만 부하가 몰리고, 더 큰 문제는 그 부하가 **내가 통제할 수 없는 외부 RPCN 서버로 전가된다는 점**이다(커뮤니티가 운영하는 서버이므로 트래픽을 마음대로 늘릴 수 없다). TTL 캐시로 이 중복을 제거하고, 캐시를 애플리케이션 메모리가 아닌 **외부 Redis**에 둔 덕에 백엔드를 여러 인스턴스로 확장해도 인스턴스별로 캐시가 갈리지 않고 하나를 공유한다.
 
-**PostgreSQL 사전 집계 — Upsert로 피크 값 유지** (`src/history/adapters/postgresql.py`):
+**PostgreSQL 사전 집계에서 Upsert로 피크 값 유지** (`src/history/adapters/postgresql.py`):
 
 ```python
 stmt = pg_insert(HourlyStatsRow).values(
@@ -285,9 +285,9 @@ GET /api/rooms/all 호출
 ```
 
 이벤트 타입 (`src/matching/events.py`):
-- `ActivitySnapshot` — 방 스냅샷 전달 → 히스토리 DB 저장
-- `MatchmakingDetected` — 매칭 진입 감지
-- `MatchmakingResolved` — 매칭 완료/이탈/만료
+- `ActivitySnapshot`은 방 스냅샷을 전달해 히스토리 DB에 저장
+- `MatchmakingDetected`는 매칭 진입을 감지
+- `MatchmakingResolved`는 매칭 완료, 이탈, 만료를 기록
 
 ---
 
@@ -321,7 +321,7 @@ PR to master                         Tag push (v*)
 
 ---
 
-### 6-2. CI — 통합 테스트 환경 자동화 (`ci.yml`)
+### 6-2. CI에서 통합 테스트 환경 자동화 (`ci.yml`)
 
 PR이 master로 열리면 두 단계 테스트가 순차 실행된다.
 
@@ -354,12 +354,12 @@ jobs:
 ```
 
 **설계 포인트**:
-- DB를 Mock하지 않고 실제 PostgreSQL/Redis/DynamoDB Local에 쿼리 — 환경 불일치 버그 사전 차단
+- DB를 Mock하지 않고 실제 PostgreSQL/Redis/DynamoDB Local에 쿼리해 환경 불일치 버그를 사전에 확인
 - `always()` 조건으로 테스트 실패 시에도 컨테이너 정리 보장
 
 ---
 
-### 6-3. CD — ECR 빌드 & ECS 배포 (`deploy.yml`)
+### 6-3. CD에서 ECR 빌드와 ECS 배포 (`deploy.yml`)
 
 `v*` 태그를 푸시하면 테스트 → 빌드 → 배포가 자동 실행된다.
 
@@ -419,7 +419,7 @@ jobs:
 
 ---
 
-### 6-4. AWS OIDC — 키 없는 배포 보안
+### 6-4. AWS OIDC로 키 없이 배포
 
 ```
 GitHub Actions Runner
@@ -437,11 +437,11 @@ GitHub Actions Runner
 ```
 
 IAM 액세스 키를 GitHub Secrets에 저장하지 않아 자격증명 유출 위험을 원천 차단한다.  
-`id-token: write` 권한 하나로 동작하며, IAM Role의 신뢰 정책에서 특정 레포지토리·브랜치만 허용한다.
+`id-token: write` 권한 하나로 동작하며, IAM Role의 신뢰 정책에서 특정 레포지토리와 브랜치만 허용한다.
 
 ---
 
-### 6-5. 프론트엔드 CD — E2E 게이트
+### 6-5. 프론트엔드 CD의 E2E 게이트
 
 배포 전 Playwright E2E 테스트를 의무 통과 조건으로 설정했다.
 
@@ -510,7 +510,7 @@ location / {
 
 ---
 
-### 6-8. 비용 최적화 — ECS에서 Lightsail로 전환
+### 6-8. ECS에서 Lightsail로 전환해 비용 최적화
 
 ECS 배포 후 **CloudWatch**와 **AWS Billing**을 분석한 결과, 서비스 규모 대비 인프라가 과도하다고 판단했다.
 
@@ -518,14 +518,14 @@ ECS 배포 후 **CloudWatch**와 **AWS Billing**을 분석한 결과, 서비스 
 
 | 항목 | 내용 |
 |------|------|
-| CloudWatch CPU | Fargate 태스크 평균 CPU 사용률이 지속적으로 낮음 — 소규모 트래픽 확인 |
+| CloudWatch CPU | Fargate 태스크 평균 CPU 사용률이 계속 낮아 트래픽 규모가 작음을 확인 |
 | AWS Billing | ECS Fargate(BE+FE) + ElastiCache Redis + ALB 합산 비용이 트래픽 대비 과도 |
-| Fargate 과금 구조 | 최소 vCPU/메모리 단위로 24시간 과금 — 요청이 없어도 비용 발생 |
+| Fargate 과금 구조 | 요청이 없어도 최소 vCPU와 메모리 단위로 24시간 과금 |
 | ElastiCache Redis | 캐시 용도만인데 단독 인스턴스 비용 발생 |
 
 **전환 결정**
 
-> **공통 (전환 전후 유지)**: Route53(도메인) + CloudFront(정적 콘텐츠 캐싱으로 오리진 트래픽·비용 절감)
+> **공통 (전환 전후 유지)**: Route53(도메인) + CloudFront(정적 콘텐츠 캐싱으로 오리진 트래픽과 비용 절감)
 
 ```
 [Before] AWS ECS (Fargate)
@@ -551,13 +551,13 @@ ECS 배포 후 **CloudWatch**와 **AWS Billing**을 분석한 결과, 서비스 
 → 단순한 구성, free tier 활용, 예측 가능한 비용
 ```
 
-**배포 파이프라인 — 앞단은 재사용, 마지막 단계만 교체**
+**배포 파이프라인 앞단 재사용과 마지막 단계 교체**
 
 | 단계 | Before (ECS) | After (Lightsail) |
 |------|--------------|-------------------|
-| ① 테스트·빌드 | GitHub Actions (E2E 게이트) | 동일 |
+| ① 테스트와 빌드 | GitHub Actions (E2E 게이트) | 동일 |
 | ② 이미지 푸시 | ECR (OIDC keyless) | 동일 |
-| ③ 배포 | 태스크 정의 갱신 → 서비스 업데이트(롤링 · `wait-for-service-stability`) | SSH 접속 → `docker compose pull && up -d` |
+| ③ 배포 | 태스크 정의 갱신 → 서비스 업데이트(롤링, `wait-for-service-stability`) | SSH 접속 → `docker compose pull && up -d` |
 
 런타임을 교체하면서도 ①②는 그대로 재사용하고 ③만 갈아끼웠다.
 
@@ -572,9 +572,9 @@ ECS 배포 후 **CloudWatch**와 **AWS Billing**을 분석한 결과, 서비스 
 
 소규모 게임 커뮤니티 서비스에서 단일 장애점은 감수 가능한 트레이드오프로 판단하여 전환했다.
 
-**운영 — 실사용자 피드백 루프**
+**운영 중 사용자 제보 반영**
 
-배포로 끝나지 않고 실제 서비스로 운영하며, 오픈 카카오톡방을 통해 실사용자 피드백을 직접 받았다. 제보된 오류를 수정하고 요청된 기능을 개선하는 반복 루프로, 실사용 환경에서 서비스를 유지·발전시켰다.
+서비스를 직접 운영하며 오픈 카카오톡방에서 사용자 제보를 받았다. 제보된 오류를 수정하고 요청받은 기능을 개선했다.
 
 ---
 
@@ -597,13 +597,13 @@ ECS 배포 후 **CloudWatch**와 **AWS Billing**을 분석한 결과, 서비스 
 
 | 경험 | 구체적 내용 |
 |------|-------------|
-| **프로토콜 역공학** | 오픈소스 RPCN(Rust) 서버를 직접 실행·분석해 미문서화된 게임 호출 방식을 역공학. 명세된 struct를 이해·재사용하고 신규 기능에 맞게 수정 |
-| **AI 협업 & 검증** | 저수준 TCP/TLS 통신은 AI와 협업해 구현을 가속하고, 단위·통합 테스트로 각 프로토콜 명령 동작을 실측 검증 |
-| **실제 서비스 운영 & 피드백** | 배포로 끝내지 않고 실서비스로 운영 — 오픈 카카오톡방에서 실사용자 제보를 직접 받아 오류 수정·기능 개선을 반복. 비동기(FastAPI + asyncio + asyncpg) 설계로 수집이 돌아가는 동안에도 응답 지연 없이 유지 |
-| **다양한 DB 사용 경험** | Redis(TTL 캐시) · PostgreSQL(시계열 집계·UPSERT) · DynamoDB(게시판)를 한 서비스 안에서 함께 운용하며 각 DB의 쿼리 모델과 제약을 실제로 겪음 → 데이터 특성(빈도, 스키마 유연성, 보존 기간)에 맞는 선택 판단 |
+| **프로토콜 역공학** | 오픈소스 RPCN(Rust) 서버를 직접 실행하고 분석해 미문서화된 게임 호출 방식을 역공학. 명세된 struct를 파악해 재사용하고 신규 기능에 맞게 수정 |
+| **AI 협업 & 검증** | 저수준 TCP/TLS 통신은 AI와 협업해 구현을 가속하고, 단위 테스트와 통합 테스트로 각 프로토콜 명령 동작을 실측 검증 |
+| **실제 서비스 운영 & 피드백** | 오픈 카카오톡방에서 사용자 제보를 직접 받아 운영 중 오류를 수정하고 기능을 개선. 비동기(FastAPI + asyncio + asyncpg) 설계로 수집이 돌아가는 동안에도 응답 지연 없이 유지 |
+| **다양한 DB 사용 경험** | Redis(TTL 캐시), PostgreSQL(시계열 집계와 UPSERT), DynamoDB(게시판)를 한 서비스 안에서 함께 운용하며 각 DB의 쿼리 모델과 제약을 실제로 겪음 → 데이터 특성(빈도, 스키마 유연성, 보존 기간)에 맞는 선택 판단 |
 | **알고리즘 설계** | 스냅샷 Diff + TTL 만료로 관찰 불가능한 게임 상태를 추론하는 알고리즘 직접 고안 |
 | **클린 아키텍처** | Ports & Adapters 패턴으로 DB 구현체를 교체 가능하게 설계 (Community: DynamoDB ↔ PostgreSQL) |
 | **CI/CD 자동화** | GitHub Actions로 PR → 통합 테스트, 태그 → ECR 빌드 + ECS 배포까지 완전 자동화 |
-| **AWS 인프라 이해** | ECR·ECS(Fargate)·ALB·ElastiCache·Route53·CloudFront·IAM을 직접 구성하고 Lightsail 단일 VPS로 옮기며 배포 경로 전체를 이해 — 그 결과 IAM 액세스 키 없이 OIDC로 인증하는 keyless 배포로 귀결 |
+| **AWS 인프라 이해** | ECR, ECS(Fargate), ALB, ElastiCache, Route53, CloudFront, IAM을 직접 구성하고 Lightsail 단일 VPS로 옮긴 뒤 OIDC로 인증해 IAM 액세스 키 없이 배포 |
 | **배포 안정성** | `wait-for-service-stability` + E2E 게이트로 배포 실패를 워크플로우 레벨에서 즉시 감지 |
 | **비용 최적화** | CloudWatch + AWS Billing으로 오버스펙 인식 → Lightsail 단일 서버로 전환, 서비스 규모에 맞는 인프라 선택 판단 |

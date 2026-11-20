@@ -1,4 +1,4 @@
-Google SRE(Site Reliability Engineering)에서 **SLO(Service Level Objective, 서비스 수준 목표)** 설계는 무조건적인 높은 가용성을 추구하는 것이 아니라, ‘사용자가 만족할만한 최소한의 신뢰성’을 정의하고 개발 속도와 운영 안정성 사이의 균형을 잡는 작업입니다.
+Google SRE(Site Reliability Engineering)에서 **SLO(Service Level Objective, 서비스 수준 목표)** 설계는 무조건적인 높은 가용성을 추구하는 것이 아니라, 사용자가 만족할 만한 최소한의 신뢰성을 정의하고 개발 속도와 운영 안정성 사이의 균형을 잡는 작업입니다.
 
 ---
 

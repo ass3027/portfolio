@@ -22,12 +22,12 @@
 
 | 기술 | 수준 |
 |---|---|
-| Spring Boot | 주력 · 실무 4년 |
-| Kubernetes | CKA · CKAD |
-| AWS | Developer Associate · 개인 프로젝트 |
-| Docker | 실무 · 빌드~배포 운영 |
-| FastAPI | 주력 · 실무 |
-| Linux | 실무 · 리눅스마스터 1급 |
+| Spring Boot | 주력 기술, 실무 4년 |
+| Kubernetes | CKA와 CKAD |
+| AWS | Developer Associate, 개인 프로젝트에 사용 |
+| Docker | 실무에서 빌드부터 배포까지 운영 |
+| FastAPI | 실무 주력 기술 |
+| Linux | 실무 사용, 리눅스마스터 1급 |
 | Vue.js | 실무(보조) |
 | React | 개인 프로젝트(TypeScript) |
 
@@ -39,7 +39,7 @@
 
 **2022.08 ~ 현재, 주식회사 스피어에이엑스, 솔루션개발본부 주임, Full Stack 개발자**
 
-내부망 시스템 리팩터링과 데이터 처리 안정화 담당. CI/CD 파이프라인 구축과 최적화로 빌드·배포 시간 18분에서 6분으로 단축. gRPC 기반 실시간 데이터 연계. DeepStream 영상분석 모듈 API 연동. 1천만 건 이상 데이터의 프로시저·쿼리 보정 수행.
+내부망 시스템 리팩터링과 데이터 처리 안정화 담당. CI/CD 파이프라인 구축과 최적화로 빌드와 배포 시간 18분에서 6분으로 단축. gRPC 기반 실시간 데이터 연계. DeepStream 영상분석 모듈 API 연동. 1천만 건 이상 데이터의 프로시저와 쿼리 보정 수행.
 
 ### 자격증
 
