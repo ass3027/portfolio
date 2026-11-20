@@ -37,7 +37,7 @@
 | T12 | save-admin 테스트: `tag2now-save-admin/script/tests/test_server.py`, `tag2now-save-admin/script/tests/test_cli.py` | 미리보기 이후 원본 변경 거부, 접속 중 계정 차단, 백업 복구 테스트 구성 |
 | T13 | RPCN 클라이언트 구현: `tag2now-BE/src/rpcn_client/client.py` | TLS 연결, ServerInfo 버전 검증, 로그인, 패킷 헤더와 길이 기반 수신, Protobuf 조회 |
 | T14 | 운영 문서: `tag2now-BE/docs/aws-setup.md` | Lightsail 단일 인스턴스, 메모리 1GB |
-| P8 | 2026-11-13 로컬 Docker Compose 실험 | 합성 대전의 API 반영 시간, 기존 장애·재시작 리플레이 실행 결과 |
+| P8 | 2026-11-13 로컬 Docker Compose 실험 | 합성 대전의 API 반영 시간, 기존 장애와 재시작 리플레이 실행 결과 |
 
 ## 수치의 사용 범위
 
@@ -53,20 +53,20 @@
 | 85.4% | P2 | 입장 제어 실험의 초과 요청 반려 비율 |
 | 24건, 중앙값 10.56초, p95 15.01초, 최대 15.03초 | P8 | 양쪽 결과 세이브 커밋부터 전적 API에서 양쪽 결과와 캐릭터 확인까지 |
 | p95 20초 이내 | 사용자 확인 | 측정 후 정한 로컬 설계 검토 기준. p95 15.01초로 충족 |
-| 장애 중 전적 1건 복원, 재시작 전후 전적 2건 | P8 | 기존 리플레이 12·13번, 누락·중복과 미처리·실패 이벤트 확인 |
+| 장애 중 전적 1건 복원, 재시작 전후 전적 2건 | P8 | 기존 리플레이 12번과 13번, 누락, 중복, 미처리 및 실패 이벤트 확인 |
 
 ## 확인 경계
 
 - 기존 문서의 측정 기록과 현재 구현의 대조 수행
 - KTX 수치는 기존 실험 기록 범위로 표기
 - P8은 기존 전적 수집 설계 실험 기록. 배포 순서별 호환성 검증과 구분
-- 반영 지연은 기본 10초 수집·5초 소비 대기 설정에서 약 0.85초 간격으로 합성 대전 24건 입력 후 0.25초 간격으로 API 관측. p95는 최근접 순위 방식
-- 기존 장애·재시작 리플레이는 수집·소비 대기 각 1초 설정으로 별도 실행. 운영 지연과 푸시 대안의 성능은 측정 범위에서 제외
+- 반영 지연은 기본 10초 수집과 5초 소비 대기 설정에서 약 0.85초 간격으로 합성 대전 24건 입력 후 0.25초 간격으로 API 관측. p95는 최근접 순위 방식
+- 기존 장애와 재시작 리플레이는 수집과 소비 대기 각 1초 설정으로 별도 실행. 운영 지연과 푸시 대안의 성능은 측정 범위에서 제외
 - P8 실행 소스는 당시 로컬 체크아웃 기준. BE `d56ddbb`와 로컬 변경분, save-admin `a55daec`
 - 세이브 파서가 공유하는 상수로 작성한 리플레이의 포맷 검증 한계 유지
 - API 전체 응답 성능과 캐시 디코딩 비용 구분
 - 승인된 예매의 성능과 반려 응답을 포함한 전체 요청 성능 구분
-- Route 53, CloudFront, ALB, ECS Fargate, RDS와 ElastiCache Redis는 [초기 AWS 운영 기록](../PORTFOLIO.md#6-8-비용-최적화--ecs에서-lightsail로-전환)에 근거해 전환 전 구성으로 표기
+- Route 53, CloudFront, ALB, ECS Fargate, RDS와 ElastiCache Redis는 [초기 AWS 운영 기록](../PORTFOLIO.md#6-8-ecs에서-lightsail로-전환해-비용-최적화)에 근거해 전환 전 구성으로 표기
 - 전환 이후 운영 구성은 BE의 운영 Compose와 배포 워크플로 기준
 - 무료 혜택 기간과 청구 내역이 없는 비용 수치 제외
 - 기여 범위가 확인되지 않은 세이브 포맷 분석 표본 수치 제외
@@ -118,7 +118,7 @@
 - 구성: 인라인 스타일 1개와 탐색 스크립트 1개
 - 도표: HTML에 포함한 SVG
 - AWS 도식과 전환 주석의 Lightsail 표기: [AWS Architecture Icons](https://aws.amazon.com/architecture/icons/) 2026-07-31 패키지의 SVG
-- KTX 도식의 k6·MySQL 아이콘 · [Grafana Labs 상표 목록](https://grafana.com/trademark-policy/trademark-list/), [MySQL Workbench 소스](https://github.com/mysql/mysql-shell-plugins/blob/main/gui/frontend/src/assets/images/admin/mysql-logo.svg)
+- KTX 도식에 사용한 k6와 MySQL 아이콘 출처는 [Grafana Labs 상표 목록](https://grafana.com/trademark-policy/trademark-list/), [MySQL Workbench 소스](https://github.com/mysql/mysql-shell-plugins/blob/main/gui/frontend/src/assets/images/admin/mysql-logo.svg)
 - 프로필 이미지: HTML에 포함한 데이터 URL
 - 외부 표시 의존성: Google Fonts
 - 탐색: 버튼, 방향키, 표지 링크와 직접 스크롤 확인
