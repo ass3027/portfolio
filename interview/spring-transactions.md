@@ -18,7 +18,7 @@
 
 여러 Repository를 사용하는 업무는 서비스 계층에서 하나의 경계로 묶는 것을 출발점으로 삼는다. 기존 트랜잭션에 참여하는 메서드는 자신이 반환됐다고 커밋되지 않으므로 호출 흐름 전체를 확인한다. [Spring 전파 방식 문서](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-propagation.html)
 
-DB 상태를 읽고 판단한 뒤 변경하는 작업은 조회와 변경의 관계까지 검토한다. 단순히 같은 트랜잭션에 넣는 것만으로 다른 요청과의 경쟁이 해결되지는 않는다. 업무 규칙에 맞는 격리 수준과 락, 버전 검증 또는 DB 제약을 선택한다. [MySQL 잠금 조회 문서](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html)
+DB 상태를 읽고 판단한 뒤 변경하는 작업은 조회와 변경의 관계까지 검토한다. 같은 트랜잭션에 넣어도 다른 요청과 경쟁할 수 있다. 업무 규칙에 맞는 격리 수준과 락, 버전 검증 또는 DB 제약을 선택한다. [MySQL 잠금 조회 문서](https://dev.mysql.com/doc/refman/8.4/en/innodb-locking-reads.html)
 
 외부 처리를 분리하는 기준은 지연뿐 아니라 실패의 의미다. AI가 실패해도 제출을 보존해야 한다면 제출과 AI 결과를 같은 성공 조건으로 묶지 않는다. 대신 제출과 처리 대기 기록을 같은 DB 트랜잭션에 저장하고, 후속 처리에서 대기 기록을 읽어 실행하는 흐름을 고려한다.
 
